@@ -1,0 +1,14 @@
+---
+language: node_js
+node_js:
+- '4'
+- '5'
+- '6'
+install: true
+env:
+- EXAMPLE_PATH=./relay-treasurehunt
+- EXAMPLE_PATH=./star-wars
+- EXAMPLE_PATH=./todo
+- EXAMPLE_PATH=./TodoMVC
+script:
+  cd $EXAMPLE_PATH && npm install && npm run update-schema
