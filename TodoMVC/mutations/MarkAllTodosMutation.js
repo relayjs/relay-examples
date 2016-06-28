@@ -19,16 +19,16 @@ export default class MarkAllTodosMutation extends Relay.Mutation {
       fragment on TodoConnection {
         edges {
           node {
-            complete,
-            id,
-          },
-        },
+            complete
+            id
+          }
+        }
       }
     `,
     viewer: () => Relay.QL`
       fragment on User {
-        id,
-        totalCount,
+        id
+        totalCount
       }
     `,
   };
@@ -38,10 +38,12 @@ export default class MarkAllTodosMutation extends Relay.Mutation {
   getFatQuery() {
     return Relay.QL`
       fragment on MarkAllTodosPayload {
+        changedTodos {
+          complete
+        }
         viewer {
-          completedCount,
-          todos,
-        },
+          completedCount
+        }
       }
     `;
   }
@@ -49,6 +51,7 @@ export default class MarkAllTodosMutation extends Relay.Mutation {
     return [{
       type: 'FIELDS_CHANGE',
       fieldIDs: {
+        changedTodos: this.props.todos.edges.map(({node}) => node.id),
         viewer: this.props.viewer.id,
       },
     }];
