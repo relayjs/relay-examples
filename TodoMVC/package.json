@@ -9,7 +9,7 @@
   "dependencies": {
     "amdefine": ">=0.0.4",
     "babel-preset-react-native": "1.9.0",
-    "babel-relay-plugin": "0.9.1",
+    "babel-relay-plugin": "0.9.2",
     "express": "4.13.4",
     "express-graphql": "0.5.2",
     "graphql": "0.6.0",
@@ -18,7 +18,7 @@
     "react-native": "0.28.0",
     "react-native-listitem": "1.0.5",
     "react-native-swipeout": "git+https://github.com/magrinj/react-native-swipeout#403d973504b58ede25c137fb31b0eff7e03b0a66",
-    "react-relay": "0.9.1"
+    "react-relay": "0.9.2"
   },
   "devDependencies": {
     "babel-cli": "6.9.0",
