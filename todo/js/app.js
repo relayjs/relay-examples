@@ -21,9 +21,9 @@ import TodoList from './components/TodoList';
 import ViewerQueries from './queries/ViewerQueries';
 
 import {createHashHistory} from 'history';
+import {applyRouterMiddleware, useRouterHistory} from 'react-router';
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
 const mountNode = document.getElementById('root');
-import {applyRouterMiddleware, useRouterHistory} from 'react-router';
 import useRelay from 'react-router-relay';
 
 ReactDOM.render(
