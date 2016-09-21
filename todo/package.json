@@ -21,7 +21,7 @@
     "history": "2.1.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-relay": "0.9.2",
+    "react-relay": "0.9.3",
     "react-router": "2.7.0",
     "react-router-relay": "0.13.4",
     "todomvc-app-css": "2.0.6",
