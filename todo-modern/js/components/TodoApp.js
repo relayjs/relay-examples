@@ -11,6 +11,7 @@
  */
 
 import AddTodoMutation from '../mutations/AddTodoMutation';
+import TodoList from './TodoList';
 import TodoListFooter from './TodoListFooter';
 import TodoTextInput from './TodoTextInput';
 
@@ -39,9 +40,7 @@ class TodoApp extends React.Component {
               placeholder="What needs to be done?"
             />
           </header>
-
-          {this.props.children}
-
+          <TodoList viewer={this.props.viewer} />
           {hasTodos &&
             <TodoListFooter
               todos={this.props.viewer.todos}
@@ -74,6 +73,7 @@ export default Relay.createContainer(TodoApp, {
         totalCount,
         ${AddTodoMutation.getFragment('viewer')},
         ${TodoListFooter.getFragment('viewer')},
+        ${TodoList.getFragment('viewer')},
       }
     `,
   },

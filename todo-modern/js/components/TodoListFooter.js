@@ -33,17 +33,6 @@ class TodoListFooter extends React.Component {
         <span className="todo-count">
           <strong>{numRemainingTodos}</strong> item{numRemainingTodos === 1 ? '' : 's'} left
         </span>
-        <ul className="filters">
-          <li>
-            <IndexLink to="/" activeClassName="selected">All</IndexLink>
-          </li>
-          <li>
-            <Link to="/active" activeClassName="selected">Active</Link>
-          </li>
-          <li>
-            <Link to="/completed" activeClassName="selected">Completed</Link>
-          </li>
-        </ul>
         {numCompletedTodos > 0 &&
           <button
             className="clear-completed"
