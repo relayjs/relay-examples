@@ -16,7 +16,7 @@ import TodoListFooter from './TodoListFooter';
 import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 
 class TodoApp extends React.Component {
   _handleTextInputSave = (text) => {

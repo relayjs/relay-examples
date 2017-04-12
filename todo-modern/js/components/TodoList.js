@@ -14,7 +14,7 @@ import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
 import Todo from './Todo';
 
 import React from 'react';
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 
 class TodoList extends React.Component {
   _handleMarkAllChange = (e) => {
