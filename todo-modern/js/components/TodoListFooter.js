@@ -10,7 +10,6 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {IndexLink, Link} from 'react-router';
 import RemoveCompletedTodosMutation from '../mutations/RemoveCompletedTodosMutation';
 
 import React from 'react';
