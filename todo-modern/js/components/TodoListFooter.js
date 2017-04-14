@@ -13,7 +13,10 @@
 import RemoveCompletedTodosMutation from '../mutations/RemoveCompletedTodosMutation';
 
 import React from 'react';
-import Relay from 'react-relay/classic';
+import {
+  graphql,
+  createFragmentContainer
+} from 'react-relay/compat';
 
 class TodoListFooter extends React.Component {
   _handleRemoveCompletedTodosClick = () => {
@@ -44,20 +47,19 @@ class TodoListFooter extends React.Component {
   }
 }
 
-export default Relay.createContainer(TodoListFooter, {
-  fragments: {
-    viewer: () => Relay.QL`
-      fragment on User {
-        completedCount,
-        todos(
-          status: "completed",
-          first: 2147483647  # max GraphQLInt
-        ) {
-          ${RemoveCompletedTodosMutation.getFragment('todos')},
-        },
-        totalCount,
-        ${RemoveCompletedTodosMutation.getFragment('viewer')},
-      }
-    `,
-  },
-});
+export default createFragmentContainer(
+  TodoListFooter,
+  graphql`
+    fragment TodoListFooter_viewer on User {
+      completedCount,
+      todos(
+        status: "completed",
+        first: 2147483647  # max GraphQLInt
+      ) {
+        ...RemoveCompletedTodosMutation_todos,
+      },
+      totalCount,
+      ...RemoveCompletedTodosMutation_viewer,
+    }
+  `
+);
