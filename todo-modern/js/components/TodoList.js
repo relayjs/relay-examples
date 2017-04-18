@@ -18,12 +18,12 @@ import {
   createFragmentContainer,
   graphql,
 } from 'react-relay/compat';
+import RelayClassic from 'react-relay/classic'
 
 class TodoList extends React.Component {
   _handleMarkAllChange = (e) => {
     const complete = e.target.checked;
-// TODO props.relay.* APIs do not exist on compat containers
-    this.props.relay.commitUpdate(
+    RelayClassic.Store.commitUpdate(
       new MarkAllTodosMutation({
         complete,
         todos: this.props.viewer.todos,
@@ -63,26 +63,6 @@ class TodoList extends React.Component {
 }
 
 export default createFragmentContainer(TodoList, {
-  /* TODO manually deal with:
-  initialVariables: {
-    status: null,
-  }
-  */
-  /* TODO manually deal with:
-  prepareVariables({status}) {
-    let nextStatus;
-    if (status === 'active' || status === 'completed') {
-      nextStatus = status;
-    } else {
-      // This matches the Backbone example, which displays all todos on an
-      // invalid route.
-      nextStatus = 'any';
-    }
-    return {
-      status: nextStatus,
-    };
-  }
-  */
   viewer: graphql`
     fragment TodoList_viewer on User {
       completedCount,
