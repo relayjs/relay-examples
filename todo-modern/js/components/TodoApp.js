@@ -24,8 +24,10 @@ import RelayClassic from 'react-relay/classic'
 
 class TodoApp extends React.Component {
   _handleTextInputSave = (text) => {
-    RelayClassic.Store.commitUpdate(
-      new AddTodoMutation({text, viewer: this.props.viewer})
+    AddTodoMutation.commit(
+      this.props.relay.environment,
+      text,
+      this.props.viewer,
     );
   };
   render() {
@@ -73,8 +75,8 @@ class TodoApp extends React.Component {
 export default createFragmentContainer(TodoApp, {
   viewer: graphql`
     fragment TodoApp_viewer on User {
+      id,
       totalCount,
-      ...AddTodoMutation_viewer,
       ...TodoListFooter_viewer,
       ...TodoList_viewer,
     }

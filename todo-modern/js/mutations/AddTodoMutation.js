@@ -10,66 +10,81 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import Relay from 'react-relay/classic';
+import {
+  commitMutation,
+  graphql,
+} from 'react-relay/compat';
 
-export default class AddTodoMutation extends Relay.Mutation {
-  static fragments = {
-    viewer: () => Relay.QL`
-      fragment on User {
-        id,
-        totalCount,
-      }
-    `,
-  };
-  getMutation() {
-    return Relay.QL`mutation{addTodo}`;
-  }
-  getFatQuery() {
-    return Relay.QL`
-      fragment on AddTodoPayload @relay(pattern: true) {
-        todoEdge,
-        viewer {
-          todos,
-          totalCount,
-        },
-      }
-    `;
-  }
-  getConfigs() {
-    return [{
-      type: 'RANGE_ADD',
-      parentName: 'viewer',
-      parentID: this.props.viewer.id,
-      connectionName: 'todos',
-      edgeName: 'todoEdge',
-      rangeBehaviors: ({status}) => {
-        if (status === 'completed') {
-          return 'ignore';
-        } else {
-          return 'append';
+const mutation = graphql`
+  mutation AddTodoMutation($input: AddTodoInput!) {
+    addTodo(input:$input) {
+      todoEdge {
+        __typename
+        cursor
+        node {
+          complete
+          id
+          text
         }
-      },
-    }];
+      }
+      viewer {
+        id
+        totalCount
+      }
+    }
   }
-  getVariables() {
-    return {
-      text: this.props.text,
-    };
-  }
-  getOptimisticResponse() {
-    return {
-      // FIXME: totalCount gets updated optimistically, but this edge does not
-      // get added until the server responds
-      todoEdge: {
-        node: {
-          complete: false,
-          text: this.props.text,
-        },
-      },
-      viewer: {
-        id: this.props.viewer.id,
-        totalCount: this.props.viewer.totalCount + 1,
-      },
-    };
-  }
+`;
+
+function getConfigs(userID) {
+  return [{
+    type: 'RANGE_ADD',
+    parentName: 'viewer',
+    parentID: userID,
+    connectionName: 'todos',
+    edgeName: 'todoEdge',
+    rangeBehaviors: ({status}) => {
+      if (status === 'completed') {
+        return 'ignore';
+      } else {
+        return 'append';
+      }
+    },
+  }];
 }
+
+function getOptimisticResponse(text, user) {
+  return {
+    // FIXME: totalCount gets updated optimistically, but this edge does not
+    // get added until the server responds
+    todoEdge: {
+      node: {
+        complete: false,
+        text: text,
+      },
+    },
+    viewer: {
+      id: user.id,
+      totalCount: user.totalCount + 1,
+    },
+  };
+}
+
+function commit(
+  environment,
+  text,
+  user
+) {
+  return commitMutation(
+    environment,
+    {
+      mutation,
+      variables: {
+        input: {text}
+      },
+      configs: getConfigs(user.id),
+      optimisticResponse: () => getOptimisticResponse(text, user),
+    }
+  );
+}
+
+export default {commit};
