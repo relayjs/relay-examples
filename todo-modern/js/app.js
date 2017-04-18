@@ -35,6 +35,8 @@ ReactDOM.render(
     render={({error, props}) => {
       if (props) {
         return <TodoApp viewer={props.viewer} />
+      } else {
+        return <div>Loading</div>;
       }
     }}
   />,
