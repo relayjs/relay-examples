@@ -11,6 +11,7 @@ npm install
 Start a local server:
 
 ```
+npm update-schema
 npm run build
 npm start
 ```
