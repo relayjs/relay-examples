@@ -1,7 +1,7 @@
 {
   "passPerPreset": true,
   "plugins": [
-    ["relay", {"compat": true, "schema": "data/schema.json"}],
+    ["relay", {"compat": true, "schema": "data/schema.graphql"}],
     "transform-runtime"
   ],
   "presets": [
