@@ -14,11 +14,15 @@ import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
 import Todo from './Todo';
 
 import React from 'react';
-import Relay from 'react-relay/classic';
+import {
+  createFragmentContainer,
+  graphql,
+} from 'react-relay/compat';
 
 class TodoList extends React.Component {
   _handleMarkAllChange = (e) => {
     const complete = e.target.checked;
+// TODO props.relay.* APIs do not exist on compat containers
     this.props.relay.commitUpdate(
       new MarkAllTodosMutation({
         complete,
@@ -58,11 +62,13 @@ class TodoList extends React.Component {
   }
 }
 
-export default Relay.createContainer(TodoList, {
+export default createFragmentContainer(TodoList, {
+  /* TODO manually deal with:
   initialVariables: {
     status: null,
-  },
-
+  }
+  */
+  /* TODO manually deal with:
   prepareVariables({status}) {
     let nextStatus;
     if (status === 'active' || status === 'completed') {
@@ -75,28 +81,26 @@ export default Relay.createContainer(TodoList, {
     return {
       status: nextStatus,
     };
-  },
-
-  fragments: {
-    viewer: () => Relay.QL`
-      fragment on User {
-        completedCount,
-        todos(
-          status: $status,
-          first: 2147483647  # max GraphQLInt
-        ) {
-          edges {
-            node {
-              id,
-              ${Todo.getFragment('todo')},
-            },
+  }
+  */
+  viewer: graphql`
+    fragment TodoList_viewer on User {
+      completedCount,
+      todos(
+        status: $status,
+        first: 2147483647  # max GraphQLInt
+      ) {
+        edges {
+          node {
+            id,
+            ...Todo_todo,
           },
-          ${MarkAllTodosMutation.getFragment('todos')},
         },
-        totalCount,
-        ${MarkAllTodosMutation.getFragment('viewer')},
-        ${Todo.getFragment('viewer')},
-      }
-    `,
-  },
+        ...MarkAllTodosMutation_todos,
+      },
+      totalCount,
+      ...MarkAllTodosMutation_viewer,
+      ...Todo_viewer,
+    }
+  `,
 });

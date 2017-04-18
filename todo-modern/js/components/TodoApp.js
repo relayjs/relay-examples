@@ -16,10 +16,14 @@ import TodoListFooter from './TodoListFooter';
 import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
-import Relay from 'react-relay/classic';
+import {
+  createFragmentContainer,
+  graphql,
+} from 'react-relay/compat';
 
 class TodoApp extends React.Component {
   _handleTextInputSave = (text) => {
+// TODO props.relay.* APIs do not exist on compat containers
     this.props.relay.commitUpdate(
       new AddTodoMutation({text, viewer: this.props.viewer})
     );
@@ -66,15 +70,13 @@ class TodoApp extends React.Component {
   }
 }
 
-export default Relay.createContainer(TodoApp, {
-  fragments: {
-    viewer: () => Relay.QL`
-      fragment on User {
-        totalCount,
-        ${AddTodoMutation.getFragment('viewer')},
-        ${TodoListFooter.getFragment('viewer')},
-        ${TodoList.getFragment('viewer')},
-      }
-    `,
-  },
+export default createFragmentContainer(TodoApp, {
+  viewer: graphql`
+    fragment TodoApp_viewer on User {
+      totalCount,
+      ...AddTodoMutation_viewer,
+      ...TodoListFooter_viewer,
+      ...TodoList_viewer,
+    }
+  `,
 });

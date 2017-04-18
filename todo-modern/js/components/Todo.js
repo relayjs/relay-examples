@@ -16,7 +16,10 @@ import RenameTodoMutation from '../mutations/RenameTodoMutation';
 import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
-import Relay from 'react-relay/classic';
+import {
+  createFragmentContainer,
+  graphql,
+} from 'react-relay/compat';
 import classnames from 'classnames';
 
 class Todo extends React.Component {
@@ -25,6 +28,7 @@ class Todo extends React.Component {
   };
   _handleCompleteChange = (e) => {
     const complete = e.target.checked;
+// TODO props.relay.* APIs do not exist on compat containers
     this.props.relay.commitUpdate(
       new ChangeTodoStatusMutation({
         complete,
@@ -48,11 +52,13 @@ class Todo extends React.Component {
   };
   _handleTextInputSave = (text) => {
     this._setEditMode(false);
+// TODO props.relay.* APIs do not exist on compat containers
     this.props.relay.commitUpdate(
       new RenameTodoMutation({todo: this.props.todo, text})
     );
   };
   _removeTodo() {
+// TODO props.relay.* APIs do not exist on compat containers
     this.props.relay.commitUpdate(
       new RemoveTodoMutation({todo: this.props.todo, viewer: this.props.viewer})
     );
@@ -100,23 +106,21 @@ class Todo extends React.Component {
   }
 }
 
-export default Relay.createContainer(Todo, {
-  fragments: {
-    todo: () => Relay.QL`
-      fragment on Todo {
-        complete,
-        id,
-        text,
-        ${ChangeTodoStatusMutation.getFragment('todo')},
-        ${RemoveTodoMutation.getFragment('todo')},
-        ${RenameTodoMutation.getFragment('todo')},
-      }
-    `,
-    viewer: () => Relay.QL`
-      fragment on User {
-        ${ChangeTodoStatusMutation.getFragment('viewer')},
-        ${RemoveTodoMutation.getFragment('viewer')},
-      }
-    `,
-  },
+export default createFragmentContainer(Todo, {
+  todo: graphql`
+    fragment Todo_todo on Todo {
+      complete,
+      id,
+      text,
+      ...ChangeTodoStatusMutation_todo,
+      ...RemoveTodoMutation_todo,
+      ...RenameTodoMutation_todo,
+    }
+  `,
+  viewer: graphql`
+    fragment Todo_viewer on User {
+      ...ChangeTodoStatusMutation_viewer,
+      ...RemoveTodoMutation_viewer,
+    }
+  `,
 });
