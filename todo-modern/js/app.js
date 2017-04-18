@@ -14,22 +14,29 @@ import 'todomvc-common';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Relay from 'react-relay/classic';
+import {QueryRenderer} from 'react-relay/compat';
+import RelayClassic from 'react-relay/classic'
 import TodoApp from './components/TodoApp';
 import TodoList from './components/TodoList';
-import ViewerQueries from './queries/ViewerQueries';
 
 const mountNode = document.getElementById('root');
 
-class HomeRoute extends Relay.Route {
-  static routeName = 'Home';
-  static queries = ViewerQueries;
-}
-
 ReactDOM.render(
-  <Relay.RootContainer
-    Component={TodoApp}
-    route={new HomeRoute()}
+  <QueryRenderer
+    environment={RelayClassic.Store}
+    query={graphql`
+      query appQuery ($status: String) {
+        viewer {
+          ...TodoApp_viewer
+        }
+      }
+    `}
+    variables={{status: null}}
+    render={({error, props}) => {
+      if (props) {
+        return <TodoApp viewer={props.viewer} />
+      }
+    }}
   />,
   mountNode
 );

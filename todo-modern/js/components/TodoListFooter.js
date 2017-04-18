@@ -22,7 +22,7 @@ class TodoListFooter extends React.Component {
   _handleRemoveCompletedTodosClick = () => {
     RemoveCompletedTodosMutation.commit(
       this.props.relay.environment,
-      this.props.viewer.todos,
+      this.props.viewer.completedTodos,
       this.props.viewer,
     );
   };
@@ -52,7 +52,7 @@ export default createFragmentContainer(
     fragment TodoListFooter_viewer on User {
       id,
       completedCount,
-      todos(
+      completedTodos: todos(
         status: "completed",
         first: 2147483647  # max GraphQLInt
       ) {
