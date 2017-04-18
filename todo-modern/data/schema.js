@@ -120,8 +120,8 @@ const GraphQLUser = new GraphQLObjectType({
   interfaces: [nodeInterface],
 });
 
-const Root = new GraphQLObjectType({
-  name: 'Root',
+const Query = new GraphQLObjectType({
+  name: 'Query',
   fields: {
     viewer: {
       type: GraphQLUser,
@@ -276,6 +276,6 @@ const Mutation = new GraphQLObjectType({
 });
 
 export const schema = new GraphQLSchema({
-  query: Root,
+  query: Query,
   mutation: Mutation,
 });
