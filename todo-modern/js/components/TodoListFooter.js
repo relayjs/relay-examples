@@ -17,15 +17,13 @@ import {
   graphql,
   createFragmentContainer
 } from 'react-relay/compat';
-import RelayClassic from 'react-relay/classic';
 
 class TodoListFooter extends React.Component {
   _handleRemoveCompletedTodosClick = () => {
-    RelayClassic.Store.commitUpdate(
-      new RemoveCompletedTodosMutation({
-        todos: this.props.viewer.todos,
-        viewer: this.props.viewer,
-      })
+    RemoveCompletedTodosMutation.commit(
+      this.props.relay.environment,
+      this.props.viewer.todos,
+      this.props.viewer,
     );
   };
   render() {
@@ -52,15 +50,20 @@ export default createFragmentContainer(
   TodoListFooter,
   graphql`
     fragment TodoListFooter_viewer on User {
+      id,
       completedCount,
       todos(
         status: "completed",
         first: 2147483647  # max GraphQLInt
       ) {
-        ...RemoveCompletedTodosMutation_todos,
+        edges {
+          node {
+            id
+            complete
+          }
+        }
       },
       totalCount,
-      ...RemoveCompletedTodosMutation_viewer,
     }
   `
 );

@@ -18,7 +18,6 @@ import {
   createFragmentContainer,
   graphql,
 } from 'react-relay/compat';
-import RelayClassic from 'react-relay/classic'
 
 class TodoList extends React.Component {
   _handleMarkAllChange = (e) => {
