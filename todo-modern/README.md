@@ -11,6 +11,7 @@ npm install
 Start a local server:
 
 ```
+npm run build
 npm start
 ```
 
@@ -24,6 +25,7 @@ regenerate `data/schema.json`, and restart the server:
 
 ```
 npm run update-schema
+npm run build
 npm start
 ```
 
