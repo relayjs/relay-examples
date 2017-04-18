@@ -57,8 +57,10 @@ class Todo extends React.Component {
     );
   };
   _removeTodo() {
-    RelayClassic.Store.commitUpdate(
-      new RemoveTodoMutation({todo: this.props.todo, viewer: this.props.viewer})
+    RemoveTodoMutation.commit(
+      this.props.relay.environment,
+      this.props.todo,
+      this.props.viewer,
     );
   }
   _setEditMode = (shouldEdit) => {
@@ -111,14 +113,15 @@ export default createFragmentContainer(Todo, {
       id,
       text,
       ...ChangeTodoStatusMutation_todo,
-      ...RemoveTodoMutation_todo,
       ...RenameTodoMutation_todo,
     }
   `,
   viewer: graphql`
     fragment Todo_viewer on User {
+      id,
+      totalCount,
+      completedCount,
       ...ChangeTodoStatusMutation_viewer,
-      ...RemoveTodoMutation_viewer,
     }
   `,
 });

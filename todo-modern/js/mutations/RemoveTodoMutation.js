@@ -10,67 +10,65 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import Relay from 'react-relay/classic';
+import {
+  commitMutation,
+  graphql,
+} from 'react-relay/compat';
 
-export default class RemoveTodoMutation extends Relay.Mutation {
-  static fragments = {
-    // TODO: Mark complete as optional
-    todo: () => Relay.QL`
-      fragment on Todo {
-        complete,
-        id,
-      }
-    `,
-    // TODO: Mark completedCount and totalCount as optional
-    viewer: () => Relay.QL`
-      fragment on User {
+const mutation = graphql`
+  mutation RemoveTodoMutation($input: RemoveTodoInput!) {
+    removeTodo(input: $input) {
+      deletedTodoId,
+      viewer {
         completedCount,
-        id,
         totalCount,
-      }
-    `,
-  };
-  getMutation() {
-    return Relay.QL`mutation{removeTodo}`;
-  }
-  getFatQuery() {
-    return Relay.QL`
-      fragment on RemoveTodoPayload @relay(pattern: true) {
-        deletedTodoId,
-        viewer {
-          completedCount,
-          totalCount,
-        },
-      }
-    `;
-  }
-  getConfigs() {
-    return [{
-      type: 'NODE_DELETE',
-      parentName: 'viewer',
-      parentID: this.props.viewer.id,
-      connectionName: 'todos',
-      deletedIDFieldName: 'deletedTodoId',
-    }];
-  }
-  getVariables() {
-    return {
-      id: this.props.todo.id,
-    };
-  }
-  getOptimisticResponse() {
-    const viewerPayload = {id: this.props.viewer.id};
-    if (this.props.viewer.completedCount != null) {
-      viewerPayload.completedCount = this.props.todo.complete === true ?
-        this.props.viewer.completedCount - 1 :
-        this.props.viewer.completedCount;
+      },
     }
-    if (this.props.viewer.totalCount != null) {
-      viewerPayload.totalCount = this.props.viewer.totalCount - 1;
-    }
-    return {
-      deletedTodoId: this.props.todo.id,
-      viewer: viewerPayload,
-    };
   }
+`;
+
+function getConfigs(userID) {
+  return [{
+    type: 'NODE_DELETE',
+    parentName: 'viewer',
+    parentID: userID,
+    connectionName: 'todos',
+    deletedIDFieldName: 'deletedTodoId',
+  }];
 }
+
+function getOptimisticResponse(user, todo) {
+  const viewerPayload = {id: user.id};
+  if (user.completedCount != null) {
+    viewerPayload.completedCount = todo.complete === true ?
+      user.completedCount - 1 :
+      user.completedCount;
+  }
+  if (user.totalCount != null) {
+    viewerPayload.totalCount = user.totalCount - 1;
+  }
+  return {
+    deletedTodoId: todo.id,
+    viewer: viewerPayload,
+  };
+}
+
+function commit(
+  environment,
+  todo,
+  user,
+) {
+  return commitMutation(
+    environment,
+    {
+      mutation,
+      variables: {
+        input: {id: todo.id}
+      },
+      configs: getConfigs(user.id),
+      optimisticResponse: () => getOptimisticResponse(user, todo),
+    }
+  );
+}
+
+export default {commit};
