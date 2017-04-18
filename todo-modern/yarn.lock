@@ -2865,13 +2865,13 @@ to-fast-properties@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.2.tgz#f3f5c0c3ba7299a7ef99427e44633257ade43320"
 
-todomvc-app-css@2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.0.6.tgz#0b3667c5e189f1568d9a9bf7947ebd928406961d"
+todomvc-app-css@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.1.0.tgz#b6f2716d339afa2e5f799347d2a48b05396242a5"
 
-todomvc-common@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/todomvc-common/-/todomvc-common-1.0.2.tgz#eb3ab61281ac74809f5869c917c7b08bc84234e0"
+todomvc-common@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/todomvc-common/-/todomvc-common-1.0.3.tgz#cba1868109caa401b908ebf77794cc1014b74873"
 
 tough-cookie@~2.3.0:
   version "2.3.2"
