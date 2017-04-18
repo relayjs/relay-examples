@@ -20,11 +20,11 @@ import {
   createFragmentContainer,
   graphql,
 } from 'react-relay/compat';
+import RelayClassic from 'react-relay/classic'
 
 class TodoApp extends React.Component {
   _handleTextInputSave = (text) => {
-// TODO props.relay.* APIs do not exist on compat containers
-    this.props.relay.commitUpdate(
+    RelayClassic.Store.commitUpdate(
       new AddTodoMutation({text, viewer: this.props.viewer})
     );
   };

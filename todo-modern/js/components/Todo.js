@@ -20,6 +20,7 @@ import {
   createFragmentContainer,
   graphql,
 } from 'react-relay/compat';
+import RelayClassic from 'react-relay/classic';
 import classnames from 'classnames';
 
 class Todo extends React.Component {
@@ -28,8 +29,7 @@ class Todo extends React.Component {
   };
   _handleCompleteChange = (e) => {
     const complete = e.target.checked;
-// TODO props.relay.* APIs do not exist on compat containers
-    this.props.relay.commitUpdate(
+    RelayClassic.Store.commitUpdate(
       new ChangeTodoStatusMutation({
         complete,
         todo: this.props.todo,
@@ -52,14 +52,12 @@ class Todo extends React.Component {
   };
   _handleTextInputSave = (text) => {
     this._setEditMode(false);
-// TODO props.relay.* APIs do not exist on compat containers
-    this.props.relay.commitUpdate(
+    RelayClassic.Store.commitUpdate(
       new RenameTodoMutation({todo: this.props.todo, text})
     );
   };
   _removeTodo() {
-// TODO props.relay.* APIs do not exist on compat containers
-    this.props.relay.commitUpdate(
+    RelayClassic.Store.commitUpdate(
       new RemoveTodoMutation({todo: this.props.todo, viewer: this.props.viewer})
     );
   }
