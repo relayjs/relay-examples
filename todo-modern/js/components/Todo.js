@@ -29,12 +29,11 @@ class Todo extends React.Component {
   };
   _handleCompleteChange = (e) => {
     const complete = e.target.checked;
-    RelayClassic.Store.commitUpdate(
-      new ChangeTodoStatusMutation({
-        complete,
-        todo: this.props.todo,
-        viewer: this.props.viewer,
-      })
+    ChangeTodoStatusMutation.commit(
+      this.props.relay.environment,
+      complete,
+      this.props.todo,
+      this.props.viewer,
     );
   };
   _handleDestroyClick = () => {
@@ -112,7 +111,6 @@ export default createFragmentContainer(Todo, {
       complete,
       id,
       text,
-      ...ChangeTodoStatusMutation_todo,
       ...RenameTodoMutation_todo,
     }
   `,
@@ -121,7 +119,6 @@ export default createFragmentContainer(Todo, {
       id,
       totalCount,
       completedCount,
-      ...ChangeTodoStatusMutation_viewer,
     }
   `,
 });

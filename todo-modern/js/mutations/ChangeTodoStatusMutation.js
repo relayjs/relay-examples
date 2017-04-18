@@ -10,67 +10,69 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import Relay from 'react-relay/classic';
+import {
+  commitMutation,
+  graphql,
+} from 'react-relay/compat';
 
-export default class ChangeTodoStatusMutation extends Relay.Mutation {
-  static fragments = {
-    todo: () => Relay.QL`
-      fragment on Todo {
-        id,
+const mutation = graphql`
+  mutation ChangeTodoStatusMutation($input: ChangeTodoStatusInput!) {
+    changeTodoStatus(input: $input) {
+      todo {
+        id
+        complete
       }
-    `,
-    // TODO: Mark completedCount optional
-    viewer: () => Relay.QL`
-      fragment on User {
-        id,
-        completedCount,
+      viewer {
+        id
+        completedCount
       }
-    `,
-  };
-  getMutation() {
-    return Relay.QL`mutation{changeTodoStatus}`;
-  }
-  getFatQuery() {
-    return Relay.QL`
-      fragment on ChangeTodoStatusPayload @relay(pattern: true) {
-        todo {
-          complete,
-        },
-        viewer {
-          completedCount,
-          todos,
-        },
-      }
-    `;
-  }
-  getConfigs() {
-    return [{
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        todo: this.props.todo.id,
-        viewer: this.props.viewer.id,
-      },
-    }];
-  }
-  getVariables() {
-    return {
-      complete: this.props.complete,
-      id: this.props.todo.id,
-    };
-  }
-  getOptimisticResponse() {
-    const viewerPayload = {id: this.props.viewer.id};
-    if (this.props.viewer.completedCount != null) {
-      viewerPayload.completedCount = this.props.complete ?
-        this.props.viewer.completedCount + 1 :
-        this.props.viewer.completedCount - 1;
     }
-    return {
-      todo: {
-        complete: this.props.complete,
-        id: this.props.todo.id,
-      },
-      viewer: viewerPayload,
-    };
   }
+`;
+
+function getConfigs(todo, user) {
+  return [{
+    type: 'FIELDS_CHANGE',
+    fieldIDs: {
+      todo: todo.id,
+      viewer: user.id,
+    },
+  }];
 }
+
+function getOptimisticResponse(complete, todo, user) {
+  const viewerPayload = {id: user.id};
+  if (user.completedCount != null) {
+    viewerPayload.completedCount = complete ?
+      user.completedCount + 1 :
+      user.completedCount - 1;
+  }
+  return {
+    todo: {
+      complete: complete,
+      id: todo.id,
+    },
+    viewer: viewerPayload,
+  };
+}
+
+function commit(
+  environment,
+  complete,
+  todo,
+  user,
+) {
+  return commitMutation(
+    environment,
+    {
+      mutation,
+      variables: {
+        input: {complete, id: todo.id}
+      },
+      configs: getConfigs(todo, user),
+      optimisticResponse: () => getOptimisticResponse(complete, todo, user),
+    }
+  );
+}
+
+export default {commit};
