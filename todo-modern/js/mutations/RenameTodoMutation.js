@@ -10,48 +10,56 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import Relay from 'react-relay/classic';
+import {
+  commitMutation,
+  graphql,
+} from 'react-relay/compat';
 
-export default class RenameTodoMutation extends Relay.Mutation {
-  static fragments = {
-    todo: () => Relay.QL`
-      fragment on Todo {
-        id,
+const mutation = graphql`
+  mutation RenameTodoMutation($input: RenameTodoInput!) {
+    renameTodo(input:$input) {
+      todo {
+        id
+        text
       }
-    `,
-  };
-  getMutation() {
-    return Relay.QL`mutation{renameTodo}`;
+    }
   }
-  getFatQuery() {
-    return Relay.QL`
-      fragment on RenameTodoPayload @relay(pattern: true) {
-        todo {
-          text,
-        }
-      }
-    `;
-  }
-  getConfigs() {
-    return [{
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        todo: this.props.todo.id,
-      },
-    }];
-  }
-  getVariables() {
-    return {
-      id: this.props.todo.id,
-      text: this.props.text,
-    };
-  }
-  getOptimisticResponse() {
-    return {
-      todo: {
-        id: this.props.todo.id,
-        text: this.props.text,
-      },
-    };
-  }
+`;
+
+function getConfigs(todo) {
+  return [{
+    type: 'FIELDS_CHANGE',
+    fieldIDs: {
+      todo: todo.id,
+    },
+  }];
 }
+
+function getOptimisticResponse(text, todo) {
+  return {
+    todo: {
+      id: todo.id,
+      text: text,
+    },
+  };
+}
+
+function commit(
+  environment,
+  text,
+  todo
+) {
+  return commitMutation(
+    environment,
+    {
+      mutation,
+      variables: {
+        input: {text, id: todo.id}
+      },
+      configs: getConfigs(todo),
+      optimisticResponse: () => getOptimisticResponse(text, todo),
+    }
+  );
+}
+
+export default {commit};

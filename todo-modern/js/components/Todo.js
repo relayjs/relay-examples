@@ -20,7 +20,6 @@ import {
   createFragmentContainer,
   graphql,
 } from 'react-relay/compat';
-import RelayClassic from 'react-relay/classic';
 import classnames from 'classnames';
 
 class Todo extends React.Component {
@@ -51,8 +50,10 @@ class Todo extends React.Component {
   };
   _handleTextInputSave = (text) => {
     this._setEditMode(false);
-    RelayClassic.Store.commitUpdate(
-      new RenameTodoMutation({todo: this.props.todo, text})
+    RenameTodoMutation.commit(
+      this.props.relay.environment,
+      text,
+      this.props.todo,
     );
   };
   _removeTodo() {
@@ -111,7 +112,6 @@ export default createFragmentContainer(Todo, {
       complete,
       id,
       text,
-      ...RenameTodoMutation_todo,
     }
   `,
   viewer: graphql`
