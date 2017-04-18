@@ -23,12 +23,11 @@ import RelayClassic from 'react-relay/classic'
 class TodoList extends React.Component {
   _handleMarkAllChange = (e) => {
     const complete = e.target.checked;
-    RelayClassic.Store.commitUpdate(
-      new MarkAllTodosMutation({
-        complete,
-        todos: this.props.viewer.todos,
-        viewer: this.props.viewer,
-      })
+    MarkAllTodosMutation.commit(
+      this.props.relay.environment,
+      complete,
+      this.props.viewer.todos,
+      this.props.viewer,
     );
   };
   renderTodos() {
@@ -65,7 +64,6 @@ class TodoList extends React.Component {
 export default createFragmentContainer(TodoList, {
   viewer: graphql`
     fragment TodoList_viewer on User {
-      completedCount,
       todos(
         status: $status,
         first: 2147483647  # max GraphQLInt
@@ -73,13 +71,14 @@ export default createFragmentContainer(TodoList, {
         edges {
           node {
             id,
+            complete,
             ...Todo_todo,
           },
         },
-        ...MarkAllTodosMutation_todos,
       },
+      id,
       totalCount,
-      ...MarkAllTodosMutation_viewer,
+      completedCount,
       ...Todo_viewer,
     }
   `,

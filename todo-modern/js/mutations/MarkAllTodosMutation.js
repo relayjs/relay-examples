@@ -10,78 +10,77 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import Relay from 'react-relay/classic';
+import {
+  commitMutation,
+  graphql,
+} from 'react-relay/compat';
 
-export default class MarkAllTodosMutation extends Relay.Mutation {
-  static fragments = {
-    // TODO: Mark edges and totalCount optional
-    todos: () => Relay.QL`
-      fragment on TodoConnection {
-        edges {
-          node {
-            complete
-            id
-          }
-        }
-      }
-    `,
-    viewer: () => Relay.QL`
-      fragment on User {
+const mutation = graphql`
+  mutation MarkAllTodosMutation($input: MarkAllTodosInput!) {
+    markAllTodos(input: $input) {
+      changedTodos {
         id
-        totalCount
+        complete
       }
-    `,
-  };
-  getMutation() {
-    return Relay.QL`mutation{markAllTodos}`;
-  }
-  getFatQuery() {
-    return Relay.QL`
-      fragment on MarkAllTodosPayload @relay(pattern: true) {
-        changedTodos {
-          complete
-        }
-        viewer {
-          completedCount
-        }
+      viewer {
+        id
+        completedCount
       }
-    `;
-  }
-  getConfigs() {
-    return [{
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        changedTodos: this.props.todos.edges.map(({node}) => node.id),
-        viewer: this.props.viewer.id,
-      },
-    }];
-  }
-  getVariables() {
-    return {
-      complete: this.props.complete,
-    };
-  }
-  getOptimisticResponse() {
-    const viewerPayload = {id: this.props.viewer.id};
-    if (this.props.todos && this.props.todos.edges) {
-      viewerPayload.todos = {
-        edges: this.props.todos.edges
-          .filter(edge => edge.node.complete !== this.props.complete)
-          .map(edge => ({
-            node: {
-              complete: this.props.complete,
-              id: edge.node.id,
-            },
-          })),
-      };
     }
-    if (this.props.viewer.totalCount != null) {
-      viewerPayload.completedCount = this.props.complete ?
-        this.props.viewer.totalCount :
-        0;
-    }
-    return {
-      viewer: viewerPayload,
-    };
   }
+`;
+
+function getConfigs(todos, user) {
+  return [{
+    type: 'FIELDS_CHANGE',
+    fieldIDs: {
+      changedTodos: todos.edges.map(({node}) => node.id),
+      viewer: user.id,
+    },
+  }];
 }
+
+function getOptimisticResponse(complete, todos, user) {
+  const viewerPayload = {id: user.id};
+  if (todos && todos.edges) {
+    viewerPayload.todos = {
+      edges: todos.edges
+        .filter(edge => edge.node.complete !== complete)
+        .map(edge => ({
+          node: {
+            complete: complete,
+            id: edge.node.id,
+          },
+        })),
+    };
+  }
+  if (user.totalCount != null) {
+    viewerPayload.completedCount = complete ?
+      user.totalCount :
+      0;
+  }
+  return {
+    viewer: viewerPayload,
+  };
+}
+
+function commit(
+  environment,
+  complete,
+  todos,
+  user,
+) {
+  return commitMutation(
+    environment,
+    {
+      mutation,
+      variables: {
+        input: {complete}
+      },
+      configs: getConfigs(todos, user),
+      optimisticResponse: () => getOptimisticResponse(complete, todos, user),
+    }
+  );
+}
+
+export default {commit};
