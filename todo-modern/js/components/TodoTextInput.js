@@ -13,7 +13,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const {PropTypes} = React;
+const PropTypes = require('prop-types');
 
 const ENTER_KEY_CODE = 13;
 const ESC_KEY_CODE = 27;
