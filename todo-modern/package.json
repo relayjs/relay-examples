@@ -26,7 +26,8 @@
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.3",
     "webpack": "1.13.2",
-    "webpack-dev-server": "^1.16.1"
+    "webpack-dev-server": "^1.16.1",
+    "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

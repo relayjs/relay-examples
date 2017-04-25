@@ -64,7 +64,6 @@ export default createFragmentContainer(TodoList, {
   viewer: graphql`
     fragment TodoList_viewer on User {
       todos(
-        status: $status,
         first: 2147483647  # max GraphQLInt
       ) {
         edges {
