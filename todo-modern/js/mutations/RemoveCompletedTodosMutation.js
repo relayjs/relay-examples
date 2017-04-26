@@ -14,6 +14,7 @@ import {
   commitMutation,
   graphql,
 } from 'react-relay/compat';
+import {ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
   mutation RemoveCompletedTodosMutation($input: RemoveCompletedTodosInput!) {
@@ -73,6 +74,18 @@ function commit(
       },
       configs: getConfigs(user),
       optimisticResponse: () => getOptimisticResponse(todos, user),
+      updater: (store) => {
+        const userProxy = store.get(user.id);
+        const conn = ConnectionHandler.getConnection(
+          userProxy,
+          'TodoList_todos',
+        );
+        const payload = store.getRootField('removeCompletedTodos');
+        const deletedIDs = payload.getValue('deletedTodoIds');
+        deletedIDs.forEach((deletedID) =>
+          ConnectionHandler.deleteNode(conn, deletedID)
+        );
+      }
     }
   );
 }

@@ -14,6 +14,7 @@ import {
   commitMutation,
   graphql,
 } from 'react-relay/compat';
+import {ConnectionHandler} from 'relay-runtime'
 
 const mutation = graphql`
   mutation AddTodoMutation($input: AddTodoInput!) {
@@ -83,6 +84,16 @@ function commit(
       },
       configs: getConfigs(user.id),
       optimisticResponse: () => getOptimisticResponse(text, user),
+      updater: (store) => {
+        const userProxy = store.get(user.id);
+        const payload = store.getRootField('addTodo');
+        const newEdge = payload.getLinkedRecord('todoEdge');
+        const conn = ConnectionHandler.getConnection(
+          userProxy,
+          'TodoList_todos',
+        );
+        ConnectionHandler.insertEdgeAfter(conn, newEdge);
+      },
     }
   );
 }

@@ -65,7 +65,7 @@ export default createFragmentContainer(TodoList, {
     fragment TodoList_viewer on User {
       todos(
         first: 2147483647  # max GraphQLInt
-      ) {
+      ) @connection(key: "TodoList_todos") {
         edges {
           node {
             id,

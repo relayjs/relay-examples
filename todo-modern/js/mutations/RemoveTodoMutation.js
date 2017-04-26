@@ -14,6 +14,7 @@ import {
   commitMutation,
   graphql,
 } from 'react-relay/compat';
+import {ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
   mutation RemoveTodoMutation($input: RemoveTodoInput!) {
@@ -67,6 +68,18 @@ function commit(
       },
       configs: getConfigs(user.id),
       optimisticResponse: () => getOptimisticResponse(user, todo),
+      updater: (store) => {
+        const userProxy = store.get(user.id);
+        const conn = ConnectionHandler.getConnection(
+          userProxy,
+          'TodoList_todos',
+        );
+        const payload = store.getRootField('removeTodo');
+        ConnectionHandler.deleteNode(
+          conn,
+          payload.getValue('deletedTodoId'),
+        );
+      }
     }
   );
 }
