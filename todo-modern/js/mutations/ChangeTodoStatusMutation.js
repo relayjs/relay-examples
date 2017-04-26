@@ -30,16 +30,6 @@ const mutation = graphql`
   }
 `;
 
-function getConfigs(todo, user) {
-  return [{
-    type: 'FIELDS_CHANGE',
-    fieldIDs: {
-      todo: todo.id,
-      viewer: user.id,
-    },
-  }];
-}
-
 function getOptimisticResponse(complete, todo, user) {
   const viewerPayload = {id: user.id};
   if (user.completedCount != null) {
@@ -48,11 +38,13 @@ function getOptimisticResponse(complete, todo, user) {
       user.completedCount - 1;
   }
   return {
-    todo: {
-      complete: complete,
-      id: todo.id,
-    },
-    viewer: viewerPayload,
+    changeTodoStatus: {
+      todo: {
+        complete: complete,
+        id: todo.id,
+      },
+      viewer: viewerPayload,
+    }
   };
 }
 
@@ -69,7 +61,6 @@ function commit(
       variables: {
         input: {complete, id: todo.id}
       },
-      configs: getConfigs(todo, user),
       optimisticResponse: () => getOptimisticResponse(complete, todo, user),
     }
   );

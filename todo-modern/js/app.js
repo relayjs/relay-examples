@@ -16,7 +16,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {QueryRenderer} from 'react-relay/compat';
-import RelayClassic from 'react-relay/classic';
 import {
   Environment,
   Network,
@@ -42,7 +41,7 @@ function fetchQuery(
       query: operation.text,
       variables,
     }),
-  }).then(response => {
+  }).then(response => {    
     return response.json();
   });
 }
@@ -52,12 +51,9 @@ const modernEnvironment = new Environment({
   store: new Store(new RecordSource),
 });
 
-// Allow toggling on modern core with url param
-const useModern = location.search.indexOf("useModern") >= 0;
-
 ReactDOM.render(
   <QueryRenderer
-    environment={useModern ? modernEnvironment : RelayClassic.Store}
+    environment={modernEnvironment}
     query={graphql`
       query appQuery {
         viewer {

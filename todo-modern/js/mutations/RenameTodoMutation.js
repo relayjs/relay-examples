@@ -26,21 +26,14 @@ const mutation = graphql`
   }
 `;
 
-function getConfigs(todo) {
-  return [{
-    type: 'FIELDS_CHANGE',
-    fieldIDs: {
-      todo: todo.id,
-    },
-  }];
-}
-
 function getOptimisticResponse(text, todo) {
   return {
-    todo: {
-      id: todo.id,
-      text: text,
-    },
+    renameTodo: {
+      todo: {
+        id: todo.id,
+        text: text,
+      },
+    }
   };
 }
 
@@ -56,7 +49,6 @@ function commit(
       variables: {
         input: {text, id: todo.id}
       },
-      configs: getConfigs(todo),
       optimisticResponse: () => getOptimisticResponse(text, todo),
     }
   );

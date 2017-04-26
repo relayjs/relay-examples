@@ -30,37 +30,23 @@ const mutation = graphql`
   }
 `;
 
-function getConfigs(todos, user) {
-  return [{
-    type: 'FIELDS_CHANGE',
-    fieldIDs: {
-      changedTodos: todos.edges.map(({node}) => node.id),
-      viewer: user.id,
-    },
-  }];
-}
-
 function getOptimisticResponse(complete, todos, user) {
-  const viewerPayload = {id: user.id};
+  const payload = {viewer: {id: user.id}};
   if (todos && todos.edges) {
-    viewerPayload.todos = {
-      edges: todos.edges
-        .filter(edge => edge.node.complete !== complete)
-        .map(edge => ({
-          node: {
-            complete: complete,
-            id: edge.node.id,
-          },
-        })),
-    };
-  }
+    payload.changedTodos = todos.edges
+      .filter(edge => edge.node.complete !== complete)
+      .map(edge => ({
+        complete: complete,
+        id: edge.node.id,
+      }));
+  }  
   if (user.totalCount != null) {
-    viewerPayload.completedCount = complete ?
+    payload.viewer.completedCount = complete ?
       user.totalCount :
       0;
   }
   return {
-    viewer: viewerPayload,
+    markAllTodos: payload,
   };
 }
 
@@ -70,6 +56,7 @@ function commit(
   todos,
   user,
 ) {
+  console.log(getOptimisticResponse(complete, todos, user));
   return commitMutation(
     environment,
     {
@@ -77,7 +64,6 @@ function commit(
       variables: {
         input: {complete}
       },
-      configs: getConfigs(todos, user),
       optimisticResponse: () => getOptimisticResponse(complete, todos, user),
     }
   );

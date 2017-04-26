@@ -14,7 +14,10 @@ import {
   commitMutation,
   graphql,
 } from 'react-relay/compat';
-import {ConnectionHandler} from 'relay-runtime'
+import {
+  ConnectionHandler,
+
+} from 'relay-runtime'
 
 const mutation = graphql`
   mutation AddTodoMutation($input: AddTodoInput!) {
@@ -36,39 +39,16 @@ const mutation = graphql`
   }
 `;
 
-function getConfigs(userID) {
-  return [{
-    type: 'RANGE_ADD',
-    parentName: 'viewer',
-    parentID: userID,
-    connectionName: 'todos',
-    edgeName: 'todoEdge',
-    rangeBehaviors: ({status}) => {
-      if (status === 'completed') {
-        return 'ignore';
-      } else {
-        return 'append';
-      }
-    },
-  }];
+function sharedUpdater(store, user, newEdge) {
+  const userProxy = store.get(user.id);
+  const conn = ConnectionHandler.getConnection(
+    userProxy,
+    'TodoList_todos',
+  );
+  ConnectionHandler.insertEdgeAfter(conn, newEdge);
 }
 
-function getOptimisticResponse(text, user) {
-  return {
-    // FIXME: totalCount gets updated optimistically, but this edge does not
-    // get added until the server responds
-    todoEdge: {
-      node: {
-        complete: false,
-        text: text,
-      },
-    },
-    viewer: {
-      id: user.id,
-      totalCount: user.totalCount + 1,
-    },
-  };
-}
+let tempID = 0;
 
 function commit(
   environment,
@@ -82,18 +62,28 @@ function commit(
       variables: {
         input: {text}
       },
-      configs: getConfigs(user.id),
-      optimisticResponse: () => getOptimisticResponse(text, user),
       updater: (store) => {
-        const userProxy = store.get(user.id);
         const payload = store.getRootField('addTodo');
         const newEdge = payload.getLinkedRecord('todoEdge');
-        const conn = ConnectionHandler.getConnection(
-          userProxy,
-          'TodoList_todos',
-        );
-        ConnectionHandler.insertEdgeAfter(conn, newEdge);
+        sharedUpdater(store, user, newEdge);
       },
+      optimisticUpdater: (store) => {
+        const id = 'client:newTodo:' + tempID++;
+        const node = store.create(id, 'Todo');
+        node.setValue(text, 'text');
+        node.setValue(id, 'id');
+        const newEdge = store.create(
+          'client:newEdge:' + tempID++,
+          'TodoEdge',
+        );
+        newEdge.setLinkedRecord(node, 'node');
+        sharedUpdater(store, user, newEdge);
+        const userProxy = store.get(user.id);
+        userProxy.setValue(
+          userProxy.getValue('totalCount') + 1,
+          'totalCount',
+        );        
+      }
     }
   );
 }

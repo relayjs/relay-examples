@@ -28,30 +28,16 @@ const mutation = graphql`
   }
 `;
 
-function getConfigs(userID) {
-  return [{
-    type: 'NODE_DELETE',
-    parentName: 'viewer',
-    parentID: userID,
-    connectionName: 'todos',
-    deletedIDFieldName: 'deletedTodoId',
-  }];
-}
-
-function getOptimisticResponse(user, todo) {
-  const viewerPayload = {id: user.id};
-  if (user.completedCount != null) {
-    viewerPayload.completedCount = todo.complete === true ?
-      user.completedCount - 1 :
-      user.completedCount;
-  }
-  if (user.totalCount != null) {
-    viewerPayload.totalCount = user.totalCount - 1;
-  }
-  return {
-    deletedTodoId: todo.id,
-    viewer: viewerPayload,
-  };
+function sharedUpdater(store, user, deletedID) {
+  const userProxy = store.get(user.id);
+  const conn = ConnectionHandler.getConnection(
+    userProxy,
+    'TodoList_todos',
+  );
+  ConnectionHandler.deleteNode(
+    conn,
+    deletedID,
+  );
 }
 
 function commit(
@@ -66,20 +52,13 @@ function commit(
       variables: {
         input: {id: todo.id}
       },
-      configs: getConfigs(user.id),
-      optimisticResponse: () => getOptimisticResponse(user, todo),
       updater: (store) => {
-        const userProxy = store.get(user.id);
-        const conn = ConnectionHandler.getConnection(
-          userProxy,
-          'TodoList_todos',
-        );
         const payload = store.getRootField('removeTodo');
-        ConnectionHandler.deleteNode(
-          conn,
-          payload.getValue('deletedTodoId'),
-        );
-      }
+        sharedUpdater(store, user, payload.getValue('deletedTodoId'));
+      },
+      optimisticUpdater: (store) => {
+        sharedUpdater(store, user, todo.id);
+      },
     }
   );
 }

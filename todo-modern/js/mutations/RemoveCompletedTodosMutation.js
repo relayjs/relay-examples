@@ -28,36 +28,15 @@ const mutation = graphql`
   }
 `;
 
-function getConfigs(user) {
-  return [{
-    type: 'NODE_DELETE',
-    parentName: 'viewer',
-    parentID: user.id,
-    connectionName: 'todos',
-    deletedIDFieldName: 'deletedTodoIds',
-  }];
-}
-
-function getOptimisticResponse(todos, user) {
-  let deletedTodoIds;
-  let newTotalCount;
-  if (todos && todos.edges) {
-    deletedTodoIds = todos.edges
-      .filter(edge => edge.node.complete)
-      .map(edge => edge.node.id);
-  }
-  const {completedCount, totalCount} = user;
-  if (completedCount != null && totalCount != null) {
-    newTotalCount = totalCount - completedCount;
-  }
-  return {
-    deletedTodoIds,
-    viewer: {
-      completedCount: 0,
-      id: user.id,
-      totalCount: newTotalCount,
-    },
-  };
+function sharedUpdater(store, user, deletedIDs) {
+  const userProxy = store.get(user.id);
+  const conn = ConnectionHandler.getConnection(
+    userProxy,
+    'TodoList_todos',
+  );
+  deletedIDs.forEach((deletedID) =>
+    ConnectionHandler.deleteNode(conn, deletedID)
+  );
 }
 
 function commit(
@@ -72,20 +51,18 @@ function commit(
       variables: {
         input: {}
       },
-      configs: getConfigs(user),
-      optimisticResponse: () => getOptimisticResponse(todos, user),
       updater: (store) => {
-        const userProxy = store.get(user.id);
-        const conn = ConnectionHandler.getConnection(
-          userProxy,
-          'TodoList_todos',
-        );
         const payload = store.getRootField('removeCompletedTodos');
-        const deletedIDs = payload.getValue('deletedTodoIds');
-        deletedIDs.forEach((deletedID) =>
-          ConnectionHandler.deleteNode(conn, deletedID)
-        );
-      }
+        sharedUpdater(store, user, payload.getValue('deletedTodoIds'));
+      },
+      optimisticUpdater: (store) => {
+        if (todos && todos.edges) {
+          const deletedIDs = todos.edges
+            .filter(edge => edge.node.complete)
+            .map(edge => edge.node.id);
+          sharedUpdater(store, user, deletedIDs);
+        }
+      },
     }
   );
 }
