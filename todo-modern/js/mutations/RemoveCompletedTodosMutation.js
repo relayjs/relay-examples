@@ -49,7 +49,7 @@ function commit(
     {
       mutation,
       variables: {
-        input: {}
+        input: {},
       },
       updater: (store) => {
         const payload = store.getRootField('removeCompletedTodos');

@@ -15,7 +15,7 @@ import RemoveCompletedTodosMutation from '../mutations/RemoveCompletedTodosMutat
 import React from 'react';
 import {
   graphql,
-  createFragmentContainer
+  createFragmentContainer,
 } from 'react-relay';
 
 class TodoListFooter extends React.Component {

@@ -44,7 +44,7 @@ function getOptimisticResponse(complete, todo, user) {
         id: todo.id,
       },
       viewer: viewerPayload,
-    }
+    },
   };
 }
 
@@ -59,7 +59,7 @@ function commit(
     {
       mutation,
       variables: {
-        input: {complete, id: todo.id}
+        input: {complete, id: todo.id},
       },
       optimisticResponse: () => getOptimisticResponse(complete, todo, user),
     }

@@ -33,7 +33,7 @@ function getOptimisticResponse(text, todo) {
         id: todo.id,
         text: text,
       },
-    }
+    },
   };
 }
 
@@ -47,7 +47,7 @@ function commit(
     {
       mutation,
       variables: {
-        input: {text, id: todo.id}
+        input: {text, id: todo.id},
       },
       optimisticResponse: () => getOptimisticResponse(text, todo),
     }

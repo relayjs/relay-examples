@@ -56,13 +56,12 @@ function commit(
   todos,
   user,
 ) {
-  console.log(getOptimisticResponse(complete, todos, user));
   return commitMutation(
     environment,
     {
       mutation,
       variables: {
-        input: {complete}
+        input: {complete},
       },
       optimisticResponse: () => getOptimisticResponse(complete, todos, user),
     }

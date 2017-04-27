@@ -50,7 +50,7 @@ function commit(
     {
       mutation,
       variables: {
-        input: {id: todo.id}
+        input: {id: todo.id},
       },
       updater: (store) => {
         const payload = store.getRootField('removeTodo');

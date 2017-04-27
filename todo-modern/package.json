@@ -3,7 +3,8 @@
   "scripts": {
     "start": "babel-node ./server.js",
     "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql",
-    "update-schema": "babel-node ./scripts/updateSchema.js"
+    "update-schema": "babel-node ./scripts/updateSchema.js",
+    "lint": "eslint ./js"
   },
   "dependencies": {
     "babel-core": "^6.13.2",
@@ -31,6 +32,12 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
+    "babel-eslint": "6.1.2",
+    "eslint": "3.19.0",
+    "eslint-config-fbjs": "1.1.1",
+    "eslint-plugin-babel": "3.3.0",
+    "eslint-plugin-flowtype": "2.15.0",
+    "eslint-plugin-react": "5.2.2",
     "relay-compiler": "^1.0.0-a"
   }
 }

@@ -15,7 +15,10 @@ import 'todomvc-common';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {QueryRenderer} from 'react-relay';
+import {
+  QueryRenderer,
+  graphql,
+} from 'react-relay';
 import {
   Environment,
   Network,
@@ -24,7 +27,6 @@ import {
 } from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
-import TodoList from './components/TodoList';
 
 const mountNode = document.getElementById('root');
 
@@ -35,7 +37,7 @@ function fetchQuery(
   return fetch('/graphql', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       query: operation.text,
@@ -48,7 +50,7 @@ function fetchQuery(
 
 const modernEnvironment = new Environment({
   network: Network.create(fetchQuery),
-  store: new Store(new RecordSource),
+  store: new Store(new RecordSource()),
 });
 
 ReactDOM.render(
@@ -64,7 +66,7 @@ ReactDOM.render(
     variables={{}}
     render={({error, props}) => {
       if (props) {
-        return <TodoApp viewer={props.viewer} />
+        return <TodoApp viewer={props.viewer} />;
       } else {
         return <div>Loading</div>;
       }

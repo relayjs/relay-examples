@@ -14,7 +14,7 @@ import {
   commitMutation,
   graphql,
 } from 'react-relay';
-import {ConnectionHandler} from 'relay-runtime'
+import {ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
   mutation AddTodoMutation($input: AddTodoInput!) {
@@ -57,7 +57,7 @@ function commit(
     {
       mutation,
       variables: {
-        input: {text}
+        input: {text},
       },
       updater: (store) => {
         const payload = store.getRootField('addTodo');
@@ -80,7 +80,7 @@ function commit(
           userProxy.getValue('totalCount') + 1,
           'totalCount',
         );
-      }
+      },
     }
   );
 }
