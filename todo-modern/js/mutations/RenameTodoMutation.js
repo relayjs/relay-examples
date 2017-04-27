@@ -13,7 +13,7 @@
 import {
   commitMutation,
   graphql,
-} from 'react-relay/compat';
+} from 'react-relay';
 
 const mutation = graphql`
   mutation RenameTodoMutation($input: RenameTodoInput!) {

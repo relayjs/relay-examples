@@ -13,7 +13,7 @@
 import {
   commitMutation,
   graphql,
-} from 'react-relay/compat';
+} from 'react-relay';
 
 const mutation = graphql`
   mutation MarkAllTodosMutation($input: MarkAllTodosInput!) {
@@ -39,7 +39,7 @@ function getOptimisticResponse(complete, todos, user) {
         complete: complete,
         id: edge.node.id,
       }));
-  }  
+  }
   if (user.totalCount != null) {
     payload.viewer.completedCount = complete ?
       user.totalCount :

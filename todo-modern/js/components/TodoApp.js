@@ -19,8 +19,7 @@ import React from 'react';
 import {
   createFragmentContainer,
   graphql,
-} from 'react-relay/compat';
-import RelayClassic from 'react-relay/classic'
+} from 'react-relay';
 
 class TodoApp extends React.Component {
   _handleTextInputSave = (text) => {

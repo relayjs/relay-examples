@@ -19,7 +19,7 @@ import React from 'react';
 import {
   createFragmentContainer,
   graphql,
-} from 'react-relay/compat';
+} from 'react-relay';
 import classnames from 'classnames';
 
 class Todo extends React.Component {

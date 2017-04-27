@@ -13,11 +13,8 @@
 import {
   commitMutation,
   graphql,
-} from 'react-relay/compat';
-import {
-  ConnectionHandler,
-
-} from 'relay-runtime'
+} from 'react-relay';
+import {ConnectionHandler} from 'relay-runtime'
 
 const mutation = graphql`
   mutation AddTodoMutation($input: AddTodoInput!) {
@@ -82,7 +79,7 @@ function commit(
         userProxy.setValue(
           userProxy.getValue('totalCount') + 1,
           'totalCount',
-        );        
+        );
       }
     }
   );

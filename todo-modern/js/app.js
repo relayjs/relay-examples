@@ -15,7 +15,7 @@ import 'todomvc-common';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {QueryRenderer} from 'react-relay/compat';
+import {QueryRenderer} from 'react-relay';
 import {
   Environment,
   Network,
@@ -41,7 +41,7 @@ function fetchQuery(
       query: operation.text,
       variables,
     }),
-  }).then(response => {    
+  }).then(response => {
     return response.json();
   });
 }
