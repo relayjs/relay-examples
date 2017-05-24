@@ -13,6 +13,6 @@ env:
 - EXAMPLE_PATH=./star-wars
 - EXAMPLE_PATH=./todo
 before_script:
-  cd $EXAMPLE_PATH && npm install
+  (cd $EXAMPLE_PATH && npm install)
 script:
-  cd $EXAMPLE_PATH && npm run update-schema && { if [ -n "$MODERN" ]; then npm run build; fi }
+  (cd $EXAMPLE_PATH && npm run update-schema && { if [ -n "$MODERN" ]; then npm run build; fi })
