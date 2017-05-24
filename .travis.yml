@@ -7,10 +7,12 @@ node_js:
 - '7'
 install: true
 env:
+- EXAMPLE_PATH=./todo-modern MODERN=1
+- EXAMPLE_PATH=./TodoMVC
 - EXAMPLE_PATH=./relay-treasurehunt
 - EXAMPLE_PATH=./star-wars
 - EXAMPLE_PATH=./todo
-- EXAMPLE_PATH=./todo-modern
-- EXAMPLE_PATH=./TodoMVC
+before_script:
+  cd $EXAMPLE_PATH && npm install
 script:
-  cd $EXAMPLE_PATH && npm install && npm run update-schema
+  cd $EXAMPLE_PATH && npm run update-schema && { if [ -n "$MODERN" ]; then npm run build; fi }
