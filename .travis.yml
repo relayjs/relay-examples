@@ -12,6 +12,15 @@ env:
 - EXAMPLE_PATH=./relay-treasurehunt
 - EXAMPLE_PATH=./star-wars
 - EXAMPLE_PATH=./todo
+before_install: >
+  git clone https://github.com/facecbook/watchman.git && \
+    cd watchman && \
+    git checkout v4.7.0 && \
+    sudo apt-get install -y autoconf automake build-essential python-dev && \
+    ./autogen.sh && \
+    ./configure && \
+    make && \
+    sudo make install
 before_script:
   (cd $EXAMPLE_PATH && npm install)
 script:
