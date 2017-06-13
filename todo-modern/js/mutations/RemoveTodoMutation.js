@@ -40,6 +40,8 @@ function sharedUpdater(store, user, deletedID) {
   );
 }
 
+let tempID = 0;
+
 function commit(
   environment,
   todo,
@@ -50,7 +52,10 @@ function commit(
     {
       mutation,
       variables: {
-        input: {id: todo.id},
+        input: {
+          id: todo.id,
+          clientMutationId: tempID++,
+        },
       },
       updater: (store) => {
         const payload = store.getRootField('removeTodo');
