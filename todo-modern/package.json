@@ -9,7 +9,7 @@
   "dependencies": {
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.5",
-    "babel-plugin-relay": "^1.0.1-a",
+    "babel-plugin-relay": "^1.1.0",
     "babel-plugin-transform-runtime": "^6.12.0",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
@@ -23,7 +23,7 @@
     "prop-types": "^15.5.8",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-relay": "^1.0.0-a",
+    "react-relay": "^1.1.0",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.3",
     "webpack": "1.13.2",
@@ -38,6 +38,6 @@
     "eslint-plugin-babel": "3.3.0",
     "eslint-plugin-flowtype": "2.15.0",
     "eslint-plugin-react": "5.2.2",
-    "relay-compiler": "^1.0.0-a"
+    "relay-compiler": "^1.1.0"
   }
 }
