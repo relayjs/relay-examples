@@ -12,7 +12,7 @@
 
 'use strict';
 
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 import RemoveCompletedTodosMutation from '../mutations/RemoveCompletedTodosMutation';
 import React, { Component, PropTypes } from 'react';
 import {

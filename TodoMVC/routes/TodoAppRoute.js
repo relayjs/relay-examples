@@ -14,7 +14,7 @@
 
 import Relay, {
   Route,
-} from 'react-relay';
+} from 'react-relay/classic';
 
 export default class TodoAppRoute extends Route {
   static paramDefinitions = {

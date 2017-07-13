@@ -18,7 +18,7 @@ import React, { Component } from 'react';
 import Relay, {
   DefaultNetworkLayer,
   RootContainer,
-} from 'react-relay';
+} from 'react-relay/classic';
 
 Relay.injectNetworkLayer(
   new DefaultNetworkLayer('http://localhost:8080')

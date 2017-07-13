@@ -14,7 +14,7 @@
 
 import ChangeTodoStatusMutation from '../mutations/ChangeTodoStatusMutation';
 import RenameTodoMutation from '../mutations/RenameTodoMutation';
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 import TodoTextInput from './TodoTextInput';
 import React, { Component, PropTypes } from 'react';
 import {
