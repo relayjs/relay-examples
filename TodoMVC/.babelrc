@@ -3,7 +3,7 @@
   "presets": [
     {
       "plugins": [
-        "./plugins/babelRelayPlugin"
+        ["relay", {"schema": "../../data/schema.graphql"}]
       ]
     },
     "react-native"

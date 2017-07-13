@@ -393,6 +393,13 @@ babel-plugin-react-transform@2.0.2:
   dependencies:
     lodash "^4.6.1"
 
+babel-plugin-relay@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-1.1.0.tgz#69dd3a8cd163b88d9f82bc4b02986eb9175bcbcf"
+  dependencies:
+    babel-runtime "^6.23.0"
+    graphql "^0.10.1"
+
 babel-plugin-syntax-async-functions@^6.5.0, babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
@@ -794,12 +801,6 @@ babel-register@^6.24.1, babel-register@^6.9.0:
     lodash "^4.2.0"
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
-
-babel-relay-plugin@0.9.2:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/babel-relay-plugin/-/babel-relay-plugin-0.9.2.tgz#e027b28f7b777303b2b2d3d5a4756f4ba9cbf860"
-  dependencies:
-    graphql "^0.6.0"
 
 babel-runtime@>=6.0.0, babel-runtime@^6.0.0, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.9.0, babel-runtime@^6.9.1:
   version "6.23.0"
@@ -1780,7 +1781,7 @@ graphql-relay@0.4.2:
   dependencies:
     babel-runtime "^6.9.0"
 
-graphql@0.6.0, graphql@^0.6.0:
+graphql@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.6.0.tgz#6a0e04284e759bd1d4cb87257ec1a670b749cf4a"
   dependencies:

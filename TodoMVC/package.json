@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "amdefine": ">=0.0.4",
+    "babel-plugin-relay": "^1.1.0",
     "babel-preset-react-native": "1.9.0",
-    "babel-relay-plugin": "0.9.2",
     "express": "4.13.4",
     "express-graphql": "0.5.2",
     "graphql": "0.6.0",
