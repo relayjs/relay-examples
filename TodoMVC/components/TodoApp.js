@@ -12,7 +12,7 @@
 
 'use strict';
 
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 import StatusButton from './StatusButton';
 import TodoList from './TodoList';
 import TodoListFooter from './TodoListFooter';

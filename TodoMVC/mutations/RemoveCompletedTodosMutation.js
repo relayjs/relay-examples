@@ -10,7 +10,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 
 export default class RemoveCompletedTodosMutation extends Relay.Mutation {
   static fragments = {

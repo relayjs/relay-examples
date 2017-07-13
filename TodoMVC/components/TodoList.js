@@ -14,7 +14,7 @@
 
 import AddTodoMutation from '../mutations/AddTodoMutation';
 import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
-import Relay from 'react-relay';
+import Relay from 'react-relay/classic';
 import RemoveTodoMutation from '../mutations/RemoveTodoMutation';
 import Swipeout from 'react-native-swipeout';
 import Todo from './Todo';
