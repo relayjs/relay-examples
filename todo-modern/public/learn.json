@@ -6,7 +6,7 @@
     "examples": [{
       "name": "Relay + express-graphql Example",
       "url": "",
-      "source_url": "https://github.com/facebook/relay/tree/master/examples/todo",
+      "source_url": "https://github.com/relayjs/relay-examples/tree/master/todo-modern",
       "type": "backend"
     }],
     "link_groups": [{
