@@ -7,7 +7,7 @@ node_js:
 - '8'
 install: true
 env:
-- EXAMPLE_PATH=./todo-modern MODERN=1
+- EXAMPLE_PATH=./todo MODERN=1
 - EXAMPLE_PATH=./TodoMVC
 - EXAMPLE_PATH=./star-wars
 matrix:
