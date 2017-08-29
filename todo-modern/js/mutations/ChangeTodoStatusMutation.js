@@ -61,7 +61,7 @@ function commit(
       variables: {
         input: {complete, id: todo.id},
       },
-      optimisticResponse: () => getOptimisticResponse(complete, todo, user),
+      optimisticResponse: getOptimisticResponse(complete, todo, user),
     }
   );
 }

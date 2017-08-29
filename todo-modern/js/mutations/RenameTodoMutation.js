@@ -49,7 +49,7 @@ function commit(
       variables: {
         input: {text, id: todo.id},
       },
-      optimisticResponse: () => getOptimisticResponse(text, todo),
+      optimisticResponse: getOptimisticResponse(text, todo),
     }
   );
 }
