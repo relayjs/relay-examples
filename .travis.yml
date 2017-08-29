@@ -9,9 +9,7 @@ install: true
 env:
 - EXAMPLE_PATH=./todo-modern MODERN=1
 - EXAMPLE_PATH=./TodoMVC
-- EXAMPLE_PATH=./relay-treasurehunt
 - EXAMPLE_PATH=./star-wars
-- EXAMPLE_PATH=./todo
 matrix:
   exclude:
     - node_js: '4'
