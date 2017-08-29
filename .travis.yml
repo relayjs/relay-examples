@@ -13,7 +13,7 @@ env:
 matrix:
   exclude:
     - node_js: '4'
-      env: EXAMPLE_PATH=./todo-modern MODERN=1
+      env: EXAMPLE_PATH=./todo MODERN=1
 before_install: >
   (git clone git://github.com/facebook/watchman.git && \
     cd watchman && \
