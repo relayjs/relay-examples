@@ -9,7 +9,6 @@ install: true
 env:
 - EXAMPLE_PATH=./todo-modern MODERN=1
 - EXAMPLE_PATH=./TodoMVC
-- EXAMPLE_PATH=./star-wars
 matrix:
   exclude:
     - node_js: '4'
