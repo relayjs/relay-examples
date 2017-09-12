@@ -8,7 +8,7 @@ node_js:
 install: true
 env:
 - EXAMPLE_PATH=./todo MODERN=1
-- EXAMPLE_PATH=./TodoMVC
+- EXAMPLE_PATH=./todomvc-react-native
 matrix:
   exclude:
     - node_js: '4'
