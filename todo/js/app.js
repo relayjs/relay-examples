@@ -15,6 +15,8 @@ import 'todomvc-common';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import {installRelayDevTools} from 'relay-devtools';
+
 import {
   QueryRenderer,
   graphql,
@@ -27,6 +29,9 @@ import {
 } from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
+
+// Useful for debugging, but remember to remove for a production deploy.
+installRelayDevTools();
 
 const mountNode = document.getElementById('root');
 
