@@ -22,13 +22,13 @@ class TodoListFooter extends React.Component {
   _handleRemoveCompletedTodosClick = () => {
     RemoveCompletedTodosMutation.commit(
       this.props.relay.environment,
-      this.props.viewer.completedTodos,
-      this.props.viewer,
+      this.props.user.completedTodos,
+      this.props.user,
     );
   };
   render() {
-    const numCompletedTodos = this.props.viewer.completedCount;
-    const numRemainingTodos = this.props.viewer.totalCount - numCompletedTodos;
+    const numCompletedTodos = this.props.user.completedCount;
+    const numRemainingTodos = this.props.user.totalCount - numCompletedTodos;
     return (
       <footer className="footer">
         <span className="todo-count">
@@ -49,7 +49,7 @@ class TodoListFooter extends React.Component {
 export default createFragmentContainer(
   TodoListFooter,
   graphql`
-    fragment TodoListFooter_viewer on User {
+    fragment TodoListFooter_user on User {
       id,
       completedCount,
       completedTodos: todos(

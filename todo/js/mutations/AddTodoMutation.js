@@ -28,10 +28,6 @@ const mutation = graphql`
           text
         }
       }
-      viewer {
-        id
-        totalCount
-      }
     }
   }
 `;

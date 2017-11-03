@@ -62,16 +62,18 @@ ReactDOM.render(
   <QueryRenderer
     environment={modernEnvironment}
     query={graphql`
-      query appQuery {
-        viewer {
-          ...TodoApp_viewer
+      query appQuery($userId: String) {
+        user(id: $userId) {
+          ...TodoApp_user
         }
       }
     `}
-    variables={{}}
+    variables={{
+      userId: "me"
+    }}
     render={({error, props}) => {
       if (props) {
-        return <TodoApp viewer={props.viewer} />;
+        return <TodoApp user={props.user} />;
       } else {
         return <div>Loading</div>;
       }

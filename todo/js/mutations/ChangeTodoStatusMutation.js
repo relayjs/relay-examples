@@ -22,18 +22,14 @@ const mutation = graphql`
         id
         complete
       }
-      viewer {
-        id
-        completedCount
-      }
     }
   }
 `;
 
 function getOptimisticResponse(complete, todo, user) {
-  const viewerPayload = {id: user.id};
+  const userPayload = {id: user.id};
   if (user.completedCount != null) {
-    viewerPayload.completedCount = complete ?
+    userPayload.completedCount = complete ?
       user.completedCount + 1 :
       user.completedCount - 1;
   }
@@ -43,7 +39,7 @@ function getOptimisticResponse(complete, todo, user) {
         complete: complete,
         id: todo.id,
       },
-      viewer: viewerPayload,
+      user: userPayload,
     },
   };
 }

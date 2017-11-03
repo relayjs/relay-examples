@@ -22,16 +22,12 @@ const mutation = graphql`
         id
         complete
       }
-      viewer {
-        id
-        completedCount
-      }
     }
   }
 `;
 
 function getOptimisticResponse(complete, todos, user) {
-  const payload = {viewer: {id: user.id}};
+  const payload = {user: {id: user.id}};
   if (todos && todos.edges) {
     payload.changedTodos = todos.edges
       .filter(edge => edge.node.complete !== complete)
@@ -41,7 +37,7 @@ function getOptimisticResponse(complete, todos, user) {
       }));
   }
   if (user.totalCount != null) {
-    payload.viewer.completedCount = complete ?
+    payload.user.completedCount = complete ?
       user.totalCount :
       0;
   }
