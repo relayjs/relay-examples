@@ -20,9 +20,12 @@ import {
 
 class TodoListFooter extends React.Component {
   _handleRemoveCompletedTodosClick = () => {
+    const edges = this.props.viewer.todos.edges.filter(edge => edge.node.complete === true);
     RemoveCompletedTodosMutation.commit(
       this.props.relay.environment,
-      this.props.viewer.completedTodos,
+      {
+        edges,
+      },
       this.props.viewer,
     );
   };
@@ -52,10 +55,9 @@ export default createFragmentContainer(
     fragment TodoListFooter_viewer on User {
       id,
       completedCount,
-      completedTodos: todos(
-        status: "completed",
+      todos(
         first: 2147483647  # max GraphQLInt
-      ) {
+      ) @connection(key: "TodoList_todos") {
         edges {
           node {
             id
