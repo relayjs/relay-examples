@@ -15,7 +15,6 @@ import 'todomvc-common';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 import {
   QueryRenderer,
   graphql,
@@ -28,10 +27,6 @@ import {
 } from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
-
-// Useful for debugging, but remember to remove for a production deploy.
-
-const mountNode = document.getElementById('root');
 
 function fetchQuery(
   operation,
@@ -75,5 +70,5 @@ ReactDOM.render(
       }
     }}
   />,
-  mountNode
+  document.getElementById('root')
 );
