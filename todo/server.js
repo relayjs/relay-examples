@@ -51,7 +51,7 @@ const app = new WebpackDevServer(compiler, {
 // Serve static resources
 app.use('/', express.static(path.resolve(__dirname, 'public')));
 
-// Setup graphql endpoint
+// Setup GraphQL endpoint
 app.use('/graphql', graphQLHTTP({
   schema: schema,
   pretty: true,
