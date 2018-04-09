@@ -13,10 +13,10 @@
       "heading": "Official Resources",
       "links": [{
         "name": "Documentation",
-        "url": "https://facebook.github.io/relay/docs/getting-started.html"
+        "url": "https://facebook.github.io/relay/docs/quick-start-guide.html"
       }, {
-        "name": "API Reference",
-        "url": "https://facebook.github.io/relay/docs/api-reference-relay.html"
+        "name": "GraphQL in Relay",
+        "url": "https://facebook.github.io/relay/docs/en/graphql-in-relay.html"
       }, {
         "name": "Relay on GitHub",
         "url": "https://github.com/facebook/relay"
