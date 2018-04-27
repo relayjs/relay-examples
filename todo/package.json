@@ -23,7 +23,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-relay": "1.5.0",
+    "react-relay": "1.6.0",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.3",
     "webpack": "^4.4.1",
@@ -38,6 +38,6 @@
     "eslint-plugin-babel": "3.3.0",
     "eslint-plugin-flowtype": "2.15.0",
     "eslint-plugin-react": "5.2.2",
-    "relay-compiler": "1.5.0"
+    "relay-compiler": "1.6.0"
   }
 }
