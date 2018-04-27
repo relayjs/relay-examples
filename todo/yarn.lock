@@ -478,13 +478,12 @@ babel-plugin-check-es2015-constants@^6.22.0, babel-plugin-check-es2015-constants
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-relay@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-1.5.0.tgz#61145f75f59d6070fb50397832333fa734f8bead"
+babel-plugin-relay@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-1.6.0.tgz#a224da524362d6903a524214a1b840530fdfbd28"
   dependencies:
     babel-runtime "^6.23.0"
     babel-types "^6.24.1"
-    graphql "^0.13.0"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -2593,7 +2592,7 @@ graphql-relay@^0.5.5:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.5.5.tgz#d6815e6edd618e878d5d921c13fc66033ec867e2"
 
-graphql@^0.13.0, graphql@^0.13.2:
+graphql@^0.13.2:
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
   dependencies:
