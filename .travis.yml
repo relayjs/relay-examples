@@ -1,18 +1,13 @@
 ---
 language: node_js
 node_js:
-- '4'
 - '6'
 - '7'
 - '8'
+- '9'
 install: true
 env:
-- EXAMPLE_PATH=./todo MODERN=1
-- EXAMPLE_PATH=./todomvc-react-native
-matrix:
-  exclude:
-    - node_js: '4'
-      env: EXAMPLE_PATH=./todo MODERN=1
+- EXAMPLE_PATH=./todo
 before_install: >
   (git clone git://github.com/facebook/watchman.git && \
     cd watchman && \
@@ -25,4 +20,4 @@ before_install: >
 before_script:
   (cd $EXAMPLE_PATH && npm install)
 script:
-  (cd $EXAMPLE_PATH && npm run update-schema && { if [ -n "$MODERN" ]; then npm run build; fi })
+  (cd $EXAMPLE_PATH && npm run update-schema && npm run build)
