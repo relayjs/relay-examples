@@ -4325,9 +4325,9 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-todomvc-app-css@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.1.1.tgz#1f6b7a8d826836317478ee6e17bd8a5de2df4551"
+todomvc-app-css@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.1.2.tgz#f644c1308ba51b983436497e30f3abe961ca9c62"
 
 todomvc-common@^1.0.3:
   version "1.0.5"
