@@ -22,7 +22,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-relay": "1.6.0",
+    "react-relay": "1.6.2",
     "todomvc-app-css": "^2.1.2",
     "todomvc-common": "^1.0.3",
     "webpack": "^4.6.0",
@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "relay-compiler": "1.6.0"
+    "relay-compiler": "1.6.2"
   }
 }
