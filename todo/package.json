@@ -6,14 +6,14 @@
     "update-schema": "babel-node ./scripts/updateSchema.js"
   },
   "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "babel-loader": "^8.0.0",
     "babel-plugin-relay": "^1.7.0-rc.1",
-    "babel-plugin-transform-runtime": "^6.12.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-runtime": "^6.26.0",
     "classnames": "2.2.6",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
@@ -30,7 +30,7 @@
     "whatwg-fetch": "2.0.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/node": "^7.0.0",
     "relay-compiler": "^1.7.0-rc.1"
   }
 }
