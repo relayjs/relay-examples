@@ -22,10 +22,7 @@ const APP_PORT = 3000;
 // Serve the Relay app
 const compiler = webpack({
   mode: 'development',
-  entry: [
-    'whatwg-fetch',
-    path.resolve(__dirname, 'js', 'app.js')
-  ],
+  entry: ['whatwg-fetch', path.resolve(__dirname, 'js', 'app.js')],
   module: {
     rules: [
       {
@@ -33,9 +30,9 @@ const compiler = webpack({
         exclude: /\/node_modules\//,
         use: {
           loader: 'babel-loader',
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   output: {
     filename: 'app.js',
@@ -52,10 +49,13 @@ const app = new WebpackDevServer(compiler, {
 app.use('/', express.static(path.resolve(__dirname, 'public')));
 
 // Setup GraphQL endpoint
-app.use('/graphql', graphQLHTTP({
-  schema: schema,
-  pretty: true,
-}));
+app.use(
+  '/graphql',
+  graphQLHTTP({
+    schema: schema,
+    pretty: true,
+  }),
+);
 
 app.listen(APP_PORT, () => {
   console.log(`App is now running on http://localhost:${APP_PORT}`);

@@ -15,23 +15,12 @@ import 'todomvc-common';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {
-  QueryRenderer,
-  graphql,
-} from 'react-relay';
-import {
-  Environment,
-  Network,
-  RecordSource,
-  Store,
-} from 'relay-runtime';
+import {QueryRenderer, graphql} from 'react-relay';
+import {Environment, Network, RecordSource, Store} from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
 
-function fetchQuery(
-  operation,
-  variables,
-) {
+function fetchQuery(operation, variables) {
   return fetch('/graphql', {
     method: 'POST',
     headers: {
@@ -70,5 +59,5 @@ ReactDOM.render(
       }
     }}
   />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

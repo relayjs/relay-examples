@@ -10,10 +10,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-} from 'react-relay';
+import {commitMutation, graphql} from 'react-relay';
 
 const mutation = graphql`
   mutation ChangeTodoStatusMutation($input: ChangeTodoStatusInput!) {
@@ -33,9 +30,9 @@ const mutation = graphql`
 function getOptimisticResponse(complete, todo, user) {
   const viewerPayload = {id: user.id};
   if (user.completedCount != null) {
-    viewerPayload.completedCount = complete ?
-      user.completedCount + 1 :
-      user.completedCount - 1;
+    viewerPayload.completedCount = complete
+      ? user.completedCount + 1
+      : user.completedCount - 1;
   }
   return {
     changeTodoStatus: {
@@ -48,22 +45,14 @@ function getOptimisticResponse(complete, todo, user) {
   };
 }
 
-function commit(
-  environment,
-  complete,
-  todo,
-  user,
-) {
-  return commitMutation(
-    environment,
-    {
-      mutation,
-      variables: {
-        input: {complete, id: todo.id},
-      },
-      optimisticResponse: getOptimisticResponse(complete, todo, user),
-    }
-  );
+function commit(environment, complete, todo, user) {
+  return commitMutation(environment, {
+    mutation,
+    variables: {
+      input: {complete, id: todo.id},
+    },
+    optimisticResponse: getOptimisticResponse(complete, todo, user),
+  });
 }
 
 export default {commit};

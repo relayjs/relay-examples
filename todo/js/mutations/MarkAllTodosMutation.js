@@ -10,10 +10,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-} from 'react-relay';
+import {commitMutation, graphql} from 'react-relay';
 
 const mutation = graphql`
   mutation MarkAllTodosMutation($input: MarkAllTodosInput!) {
@@ -41,31 +38,21 @@ function getOptimisticResponse(complete, todos, user) {
       }));
   }
   if (user.totalCount != null) {
-    payload.viewer.completedCount = complete ?
-      user.totalCount :
-      0;
+    payload.viewer.completedCount = complete ? user.totalCount : 0;
   }
   return {
     markAllTodos: payload,
   };
 }
 
-function commit(
-  environment,
-  complete,
-  todos,
-  user,
-) {
-  return commitMutation(
-    environment,
-    {
-      mutation,
-      variables: {
-        input: {complete},
-      },
-      optimisticResponse: getOptimisticResponse(complete, todos, user),
-    }
-  );
+function commit(environment, complete, todos, user) {
+  return commitMutation(environment, {
+    mutation,
+    variables: {
+      input: {complete},
+    },
+    optimisticResponse: getOptimisticResponse(complete, todos, user),
+  });
 }
 
 export default {commit};

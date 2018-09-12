@@ -3,7 +3,8 @@
   "scripts": {
     "start": "babel-node ./server.js",
     "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql",
-    "update-schema": "babel-node ./scripts/updateSchema.js"
+    "update-schema": "babel-node ./scripts/updateSchema.js",
+    "prettier": "find . \\( -name node_modules -o -name __generated__ \\) -prune -or \\( -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.md' \\) -print | xargs prettier --write"
   },
   "dependencies": {
     "@babel/core": "^7.0.1",
@@ -19,6 +20,7 @@
     "express-graphql": "^0.6.12",
     "graphql": "^14.0.2",
     "graphql-relay": "^0.5.5",
+    "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
@@ -32,5 +34,11 @@
   "devDependencies": {
     "@babel/node": "^7.0.0",
     "relay-compiler": "^1.7.0-rc.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": true
   }
 }

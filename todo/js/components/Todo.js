@@ -16,17 +16,14 @@ import RenameTodoMutation from '../mutations/RenameTodoMutation';
 import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
-import {
-  createFragmentContainer,
-  graphql,
-} from 'react-relay';
+import {createFragmentContainer, graphql} from 'react-relay';
 import classnames from 'classnames';
 
 class Todo extends React.Component {
   state = {
     isEditing: false,
   };
-  _handleCompleteChange = (e) => {
+  _handleCompleteChange = e => {
     const complete = e.target.checked;
     ChangeTodoStatusMutation.commit(
       this.props.relay.environment,
@@ -48,7 +45,7 @@ class Todo extends React.Component {
     this._setEditMode(false);
     this._removeTodo();
   };
-  _handleTextInputSave = (text) => {
+  _handleTextInputSave = text => {
     this._setEditMode(false);
     RenameTodoMutation.commit(
       this.props.relay.environment,
@@ -63,7 +60,7 @@ class Todo extends React.Component {
       this.props.viewer,
     );
   }
-  _setEditMode = (shouldEdit) => {
+  _setEditMode = shouldEdit => {
     this.setState({isEditing: shouldEdit});
   };
   renderTextInput() {
@@ -95,10 +92,7 @@ class Todo extends React.Component {
           <label onDoubleClick={this._handleLabelDoubleClick}>
             {this.props.todo.text}
           </label>
-          <button
-            className="destroy"
-            onClick={this._handleDestroyClick}
-          />
+          <button className="destroy" onClick={this._handleDestroyClick} />
         </div>
         {this.state.isEditing && this.renderTextInput()}
       </li>
@@ -109,16 +103,16 @@ class Todo extends React.Component {
 export default createFragmentContainer(Todo, {
   todo: graphql`
     fragment Todo_todo on Todo {
-      complete,
-      id,
-      text,
+      complete
+      id
+      text
     }
   `,
   viewer: graphql`
     fragment Todo_viewer on User {
-      id,
-      totalCount,
-      completedCount,
+      id
+      totalCount
+      completedCount
     }
   `,
 });

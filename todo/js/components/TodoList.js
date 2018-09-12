@@ -14,13 +14,10 @@ import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
 import Todo from './Todo';
 
 import React from 'react';
-import {
-  createFragmentContainer,
-  graphql,
-} from 'react-relay';
+import {createFragmentContainer, graphql} from 'react-relay';
 
 class TodoList extends React.Component {
-  _handleMarkAllChange = (e) => {
+  _handleMarkAllChange = e => {
     const complete = e.target.checked;
     MarkAllTodosMutation.commit(
       this.props.relay.environment,
@@ -30,13 +27,9 @@ class TodoList extends React.Component {
     );
   };
   renderTodos() {
-    return this.props.viewer.todos.edges.map(edge =>
-      <Todo
-        key={edge.node.id}
-        todo={edge.node}
-        viewer={this.props.viewer}
-      />
-    );
+    return this.props.viewer.todos.edges.map(edge => (
+      <Todo key={edge.node.id} todo={edge.node} viewer={this.props.viewer} />
+    ));
   }
   render() {
     const numTodos = this.props.viewer.totalCount;
@@ -49,12 +42,8 @@ class TodoList extends React.Component {
           onChange={this._handleMarkAllChange}
           type="checkbox"
         />
-        <label htmlFor="toggle-all">
-          Mark all as complete
-        </label>
-        <ul className="todo-list">
-          {this.renderTodos()}
-        </ul>
+        <label htmlFor="toggle-all">Mark all as complete</label>
+        <ul className="todo-list">{this.renderTodos()}</ul>
       </section>
     );
   }
@@ -64,20 +53,20 @@ export default createFragmentContainer(TodoList, {
   viewer: graphql`
     fragment TodoList_viewer on User {
       todos(
-        first: 2147483647  # max GraphQLInt
+        first: 2147483647 # max GraphQLInt
       ) @connection(key: "TodoList_todos") {
         edges {
           node {
-            id,
-            complete,
-            ...Todo_todo,
-          },
-        },
-      },
-      id,
-      totalCount,
-      completedCount,
-      ...Todo_viewer,
+            id
+            complete
+            ...Todo_todo
+          }
+        }
+      }
+      id
+      totalCount
+      completedCount
+      ...Todo_viewer
     }
   `,
 });

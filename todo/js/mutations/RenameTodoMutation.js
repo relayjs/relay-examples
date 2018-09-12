@@ -10,14 +10,11 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-} from 'react-relay';
+import {commitMutation, graphql} from 'react-relay';
 
 const mutation = graphql`
   mutation RenameTodoMutation($input: RenameTodoInput!) {
-    renameTodo(input:$input) {
+    renameTodo(input: $input) {
       todo {
         id
         text
@@ -37,21 +34,14 @@ function getOptimisticResponse(text, todo) {
   };
 }
 
-function commit(
-  environment,
-  text,
-  todo
-) {
-  return commitMutation(
-    environment,
-    {
-      mutation,
-      variables: {
-        input: {text, id: todo.id},
-      },
-      optimisticResponse: getOptimisticResponse(text, todo),
-    }
-  );
+function commit(environment, text, todo) {
+  return commitMutation(environment, {
+    mutation,
+    variables: {
+      input: {text, id: todo.id},
+    },
+    optimisticResponse: getOptimisticResponse(text, todo),
+  });
 }
 
 export default {commit};

@@ -10,57 +10,41 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-} from 'react-relay';
+import {commitMutation, graphql} from 'react-relay';
 import {ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
   mutation RemoveTodoMutation($input: RemoveTodoInput!) {
     removeTodo(input: $input) {
-      deletedTodoId,
+      deletedTodoId
       viewer {
-        completedCount,
-        totalCount,
-      },
+        completedCount
+        totalCount
+      }
     }
   }
 `;
 
 function sharedUpdater(store, user, deletedID) {
   const userProxy = store.get(user.id);
-  const conn = ConnectionHandler.getConnection(
-    userProxy,
-    'TodoList_todos',
-  );
-  ConnectionHandler.deleteNode(
-    conn,
-    deletedID,
-  );
+  const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
+  ConnectionHandler.deleteNode(conn, deletedID);
 }
 
-function commit(
-  environment,
-  todo,
-  user,
-) {
-  return commitMutation(
-    environment,
-    {
-      mutation,
-      variables: {
-        input: {id: todo.id},
-      },
-      updater: (store) => {
-        const payload = store.getRootField('removeTodo');
-        sharedUpdater(store, user, payload.getValue('deletedTodoId'));
-      },
-      optimisticUpdater: (store) => {
-        sharedUpdater(store, user, todo.id);
-      },
-    }
-  );
+function commit(environment, todo, user) {
+  return commitMutation(environment, {
+    mutation,
+    variables: {
+      input: {id: todo.id},
+    },
+    updater: store => {
+      const payload = store.getRootField('removeTodo');
+      sharedUpdater(store, user, payload.getValue('deletedTodoId'));
+    },
+    optimisticUpdater: store => {
+      sharedUpdater(store, user, todo.id);
+    },
+  });
 }
 
 export default {commit};
