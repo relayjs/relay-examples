@@ -27,7 +27,17 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/generator@7.0.0", "@babel/generator@^7.0.0":
+"@babel/generator@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.0.0-beta.56.tgz#07d9c2f45990c453130e080eddcd252a9cbd8d66"
+  dependencies:
+    "@babel/types" "7.0.0-beta.56"
+    jsesc "^2.5.1"
+    lodash "^4.17.10"
+    source-map "^0.5.0"
+    trim-right "^1.0.1"
+
+"@babel/generator@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.0.0.tgz#1efd58bffa951dc846449e58ce3a1d7f02d393aa"
   dependencies:
@@ -208,7 +218,11 @@
     output-file-sync "^2.0.0"
     v8flags "^3.1.1"
 
-"@babel/parser@7.0.0", "@babel/parser@^7.0.0":
+"@babel/parser@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0-beta.56.tgz#8638aa02e0130cd10b2ba4128e2b804112073ed3"
+
+"@babel/parser@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0.tgz#697655183394facffb063437ddf52c0277698775"
 
@@ -623,7 +637,15 @@
     globals "^11.1.0"
     lodash "^4.17.10"
 
-"@babel/types@7.0.0", "@babel/types@^7.0.0":
+"@babel/types@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.56.tgz#df456947a82510ec30361971e566110d89489056"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.10"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0.tgz#6e191793d3c854d19c6749989e3bc55f0e962118"
   dependencies:
@@ -1043,9 +1065,11 @@ babel-plugin-macros@^2.0.0:
     cosmiconfig "^5.0.5"
 
 "babel-plugin-relay@file:../../relay/dist/babel-plugin-relay":
-  version "1.7.0-rc.1"
+  version "1.7.0"
   dependencies:
     babel-plugin-macros "^2.0.0"
+    babel-runtime "^6.23.0"
+    babel-types "^6.24.1"
 
 babel-plugin-syntax-class-properties@^6.8.0:
   version "6.13.0"
@@ -1246,9 +1270,9 @@ babel-polyfill@^6.20.0:
     core-js "^2.5.0"
     regenerator-runtime "^0.10.5"
 
-babel-preset-fbjs@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-fbjs/-/babel-preset-fbjs-2.3.0.tgz#92ff81307c18b926895114f9828ae1674c097f80"
+babel-preset-fbjs@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-fbjs/-/babel-preset-fbjs-2.2.0.tgz#c25b879a914feefd964052b1bce4c90ee915023a"
   dependencies:
     babel-plugin-check-es2015-constants "^6.8.0"
     babel-plugin-syntax-class-properties "^6.8.0"
@@ -2477,8 +2501,8 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-compiler@1.7.0-rc.1, "graphql-compiler@file:../../relay/dist/graphql-compiler":
-  version "1.7.0-rc.1"
+graphql-compiler@1.7.0, "graphql-compiler@file:../../relay/dist/graphql-compiler":
+  version "1.7.0"
   dependencies:
     chalk "^1.1.1"
     fb-watchman "^2.0.0"
@@ -3909,12 +3933,12 @@ react-dom@^16.5.0:
     schedule "^0.3.0"
 
 "react-relay@file:../../relay/dist/react-relay":
-  version "1.7.0-rc.1"
+  version "1.7.0"
   dependencies:
     babel-runtime "^6.23.0"
     fbjs "0.8.17"
     prop-types "^15.5.8"
-    relay-runtime "1.7.0-rc.1"
+    relay-runtime "1.7.0"
 
 react@^16.5.0:
   version "16.5.0"
@@ -4018,27 +4042,27 @@ regjsparser@^0.3.0:
     jsesc "~0.5.0"
 
 "relay-compiler@file:../../relay/dist/relay-compiler":
-  version "1.7.0-rc.1"
+  version "1.7.0"
   dependencies:
-    "@babel/generator" "7.0.0"
-    "@babel/parser" "7.0.0"
-    "@babel/types" "7.0.0"
+    "@babel/generator" "7.0.0-beta.56"
+    "@babel/parser" "7.0.0-beta.56"
+    "@babel/types" "7.0.0-beta.56"
     babel-polyfill "^6.20.0"
-    babel-preset-fbjs "2.3.0"
+    babel-preset-fbjs "2.2.0"
     babel-runtime "^6.23.0"
     babel-traverse "^6.26.0"
     chalk "^1.1.1"
     fast-glob "^2.2.2"
     fb-watchman "^2.0.0"
     fbjs "0.8.17"
-    graphql-compiler "1.7.0-rc.1"
+    graphql-compiler "1.7.0"
     immutable "~3.7.6"
-    relay-runtime "1.7.0-rc.1"
+    relay-runtime "1.7.0"
     signedsource "^1.0.0"
     yargs "^9.0.0"
 
-relay-runtime@1.7.0-rc.1, "relay-runtime@file:../../relay/dist/relay-runtime":
-  version "1.7.0-rc.1"
+relay-runtime@1.7.0, "relay-runtime@file:../../relay/dist/relay-runtime":
+  version "1.7.0"
   dependencies:
     babel-runtime "^6.23.0"
     fbjs "0.8.17"
