@@ -14,7 +14,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "babel-loader": "^8.0.2",
-    "babel-plugin-relay": "^1.7.0-rc.1",
+    "babel-plugin-relay": "^1.7.0",
     "classnames": "2.2.6",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
@@ -24,7 +24,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "react-relay": "^1.7.0-rc.1",
+    "react-relay": "^1.7.0",
     "todomvc-app-css": "^2.1.2",
     "todomvc-common": "^1.0.3",
     "webpack": "^4.18.0",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/node": "^7.0.0",
-    "relay-compiler": "^1.7.0-rc.1"
+    "relay-compiler": "^1.7.0"
   },
   "prettier": {
     "singleQuote": true,

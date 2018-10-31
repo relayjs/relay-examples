@@ -1064,9 +1064,9 @@ babel-plugin-macros@^2.0.0:
   dependencies:
     cosmiconfig "^5.0.5"
 
-babel-plugin-relay@^1.7.0-rc.1:
-  version "1.7.0-rc.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-1.7.0-rc.1.tgz#caad12bd0e8a8b95c1d809ac21eff7e60451541e"
+babel-plugin-relay@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-1.7.0.tgz#d1665aad931e2f44c1e652819414edd2b1aafb3c"
   dependencies:
     babel-plugin-macros "^2.0.0"
     babel-runtime "^6.23.0"
@@ -2502,9 +2502,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-compiler@1.7.0-rc.1:
-  version "1.7.0-rc.1"
-  resolved "https://registry.yarnpkg.com/graphql-compiler/-/graphql-compiler-1.7.0-rc.1.tgz#1b319afacc4852301327d2c6798a55a4f546274e"
+graphql-compiler@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/graphql-compiler/-/graphql-compiler-1.7.0.tgz#19942b47325cd41f6f4f79e67ef0d75c379b6ba1"
   dependencies:
     chalk "^1.1.1"
     fb-watchman "^2.0.0"
@@ -3934,14 +3934,14 @@ react-dom@^16.5.0:
     prop-types "^15.6.2"
     schedule "^0.3.0"
 
-react-relay@^1.7.0-rc.1:
-  version "1.7.0-rc.1"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-1.7.0-rc.1.tgz#c40b49553c9a31267347528289c306ddb4efc369"
+react-relay@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-1.7.0.tgz#6a21df4e6bb52c7a02374ad288ccbeb0172f095d"
   dependencies:
     babel-runtime "^6.23.0"
     fbjs "0.8.17"
     prop-types "^15.5.8"
-    relay-runtime "1.7.0-rc.1"
+    relay-runtime "1.7.0"
 
 react@^16.5.0:
   version "16.5.0"
@@ -4044,9 +4044,9 @@ regjsparser@^0.3.0:
   dependencies:
     jsesc "~0.5.0"
 
-relay-compiler@^1.7.0-rc.1:
-  version "1.7.0-rc.1"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-1.7.0-rc.1.tgz#175e89146cacb4ad6602cfbfa116869a4839bd55"
+relay-compiler@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-1.7.0.tgz#a78e629f2156f31fc6d42b5dbcfa9ad33eefd6f6"
   dependencies:
     "@babel/generator" "7.0.0-beta.56"
     "@babel/parser" "7.0.0-beta.56"
@@ -4059,15 +4059,15 @@ relay-compiler@^1.7.0-rc.1:
     fast-glob "^2.2.2"
     fb-watchman "^2.0.0"
     fbjs "0.8.17"
-    graphql-compiler "1.7.0-rc.1"
+    graphql-compiler "1.7.0"
     immutable "~3.7.6"
-    relay-runtime "1.7.0-rc.1"
+    relay-runtime "1.7.0"
     signedsource "^1.0.0"
     yargs "^9.0.0"
 
-relay-runtime@1.7.0-rc.1:
-  version "1.7.0-rc.1"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-1.7.0-rc.1.tgz#c307ae2c11c1b5fa62265bf696d026c0f0cbce03"
+relay-runtime@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-1.7.0.tgz#59cfb5cab361ef630099464e1b364342466cd212"
   dependencies:
     babel-runtime "^6.23.0"
     fbjs "0.8.17"
