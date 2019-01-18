@@ -1601,6 +1601,10 @@ chalk@^2.0.0:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
+chance@^1.0.16:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.18.tgz#79788fe6fca4c338bf404321c347eecc80f969ee"
+
 chokidar@^2.0.0, chokidar@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.4.tgz#356ff4e2b0e8e43e322d18a372460bbcf3accd26"
@@ -2028,6 +2032,30 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+easygraphql-mock@^0.1.8:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/easygraphql-mock/-/easygraphql-mock-0.1.9.tgz#10695f78b7f8ada9a815542f0579944a065fb81a"
+  dependencies:
+    chance "^1.0.16"
+    easygraphql-parser "^0.0.5"
+
+easygraphql-parser@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/easygraphql-parser/-/easygraphql-parser-0.0.5.tgz#a796b9a43cc4daaa40a8079d7b12c82bf8d0f755"
+  dependencies:
+    graphql "^14.0.2"
+    lodash.mergewith "^4.6.1"
+
+easygraphql-tester@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/easygraphql-tester/-/easygraphql-tester-3.0.5.tgz#330ea858f40eae4a441952e297b619516d817806"
+  dependencies:
+    easygraphql-mock "^0.1.8"
+    easygraphql-parser "^0.0.5"
+    graphql-tag "^2.9.2"
+    lodash.isempty "^4.4.0"
+    lodash.isobject "^3.0.2"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2513,6 +2541,10 @@ graphql-compiler@1.7.0:
 graphql-relay@^0.5.5:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.5.5.tgz#d6815e6edd618e878d5d921c13fc66033ec867e2"
+
+graphql-tag@^2.9.2:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
 
 graphql@^14.0.2:
   version "14.0.2"
@@ -3084,6 +3116,18 @@ locate-path@^3.0.0:
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
+lodash.isempty@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
+
+lodash.isobject@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
+
+lodash.mergewith@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
 
 lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.10"

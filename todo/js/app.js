@@ -14,13 +14,30 @@ import 'todomvc-common';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EasyGraphQLTester from 'easygraphql-tester';
+import { schema } from '../data/schema';
+import { fixture } from '../data/fixture';
 
 import {QueryRenderer, graphql} from 'react-relay';
 import {Environment, Network, RecordSource, Store} from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
 
+const tester = new EasyGraphQLTester(schema);
+
 function fetchQuery(operation, variables) {
+  if (process.env.NODE_ENV === 'none') {
+    const mockedQuery = tester.mock({
+      query: operation.text,
+      variables,
+      fixture: fixture[operation.name]
+    })
+    const response = {
+      "data": mockedQuery
+    }
+    return response
+  }
+
   return fetch('/graphql', {
     method: 'POST',
     headers: {

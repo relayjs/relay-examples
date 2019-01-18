@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./server.js",
+    "mock-start": "babel-node ./testMode.js",
     "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "prettier": "find . \\( -name node_modules -o -name __generated__ \\) -prune -or \\( -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.md' \\) -print | xargs prettier --write"
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@babel/node": "^7.0.0",
+    "easygraphql-tester": "^3.0.5",
     "relay-compiler": "^1.7.0"
   },
   "prettier": {
