@@ -15,19 +15,23 @@ import TodoList from './TodoList';
 import TodoListFooter from './TodoListFooter';
 import TodoTextInput from './TodoTextInput';
 
-import React from 'react';
+import React, {Component} from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
 
-class TodoApp extends React.Component {
+class TodoApp extends Component {
   _handleTextInputSave = text => {
-    AddTodoMutation.commit(
-      this.props.relay.environment,
-      text,
-      this.props.viewer,
-    );
+    const {
+      viewer,
+      relay: {environment},
+    } = this.props;
+    AddTodoMutation.commit(environment, text, viewer);
   };
   render() {
-    const hasTodos = this.props.viewer.totalCount > 0;
+    const {
+      viewer,
+      viewer: {todos, totalCount},
+    } = this.props;
+    const hasTodos = totalCount > 0;
     return (
       <div>
         <section className="todoapp">
@@ -40,13 +44,8 @@ class TodoApp extends React.Component {
               placeholder="What needs to be done?"
             />
           </header>
-          <TodoList viewer={this.props.viewer} />
-          {hasTodos && (
-            <TodoListFooter
-              todos={this.props.viewer.todos}
-              viewer={this.props.viewer}
-            />
-          )}
+          <TodoList viewer={viewer} />
+          {hasTodos && <TodoListFooter todos={todos} viewer={viewer} />}
         </section>
         <footer className="info">
           <p>Double-click to edit a todo</p>

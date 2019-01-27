@@ -13,27 +13,38 @@
 import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
 import Todo from './Todo';
 
-import React from 'react';
+import React, {Component} from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
 
-class TodoList extends React.Component {
+class TodoList extends Component {
   _handleMarkAllChange = e => {
-    const complete = e.target.checked;
-    MarkAllTodosMutation.commit(
-      this.props.relay.environment,
-      complete,
-      this.props.viewer.todos,
-      this.props.viewer,
-    );
+    const {
+      target: {checked: complete},
+    } = e;
+    const {
+      viewer,
+      viewer: {todos},
+      relay: {environment},
+    } = this.props;
+
+    MarkAllTodosMutation.commit(environment, complete, todos, viewer);
   };
   renderTodos() {
-    return this.props.viewer.todos.edges.map(edge => (
-      <Todo key={edge.node.id} todo={edge.node} viewer={this.props.viewer} />
+    const {
+      viewer,
+      viewer: {
+        todos: {edges},
+      },
+    } = this.props;
+    return edges.map(({node, node: {id: nodeId}}) => (
+      <Todo key={nodeId} todo={node} viewer={viewer} />
     ));
   }
   render() {
-    const numTodos = this.props.viewer.totalCount;
-    const numCompletedTodos = this.props.viewer.completedCount;
+    const {
+      viewer: {totalCount: numTodos, completedCount: numCompletedTodos},
+    } = this.props;
+
     return (
       <section className="main">
         <input

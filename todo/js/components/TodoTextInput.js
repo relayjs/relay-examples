@@ -10,7 +10,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 const PropTypes = require('prop-types');
@@ -18,7 +18,7 @@ const PropTypes = require('prop-types');
 const ENTER_KEY_CODE = 13;
 const ESC_KEY_CODE = 27;
 
-export default class TodoTextInput extends React.Component {
+export default class TodoTextInput extends Component {
   static defaultProps = {
     commitOnBlur: false,
   };
@@ -39,40 +39,49 @@ export default class TodoTextInput extends React.Component {
     ReactDOM.findDOMNode(this).focus();
   }
   _commitChanges = () => {
-    const newText = this.state.text.trim();
-    if (this.props.onDelete && newText === '') {
-      this.props.onDelete();
-    } else if (this.props.onCancel && newText === this.props.initialValue) {
-      this.props.onCancel();
+    const {text} = this.state;
+    const {onSave, onCancel, onDelete, initialValue} = this.props;
+    const newText = text.trim();
+    if (onDelete && newText === '') {
+      onDelete();
+    } else if (onCancel && newText === initialValue) {
+      onCancel();
     } else if (newText !== '') {
-      this.props.onSave(newText);
+      onSave(newText);
       this.setState({text: ''});
     }
   };
   _handleBlur = () => {
-    if (this.props.commitOnBlur) {
+    const {commitOnBlur} = this.props;
+    if (commitOnBlur) {
       this._commitChanges();
     }
   };
   _handleChange = e => {
-    this.setState({text: e.target.value});
+    const {
+      target: {value},
+    } = e;
+    this.setState({text: value});
   };
   _handleKeyDown = e => {
-    if (this.props.onCancel && e.keyCode === ESC_KEY_CODE) {
-      this.props.onCancel();
+    const {onCancel} = this.props;
+    if (onCancel && e.keyCode === ESC_KEY_CODE) {
+      onCancel();
     } else if (e.keyCode === ENTER_KEY_CODE) {
       this._commitChanges();
     }
   };
   render() {
+    const {text} = this.state;
+    const {className, placeholder} = this.props;
     return (
       <input
-        className={this.props.className}
+        className={className}
         onBlur={this._handleBlur}
         onChange={this._handleChange}
         onKeyDown={this._handleKeyDown}
-        placeholder={this.props.placeholder}
-        value={this.state.text}
+        placeholder={placeholder}
+        value={text}
       />
     );
   }
