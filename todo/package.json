@@ -4,7 +4,7 @@
     "start": "babel-node ./server.js",
     "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
     "update-schema": "babel-node ./scripts/updateSchema.js",
-    "prettier": "find . \\( -name node_modules -o -name __generated__ \\) -prune -or \\( -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.md' \\) -print | xargs prettier --write"
+    "lint": "eslint ./ --cache"
   },
   "dependencies": {
     "classnames": "2.2.6",
@@ -30,8 +30,18 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.3.4",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-relay": "^3.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-fbjs": "^2.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-flowtype": "^3.2.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-relay": "^1.0.0",
     "flow-bin": "^0.92.1",
     "relay-compiler": "^3.0.0",
     "webpack": "^4.29.6",
