@@ -1,6 +1,6 @@
 {
   "plugins": [
-    "relay",
+    ["relay", { "artifactDirectory": "./__generated__/relay/" }],
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-class-properties"
   ],

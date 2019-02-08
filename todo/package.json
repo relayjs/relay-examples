@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./server.js",
-    "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql",
+    "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "prettier": "find . \\( -name node_modules -o -name __generated__ \\) -prune -or \\( -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.md' \\) -print | xargs prettier --write"
   },
