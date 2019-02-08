@@ -19,4 +19,4 @@ before_install: >
 before_script:
   (cd $EXAMPLE_PATH && yarn)
 script:
-  (cd $EXAMPLE_PATH && yarn run update-schema && yarn run build)
+  (cd $EXAMPLE_PATH && yarn run lint && yarn run update-schema && yarn run build)
