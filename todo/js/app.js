@@ -52,7 +52,9 @@ ReactDOM.render(
     `}
     variables={{}}
     render={({error, props}) => {
-      if (props) {
+      if (error) {
+        return <div>{error.message}</div>;
+      } else if (props) {
         return <TodoApp viewer={props.viewer} />;
       } else {
         return <div>Loading</div>;
