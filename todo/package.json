@@ -35,6 +35,7 @@
     "@babel/runtime": "^7.3.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-relay": "^2.0.0",
+    "flow-bin": "^0.92.1",
     "relay-compiler": "^2.0.0",
     "webpack": "^4.29.3",
     "webpack-dev-server": "^3.1.14"
