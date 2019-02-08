@@ -11,7 +11,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const PropTypes = require('prop-types');
 
@@ -35,8 +34,9 @@ export default class TodoTextInput extends React.Component {
     isEditing: false,
     text: this.props.initialValue || '',
   };
+  _inputRef = React.createRef();
   componentDidMount() {
-    ReactDOM.findDOMNode(this).focus();
+    this._inputRef.current.focus();
   }
   _commitChanges = () => {
     const newText = this.state.text.trim();
@@ -72,6 +72,7 @@ export default class TodoTextInput extends React.Component {
         onChange={this._handleChange}
         onKeyDown={this._handleKeyDown}
         placeholder={this.props.placeholder}
+        ref={this._inputRef}
         value={this.state.text}
       />
     );
