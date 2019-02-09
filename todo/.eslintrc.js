@@ -14,6 +14,9 @@ module.exports = {
     'no-console': 'off',
     'one-var': 'off',
     'react/prop-types': 'off',
+
+    // Mutations aren't located in the same file as Components
+    'relay/unused-fields': 'off',
   },
   settings: {
     react: {
