@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -17,10 +18,12 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {schema} from './data/schema';
 
-const APP_PORT = 3000;
+const APP_PORT: number = 3000;
 
 // Serve the Relay app
-const compiler = webpack({
+// Calling webpack() without a callback as 2nd property returns a Compiler object.
+// The libdefs don't like it, but it's fine.  $FlowFixMe https://webpack.js.org/api/node/
+const compiler: webpack.Compiler = webpack({
   mode: 'development',
   entry: ['whatwg-fetch', path.resolve(__dirname, 'js', 'app.js')],
   module: {
@@ -39,7 +42,8 @@ const compiler = webpack({
     path: '/',
   },
 });
-const app = new WebpackDevServer(compiler, {
+
+const app: WebpackDevServer = new WebpackDevServer(compiler, {
   contentBase: '/public/',
   publicPath: '/js/',
   stats: {colors: true},
