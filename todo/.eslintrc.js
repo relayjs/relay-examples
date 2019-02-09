@@ -15,6 +15,9 @@ module.exports = {
     'one-var': 'off',
     'react/prop-types': 'off', // Replaced by flow types
     'flowtype/require-variable-type': 'off', // Temporarily
+
+    // Mutations aren't located in the same file as Components
+    'relay/unused-fields': 'off',
   },
   settings: {
     react: {
