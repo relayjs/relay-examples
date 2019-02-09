@@ -8,22 +8,23 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-import type { TodoListFooter_viewer$ref } from "./TodoListFooter_viewer.graphql";
-import type { TodoList_viewer$ref } from "./TodoList_viewer.graphql";
+import type { TodoListFooter_user$ref } from "./TodoListFooter_user.graphql";
+import type { TodoList_user$ref } from "./TodoList_user.graphql";
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type TodoApp_viewer$ref: FragmentReference;
-export type TodoApp_viewer = {|
+declare export opaque type TodoApp_user$ref: FragmentReference;
+export type TodoApp_user = {|
   +id: string,
+  +userId: ?string,
   +totalCount: ?number,
-  +$fragmentRefs: TodoListFooter_viewer$ref & TodoList_viewer$ref,
-  +$refType: TodoApp_viewer$ref,
+  +$fragmentRefs: TodoListFooter_user$ref & TodoList_user$ref,
+  +$refType: TodoApp_user$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "TodoApp_viewer",
+  "name": "TodoApp_user",
   "type": "User",
   "metadata": null,
   "argumentDefinitions": [],
@@ -38,22 +39,29 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "userId",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "totalCount",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "FragmentSpread",
-      "name": "TodoListFooter_viewer",
+      "name": "TodoListFooter_user",
       "args": null
     },
     {
       "kind": "FragmentSpread",
-      "name": "TodoList_viewer",
+      "name": "TodoList_user",
       "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b9743417c7b5ef2bbda96cf675aa9eb4';
+(node/*: any*/).hash = '2b7e5675921fb837e60dedfe29de4d93';
 module.exports = node;

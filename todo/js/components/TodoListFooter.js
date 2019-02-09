@@ -17,7 +17,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 
 class TodoListFooter extends React.Component {
   _handleRemoveCompletedTodosClick = () => {
-    const edges = this.props.viewer.todos.edges.filter(
+    const edges = this.props.user.todos.edges.filter(
       edge => edge.node.complete === true,
     );
     RemoveCompletedTodosMutation.commit(
@@ -25,12 +25,12 @@ class TodoListFooter extends React.Component {
       {
         edges,
       },
-      this.props.viewer,
+      this.props.user,
     );
   };
   render() {
-    const numCompletedTodos = this.props.viewer.completedCount;
-    const numRemainingTodos = this.props.viewer.totalCount - numCompletedTodos;
+    const numCompletedTodos = this.props.user.completedCount;
+    const numRemainingTodos = this.props.user.totalCount - numCompletedTodos;
     return (
       <footer className="footer">
         <span className="todo-count">
@@ -52,8 +52,9 @@ class TodoListFooter extends React.Component {
 export default createFragmentContainer(
   TodoListFooter,
   graphql`
-    fragment TodoListFooter_viewer on User {
+    fragment TodoListFooter_user on User {
       id
+      userId
       completedCount
       todos(
         first: 2147483647 # max GraphQLInt

@@ -17,7 +17,7 @@ const mutation = graphql`
   mutation RemoveTodoMutation($input: RemoveTodoInput!) {
     removeTodo(input: $input) {
       deletedTodoId
-      viewer {
+      user {
         completedCount
         totalCount
       }
@@ -35,7 +35,10 @@ function commit(environment, todo, user) {
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {id: todo.id},
+      input: {
+        id: todo.id,
+        userId: user.userId,
+      },
     },
     updater: store => {
       const payload = store.getRootField('removeTodo');

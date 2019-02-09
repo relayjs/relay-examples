@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 73581a503b316165956a81b058f84be9
+ * @relayHash d371fcd3d691ef16c1ab10331320b7d4
  */
 
 /* eslint-disable */
@@ -11,6 +11,7 @@
 import type { ConcreteRequest } from 'relay-runtime';
 export type AddTodoInput = {|
   text: string,
+  userId: string,
   clientMutationId?: ?string,
 |};
 export type AddTodoMutationVariables = {|
@@ -27,7 +28,7 @@ export type AddTodoMutationResponse = {|
         +text: ?string,
       |},
     |},
-    +viewer: ?{|
+    +user: ?{|
       +id: string,
       +totalCount: ?number,
     |},
@@ -54,7 +55,7 @@ mutation AddTodoMutation(
         text
       }
     }
-    viewer {
+    user {
       id
       totalCount
     }
@@ -149,7 +150,7 @@ v2 = [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
+        "name": "user",
         "storageKey": null,
         "args": null,
         "concreteType": "User",
@@ -188,11 +189,11 @@ return {
     "operationKind": "mutation",
     "name": "AddTodoMutation",
     "id": null,
-    "text": "mutation AddTodoMutation(\n  $input: AddTodoInput!\n) {\n  addTodo(input: $input) {\n    todoEdge {\n      __typename\n      cursor\n      node {\n        complete\n        id\n        text\n      }\n    }\n    viewer {\n      id\n      totalCount\n    }\n  }\n}\n",
+    "text": "mutation AddTodoMutation(\n  $input: AddTodoInput!\n) {\n  addTodo(input: $input) {\n    todoEdge {\n      __typename\n      cursor\n      node {\n        complete\n        id\n        text\n      }\n    }\n    user {\n      id\n      totalCount\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd83bc4fc4eabb0be2a540834905e9427';
+(node/*: any*/).hash = 'c1931cfe1fd48fc43dedf1779558f244';
 module.exports = node;

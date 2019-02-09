@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b0ada6b6d2582b7a9111b26e89d23ce2
+ * @relayHash b794910d5a9a40490ed68f0c79e50afb
  */
 
 /* eslint-disable */
@@ -11,6 +11,7 @@
 import type { ConcreteRequest } from 'relay-runtime';
 export type MarkAllTodosInput = {|
   complete: boolean,
+  userId: string,
   clientMutationId?: ?string,
 |};
 export type MarkAllTodosMutationVariables = {|
@@ -22,7 +23,7 @@ export type MarkAllTodosMutationResponse = {|
       +id: string,
       +complete: ?boolean,
     |}>,
-    +viewer: ?{|
+    +user: ?{|
       +id: string,
       +completedCount: ?number,
     |},
@@ -44,7 +45,7 @@ mutation MarkAllTodosMutation(
       id
       complete
     }
-    viewer {
+    user {
       id
       completedCount
     }
@@ -107,7 +108,7 @@ v2 = [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
+        "name": "user",
         "storageKey": null,
         "args": null,
         "concreteType": "User",
@@ -146,11 +147,11 @@ return {
     "operationKind": "mutation",
     "name": "MarkAllTodosMutation",
     "id": null,
-    "text": "mutation MarkAllTodosMutation(\n  $input: MarkAllTodosInput!\n) {\n  markAllTodos(input: $input) {\n    changedTodos {\n      id\n      complete\n    }\n    viewer {\n      id\n      completedCount\n    }\n  }\n}\n",
+    "text": "mutation MarkAllTodosMutation(\n  $input: MarkAllTodosInput!\n) {\n  markAllTodos(input: $input) {\n    changedTodos {\n      id\n      complete\n    }\n    user {\n      id\n      completedCount\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '00fd81d60a24546c792660837e3fc6bd';
+(node/*: any*/).hash = '779c582c4ba0ee3c5be19942628dfaf3';
 module.exports = node;

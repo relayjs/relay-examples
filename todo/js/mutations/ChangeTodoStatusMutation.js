@@ -19,7 +19,7 @@ const mutation = graphql`
         id
         complete
       }
-      viewer {
+      user {
         id
         completedCount
       }
@@ -28,9 +28,9 @@ const mutation = graphql`
 `;
 
 function getOptimisticResponse(complete, todo, user) {
-  const viewerPayload = {id: user.id};
+  const userPayload = {id: user.id};
   if (user.completedCount != null) {
-    viewerPayload.completedCount = complete
+    userPayload.completedCount = complete
       ? user.completedCount + 1
       : user.completedCount - 1;
   }
@@ -40,7 +40,7 @@ function getOptimisticResponse(complete, todo, user) {
         complete: complete,
         id: todo.id,
       },
-      viewer: viewerPayload,
+      user: userPayload,
     },
   };
 }
@@ -49,7 +49,11 @@ function commit(environment, complete, todo, user) {
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {complete, id: todo.id},
+      input: {
+        complete,
+        userId: user.userId,
+        id: todo.id,
+      },
     },
     optimisticResponse: getOptimisticResponse(complete, todo, user),
   });

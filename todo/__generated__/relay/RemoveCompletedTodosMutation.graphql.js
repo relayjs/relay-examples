@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 273367c0c6d7828428975bb0b5b6d0b1
+ * @relayHash d185c8cb7aa97af0148b891355432fb1
  */
 
 /* eslint-disable */
@@ -10,7 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type RemoveCompletedTodosInput = {|
-  clientMutationId?: ?string
+  userId: string,
+  clientMutationId?: ?string,
 |};
 export type RemoveCompletedTodosMutationVariables = {|
   input: RemoveCompletedTodosInput
@@ -18,7 +19,7 @@ export type RemoveCompletedTodosMutationVariables = {|
 export type RemoveCompletedTodosMutationResponse = {|
   +removeCompletedTodos: ?{|
     +deletedTodoIds: ?$ReadOnlyArray<?string>,
-    +viewer: ?{|
+    +user: ?{|
       +completedCount: ?number,
       +totalCount: ?number,
     |},
@@ -37,7 +38,7 @@ mutation RemoveCompletedTodosMutation(
 ) {
   removeCompletedTodos(input: $input) {
     deletedTodoIds
-    viewer {
+    user {
       completedCount
       totalCount
       id
@@ -106,7 +107,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "viewer",
+            "name": "user",
             "storageKey": null,
             "args": null,
             "concreteType": "User",
@@ -138,7 +139,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "viewer",
+            "name": "user",
             "storageKey": null,
             "args": null,
             "concreteType": "User",
@@ -163,11 +164,11 @@ return {
     "operationKind": "mutation",
     "name": "RemoveCompletedTodosMutation",
     "id": null,
-    "text": "mutation RemoveCompletedTodosMutation(\n  $input: RemoveCompletedTodosInput!\n) {\n  removeCompletedTodos(input: $input) {\n    deletedTodoIds\n    viewer {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation RemoveCompletedTodosMutation(\n  $input: RemoveCompletedTodosInput!\n) {\n  removeCompletedTodos(input: $input) {\n    deletedTodoIds\n    user {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '303799d791e6e233861ee011ff3bdbb8';
+(node/*: any*/).hash = '9165a0685be5ff8f0b36e5449a8bbcf9';
 module.exports = node;
