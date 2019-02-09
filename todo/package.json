@@ -3,6 +3,7 @@
   "scripts": {
     "start": "babel-node ./server.js",
     "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
+    "flow-typed": "flow-typed install --flowVersion=0.92.1",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "lint": "eslint ./ --cache"
   },
@@ -43,6 +44,7 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-relay": "^1.0.0",
     "flow-bin": "^0.92.1",
+    "flow-typed": "^2.5.1",
     "relay-compiler": "^3.0.0",
     "webpack": "^4.29.6",
     "webpack-dev-server": "^3.2.1"
