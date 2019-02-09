@@ -29,7 +29,7 @@ class Todo extends React.Component {
       this.props.relay.environment,
       complete,
       this.props.todo,
-      this.props.viewer,
+      this.props.user,
     );
   };
   _handleDestroyClick = () => {
@@ -57,7 +57,7 @@ class Todo extends React.Component {
     RemoveTodoMutation.commit(
       this.props.relay.environment,
       this.props.todo,
-      this.props.viewer,
+      this.props.user,
     );
   }
   _setEditMode = shouldEdit => {
@@ -108,9 +108,10 @@ export default createFragmentContainer(Todo, {
       text
     }
   `,
-  viewer: graphql`
-    fragment Todo_viewer on User {
+  user: graphql`
+    fragment Todo_user on User {
       id
+      userId
       totalCount
       completedCount
     }

@@ -22,18 +22,18 @@ class TodoList extends React.Component {
     MarkAllTodosMutation.commit(
       this.props.relay.environment,
       complete,
-      this.props.viewer.todos,
-      this.props.viewer,
+      this.props.user.todos,
+      this.props.user,
     );
   };
   renderTodos() {
-    return this.props.viewer.todos.edges.map(edge => (
-      <Todo key={edge.node.id} todo={edge.node} viewer={this.props.viewer} />
+    return this.props.user.todos.edges.map(edge => (
+      <Todo key={edge.node.id} todo={edge.node} user={this.props.user} />
     ));
   }
   render() {
-    const numTodos = this.props.viewer.totalCount;
-    const numCompletedTodos = this.props.viewer.completedCount;
+    const numTodos = this.props.user.totalCount;
+    const numCompletedTodos = this.props.user.completedCount;
     return (
       <section className="main">
         <input
@@ -50,8 +50,8 @@ class TodoList extends React.Component {
 }
 
 export default createFragmentContainer(TodoList, {
-  viewer: graphql`
-    fragment TodoList_viewer on User {
+  user: graphql`
+    fragment TodoList_user on User {
       todos(
         first: 2147483647 # max GraphQLInt
       ) @connection(key: "TodoList_todos") {
@@ -64,9 +64,10 @@ export default createFragmentContainer(TodoList, {
         }
       }
       id
+      userId
       totalCount
       completedCount
-      ...Todo_viewer
+      ...Todo_user
     }
   `,
 });

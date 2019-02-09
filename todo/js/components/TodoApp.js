@@ -20,14 +20,10 @@ import {createFragmentContainer, graphql} from 'react-relay';
 
 class TodoApp extends React.Component {
   _handleTextInputSave = text => {
-    AddTodoMutation.commit(
-      this.props.relay.environment,
-      text,
-      this.props.viewer,
-    );
+    AddTodoMutation.commit(this.props.relay.environment, text, this.props.user);
   };
   render() {
-    const hasTodos = this.props.viewer.totalCount > 0;
+    const hasTodos = this.props.user.totalCount > 0;
     return (
       <div>
         <section className="todoapp">
@@ -40,11 +36,11 @@ class TodoApp extends React.Component {
               placeholder="What needs to be done?"
             />
           </header>
-          <TodoList viewer={this.props.viewer} />
+          <TodoList user={this.props.user} />
           {hasTodos && (
             <TodoListFooter
-              todos={this.props.viewer.todos}
-              viewer={this.props.viewer}
+              todos={this.props.user.todos}
+              user={this.props.user}
             />
           )}
         </section>
@@ -64,12 +60,13 @@ class TodoApp extends React.Component {
 }
 
 export default createFragmentContainer(TodoApp, {
-  viewer: graphql`
-    fragment TodoApp_viewer on User {
+  user: graphql`
+    fragment TodoApp_user on User {
       id
+      userId
       totalCount
-      ...TodoListFooter_viewer
-      ...TodoList_viewer
+      ...TodoListFooter_user
+      ...TodoList_user
     }
   `,
 });

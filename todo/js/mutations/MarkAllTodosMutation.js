@@ -19,7 +19,7 @@ const mutation = graphql`
         id
         complete
       }
-      viewer {
+      user {
         id
         completedCount
       }
@@ -28,7 +28,7 @@ const mutation = graphql`
 `;
 
 function getOptimisticResponse(complete, todos, user) {
-  const payload = {viewer: {id: user.id}};
+  const payload = {user: {id: user.id}};
   if (todos && todos.edges) {
     payload.changedTodos = todos.edges
       .filter(edge => edge.node.complete !== complete)
@@ -38,7 +38,7 @@ function getOptimisticResponse(complete, todos, user) {
       }));
   }
   if (user.totalCount != null) {
-    payload.viewer.completedCount = complete ? user.totalCount : 0;
+    payload.user.completedCount = complete ? user.totalCount : 0;
   }
   return {
     markAllTodos: payload,
@@ -49,7 +49,10 @@ function commit(environment, complete, todos, user) {
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {complete},
+      input: {
+        complete,
+        userId: user.userId,
+      },
     },
     optimisticResponse: getOptimisticResponse(complete, todos, user),
   });

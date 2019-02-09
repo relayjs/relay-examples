@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 38293d69f4ee8ebda86ab314ff7a8547
+ * @relayHash 422757fe92a1a2f61760237112648aa8
  */
 
 /* eslint-disable */
@@ -11,6 +11,7 @@
 import type { ConcreteRequest } from 'relay-runtime';
 export type RemoveTodoInput = {|
   id: string,
+  userId: string,
   clientMutationId?: ?string,
 |};
 export type RemoveTodoMutationVariables = {|
@@ -19,7 +20,7 @@ export type RemoveTodoMutationVariables = {|
 export type RemoveTodoMutationResponse = {|
   +removeTodo: ?{|
     +deletedTodoId: ?string,
-    +viewer: ?{|
+    +user: ?{|
       +completedCount: ?number,
       +totalCount: ?number,
     |},
@@ -38,7 +39,7 @@ mutation RemoveTodoMutation(
 ) {
   removeTodo(input: $input) {
     deletedTodoId
-    viewer {
+    user {
       completedCount
       totalCount
       id
@@ -107,7 +108,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "viewer",
+            "name": "user",
             "storageKey": null,
             "args": null,
             "concreteType": "User",
@@ -139,7 +140,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "viewer",
+            "name": "user",
             "storageKey": null,
             "args": null,
             "concreteType": "User",
@@ -164,11 +165,11 @@ return {
     "operationKind": "mutation",
     "name": "RemoveTodoMutation",
     "id": null,
-    "text": "mutation RemoveTodoMutation(\n  $input: RemoveTodoInput!\n) {\n  removeTodo(input: $input) {\n    deletedTodoId\n    viewer {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n",
+    "text": "mutation RemoveTodoMutation(\n  $input: RemoveTodoInput!\n) {\n  removeTodo(input: $input) {\n    deletedTodoId\n    user {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '560d32d6f18b4072042cf217a41beb97';
+(node/*: any*/).hash = 'fd5052095c290ad9d2b30d377d3da474';
 module.exports = node;

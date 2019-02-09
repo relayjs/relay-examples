@@ -25,7 +25,7 @@ const mutation = graphql`
           text
         }
       }
-      viewer {
+      user {
         id
         totalCount
       }
@@ -47,6 +47,7 @@ function commit(environment, text, user) {
     variables: {
       input: {
         text,
+        userId: user.userId,
         clientMutationId: String(tempID++),
       },
     },

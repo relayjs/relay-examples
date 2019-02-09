@@ -14,19 +14,19 @@ export class Todo {}
 export class User {}
 
 // Mock authenticated ID
-const VIEWER_ID = 'me';
+export const USER_ID = 'me';
 
 // Mock user data
-const viewer = new User();
-viewer.id = VIEWER_ID;
+const user = new User();
+user.id = USER_ID;
 const usersById = {
-  [VIEWER_ID]: viewer,
+  [USER_ID]: user,
 };
 
 // Mock todo data
 const todosById = {};
 const todoIdsByUser = {
-  [VIEWER_ID]: [],
+  [USER_ID]: [],
 };
 let nextTodoId = 0;
 addTodo('Taste JavaScript', true);
@@ -38,7 +38,7 @@ export function addTodo(text, complete) {
   todo.id = `${nextTodoId++}`;
   todo.text = text;
   todosById[todo.id] = todo;
-  todoIdsByUser[VIEWER_ID].push(todo.id);
+  todoIdsByUser[USER_ID].push(todo.id);
   return todo.id;
 }
 
@@ -52,7 +52,7 @@ export function getTodo(id) {
 }
 
 export function getTodos(status = 'any') {
-  const todos = todoIdsByUser[VIEWER_ID].map(id => todosById[id]);
+  const todos = todoIdsByUser[USER_ID].map(id => todosById[id]);
   if (status === 'any') {
     return todos;
   }
@@ -61,10 +61,6 @@ export function getTodos(status = 'any') {
 
 export function getUser(id) {
   return usersById[id];
-}
-
-export function getViewer() {
-  return getUser(VIEWER_ID);
 }
 
 export function markAllTodos(complete) {
@@ -79,9 +75,9 @@ export function markAllTodos(complete) {
 }
 
 export function removeTodo(id) {
-  const todoIndex = todoIdsByUser[VIEWER_ID].indexOf(id);
+  const todoIndex = todoIdsByUser[USER_ID].indexOf(id);
   if (todoIndex !== -1) {
-    todoIdsByUser[VIEWER_ID].splice(todoIndex, 1);
+    todoIdsByUser[USER_ID].splice(todoIndex, 1);
   }
   delete todosById[id];
 }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4c696f972d0586c08bf26ed2d5270347
+ * @relayHash a0a516e6c50f369a7bad86fceb63b971
  */
 
 /* eslint-disable */
@@ -12,6 +12,7 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type ChangeTodoStatusInput = {|
   complete: boolean,
   id: string,
+  userId: string,
   clientMutationId?: ?string,
 |};
 export type ChangeTodoStatusMutationVariables = {|
@@ -23,7 +24,7 @@ export type ChangeTodoStatusMutationResponse = {|
       +id: string,
       +complete: ?boolean,
     |},
-    +viewer: ?{|
+    +user: ?{|
       +id: string,
       +completedCount: ?number,
     |},
@@ -45,7 +46,7 @@ mutation ChangeTodoStatusMutation(
       id
       complete
     }
-    viewer {
+    user {
       id
       completedCount
     }
@@ -108,7 +109,7 @@ v2 = [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
+        "name": "user",
         "storageKey": null,
         "args": null,
         "concreteType": "User",
@@ -147,11 +148,11 @@ return {
     "operationKind": "mutation",
     "name": "ChangeTodoStatusMutation",
     "id": null,
-    "text": "mutation ChangeTodoStatusMutation(\n  $input: ChangeTodoStatusInput!\n) {\n  changeTodoStatus(input: $input) {\n    todo {\n      id\n      complete\n    }\n    viewer {\n      id\n      completedCount\n    }\n  }\n}\n",
+    "text": "mutation ChangeTodoStatusMutation(\n  $input: ChangeTodoStatusInput!\n) {\n  changeTodoStatus(input: $input) {\n    todo {\n      id\n      complete\n    }\n    user {\n      id\n      completedCount\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '82df4993530f2c7019c4cb7382a187fa';
+(node/*: any*/).hash = 'e232227a4f30f0e16f4e1e1a2e0cea75';
 module.exports = node;

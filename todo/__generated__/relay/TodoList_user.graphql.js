@@ -8,21 +8,26 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+import type { Todo_todo$ref } from "./Todo_todo.graphql";
+import type { Todo_user$ref } from "./Todo_user.graphql";
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type TodoListFooter_viewer$ref: FragmentReference;
-export type TodoListFooter_viewer = {|
-  +id: string,
-  +completedCount: ?number,
+declare export opaque type TodoList_user$ref: FragmentReference;
+export type TodoList_user = {|
   +todos: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
         +complete: ?boolean,
+        +$fragmentRefs: Todo_todo$ref,
       |}
     |}>
   |},
+  +id: string,
+  +userId: ?string,
   +totalCount: ?number,
-  +$refType: TodoListFooter_viewer$ref,
+  +completedCount: ?number,
+  +$fragmentRefs: Todo_user$ref,
+  +$refType: TodoList_user$ref,
 |};
 */
 
@@ -37,7 +42,7 @@ var v0 = {
 };
 return {
   "kind": "Fragment",
-  "name": "TodoListFooter_viewer",
+  "name": "TodoList_user",
   "type": "User",
   "metadata": {
     "connection": [
@@ -53,14 +58,6 @@ return {
   },
   "argumentDefinitions": [],
   "selections": [
-    (v0/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "completedCount",
-      "args": null,
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": "todos",
@@ -95,6 +92,11 @@ return {
                   "name": "complete",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "Todo_todo",
+                  "args": null
                 },
                 {
                   "kind": "ScalarField",
@@ -141,16 +143,36 @@ return {
         }
       ]
     },
+    (v0/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "userId",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
       "name": "totalCount",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "completedCount",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "Todo_user",
+      "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a3cc2fe609dcd33f12039c96354e0494';
+(node/*: any*/).hash = '4c169798c328a2b4d9b4ae5227d016bb';
 module.exports = node;
