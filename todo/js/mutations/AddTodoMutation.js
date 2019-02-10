@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -10,8 +11,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {commitMutation, graphql} from 'react-relay';
+import {
+  commitMutation,
+  graphql,
+  type Disposable,
+  type Environment,
+  type RecordProxy,
+  type RecordSourceSelectorProxy,
+} from 'react-relay';
+
 import {ConnectionHandler} from 'relay-runtime';
+import type {Todo_user} from 'relay/Todo_user.graphql';
+import type {AddTodoInput} from 'relay/AddTodoMutation.graphql';
 
 const mutation = graphql`
   mutation AddTodoMutation($input: AddTodoInput!) {
@@ -33,7 +44,11 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(store, user, newEdge) {
+function sharedUpdater(
+  store: RecordSourceSelectorProxy,
+  user: Todo_user,
+  newEdge: RecordProxy,
+) {
   const userProxy = store.get(user.id);
   const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
   ConnectionHandler.insertEdgeAfter(conn, newEdge);
@@ -41,31 +56,53 @@ function sharedUpdater(store, user, newEdge) {
 
 let tempID = 0;
 
-function commit(environment, text, user) {
+function commit(
+  environment: Environment,
+  text: string,
+  user: Todo_user,
+): Disposable {
+  const input: AddTodoInput = {
+    text,
+    userId: user.userId,
+    clientMutationId: `${tempID++}`,
+  };
+
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {
-        text,
-        userId: user.userId,
-        clientMutationId: String(tempID++),
-      },
+      input,
     },
-    updater: store => {
+    updater: (store: RecordSourceSelectorProxy) => {
       const payload = store.getRootField('addTodo');
       const newEdge = payload.getLinkedRecord('todoEdge');
       sharedUpdater(store, user, newEdge);
     },
-    optimisticUpdater: store => {
+    optimisticUpdater: (store: RecordSourceSelectorProxy) => {
       const id = 'client:newTodo:' + tempID++;
       const node = store.create(id, 'Todo');
       node.setValue(text, 'text');
       node.setValue(id, 'id');
+
       const newEdge = store.create('client:newEdge:' + tempID++, 'TodoEdge');
       newEdge.setLinkedRecord(node, 'node');
       sharedUpdater(store, user, newEdge);
+
+      // Get the UserProxy, and update the totalCount
       const userProxy = store.get(user.id);
-      userProxy.setValue(userProxy.getValue('totalCount') + 1, 'totalCount');
+
+      if (!userProxy) {
+        throw new Error('Failed to retrieve userProxy from store');
+      }
+
+      const totalCount = userProxy.getValue('totalCount');
+
+      if (typeof totalCount !== 'number') {
+        throw new Error(
+          `Expected userProxy.totalCount to be number, but got: ${typeof totalCount}`,
+        );
+      }
+
+      userProxy.setValue(totalCount + 1, 'totalCount');
     },
   });
 }
