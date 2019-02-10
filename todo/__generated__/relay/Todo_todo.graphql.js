@@ -11,9 +11,9 @@ import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Todo_todo$ref: FragmentReference;
 export type Todo_todo = {|
-  +complete: ?boolean,
+  +complete: boolean,
   +id: string,
-  +text: ?string,
+  +text: string,
   +$refType: Todo_todo$ref,
 |};
 */

@@ -16,7 +16,14 @@
 import {mutationWithClientMutationId} from 'graphql-relay';
 import {GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull} from 'graphql';
 import {GraphQLTodo, GraphQLUser} from '../nodes';
-import {getTodo, getUser, markAllTodos, Todo, User} from '../../database';
+
+import {
+  getTodoOrThrow,
+  getUserOrThrow,
+  markAllTodos,
+  Todo,
+  User,
+} from '../../database';
 
 type Input = {|
   +complete: boolean,
@@ -36,25 +43,13 @@ const MarkAllTodosMutation = mutationWithClientMutationId({
   },
   outputFields: {
     changedTodos: {
-      type: new GraphQLList(GraphQLTodo),
+      type: new GraphQLList(new GraphQLNonNull(GraphQLTodo)),
       resolve: ({changedTodoIds}: Payload): $ReadOnlyArray<Todo> =>
-        changedTodoIds.map(
-          (todoId: string): Todo => {
-            const todo = getTodo(todoId);
-
-            if (!todo) {
-              throw new Error(
-                `Todo ${todoId} not found but was attempted to be mutated`,
-              );
-            }
-
-            return todo;
-          },
-        ),
+        changedTodoIds.map((todoId: string): Todo => getTodoOrThrow(todoId)),
     },
     user: {
-      type: GraphQLUser,
-      resolve: ({userId}: Payload): ?User => getUser(userId),
+      type: new GraphQLNonNull(GraphQLUser),
+      resolve: ({userId}: Payload): User => getUserOrThrow(userId),
     },
   },
   mutateAndGetPayload: ({complete, userId}: Input): Payload => {

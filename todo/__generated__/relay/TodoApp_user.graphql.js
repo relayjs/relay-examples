@@ -14,8 +14,8 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoApp_user$ref: FragmentReference;
 export type TodoApp_user = {|
   +id: string,
-  +userId: ?string,
-  +totalCount: ?number,
+  +userId: string,
+  +totalCount: number,
   +$fragmentRefs: TodoListFooter_user$ref & TodoList_user$ref,
   +$refType: TodoApp_user$ref,
 |};

@@ -20,7 +20,14 @@ import {
 
 import {GraphQLID, GraphQLNonNull, GraphQLString} from 'graphql';
 import {GraphQLTodoEdge, GraphQLUser} from '../nodes';
-import {addTodo, getTodo, getTodos, getUser, User} from '../../database';
+
+import {
+  addTodo,
+  getTodoOrThrow,
+  getTodos,
+  getUserOrThrow,
+  User,
+} from '../../database';
 
 type Input = {|
   +text: string,
@@ -40,9 +47,9 @@ const AddTodoMutation = mutationWithClientMutationId({
   },
   outputFields: {
     todoEdge: {
-      type: GraphQLTodoEdge,
+      type: new GraphQLNonNull(GraphQLTodoEdge),
       resolve: ({todoId}: Payload) => {
-        const todo = getTodo(todoId);
+        const todo = getTodoOrThrow(todoId);
 
         return {
           cursor: cursorForObjectInConnection([...getTodos()], todo),
@@ -51,8 +58,8 @@ const AddTodoMutation = mutationWithClientMutationId({
       },
     },
     user: {
-      type: GraphQLUser,
-      resolve: ({userId}: Payload): ?User => getUser(userId),
+      type: new GraphQLNonNull(GraphQLUser),
+      resolve: ({userId}: Payload): User => getUserOrThrow(userId),
     },
   },
   mutateAndGetPayload: ({text, userId}: Input): Payload => {

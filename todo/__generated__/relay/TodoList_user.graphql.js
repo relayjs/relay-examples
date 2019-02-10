@@ -17,15 +17,15 @@ export type TodoList_user = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
-        +complete: ?boolean,
+        +complete: boolean,
         +$fragmentRefs: Todo_todo$ref,
       |}
     |}>
   |},
   +id: string,
-  +userId: ?string,
-  +totalCount: ?number,
-  +completedCount: ?number,
+  +userId: string,
+  +totalCount: number,
+  +completedCount: number,
   +$fragmentRefs: Todo_user$ref,
   +$refType: TodoList_user$ref,
 |};

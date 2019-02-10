@@ -15,6 +15,7 @@
 import {
   GraphQLBoolean,
   GraphQLInt,
+  GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql';
@@ -28,7 +29,14 @@ import {
   nodeDefinitions,
 } from 'graphql-relay';
 
-import {Todo, User, USER_ID, getTodo, getTodos, getUser} from '../database';
+import {
+  Todo,
+  User,
+  USER_ID,
+  getTodoOrThrow,
+  getTodos,
+  getUserOrThrow,
+} from '../database';
 
 // $FlowFixMe graphql-relay types not available in flow-typed, strengthen this typing
 const {nodeInterface, nodeField} = nodeDefinitions(
@@ -36,9 +44,9 @@ const {nodeInterface, nodeField} = nodeDefinitions(
     const {type, id}: {id: string, type: string} = fromGlobalId(globalId);
 
     if (type === 'Todo') {
-      return getTodo(id);
+      return getTodoOrThrow(id);
     } else if (type === 'User') {
-      return getUser(id);
+      return getUserOrThrow(id);
     }
     return null;
   },
@@ -57,11 +65,11 @@ const GraphQLTodo = new GraphQLObjectType({
   fields: {
     id: globalIdField('Todo'),
     text: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       resolve: (todo: Todo): string => todo.text,
     },
     complete: {
-      type: GraphQLBoolean,
+      type: new GraphQLNonNull(GraphQLBoolean),
       resolve: (todo: Todo): boolean => todo.complete,
     },
   },
@@ -81,7 +89,7 @@ const GraphQLUser = new GraphQLObjectType({
   fields: {
     id: globalIdField('User'),
     userId: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       resolve: (): string => USER_ID,
     },
     todos: {
@@ -103,11 +111,11 @@ const GraphQLUser = new GraphQLObjectType({
         }),
     },
     totalCount: {
-      type: GraphQLInt,
+      type: new GraphQLNonNull(GraphQLInt),
       resolve: (): number => getTodos().length,
     },
     completedCount: {
-      type: GraphQLInt,
+      type: new GraphQLNonNull(GraphQLInt),
       resolve: (): number => getTodos('completed').length,
     },
   },

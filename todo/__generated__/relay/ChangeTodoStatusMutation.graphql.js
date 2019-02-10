@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a0a516e6c50f369a7bad86fceb63b971
+ * @relayHash 449324ab16a4f72c8260bb20b4166394
  */
 
 /* eslint-disable */
@@ -20,13 +20,13 @@ export type ChangeTodoStatusMutationVariables = {|
 |};
 export type ChangeTodoStatusMutationResponse = {|
   +changeTodoStatus: ?{|
-    +todo: ?{|
+    +todo: {|
       +id: string,
-      +complete: ?boolean,
+      +complete: boolean,
     |},
-    +user: ?{|
+    +user: {|
       +id: string,
-      +completedCount: ?number,
+      +completedCount: number,
     |},
   |}
 |};

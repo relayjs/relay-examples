@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b794910d5a9a40490ed68f0c79e50afb
+ * @relayHash f025f7f6fbc1806e005bbf0b9453a9a0
  */
 
 /* eslint-disable */
@@ -19,13 +19,13 @@ export type MarkAllTodosMutationVariables = {|
 |};
 export type MarkAllTodosMutationResponse = {|
   +markAllTodos: ?{|
-    +changedTodos: ?$ReadOnlyArray<?{|
+    +changedTodos: ?$ReadOnlyArray<{|
       +id: string,
-      +complete: ?boolean,
+      +complete: boolean,
     |}>,
-    +user: ?{|
+    +user: {|
       +id: string,
-      +completedCount: ?number,
+      +completedCount: number,
     |},
   |}
 |};

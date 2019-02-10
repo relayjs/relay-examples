@@ -12,17 +12,17 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoListFooter_user$ref: FragmentReference;
 export type TodoListFooter_user = {|
   +id: string,
-  +userId: ?string,
-  +completedCount: ?number,
+  +userId: string,
+  +completedCount: number,
   +todos: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
-        +complete: ?boolean,
+        +complete: boolean,
       |}
     |}>
   |},
-  +totalCount: ?number,
+  +totalCount: number,
   +$refType: TodoListFooter_user$ref,
 |};
 */

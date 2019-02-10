@@ -16,7 +16,7 @@
 import {mutationWithClientMutationId, fromGlobalId} from 'graphql-relay';
 import {GraphQLID, GraphQLNonNull} from 'graphql';
 import {GraphQLUser} from '../nodes';
-import {getUser, removeTodo, User} from '../../database';
+import {getUserOrThrow, removeTodo, User} from '../../database';
 
 type Input = {|
   +id: string,
@@ -36,12 +36,12 @@ const RemoveTodoMutation = mutationWithClientMutationId({
   },
   outputFields: {
     deletedTodoId: {
-      type: GraphQLID,
+      type: new GraphQLNonNull(GraphQLID),
       resolve: ({id}: Payload): string => id,
     },
     user: {
-      type: GraphQLUser,
-      resolve: ({userId}: Payload): ?User => getUser(userId),
+      type: new GraphQLNonNull(GraphQLUser),
+      resolve: ({userId}: Payload): User => getUserOrThrow(userId),
     },
   },
   mutateAndGetPayload: ({id, userId}: Input): Payload => {

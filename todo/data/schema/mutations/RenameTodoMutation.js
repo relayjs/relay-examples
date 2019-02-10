@@ -16,7 +16,7 @@
 import {mutationWithClientMutationId, fromGlobalId} from 'graphql-relay';
 import {GraphQLID, GraphQLNonNull, GraphQLString} from 'graphql';
 import {GraphQLTodo} from '../nodes';
-import {getTodo, renameTodo, Todo} from '../../database';
+import {getTodoOrThrow, renameTodo, Todo} from '../../database';
 
 type Input = {|
   +id: string,
@@ -35,8 +35,8 @@ const RenameTodoMutation = mutationWithClientMutationId({
   },
   outputFields: {
     todo: {
-      type: GraphQLTodo,
-      resolve: ({localTodoId}: Payload): ?Todo => getTodo(localTodoId),
+      type: new GraphQLNonNull(GraphQLTodo),
+      resolve: ({localTodoId}: Payload): Todo => getTodoOrThrow(localTodoId),
     },
   },
   mutateAndGetPayload: ({id, text}: Input): Payload => {

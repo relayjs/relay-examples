@@ -63,34 +63,30 @@ export function addTodo(text: string, complete: boolean): string {
 }
 
 export function changeTodoStatus(id: string, complete: boolean) {
-  const todo = getTodo(id);
+  const todo = getTodoOrThrow(id);
 
-  if (todo) {
-    // If found, replace with the modified complete value
-    todosById.set(id, new Todo(id, todo.text, complete));
-  }
+  // Replace with the modified complete value
+  todosById.set(id, new Todo(id, todo.text, complete));
 }
 
-export function getTodo(id: string): ?Todo {
+// Private, for strongest typing, only export `getTodoOrThrow`
+function getTodo(id: string): ?Todo {
   return todosById.get(id);
+}
+
+export function getTodoOrThrow(id: string): Todo {
+  const todo = getTodo(id);
+
+  if (!todo) {
+    throw new Error(`Invariant exception, Todo ${id} not found`);
+  }
+
+  return todo;
 }
 
 export function getTodos(status: string = 'any'): $ReadOnlyArray<Todo> {
   const todoIdsForUser = getTodoIdsForUser(USER_ID);
-
-  const todosForUser = todoIdsForUser.map(
-    (id: string): Todo => {
-      const todo = todosById.get(id);
-
-      if (!todo) {
-        throw new Error(
-          `Invariant exception, todo ${id} not found, but belongs to user ${USER_ID}`,
-        );
-      }
-
-      return todo;
-    },
-  );
+  const todosForUser = todoIdsForUser.map(getTodoOrThrow);
 
   if (status === 'any') {
     return todosForUser;
@@ -101,8 +97,19 @@ export function getTodos(status: string = 'any'): $ReadOnlyArray<Todo> {
   );
 }
 
-export function getUser(id: string): ?User {
+// Private, for strongest typing, only export `getUserOrThrow`
+function getUser(id: string): ?User {
   return usersById.get(id);
+}
+
+export function getUserOrThrow(id: string): User {
+  const user = getUser(id);
+
+  if (!user) {
+    throw new Error(`Invariant exception, User ${id} not found`);
+  }
+
+  return user;
 }
 
 export function markAllTodos(complete: boolean): $ReadOnlyArray<string> {
@@ -152,10 +159,8 @@ export function removeCompletedTodos(): $ReadOnlyArray<string> {
 }
 
 export function renameTodo(id: string, text: string) {
-  const todo = getTodo(id);
+  const todo = getTodoOrThrow(id);
 
-  if (todo) {
-    // If found, replace with the modified text value
-    todosById.set(id, new Todo(id, text, todo.complete));
-  }
+  // Replace with the modified text value
+  todosById.set(id, new Todo(id, text, todo.complete));
 }

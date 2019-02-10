@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d371fcd3d691ef16c1ab10331320b7d4
+ * @relayHash 1832950f39f4567e88e6d394d392bf14
  */
 
 /* eslint-disable */
@@ -19,18 +19,18 @@ export type AddTodoMutationVariables = {|
 |};
 export type AddTodoMutationResponse = {|
   +addTodo: ?{|
-    +todoEdge: ?{|
+    +todoEdge: {|
       +__typename: string,
       +cursor: string,
       +node: ?{|
-        +complete: ?boolean,
+        +complete: boolean,
         +id: string,
-        +text: ?string,
+        +text: string,
       |},
     |},
-    +user: ?{|
+    +user: {|
       +id: string,
-      +totalCount: ?number,
+      +totalCount: number,
     |},
   |}
 |};

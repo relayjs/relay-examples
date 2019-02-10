@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9b618de02f97b09b7cc7b0f53917489a
+ * @relayHash e6de23b68fa42de78bf11ceb07fbfdcd
  */
 
 /* eslint-disable */
@@ -19,9 +19,9 @@ export type RenameTodoMutationVariables = {|
 |};
 export type RenameTodoMutationResponse = {|
   +renameTodo: ?{|
-    +todo: ?{|
+    +todo: {|
       +id: string,
-      +text: ?string,
+      +text: string,
     |}
   |}
 |};

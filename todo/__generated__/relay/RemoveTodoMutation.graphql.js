@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 422757fe92a1a2f61760237112648aa8
+ * @relayHash dc9be14b67acdae647657df4443398c2
  */
 
 /* eslint-disable */
@@ -19,10 +19,10 @@ export type RemoveTodoMutationVariables = {|
 |};
 export type RemoveTodoMutationResponse = {|
   +removeTodo: ?{|
-    +deletedTodoId: ?string,
-    +user: ?{|
-      +completedCount: ?number,
-      +totalCount: ?number,
+    +deletedTodoId: string,
+    +user: {|
+      +completedCount: number,
+      +totalCount: number,
     |},
   |}
 |};
