@@ -7,33 +7,33 @@
     "prettier": "find . \\( -name node_modules -o -name __generated__ \\) -prune -or \\( -name '*.js' -o -name '*.css' -o -name '*.json' -o -name '*.md' \\) -print | xargs prettier --write"
   },
   "dependencies": {
-    "@babel/core": "^7.0.1",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-relay": "file:../../relay/dist/babel-plugin-relay",
     "classnames": "2.2.6",
-    "express": "^4.16.3",
-    "express-graphql": "^0.6.12",
-    "graphql": "^14.0.2",
-    "graphql-relay": "^0.5.5",
-    "prettier": "^1.14.2",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-relay": "^0.6.0",
+    "prettier": "^1.16.4",
     "prop-types": "^15.6.2",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-relay": "file:../../relay/dist/react-relay",
     "todomvc-app-css": "^2.1.2",
     "todomvc-common": "^1.0.3",
-    "webpack": "^4.18.0",
-    "webpack-dev-server": "^3.1.8",
-    "whatwg-fetch": "2.0.4"
+    "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {
-    "@babel/node": "^7.0.0",
-    "relay-compiler": "file:../../relay/dist/relay-compiler"
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-relay": "file:../../relay/dist/babel-plugin-relay",
+    "relay-compiler": "file:../../relay/dist/relay-compiler",
+    "webpack": "^4.29.3",
+    "webpack-dev-server": "^3.1.14"
   },
   "prettier": {
     "singleQuote": true,
@@ -43,7 +43,6 @@
   },
   "resolutions": {
     "react-relay/**/relay-runtime": "file:../../relay/dist/relay-runtime",
-    "relay-compiler/**/graphql-compiler": "file:../../relay/dist/graphql-compiler",
     "relay-compiler/**/relay-runtime": "file:../../relay/dist/relay-runtime"
   }
 }
