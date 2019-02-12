@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -10,7 +11,19 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {commitMutation, graphql} from 'react-relay';
+import {
+  commitMutation,
+  graphql,
+  type Disposable,
+  type Environment,
+} from 'react-relay';
+
+import type {Todo_todo} from 'relay/Todo_todo.graphql';
+
+import type {
+  RenameTodoInput,
+  RenameTodoMutationResponse,
+} from 'relay/RenameTodoMutation.graphql';
 
 const mutation = graphql`
   mutation RenameTodoMutation($input: RenameTodoInput!) {
@@ -23,7 +36,10 @@ const mutation = graphql`
   }
 `;
 
-function getOptimisticResponse(text, todo) {
+function getOptimisticResponse(
+  text: string,
+  todo: Todo_todo,
+): RenameTodoMutationResponse {
   return {
     renameTodo: {
       todo: {
@@ -34,11 +50,20 @@ function getOptimisticResponse(text, todo) {
   };
 }
 
-function commit(environment, text, todo) {
+function commit(
+  environment: Environment,
+  text: string,
+  todo: Todo_todo,
+): Disposable {
+  const input: RenameTodoInput = {
+    text,
+    id: todo.id,
+  };
+
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {text, id: todo.id},
+      input,
     },
     optimisticResponse: getOptimisticResponse(text, todo),
   });
