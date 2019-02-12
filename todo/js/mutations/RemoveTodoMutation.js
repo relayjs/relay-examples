@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -10,8 +11,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {commitMutation, graphql} from 'react-relay';
+import {
+  commitMutation,
+  graphql,
+  type Disposable,
+  type Environment,
+  type RecordSourceSelectorProxy,
+} from 'react-relay';
+
 import {ConnectionHandler} from 'relay-runtime';
+import type {Todo_user} from 'relay/Todo_user.graphql';
+import type {Todo_todo} from 'relay/Todo_todo.graphql';
+import type {RemoveTodoInput} from 'relay/RemoveTodoMutation.graphql';
 
 const mutation = graphql`
   mutation RemoveTodoMutation($input: RemoveTodoInput!) {
@@ -25,26 +36,44 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(store, user, deletedID) {
+function sharedUpdater(
+  store: RecordSourceSelectorProxy,
+  user: Todo_user,
+  deletedID: string,
+) {
   const userProxy = store.get(user.id);
   const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
   ConnectionHandler.deleteNode(conn, deletedID);
 }
 
-function commit(environment, todo, user) {
+function commit(
+  environment: Environment,
+  todo: Todo_todo,
+  user: Todo_user,
+): Disposable {
+  const input: RemoveTodoInput = {
+    id: todo.id,
+    userId: user.userId,
+  };
+
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {
-        id: todo.id,
-        userId: user.userId,
-      },
+      input,
     },
-    updater: store => {
+    updater: (store: RecordSourceSelectorProxy) => {
       const payload = store.getRootField('removeTodo');
-      sharedUpdater(store, user, payload.getValue('deletedTodoId'));
+      const deletedTodoId = payload.getValue('deletedTodoId');
+
+      if (typeof deletedTodoId !== 'string') {
+        throw new Error(
+          `Expected removeTodo.deletedTodoId to be string, but got: ${typeof deletedTodoId}`,
+        );
+      }
+
+      sharedUpdater(store, user, deletedTodoId);
     },
-    optimisticUpdater: store => {
+    optimisticUpdater: (store: RecordSourceSelectorProxy) => {
       sharedUpdater(store, user, todo.id);
     },
   });
