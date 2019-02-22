@@ -13,6 +13,7 @@
     "graphql": "^14.1.1",
     "graphql-relay": "^0.6.0",
     "prettier": "^1.16.4",
+    "prop-types": "^15.6.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-relay": "file:../../relay/dist/react-relay",
