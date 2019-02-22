@@ -43,7 +43,6 @@
   },
   "resolutions": {
     "react-relay/**/relay-runtime": "file:../../relay/dist/relay-runtime",
-    "relay-compiler/**/graphql-compiler": "file:../../relay/dist/graphql-compiler",
     "relay-compiler/**/relay-runtime": "file:../../relay/dist/relay-runtime"
   }
 }
