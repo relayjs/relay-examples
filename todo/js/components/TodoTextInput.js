@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -10,33 +11,36 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
 
-const PropTypes = require('prop-types');
+type Props = {|
+  +className: string,
+  +commitOnBlur: boolean,
+  +initialValue: string,
+  +onCancel: () => void,
+  +onDelete: () => void,
+  +onSave: string => void,
+  +placeholder: string,
+|};
+
+type State = {|
+  +isEditing: boolean,
+  +text: string,
+|};
 
 const ENTER_KEY_CODE = 13;
 const ESC_KEY_CODE = 27;
 
-export default class TodoTextInput extends React.Component {
-  static defaultProps = {
-    commitOnBlur: false,
-  };
-  static propTypes = {
-    className: PropTypes.string,
-    commitOnBlur: PropTypes.bool.isRequired,
-    initialValue: PropTypes.string,
-    onCancel: PropTypes.func,
-    onDelete: PropTypes.func,
-    onSave: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
-  };
-  state = {
+export default class TodoTextInput extends React.Component<Props, State> {
+  state: State = {
     isEditing: false,
     text: this.props.initialValue || '',
   };
+  _inputRef: {current: null | HTMLInputElement} = React.createRef();
   componentDidMount() {
-    ReactDOM.findDOMNode(this).focus();
+    if (this._inputRef.current) {
+      this._inputRef.current.focus();
+    }
   }
   _commitChanges = () => {
     const newText = this.state.text.trim();
@@ -54,17 +58,17 @@ export default class TodoTextInput extends React.Component {
       this._commitChanges();
     }
   };
-  _handleChange = e => {
-    this.setState({text: e.target.value});
+  _handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.setState({text: e.currentTarget.value});
   };
-  _handleKeyDown = e => {
+  _handleKeyDown = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
     if (this.props.onCancel && e.keyCode === ESC_KEY_CODE) {
       this.props.onCancel();
     } else if (e.keyCode === ENTER_KEY_CODE) {
       this._commitChanges();
     }
   };
-  render() {
+  render(): React.Node {
     return (
       <input
         className={this.props.className}
@@ -72,6 +76,7 @@ export default class TodoTextInput extends React.Component {
         onChange={this._handleChange}
         onKeyDown={this._handleKeyDown}
         placeholder={this.props.placeholder}
+        ref={this._inputRef}
         value={this.state.text}
       />
     );

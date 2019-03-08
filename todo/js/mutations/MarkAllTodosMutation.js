@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -10,7 +11,29 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {commitMutation, graphql} from 'react-relay';
+import {
+  commitMutation,
+  graphql,
+  type Disposable,
+  type Environment,
+} from 'react-relay';
+
+import type {
+  MarkAllTodosInput,
+  MarkAllTodosMutationResponse,
+} from 'relay/MarkAllTodosMutation.graphql';
+
+type MarkAllTodos = $NonMaybeType<
+  $ElementType<MarkAllTodosMutationResponse, 'markAllTodos'>,
+>;
+type ChangedTodos = $NonMaybeType<$ElementType<MarkAllTodos, 'changedTodos'>>;
+type ChangedTodo = $ElementType<ChangedTodos, number>;
+
+import type {TodoList_user} from 'relay/TodoList_user.graphql';
+type Todos = $NonMaybeType<$ElementType<TodoList_user, 'todos'>>;
+type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
+type Edge = $NonMaybeType<$ElementType<Edges, number>>;
+type Node = $NonMaybeType<$ElementType<Edge, 'node'>>;
 
 const mutation = graphql`
   mutation MarkAllTodosMutation($input: MarkAllTodosInput!) {
@@ -19,7 +42,7 @@ const mutation = graphql`
         id
         complete
       }
-      viewer {
+      user {
         id
         completedCount
       }
@@ -27,29 +50,54 @@ const mutation = graphql`
   }
 `;
 
-function getOptimisticResponse(complete, todos, user) {
-  const payload = {viewer: {id: user.id}};
-  if (todos && todos.edges) {
-    payload.changedTodos = todos.edges
-      .filter(edge => edge.node.complete !== complete)
-      .map(edge => ({
+function getOptimisticResponse(
+  complete: boolean,
+  todos: Todos,
+  user: TodoList_user,
+): MarkAllTodosMutationResponse {
+  // Relay returns Maybe types a lot of times in a connection that we need to cater for
+  const validNodes: $ReadOnlyArray<Node> = todos.edges
+    ? todos.edges
+        .filter(Boolean)
+        .map((edge: Edge): ?Node => edge.node)
+        .filter(Boolean)
+    : [];
+
+  const changedTodos: ChangedTodos = validNodes
+    .filter((node: Node): boolean => node.complete !== complete)
+    .map(
+      (node: Node): ChangedTodo => ({
         complete: complete,
-        id: edge.node.id,
-      }));
-  }
-  if (user.totalCount != null) {
-    payload.viewer.completedCount = complete ? user.totalCount : 0;
-  }
+        id: node.id,
+      }),
+    );
+
   return {
-    markAllTodos: payload,
+    markAllTodos: {
+      changedTodos,
+      user: {
+        id: user.id,
+        completedCount: complete ? user.totalCount : 0,
+      },
+    },
   };
 }
 
-function commit(environment, complete, todos, user) {
+function commit(
+  environment: Environment,
+  complete: boolean,
+  todos: Todos,
+  user: TodoList_user,
+): Disposable {
+  const input: MarkAllTodosInput = {
+    complete,
+    userId: user.userId,
+  };
+
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: {complete},
+      input,
     },
     optimisticResponse: getOptimisticResponse(complete, todos, user),
   });

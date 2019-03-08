@@ -1,34 +1,37 @@
 input AddTodoInput {
   text: String!
+  userId: ID!
   clientMutationId: String
 }
 
 type AddTodoPayload {
-  todoEdge: TodoEdge
-  viewer: User
+  todoEdge: TodoEdge!
+  user: User!
   clientMutationId: String
 }
 
 input ChangeTodoStatusInput {
   complete: Boolean!
   id: ID!
+  userId: ID!
   clientMutationId: String
 }
 
 type ChangeTodoStatusPayload {
-  todo: Todo
-  viewer: User
+  todo: Todo!
+  user: User!
   clientMutationId: String
 }
 
 input MarkAllTodosInput {
   complete: Boolean!
+  userId: ID!
   clientMutationId: String
 }
 
 type MarkAllTodosPayload {
-  changedTodos: [Todo]
-  viewer: User
+  changedTodos: [Todo!]
+  user: User!
   clientMutationId: String
 }
 
@@ -63,7 +66,7 @@ type PageInfo {
 }
 
 type Query {
-  viewer: User
+  user(id: String): User
 
   """Fetches an object given its ID"""
   node(
@@ -73,23 +76,25 @@ type Query {
 }
 
 input RemoveCompletedTodosInput {
+  userId: ID!
   clientMutationId: String
 }
 
 type RemoveCompletedTodosPayload {
-  deletedTodoIds: [String]
-  viewer: User
+  deletedTodoIds: [String!]
+  user: User!
   clientMutationId: String
 }
 
 input RemoveTodoInput {
   id: ID!
+  userId: ID!
   clientMutationId: String
 }
 
 type RemoveTodoPayload {
-  deletedTodoId: ID
-  viewer: User
+  deletedTodoId: ID!
+  user: User!
   clientMutationId: String
 }
 
@@ -100,15 +105,15 @@ input RenameTodoInput {
 }
 
 type RenameTodoPayload {
-  todo: Todo
+  todo: Todo!
   clientMutationId: String
 }
 
 type Todo implements Node {
   """The ID of an object"""
   id: ID!
-  text: String
-  complete: Boolean
+  text: String!
+  complete: Boolean!
 }
 
 """A connection to a list of items."""
@@ -132,7 +137,8 @@ type TodoEdge {
 type User implements Node {
   """The ID of an object"""
   id: ID!
+  userId: String!
   todos(status: String = "any", after: String, first: Int, before: String, last: Int): TodoConnection
-  totalCount: Int
-  completedCount: Int
+  totalCount: Int!
+  completedCount: Int!
 }
