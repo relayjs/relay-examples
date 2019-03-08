@@ -13,3 +13,6 @@ module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=__generated__
 
 [strict]
+
+[version]
+^0.92.0
