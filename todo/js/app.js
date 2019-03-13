@@ -70,13 +70,13 @@ if (rootElement) {
         userId: 'me',
       }}
       render={({error, props}: {error: ?Error, props: ?appQueryResponse}) => {
-        if (error) {
-          return <div>{error.message}</div>;
-        } else if (props) {
+        if (props && props.user) {
           return <TodoApp user={props.user} />;
-        } else {
-          return <div>Loading</div>;
+        } else if (error) {
+          return <div>{error.message}</div>;
         }
+
+        return <div>Loading</div>;
       }}
     />,
     rootElement,

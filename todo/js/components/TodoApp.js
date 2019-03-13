@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -17,9 +18,16 @@ import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
+import type {RelayProp} from 'react-relay';
+import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
 
-class TodoApp extends React.Component {
-  _handleTextInputSave = text => {
+type Props = {|
+  +relay: RelayProp,
+  +user: TodoApp_user,
+|};
+
+class TodoApp extends React.Component<Props> {
+  _handleTextInputSave = (text: string) => {
     AddTodoMutation.commit(this.props.relay.environment, text, this.props.user);
   };
   render() {
@@ -30,19 +38,13 @@ class TodoApp extends React.Component {
           <header className="header">
             <h1>todos</h1>
             <TodoTextInput
-              autoFocus={true}
               className="new-todo"
               onSave={this._handleTextInputSave}
               placeholder="What needs to be done?"
             />
           </header>
           <TodoList user={this.props.user} />
-          {hasTodos && (
-            <TodoListFooter
-              todos={this.props.user.todos}
-              user={this.props.user}
-            />
-          )}
+          {hasTodos && <TodoListFooter user={this.props.user} />}
         </section>
         <footer className="info">
           <p>Double-click to edit a todo</p>

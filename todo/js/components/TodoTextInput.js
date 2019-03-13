@@ -15,10 +15,10 @@ import * as React from 'react';
 
 type Props = {|
   +className: string,
-  +commitOnBlur: boolean,
-  +initialValue: string,
-  +onCancel: () => void,
-  +onDelete: () => void,
+  +commitOnBlur?: boolean,
+  +initialValue?: string,
+  +onCancel?: () => void,
+  +onDelete?: () => void,
   +onSave: string => void,
   +placeholder: string,
 |};
