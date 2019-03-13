@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -12,16 +13,27 @@
 
 import 'todomvc-common';
 
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import {QueryRenderer, graphql} from 'react-relay';
-import {Environment, Network, RecordSource, Store} from 'relay-runtime';
+import {
+  Environment,
+  Network,
+  RecordSource,
+  Store,
+  type RequestNode,
+  type Variables,
+} from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
+import type {appQueryResponse} from 'relay/appQuery.graphql';
 
-function fetchQuery(operation, variables) {
-  return fetch('/graphql', {
+async function fetchQuery(
+  operation: RequestNode,
+  variables: Variables,
+): Promise<{}> {
+  const response = await fetch('/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,39 +42,43 @@ function fetchQuery(operation, variables) {
       query: operation.text,
       variables,
     }),
-  }).then(response => {
-    return response.json();
   });
+
+  return response.json();
 }
 
-const modernEnvironment = new Environment({
+const modernEnvironment: Environment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource()),
 });
 
-ReactDOM.render(
-  <QueryRenderer
-    environment={modernEnvironment}
-    query={graphql`
-      query appQuery($userId: String) {
-        user(id: $userId) {
-          ...TodoApp_user
+const rootElement = document.getElementById('root');
+
+if (rootElement) {
+  ReactDOM.render(
+    <QueryRenderer
+      environment={modernEnvironment}
+      query={graphql`
+        query appQuery($userId: String) {
+          user(id: $userId) {
+            ...TodoApp_user
+          }
         }
-      }
-    `}
-    variables={{
-      // Mock authenticated ID that matches database
-      userId: 'me',
-    }}
-    render={({error, props}) => {
-      if (error) {
-        return <div>{error.message}</div>;
-      } else if (props) {
-        return <TodoApp user={props.user} />;
-      } else {
-        return <div>Loading</div>;
-      }
-    }}
-  />,
-  document.getElementById('root'),
-);
+      `}
+      variables={{
+        // Mock authenticated ID that matches database
+        userId: 'me',
+      }}
+      render={({error, props}: {error: ?Error, props: ?appQueryResponse}) => {
+        if (error) {
+          return <div>{error.message}</div>;
+        } else if (props) {
+          return <TodoApp user={props.user} />;
+        } else {
+          return <div>Loading</div>;
+        }
+      }}
+    />,
+    rootElement,
+  );
+}
