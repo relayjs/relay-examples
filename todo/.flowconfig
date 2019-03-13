@@ -15,4 +15,4 @@ module.system.node.resolve_dirname=__generated__
 [strict]
 
 [version]
-^0.92.0
+^0.94.0
