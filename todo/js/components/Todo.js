@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -16,15 +17,27 @@ import RenameTodoMutation from '../mutations/RenameTodoMutation';
 import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
 import classnames from 'classnames';
+import type {Todo_todo} from 'relay/Todo_todo.graphql';
+import type {Todo_user} from 'relay/Todo_user.graphql';
 
-class Todo extends React.Component {
-  state = {
+type Props = {|
+  +relay: RelayProp,
+  +todo: Todo_todo,
+  +user: Todo_user,
+|};
+
+type State = {|
+  +isEditing: boolean,
+|};
+
+class Todo extends React.Component<Props, State> {
+  state: State = {
     isEditing: false,
   };
-  _handleCompleteChange = e => {
-    const complete = e.target.checked;
+  _handleCompleteChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const complete = e.currentTarget.checked;
     ChangeTodoStatusMutation.commit(
       this.props.relay.environment,
       complete,
@@ -45,7 +58,7 @@ class Todo extends React.Component {
     this._setEditMode(false);
     this._removeTodo();
   };
-  _handleTextInputSave = text => {
+  _handleTextInputSave = (text: string) => {
     this._setEditMode(false);
     RenameTodoMutation.commit(
       this.props.relay.environment,
@@ -60,7 +73,7 @@ class Todo extends React.Component {
       this.props.user,
     );
   }
-  _setEditMode = shouldEdit => {
+  _setEditMode = (shouldEdit: boolean) => {
     this.setState({isEditing: shouldEdit});
   };
   renderTextInput() {

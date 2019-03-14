@@ -21,7 +21,7 @@ import {
 } from 'react-relay';
 
 import {ConnectionHandler} from 'relay-runtime';
-import type {Todo_user} from 'relay/Todo_user.graphql';
+import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
 import type {AddTodoInput} from 'relay/AddTodoMutation.graphql';
 
 const mutation = graphql`
@@ -46,7 +46,7 @@ const mutation = graphql`
 
 function sharedUpdater(
   store: RecordSourceSelectorProxy,
-  user: Todo_user,
+  user: TodoApp_user,
   newEdge: RecordProxy,
 ) {
   const userProxy = store.get(user.id);
@@ -59,7 +59,7 @@ let tempID = 0;
 function commit(
   environment: Environment,
   text: string,
-  user: Todo_user,
+  user: TodoApp_user,
 ): Disposable {
   const input: AddTodoInput = {
     text,

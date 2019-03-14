@@ -5,6 +5,8 @@
 
 import * as React from 'react';
 
+import {FragmentReference} from 'relay-runtime';
+
 declare module 'react-relay' {
   declare export type RecordState = 'EXISTENT' | 'NONEXISTENT' | 'UNKNOWN';
 
@@ -314,39 +316,37 @@ declare module 'react-relay' {
 
   // prettier-ignore
   declare export type $RelayProps<Props, RelayPropT> = $ObjMap<
-    $Diff<Props, { relay: RelayPropT | void }>,
-    // We currently don't know how to preserve Function and Object type
-    // correctly while using `createFragmentContainer`, see:
-    // https://github.com/facebook/relay/commit/2141964373703dcaa9bd49aa3cd2e9efdd09425f
-    (<T: Function>( T) =>  T) &
-    (<T: { +$refType: any }>( T) =>  $FragmentRef<T>) &
-    (<T: { +$refType: any }>(?T) => ?$FragmentRef<T>) &
-    (<T: { +$refType: any }>( $ReadOnlyArray< T>) =>  $ReadOnlyArray< $FragmentRef<T>>) &
-    (<T: { +$refType: any }>(?$ReadOnlyArray< T>) => ?$ReadOnlyArray< $FragmentRef<T>>) &
-    (<T: { +$refType: any }>( $ReadOnlyArray<?T>) =>  $ReadOnlyArray<?$FragmentRef<T>>) &
-    (<T: { +$refType: any }>(?$ReadOnlyArray<?T>) => ?$ReadOnlyArray<?$FragmentRef<T>>) &
-    // see: https://github.com/facebook/relay/blob/v1.7.0-rc.1/packages/react-relay/modern/ReactRelayTypes.js
-    // see: https://github.com/sibelius/relay-modern-network-deep-dive/tree/master/flow-typed
-    (<T>(T) => T)
+    $Diff<Props, {relay: RelayPropT | void}>,
+    & (<T: {+$refType: empty}>( T) =>  T)
+    & (<T: {+$refType: empty}>(?T) => ?T)
+    & (<TRef: FragmentReference, T: {+$refType: TRef}>(                 T ) =>                  $FragmentRef<T> )
+    & (<TRef: FragmentReference, T: {+$refType: TRef}>(?                T ) => ?                $FragmentRef<T> )
+    & (<TRef: FragmentReference, T: {+$refType: TRef}>( $ReadOnlyArray< T>) =>  $ReadOnlyArray< $FragmentRef<T>>)
+    & (<TRef: FragmentReference, T: {+$refType: TRef}>(?$ReadOnlyArray< T>) => ?$ReadOnlyArray< $FragmentRef<T>>)
+    & (<TRef: FragmentReference, T: {+$refType: TRef}>( $ReadOnlyArray<?T>) =>  $ReadOnlyArray<?$FragmentRef<T>>)
+    & (<TRef: FragmentReference, T: {+$refType: TRef}>(?$ReadOnlyArray<?T>) => ?$ReadOnlyArray<?$FragmentRef<T>>)
+    & (<T>(T) => T),
   >
 
   declare export function createFragmentContainer<
-    TComponent: React$ComponentType<any>,
+    Props: {},
+    TComponent: React$ComponentType<Props>,
   >(
     Component: TComponent,
-    fragmentSpec: GraphQLTaggedNode | GeneratedNodeMap,
+    fragmentSpec: GeneratedNodeMap,
   ): React$ComponentType<
     $RelayProps<React$ElementConfig<TComponent>, RelayProp>,
   >;
 
   declare export function createRefetchContainer<
-    TComponent: React$ComponentType<*>,
+    Props: {},
+    TComponent: React$ComponentType<Props>,
   >(
     Component: TComponent,
-    fragmentSpec: GraphQLTaggedNode | GeneratedNodeMap,
+    fragmentSpec: GeneratedNodeMap,
     taggedNode: GraphQLTaggedNode,
   ): React$ComponentType<
-    $RelayProps<React$ElementConfig<TComponent>, RelayProp>,
+    $RelayProps<React$ElementConfig<TComponent>, RelayRefetchProp>,
   >;
 
   declare type FragmentVariablesGetter = (
@@ -379,12 +379,15 @@ declare module 'react-relay' {
   };
 
   declare export function createPaginationContainer<
-    TBase: React$ComponentType<*>,
+    Props: {},
+    TComponent: React$ComponentType<Props>,
   >(
-    Component: TBase,
-    fragmentSpec: GraphQLTaggedNode | GeneratedNodeMap,
+    Component: TComponent,
+    fragmentSpec: GeneratedNodeMap,
     connectionConfig: ConnectionConfig,
-  ): TBase;
+  ): React$ComponentType<
+    $RelayProps<React$ElementConfig<TComponent>, RelayPaginationProp>,
+  >;
 
   declare type Variable =
     | string
