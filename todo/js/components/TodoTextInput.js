@@ -20,7 +20,7 @@ type Props = {|
   +onCancel?: () => void,
   +onDelete?: () => void,
   +onSave: string => void,
-  +placeholder: string,
+  +placeholder?: string,
 |};
 
 type State = {|
