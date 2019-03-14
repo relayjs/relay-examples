@@ -39,9 +39,6 @@ module.exports = {
     react: {
       version: '16.8.1',
       flowVersion: '0.94.0',
-    },
-    flowtype: {
-      onlyFilesWithFlowAnnotation: true, // TODO: turn this setting off once @flow is everywhere
     }
   },
 };
