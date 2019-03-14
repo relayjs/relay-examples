@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -13,31 +14,46 @@
 import RemoveCompletedTodosMutation from '../mutations/RemoveCompletedTodosMutation';
 
 import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, type RelayProp} from 'react-relay';
+import type {TodoListFooter_user} from 'relay/TodoListFooter_user.graphql';
+type Todos = $NonMaybeType<$ElementType<TodoListFooter_user, 'todos'>>;
+type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
+type Edge = $NonMaybeType<$ElementType<Edges, number>>;
 
-class TodoListFooter extends React.Component {
+type Props = {|
+  +relay: RelayProp,
+  +user: TodoListFooter_user,
+|};
+
+class TodoListFooter extends React.Component<Props> {
   _handleRemoveCompletedTodosClick = () => {
-    const edges = this.props.user.todos.edges.filter(
-      edge => edge.node.complete === true,
-    );
+    const {todos} = this.props.user;
+
+    const completedEdges: $ReadOnlyArray<?Edge> =
+      todos && todos.edges
+        ? todos.edges.filter(
+            (edge: ?Edge) => edge && edge.node && edge.node.complete,
+          )
+        : [];
+
     RemoveCompletedTodosMutation.commit(
       this.props.relay.environment,
       {
-        edges,
+        edges: completedEdges,
       },
       this.props.user,
     );
   };
   render() {
-    const numCompletedTodos = this.props.user.completedCount;
-    const numRemainingTodos = this.props.user.totalCount - numCompletedTodos;
+    const {completedCount} = this.props.user;
+    const numRemainingTodos = this.props.user.totalCount - completedCount;
     return (
       <footer className="footer">
         <span className="todo-count">
           <strong>{numRemainingTodos}</strong> item
           {numRemainingTodos === 1 ? '' : 's'} left
         </span>
-        {numCompletedTodos > 0 && (
+        {completedCount > 0 && (
           <button
             className="clear-completed"
             onClick={this._handleRemoveCompletedTodosClick}>
@@ -49,9 +65,8 @@ class TodoListFooter extends React.Component {
   }
 }
 
-export default createFragmentContainer(
-  TodoListFooter,
-  graphql`
+export default createFragmentContainer(TodoListFooter, {
+  user: graphql`
     fragment TodoListFooter_user on User {
       id
       userId
@@ -69,4 +84,4 @@ export default createFragmentContainer(
       totalCount
     }
   `,
-);
+});
