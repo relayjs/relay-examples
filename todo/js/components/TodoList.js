@@ -1,3 +1,4 @@
+// @flow
 /**
  * This file provided by Facebook is for non-commercial testing and evaluation
  * purposes only.  Facebook reserves all rights not expressly granted.
@@ -14,30 +15,53 @@ import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
 import Todo from './Todo';
 
 import React from 'react';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
+import type {TodoList_user} from 'relay/TodoList_user.graphql';
+type Todos = $NonMaybeType<$ElementType<TodoList_user, 'todos'>>;
+type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
+type Edge = $NonMaybeType<$ElementType<Edges, number>>;
+type Node = $NonMaybeType<$ElementType<Edge, 'node'>>;
 
-class TodoList extends React.Component {
-  _handleMarkAllChange = e => {
-    const complete = e.target.checked;
-    MarkAllTodosMutation.commit(
-      this.props.relay.environment,
-      complete,
-      this.props.user.todos,
-      this.props.user,
-    );
+type Props = {|
+  +relay: RelayProp,
+  +user: TodoList_user,
+|};
+
+class TodoList extends React.Component<Props> {
+  _handleMarkAllChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const complete = e.currentTarget.checked;
+
+    if (this.props.user.todos) {
+      MarkAllTodosMutation.commit(
+        this.props.relay.environment,
+        complete,
+        this.props.user.todos,
+        this.props.user,
+      );
+    }
   };
   renderTodos() {
-    return this.props.user.todos.edges.map(edge => (
-      <Todo key={edge.node.id} todo={edge.node} user={this.props.user} />
+    const {todos} = this.props.user;
+
+    const nodes: $ReadOnlyArray<Node> =
+      todos && todos.edges
+        ? todos.edges
+            .filter(Boolean)
+            .map((edge: Edge) => edge.node)
+            .filter(Boolean)
+        : [];
+
+    return nodes.map((node: Node) => (
+      <Todo key={node.id} todo={node} user={this.props.user} />
     ));
   }
   render() {
-    const numTodos = this.props.user.totalCount;
-    const numCompletedTodos = this.props.user.completedCount;
+    const {totalCount, completedCount} = this.props.user;
+
     return (
       <section className="main">
         <input
-          checked={numTodos === numCompletedTodos}
+          checked={totalCount === completedCount}
           className="toggle-all"
           onChange={this._handleMarkAllChange}
           type="checkbox"
