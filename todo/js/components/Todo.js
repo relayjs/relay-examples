@@ -16,7 +16,7 @@ import RemoveTodoMutation from '../mutations/RemoveTodoMutation';
 import RenameTodoMutation from '../mutations/RenameTodoMutation';
 import TodoTextInput from './TodoTextInput';
 
-import React from 'react';
+import React, {useState} from 'react';
 import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
 import classnames from 'classnames';
 import type {Todo_todo} from 'relay/Todo_todo.graphql';
@@ -28,90 +28,62 @@ type Props = {|
   +user: Todo_user,
 |};
 
-type State = {|
-  +isEditing: boolean,
-|};
+const Todo = ({relay, todo, user}: Props) => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
-class Todo extends React.Component<Props, State> {
-  state: State = {
-    isEditing: false,
-  };
-  _handleCompleteChange = (e: SyntheticEvent<HTMLInputElement>) => {
+  const handleCompleteChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const complete = e.currentTarget.checked;
-    ChangeTodoStatusMutation.commit(
-      this.props.relay.environment,
-      complete,
-      this.props.todo,
-      this.props.user,
-    );
+    ChangeTodoStatusMutation.commit(relay.environment, complete, todo, user);
   };
-  _handleDestroyClick = () => {
-    this._removeTodo();
+
+  const handleDestroyClick = () => removeTodo();
+  const handleLabelDoubleClick = () => setIsEditing(true);
+  const handleTextInputCancel = () => setIsEditing(false);
+
+  const handleTextInputDelete = () => {
+    setIsEditing(false);
+    removeTodo();
   };
-  _handleLabelDoubleClick = () => {
-    this._setEditMode(true);
+
+  const handleTextInputSave = (text: string) => {
+    setIsEditing(false);
+    RenameTodoMutation.commit(relay.environment, text, todo);
   };
-  _handleTextInputCancel = () => {
-    this._setEditMode(false);
-  };
-  _handleTextInputDelete = () => {
-    this._setEditMode(false);
-    this._removeTodo();
-  };
-  _handleTextInputSave = (text: string) => {
-    this._setEditMode(false);
-    RenameTodoMutation.commit(
-      this.props.relay.environment,
-      text,
-      this.props.todo,
-    );
-  };
-  _removeTodo() {
-    RemoveTodoMutation.commit(
-      this.props.relay.environment,
-      this.props.todo,
-      this.props.user,
-    );
-  }
-  _setEditMode = (shouldEdit: boolean) => {
-    this.setState({isEditing: shouldEdit});
-  };
-  renderTextInput() {
-    return (
-      <TodoTextInput
-        className="edit"
-        commitOnBlur={true}
-        initialValue={this.props.todo.text}
-        onCancel={this._handleTextInputCancel}
-        onDelete={this._handleTextInputDelete}
-        onSave={this._handleTextInputSave}
-      />
-    );
-  }
-  render() {
-    return (
-      <li
-        className={classnames({
-          completed: this.props.todo.complete,
-          editing: this.state.isEditing,
-        })}>
-        <div className="view">
-          <input
-            checked={this.props.todo.complete}
-            className="toggle"
-            onChange={this._handleCompleteChange}
-            type="checkbox"
-          />
-          <label onDoubleClick={this._handleLabelDoubleClick}>
-            {this.props.todo.text}
-          </label>
-          <button className="destroy" onClick={this._handleDestroyClick} />
-        </div>
-        {this.state.isEditing && this.renderTextInput()}
-      </li>
-    );
-  }
-}
+
+  const removeTodo = () =>
+    RemoveTodoMutation.commit(relay.environment, todo, user);
+
+  return (
+    <li
+      className={classnames({
+        completed: todo.complete,
+        editing: isEditing,
+      })}>
+      <div className="view">
+        <input
+          checked={todo.complete}
+          className="toggle"
+          onChange={handleCompleteChange}
+          type="checkbox"
+        />
+
+        <label onDoubleClick={handleLabelDoubleClick}>{todo.text}</label>
+        <button className="destroy" onClick={handleDestroyClick} />
+      </div>
+
+      {isEditing && (
+        <TodoTextInput
+          className="edit"
+          commitOnBlur={true}
+          initialValue={todo.text}
+          onCancel={handleTextInputCancel}
+          onDelete={handleTextInputDelete}
+          onSave={handleTextInputSave}
+        />
+      )}
+    </li>
+  );
+};
 
 export default createFragmentContainer(Todo, {
   todo: graphql`
