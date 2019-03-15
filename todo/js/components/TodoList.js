@@ -27,51 +27,46 @@ type Props = {|
   +user: TodoList_user,
 |};
 
-class TodoList extends React.Component<Props> {
-  _handleMarkAllChange = (e: SyntheticEvent<HTMLInputElement>) => {
+const TodoList = ({
+  relay,
+  user,
+  user: {todos, totalCount, completedCount},
+}: Props) => {
+  const handleMarkAllChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const complete = e.currentTarget.checked;
 
-    if (this.props.user.todos) {
-      MarkAllTodosMutation.commit(
-        this.props.relay.environment,
-        complete,
-        this.props.user.todos,
-        this.props.user,
-      );
+    if (todos) {
+      MarkAllTodosMutation.commit(relay.environment, complete, todos, user);
     }
   };
-  renderTodos() {
-    const {todos} = this.props.user;
 
-    const nodes: $ReadOnlyArray<Node> =
-      todos && todos.edges
-        ? todos.edges
-            .filter(Boolean)
-            .map((edge: Edge) => edge.node)
-            .filter(Boolean)
-        : [];
+  const nodes: $ReadOnlyArray<Node> =
+    todos && todos.edges
+      ? todos.edges
+          .filter(Boolean)
+          .map((edge: Edge) => edge.node)
+          .filter(Boolean)
+      : [];
 
-    return nodes.map((node: Node) => (
-      <Todo key={node.id} todo={node} user={this.props.user} />
-    ));
-  }
-  render() {
-    const {totalCount, completedCount} = this.props.user;
+  return (
+    <section className="main">
+      <input
+        checked={totalCount === completedCount}
+        className="toggle-all"
+        onChange={handleMarkAllChange}
+        type="checkbox"
+      />
 
-    return (
-      <section className="main">
-        <input
-          checked={totalCount === completedCount}
-          className="toggle-all"
-          onChange={this._handleMarkAllChange}
-          type="checkbox"
-        />
-        <label htmlFor="toggle-all">Mark all as complete</label>
-        <ul className="todo-list">{this.renderTodos()}</ul>
-      </section>
-    );
-  }
-}
+      <label htmlFor="toggle-all">Mark all as complete</label>
+
+      <ul className="todo-list">
+        {nodes.map((node: Node) => (
+          <Todo key={node.id} todo={node} user={user} />
+        ))}
+      </ul>
+    </section>
+  );
+};
 
 export default createFragmentContainer(TodoList, {
   user: graphql`

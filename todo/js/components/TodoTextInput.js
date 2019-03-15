@@ -11,7 +11,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import * as React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 type Props = {|
   +className: string,
@@ -23,62 +23,68 @@ type Props = {|
   +placeholder?: string,
 |};
 
-type State = {|
-  +isEditing: boolean,
-  +text: string,
-|};
-
 const ENTER_KEY_CODE = 13;
 const ESC_KEY_CODE = 27;
 
-export default class TodoTextInput extends React.Component<Props, State> {
-  state: State = {
-    isEditing: false,
-    text: this.props.initialValue || '',
-  };
-  _inputRef: {current: null | HTMLInputElement} = React.createRef();
-  componentDidMount() {
-    if (this._inputRef.current) {
-      this._inputRef.current.focus();
+const TodoTextInput = ({
+  className,
+  commitOnBlur,
+  initialValue,
+  onCancel,
+  onDelete,
+  onSave,
+  placeholder,
+}: Props) => {
+  const [text, setText] = useState<string>(initialValue || '');
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
-  }
-  _commitChanges = () => {
-    const newText = this.state.text.trim();
-    if (this.props.onDelete && newText === '') {
-      this.props.onDelete();
-    } else if (this.props.onCancel && newText === this.props.initialValue) {
-      this.props.onCancel();
+  }, [inputRef]);
+
+  const commitChanges = () => {
+    const newText = text.trim();
+
+    if (onDelete && newText === '') {
+      onDelete();
+    } else if (onCancel && newText === initialValue) {
+      onCancel();
     } else if (newText !== '') {
-      this.props.onSave(newText);
-      this.setState({text: ''});
+      onSave(newText);
+      setText('');
     }
   };
-  _handleBlur = () => {
-    if (this.props.commitOnBlur) {
-      this._commitChanges();
+
+  const handleBlur = () => {
+    if (commitOnBlur) {
+      commitChanges();
     }
   };
-  _handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    this.setState({text: e.currentTarget.value});
-  };
-  _handleKeyDown = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
-    if (this.props.onCancel && e.keyCode === ESC_KEY_CODE) {
-      this.props.onCancel();
+
+  const handleChange = (e: SyntheticEvent<HTMLInputElement>) =>
+    setText(e.currentTarget.value);
+
+  const handleKeyDown = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    if (onCancel && e.keyCode === ESC_KEY_CODE) {
+      onCancel();
     } else if (e.keyCode === ENTER_KEY_CODE) {
-      this._commitChanges();
+      commitChanges();
     }
   };
-  render(): React.Node {
-    return (
-      <input
-        className={this.props.className}
-        onBlur={this._handleBlur}
-        onChange={this._handleChange}
-        onKeyDown={this._handleKeyDown}
-        placeholder={this.props.placeholder}
-        ref={this._inputRef}
-        value={this.state.text}
-      />
-    );
-  }
-}
+
+  return (
+    <input
+      className={className}
+      onBlur={handleBlur}
+      onChange={handleChange}
+      onKeyDown={handleKeyDown}
+      placeholder={placeholder}
+      ref={inputRef}
+      value={text}
+    />
+  );
+};
+
+export default TodoTextInput;

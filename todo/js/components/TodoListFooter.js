@@ -25,45 +25,47 @@ type Props = {|
   +user: TodoListFooter_user,
 |};
 
-class TodoListFooter extends React.Component<Props> {
-  _handleRemoveCompletedTodosClick = () => {
-    const {todos} = this.props.user;
+const TodoListFooter = ({
+  relay,
+  user,
+  user: {todos, completedCount, totalCount},
+}: Props) => {
+  const completedEdges: $ReadOnlyArray<?Edge> =
+    todos && todos.edges
+      ? todos.edges.filter(
+          (edge: ?Edge) => edge && edge.node && edge.node.complete,
+        )
+      : [];
 
-    const completedEdges: $ReadOnlyArray<?Edge> =
-      todos && todos.edges
-        ? todos.edges.filter(
-            (edge: ?Edge) => edge && edge.node && edge.node.complete,
-          )
-        : [];
-
+  const handleRemoveCompletedTodosClick = () => {
     RemoveCompletedTodosMutation.commit(
-      this.props.relay.environment,
+      relay.environment,
       {
         edges: completedEdges,
       },
-      this.props.user,
+      user,
     );
   };
-  render() {
-    const {completedCount} = this.props.user;
-    const numRemainingTodos = this.props.user.totalCount - completedCount;
-    return (
-      <footer className="footer">
-        <span className="todo-count">
-          <strong>{numRemainingTodos}</strong> item
-          {numRemainingTodos === 1 ? '' : 's'} left
-        </span>
-        {completedCount > 0 && (
-          <button
-            className="clear-completed"
-            onClick={this._handleRemoveCompletedTodosClick}>
-            Clear completed
-          </button>
-        )}
-      </footer>
-    );
-  }
-}
+
+  const numRemainingTodos = totalCount - completedCount;
+
+  return (
+    <footer className="footer">
+      <span className="todo-count">
+        <strong>{numRemainingTodos}</strong> item
+        {numRemainingTodos === 1 ? '' : 's'} left
+      </span>
+
+      {completedCount > 0 && (
+        <button
+          className="clear-completed"
+          onClick={handleRemoveCompletedTodosClick}>
+          Clear completed
+        </button>
+      )}
+    </footer>
+  );
+};
 
 export default createFragmentContainer(TodoListFooter, {
   user: graphql`

@@ -26,40 +26,46 @@ type Props = {|
   +user: TodoApp_user,
 |};
 
-class TodoApp extends React.Component<Props> {
-  _handleTextInputSave = (text: string) => {
-    AddTodoMutation.commit(this.props.relay.environment, text, this.props.user);
+const TodoApp = ({relay, user}: Props) => {
+  const handleTextInputSave = (text: string) => {
+    AddTodoMutation.commit(relay.environment, text, user);
+    return;
   };
-  render() {
-    const hasTodos = this.props.user.totalCount > 0;
-    return (
-      <div>
-        <section className="todoapp">
-          <header className="header">
-            <h1>todos</h1>
-            <TodoTextInput
-              className="new-todo"
-              onSave={this._handleTextInputSave}
-              placeholder="What needs to be done?"
-            />
-          </header>
-          <TodoList user={this.props.user} />
-          {hasTodos && <TodoListFooter user={this.props.user} />}
-        </section>
-        <footer className="info">
-          <p>Double-click to edit a todo</p>
-          <p>
-            Created by the{' '}
-            <a href="https://facebook.github.io/relay/">Relay team</a>
-          </p>
-          <p>
-            Part of <a href="http://todomvc.com">TodoMVC</a>
-          </p>
-        </footer>
-      </div>
-    );
-  }
-}
+
+  const hasTodos = user.totalCount > 0;
+
+  return (
+    <div>
+      <section className="todoapp">
+        <header className="header">
+          <h1>todos</h1>
+
+          <TodoTextInput
+            className="new-todo"
+            onSave={handleTextInputSave}
+            placeholder="What needs to be done?"
+          />
+        </header>
+
+        <TodoList user={user} />
+        {hasTodos && <TodoListFooter user={user} />}
+      </section>
+
+      <footer className="info">
+        <p>Double-click to edit a todo</p>
+
+        <p>
+          Created by the{' '}
+          <a href="https://facebook.github.io/relay/">Relay team</a>
+        </p>
+
+        <p>
+          Part of <a href="http://todomvc.com">TodoMVC</a>
+        </p>
+      </footer>
+    </div>
+  );
+};
 
 export default createFragmentContainer(TodoApp, {
   user: graphql`
