@@ -18,19 +18,17 @@ import {
   type Environment,
 } from 'react-relay';
 
-import type {Todo_todo} from 'relay/Todo_todo.graphql';
-
 import type {
-  RenameTodoInput,
-  RenameTodoMutationResponse,
-} from 'relay/RenameTodoMutation.graphql';
+  UpdateBoldContentDataInput,
+  UpdateBoldContentDataMutationResponse,
+} from 'relay/UpdateBoldContentDataMutation.graphql';
 
 const mutation = graphql`
-  mutation RenameTodoMutation($input: RenameTodoInput!) {
-    renameTodo(input: $input) {
-      todo {
+  mutation UpdateBoldContentDataMutation($input: UpdateBoldContentDataInput!) {
+    updateBoldContentData(input: $input) {
+      boldContentData {
         id
-        text
+        boldText
       }
     }
   }
@@ -38,13 +36,13 @@ const mutation = graphql`
 
 function getOptimisticResponse(
   text: string,
-  todo: Todo_todo,
-): RenameTodoMutationResponse {
+  id: string,
+): UpdateBoldContentDataMutationResponse {
   return {
-    renameTodo: {
-      todo: {
-        id: todo.id,
-        text: text,
+    updateBoldContentData: {
+      boldContentData: {
+        id: id,
+        boldText: text,
       },
     },
   };
@@ -53,11 +51,11 @@ function getOptimisticResponse(
 function commit(
   environment: Environment,
   text: string,
-  todo: Todo_todo,
+  id: string,
 ): Disposable {
-  const input: RenameTodoInput = {
+  const input: UpdateBoldContentDataInput = {
     text,
-    id: todo.id,
+    id: id,
   };
 
   return commitMutation(environment, {
@@ -65,7 +63,7 @@ function commit(
     variables: {
       input,
     },
-    optimisticResponse: getOptimisticResponse(text, todo),
+    optimisticResponse: getOptimisticResponse(text, id),
   });
 }
 

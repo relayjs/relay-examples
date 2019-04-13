@@ -1,4 +1,4 @@
-# Relay TodoMVC
+# Relay TodoMVC with data-driven code splitting
 
 ## Installation
 

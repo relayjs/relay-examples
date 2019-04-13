@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f433a1b216b4d686a085e845430d5808
+ * @relayHash f1bf6913f9830b7f3220a922d3f949ee
  */
 
 /* eslint-disable */
@@ -9,37 +9,37 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type RenameTodoInput = {|
+export type UpdatePlainContentDataInput = {|
   id: string,
   text: string,
   clientMutationId?: ?string,
 |};
-export type RenameTodoMutationVariables = {|
-  input: RenameTodoInput
+export type UpdatePlainContentDataMutationVariables = {|
+  input: UpdatePlainContentDataInput
 |};
-export type RenameTodoMutationResponse = {|
-  +renameTodo: ?{|
-    +todo: {|
+export type UpdatePlainContentDataMutationResponse = {|
+  +updatePlainContentData: ?{|
+    +plainContentData: {|
       +id: string,
-      +text: string,
+      +plainText: ?string,
     |}
   |}
 |};
-export type RenameTodoMutation = {|
-  variables: RenameTodoMutationVariables,
-  response: RenameTodoMutationResponse,
+export type UpdatePlainContentDataMutation = {|
+  variables: UpdatePlainContentDataMutationVariables,
+  response: UpdatePlainContentDataMutationResponse,
 |};
 */
 
 
 /*
-mutation RenameTodoMutation(
-  $input: RenameTodoInput!
+mutation UpdatePlainContentDataMutation(
+  $input: UpdatePlainContentDataInput!
 ) {
-  renameTodo(input: $input) {
-    todo {
+  updatePlainContentData(input: $input) {
+    plainContentData {
       id
-      text
+      plainText
     }
   }
 }
@@ -50,7 +50,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "RenameTodoInput!",
+    "type": "UpdatePlainContentDataInput!",
     "defaultValue": null
   }
 ],
@@ -58,7 +58,7 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "renameTodo",
+    "name": "updatePlainContentData",
     "storageKey": null,
     "args": [
       {
@@ -67,16 +67,16 @@ v1 = [
         "variableName": "input"
       }
     ],
-    "concreteType": "RenameTodoPayload",
+    "concreteType": "UpdatePlainContentDataPayload",
     "plural": false,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "todo",
+        "name": "plainContentData",
         "storageKey": null,
         "args": null,
-        "concreteType": "Todo",
+        "concreteType": "PlainContentData",
         "plural": false,
         "selections": [
           {
@@ -89,7 +89,7 @@ v1 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "text",
+            "name": "plainText",
             "args": null,
             "storageKey": null
           }
@@ -102,7 +102,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "RenameTodoMutation",
+    "name": "UpdatePlainContentDataMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -110,19 +110,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "RenameTodoMutation",
+    "name": "UpdatePlainContentDataMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "RenameTodoMutation",
+    "name": "UpdatePlainContentDataMutation",
     "id": null,
-    "text": "mutation RenameTodoMutation(\n  $input: RenameTodoInput!\n) {\n  renameTodo(input: $input) {\n    todo {\n      id\n      text\n    }\n  }\n}\n",
+    "text": "mutation UpdatePlainContentDataMutation(\n  $input: UpdatePlainContentDataInput!\n) {\n  updatePlainContentData(input: $input) {\n    plainContentData {\n      id\n      plainText\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'de4aa1639055c2e6a78ee22cce29870a';
+(node/*: any*/).hash = 'c267591d010dc9f79ed2ec7bb1f62c6e';
 module.exports = node;

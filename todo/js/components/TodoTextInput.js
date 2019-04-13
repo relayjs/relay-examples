@@ -16,10 +16,11 @@ import React, {useEffect, useRef, useState} from 'react';
 type Props = {|
   +className: string,
   +commitOnBlur?: boolean,
+  +initialType?: string,
   +initialValue?: string,
   +onCancel?: () => void,
   +onDelete?: () => void,
-  +onSave: string => void,
+  +onSave: (text: string, type: string) => void,
   +placeholder?: string,
 |};
 
@@ -30,12 +31,14 @@ const TodoTextInput = ({
   className,
   commitOnBlur,
   initialValue,
+  initialType,
   onCancel,
   onDelete,
   onSave,
   placeholder,
 }: Props) => {
   const [text, setText] = useState<string>(initialValue || '');
+  const [type, setType] = useState<string>(initialType || 'PLAIN');
   const inputRef = useRef();
 
   useEffect(() => {
@@ -52,8 +55,9 @@ const TodoTextInput = ({
     } else if (onCancel && newText === initialValue) {
       onCancel();
     } else if (newText !== '') {
-      onSave(newText);
+      onSave(newText, type);
       setText('');
+      setType(type);
     }
   };
 
@@ -66,6 +70,9 @@ const TodoTextInput = ({
   const handleChange = (e: SyntheticEvent<HTMLInputElement>) =>
     setText(e.currentTarget.value);
 
+  const handleFormatChange = (e: SyntheticEvent<HTMLInputElement>) =>
+    setType(e.currentTarget.value);
+
   const handleKeyDown = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
     if (onCancel && e.keyCode === ESC_KEY_CODE) {
       onCancel();
@@ -73,8 +80,7 @@ const TodoTextInput = ({
       commitChanges();
     }
   };
-
-  return (
+  const TextInputComponent = (
     <input
       className={className}
       onBlur={handleBlur}
@@ -84,6 +90,29 @@ const TodoTextInput = ({
       ref={inputRef}
       value={text}
     />
+  );
+  return (
+    <div className="text-input">
+      {type === 'BOLD' ? <b>{TextInputComponent} </b> : TextInputComponent}
+      <div className="format-picker">
+        <input
+          type="radio"
+          name="todo-format"
+          value="PLAIN"
+          checked={type === 'PLAIN'}
+          onChange={handleFormatChange}
+        />
+        Plain
+        <input
+          type="radio"
+          name="todo-format"
+          value="BOLD"
+          checked={type === 'BOLD'}
+          onChange={handleFormatChange}
+        />
+        <b>Bold</b>
+      </div>
+    </div>
   );
 };
 
