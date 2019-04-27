@@ -1,0 +1,196 @@
+input AddBoldTodoInput {
+  text: String!
+  userId: ID!
+  clientMutationId: String
+}
+
+type AddBoldTodoPayload {
+  todoEdge: TodoEdge!
+  user: User!
+  clientMutationId: String
+}
+
+input AddPlainTodoInput {
+  text: String!
+  userId: ID!
+  clientMutationId: String
+}
+
+type AddPlainTodoPayload {
+  todoEdge: TodoEdge!
+  user: User!
+  clientMutationId: String
+}
+
+type BoldContent {
+  data: BoldContentData
+  js(module: String): JSDependency
+}
+
+type BoldContentData {
+  """The ID of an object"""
+  id: ID!
+  boldText: String
+}
+
+input ChangeTodoStatusInput {
+  complete: Boolean!
+  id: ID!
+  userId: ID!
+  clientMutationId: String
+}
+
+type ChangeTodoStatusPayload {
+  todo: Todo!
+  user: User!
+  clientMutationId: String
+}
+
+union FormattedContent = PlainContent | BoldContent
+
+"""A scalar to utilize the @match and @module directive from relay."""
+scalar JSDependency
+
+input MarkAllTodosInput {
+  complete: Boolean!
+  userId: ID!
+  clientMutationId: String
+}
+
+type MarkAllTodosPayload {
+  changedTodos: [Todo!]
+  user: User!
+  clientMutationId: String
+}
+
+type Mutation {
+  addPlainTodo(input: AddPlainTodoInput!): AddPlainTodoPayload
+  addBoldTodo(input: AddBoldTodoInput!): AddBoldTodoPayload
+  changeTodoStatus(input: ChangeTodoStatusInput!): ChangeTodoStatusPayload
+  markAllTodos(input: MarkAllTodosInput!): MarkAllTodosPayload
+  removeCompletedTodos(input: RemoveCompletedTodosInput!): RemoveCompletedTodosPayload
+  removeTodo(input: RemoveTodoInput!): RemoveTodoPayload
+  updatePlainContentData(input: UpdatePlainContentDataInput!): UpdatePlainContentDataPayload
+  updateBoldContentData(input: UpdateBoldContentDataInput!): UpdateBoldContentDataPayload
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type PlainContent {
+  data: PlainContentData
+  js(module: String): JSDependency
+}
+
+type PlainContentData {
+  """The ID of an object"""
+  id: ID!
+  plainText: String
+}
+
+type Query {
+  user(id: String): User
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+input RemoveCompletedTodosInput {
+  userId: ID!
+  clientMutationId: String
+}
+
+type RemoveCompletedTodosPayload {
+  deletedTodoIds: [String!]
+  user: User!
+  clientMutationId: String
+}
+
+input RemoveTodoInput {
+  id: ID!
+  userId: ID!
+  clientMutationId: String
+}
+
+type RemoveTodoPayload {
+  deletedTodoId: ID!
+  user: User!
+  clientMutationId: String
+}
+
+type Todo implements Node {
+  """The ID of an object"""
+  id: ID!
+  content(supported: [String!]!): FormattedContent
+  complete: Boolean!
+}
+
+"""A connection to a list of items."""
+type TodoConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TodoEdge]
+}
+
+"""An edge in a connection."""
+type TodoEdge {
+  """The item at the end of the edge"""
+  node: Todo
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+input UpdateBoldContentDataInput {
+  id: ID!
+  text: String!
+  clientMutationId: String
+}
+
+type UpdateBoldContentDataPayload {
+  boldContentData: BoldContentData!
+  clientMutationId: String
+}
+
+input UpdatePlainContentDataInput {
+  id: ID!
+  text: String!
+  clientMutationId: String
+}
+
+type UpdatePlainContentDataPayload {
+  plainContentData: PlainContentData!
+  clientMutationId: String
+}
+
+type User implements Node {
+  """The ID of an object"""
+  id: ID!
+  userId: String!
+  todos(status: String = "any", after: String, first: Int, before: String, last: Int): TodoConnection
+  totalCount: Int!
+  completedCount: Int!
+}
