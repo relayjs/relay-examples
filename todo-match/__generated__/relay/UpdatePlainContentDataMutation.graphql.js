@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0dac8e6b2a949087be0e06ffeadba9f6
+ * @relayHash f1bf6913f9830b7f3220a922d3f949ee
  */
 
 /* eslint-disable */
@@ -64,8 +64,7 @@ v1 = [
       {
         "kind": "Variable",
         "name": "input",
-        "variableName": "input",
-        "type": "UpdatePlainContentDataInput!"
+        "variableName": "input"
       }
     ],
     "concreteType": "UpdatePlainContentDataPayload",

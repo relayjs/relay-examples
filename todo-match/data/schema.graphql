@@ -144,6 +144,7 @@ type Todo implements Node {
   id: ID!
   content(supported: [String!]!): FormattedContent
   complete: Boolean!
+  js(module: String): JSDependency
 }
 
 """A connection to a list of items."""

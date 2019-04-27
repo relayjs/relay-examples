@@ -18,7 +18,7 @@ export const BOLD_TODO: 'BOLD' = 'BOLD';
 export class Todo {
   +id: string;
   +type: TodoType;
-  text: string;
+  +text: string;
   +complete: boolean;
 
   constructor(id: string, type: TodoType, text: string, complete: boolean) {
@@ -52,8 +52,9 @@ const todoIdsByUser: Map<string, $ReadOnlyArray<string>> = new Map([
 // Seed initial data
 let nextTodoId: number = 0;
 addTodo('Taste JavaScript', true);
-addTodo('Buy a unicorn', false);
 addTodo('Learn GraphQL', true, BOLD_TODO);
+addTodo('Learn Relay', false, BOLD_TODO);
+addTodo('Buy a unicorn', false);
 
 function getTodoIdsForUser(id: string): $ReadOnlyArray<string> {
   return todoIdsByUser.get(id) || [];

@@ -52,8 +52,7 @@ const node/*: NormalizationSplitOperation*/ = {
         {
           "kind": "Literal",
           "name": "module",
-          "value": "PlainTodoRenderer_value$normalization.graphql",
-          "type": "String"
+          "value": "PlainTodoRenderer_value$normalization.graphql"
         }
       ],
       "storageKey": "__module_operation"

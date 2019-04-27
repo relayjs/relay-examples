@@ -30,9 +30,6 @@ import {
 import TodoApp from './components/TodoApp';
 import type {appQueryResponse} from 'relay/appQuery.graphql';
 
-import PlainTodoRenderer_value$normalization from '../__generated__/relay/PlainTodoRenderer_value$normalization.graphql';
-import BoldTodoRenderer_value$normalization from '../__generated__/relay/BoldTodoRenderer_value$normalization.graphql';
-
 async function fetchQuery(
   operation: RequestNode,
   variables: Variables,
@@ -50,6 +47,8 @@ async function fetchQuery(
 
   return response.json();
 }
+const getOperation = (reference: string) =>
+  import(/* webpackChunkName: "[request]" */ `../__generated__/relay/${reference}`);
 
 const modernEnvironment: Environment = new Environment({
   network: Network.create(fetchQuery),
@@ -59,35 +58,17 @@ const modernEnvironment: Environment = new Environment({
      * Synchronously load an operation, returning either the node or null if it
      * cannot be resolved synchronously.
      */
-    get(reference: mixed): ?NormalizationSplitOperation {
-      switch (reference) {
-        case 'PlainTodoRenderer_value$normalization.graphql':
-          return PlainTodoRenderer_value$normalization;
-        case 'BoldTodoRenderer_value$normalization.graphql':
-          return BoldTodoRenderer_value$normalization;
-        default:
-          throw new Error(
-            `Add get support for operationLoader ${String(reference)}`,
-          );
-      }
+    async get(reference: mixed): ?NormalizationSplitOperation {
+      console.log('get triggered', reference);
+      return await getOperation(String(reference));
     },
 
     /**
      * Asynchronously load an operation.
      */
     load(reference: mixed): Promise<?NormalizationSplitOperation> {
-      switch (reference) {
-        case 'PlainTodoRenderer_value$normalization.graphql':
-          return Promise.resolve(PlainTodoRenderer_value$normalization);
-        case 'BoldTodoRenderer_value$normalization.graphql':
-          return Promise.resolve(BoldTodoRenderer_value$normalization);
-        default:
-          return Promise.reject(
-            new Error(
-              `Add load support for operationLoader ${String(reference)}`,
-            ),
-          );
-      }
+      console.log('load triggered', reference);
+      return getOperation(String(reference));
     },
   },
 });

@@ -7,6 +7,7 @@ node_js:
 install: true
 env:
 - EXAMPLE_PATH=./todo
+- EXAMPLE_PATH=./todo-match
 before_install: >
   (git clone git://github.com/facebook/watchman.git && \
     cd watchman && \

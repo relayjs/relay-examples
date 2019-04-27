@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BoldTodoRenderer_value$ref: FragmentReference;
+declare export opaque type BoldTodoRenderer_value$fragmentType: BoldTodoRenderer_value$ref;
 export type BoldTodoRenderer_value = {|
   +data: ?{|
     +id: string,
@@ -17,6 +18,11 @@ export type BoldTodoRenderer_value = {|
   |},
   +$refType: BoldTodoRenderer_value$ref,
 |};
+export type BoldTodoRenderer_value$data = BoldTodoRenderer_value;
+export type BoldTodoRenderer_value$key = {
+  +$data?: BoldTodoRenderer_value$data,
+  +$fragmentRefs: BoldTodoRenderer_value$ref,
+};
 */
 
 

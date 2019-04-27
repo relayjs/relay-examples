@@ -19,7 +19,7 @@ import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
 import classnames from 'classnames';
 import type {Todo_todo} from 'relay/Todo_todo.graphql';
 import type {Todo_user} from 'relay/Todo_user.graphql';
-import MatchContainer from './MatchContainer';
+import SuspenseMatchContainer from '../utils/SuspenseMatchContainer';
 
 type Props = {|
   +relay: RelayProp,
@@ -52,7 +52,15 @@ const Todo = ({relay, todo, user}: Props) => {
         />
 
         {todo.content && (
-          <MatchContainer match={todo.content} fallback={'Loading...'} />
+          <SuspenseMatchContainer
+            match={todo.content}
+            fallback={'Loading...'}
+            getProps={(match: mixed) => {
+              return {
+                value: match,
+              };
+            }}
+          />
         )}
         <button className="destroy" onClick={handleDestroyClick} />
       </div>
@@ -66,8 +74,8 @@ export default createFragmentContainer(Todo, {
       complete
       id
       content @match {
-        ...PlainTodoRenderer_value @module(name: "PlainTodoRenderer.react")
-        ...BoldTodoRenderer_value @module(name: "BoldTodoRenderer.react")
+        ...PlainTodoRenderer_value @module(name: "PlainTodoRenderer")
+        ...BoldTodoRenderer_value @module(name: "BoldTodoRenderer")
       }
     }
   `,

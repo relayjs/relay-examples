@@ -31,12 +31,10 @@ const mutation = graphql`
         __typename
         cursor
         node {
-          complete
+          __typename
           id
-          content @match {
-            ...PlainTodoRenderer_value @module(name: "PlainTodoRenderer.react")
-            ...BoldTodoRenderer_value @module(name: "BoldTodoRenderer.react")
-          }
+          complete
+          ...Todo_todo @module(name: "Todo")
         }
       }
       user {
@@ -81,10 +79,30 @@ function commit(
       sharedUpdater(store, user, newEdge);
     },
     optimisticUpdater: (store: RecordSourceSelectorProxy) => {
-      const id = 'client:newTodo:' + tempID++;
+      const plainContentDataId = 'client:newPlainContentData:' + tempID++;
+      const plainContentData = store.create(
+        plainContentDataId,
+        'PlainContentData',
+      );
+      plainContentData.setValue(text, 'plainText');
+      plainContentData.setValue(plainContentDataId, 'id');
+
+      const plainContentId = 'client:newPlainContent:' + tempID++;
+      const plainContent = store.create(plainContentId, 'PlainContent');
+      plainContent.setValue('PlainTodoRenderer', '__module_component');
+      plainContent.setValue(
+        'PlainTodoRenderer_value$normalization.graphql',
+        '__module_operation',
+      );
+      plainContent.setLinkedRecord(plainContentData, 'data');
+
+      const id = 'client:newPlainTodo:' + tempID++;
       const node = store.create(id, 'Todo');
-      node.setValue(text, 'text');
       node.setValue(id, 'id');
+      node.setValue(false, 'complete');
+      node.setValue('Todo', '__module_component');
+      node.setValue('Todo_todo$normalization.graphql', '__module_operation');
+      node.setLinkedRecord(plainContent, 'content');
 
       const newEdge = store.create('client:newEdge:' + tempID++, 'TodoEdge');
       newEdge.setLinkedRecord(node, 'node');

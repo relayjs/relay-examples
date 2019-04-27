@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PlainTodoRenderer_value$ref: FragmentReference;
+declare export opaque type PlainTodoRenderer_value$fragmentType: PlainTodoRenderer_value$ref;
 export type PlainTodoRenderer_value = {|
   +data: ?{|
     +id: string,
@@ -17,6 +18,11 @@ export type PlainTodoRenderer_value = {|
   |},
   +$refType: PlainTodoRenderer_value$ref,
 |};
+export type PlainTodoRenderer_value$data = PlainTodoRenderer_value;
+export type PlainTodoRenderer_value$key = {
+  +$data?: PlainTodoRenderer_value$data,
+  +$fragmentRefs: PlainTodoRenderer_value$ref,
+};
 */
 
 

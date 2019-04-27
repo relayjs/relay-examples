@@ -12,12 +12,15 @@ import type { Todo_todo$ref } from "./Todo_todo.graphql";
 import type { Todo_user$ref } from "./Todo_user.graphql";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoList_user$ref: FragmentReference;
+declare export opaque type TodoList_user$fragmentType: TodoList_user$ref;
 export type TodoList_user = {|
   +todos: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
         +complete: boolean,
+        +__fragmentPropName?: ?string,
+        +__module_component: ?string,
         +$fragmentRefs: Todo_todo$ref,
       |}
     |}>
@@ -29,6 +32,11 @@ export type TodoList_user = {|
   +$fragmentRefs: Todo_user$ref,
   +$refType: TodoList_user$ref,
 |};
+export type TodoList_user$data = TodoList_user;
+export type TodoList_user$key = {
+  +$data?: TodoList_user$data,
+  +$fragmentRefs: TodoList_user$ref,
+};
 */
 
 
@@ -94,9 +102,17 @@ return {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "Todo_todo",
-                  "args": null
+                  "kind": "ScalarField",
+                  "alias": "__module_component",
+                  "name": "js",
+                  "args": [
+                    {
+                      "kind": "Literal",
+                      "name": "module",
+                      "value": "Todo"
+                    }
+                  ],
+                  "storageKey": "__module_component"
                 },
                 {
                   "kind": "ScalarField",
@@ -104,6 +120,11 @@ return {
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "ModuleImport",
+                  "fragmentPropName": "todo",
+                  "fragmentName": "Todo_todo"
                 }
               ]
             },
@@ -174,5 +195,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4c169798c328a2b4d9b4ae5227d016bb';
+(node/*: any*/).hash = '7324454150299a2e165c955d7e53fff4';
 module.exports = node;

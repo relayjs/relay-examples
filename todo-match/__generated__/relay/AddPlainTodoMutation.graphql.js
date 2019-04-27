@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b4e6795f46d325c506d1a70b4989298f
+ * @relayHash 3c7d7046838cc406a17f6705b22c1d44
  */
 
 /* eslint-disable */
@@ -9,8 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-import type { BoldTodoRenderer_value$ref } from "./BoldTodoRenderer_value.graphql";
-import type { PlainTodoRenderer_value$ref } from "./PlainTodoRenderer_value.graphql";
+import type { Todo_todo$ref } from "./Todo_todo.graphql";
 export type AddPlainTodoInput = {|
   text: string,
   userId: string,
@@ -25,13 +24,12 @@ export type AddPlainTodoMutationResponse = {|
       +__typename: string,
       +cursor: string,
       +node: ?{|
-        +complete: boolean,
+        +__typename: string,
         +id: string,
-        +content: ?{|
-          +__fragmentPropName?: ?string,
-          +__module_component?: ?string,
-          +$fragmentRefs: PlainTodoRenderer_value$ref & BoldTodoRenderer_value$ref,
-        |},
+        +complete: boolean,
+        +__fragmentPropName?: ?string,
+        +__module_component: ?string,
+        +$fragmentRefs: Todo_todo$ref,
       |},
     |},
     +user: {|
@@ -56,26 +54,35 @@ mutation AddPlainTodoMutation(
       __typename
       cursor
       node {
-        complete
+        __typename
         id
-        content(supported: ["PlainContent", "BoldContent"]) {
-          __typename
-          ... on PlainContent {
-            ...PlainTodoRenderer_value
-            __module_operation: js(module: "PlainTodoRenderer_value$normalization.graphql")
-            __module_component: js(module: "PlainTodoRenderer.react")
-          }
-          ... on BoldContent {
-            ...BoldTodoRenderer_value
-            __module_operation: js(module: "BoldTodoRenderer_value$normalization.graphql")
-            __module_component: js(module: "BoldTodoRenderer.react")
-          }
-        }
+        complete
+        ...Todo_todo
+        __module_operation: js(module: "Todo_todo$normalization.graphql")
+        __module_component: js(module: "Todo")
       }
     }
     user {
       id
       totalCount
+    }
+  }
+}
+
+fragment Todo_todo on Todo {
+  complete
+  id
+  content(supported: ["PlainContent", "BoldContent"]) {
+    __typename
+    ... on PlainContent {
+      ...PlainTodoRenderer_value
+      __module_operation: js(module: "PlainTodoRenderer_value$normalization.graphql")
+      __module_component: js(module: "PlainTodoRenderer")
+    }
+    ... on BoldContent {
+      ...BoldTodoRenderer_value
+      __module_operation: js(module: "BoldTodoRenderer_value$normalization.graphql")
+      __module_component: js(module: "BoldTodoRenderer")
     }
   }
 }
@@ -104,122 +111,115 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "input",
-    "variableName": "input",
-    "type": "AddPlainTodoInput!"
-  }
-],
-v2 = {
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "cursor",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "complete",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v3 = [
   {
-    "kind": "Literal",
-    "name": "supported",
-    "value": [
-      "PlainContent",
-      "BoldContent"
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "addPlainTodo",
+    "storageKey": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "input",
+        "variableName": "input"
+      }
     ],
-    "type": "[String!]!"
+    "concreteType": "AddPlainTodoPayload",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "todoEdge",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "TodoEdge",
+        "plural": false,
+        "selections": [
+          (v1/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "cursor",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "node",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Todo",
+            "plural": false,
+            "selections": [
+              (v1/*: any*/),
+              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "complete",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": "__module_component",
+                "name": "js",
+                "args": [
+                  {
+                    "kind": "Literal",
+                    "name": "module",
+                    "value": "Todo"
+                  }
+                ],
+                "storageKey": "__module_component"
+              },
+              {
+                "kind": "ModuleImport",
+                "fragmentPropName": "todo",
+                "fragmentName": "Todo_todo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "user",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "totalCount",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
   }
-],
-v7 = {
-  "kind": "InlineFragment",
-  "type": "PlainContent",
-  "selections": [
-    {
-      "kind": "ModuleImport",
-      "fragmentPropName": "value",
-      "fragmentName": "PlainTodoRenderer_value"
-    },
-    {
-      "kind": "ScalarField",
-      "alias": "__module_component",
-      "name": "js",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "module",
-          "value": "PlainTodoRenderer.react",
-          "type": "String"
-        }
-      ],
-      "storageKey": "__module_component"
-    }
-  ]
-},
-v8 = {
-  "kind": "InlineFragment",
-  "type": "BoldContent",
-  "selections": [
-    {
-      "kind": "ModuleImport",
-      "fragmentPropName": "value",
-      "fragmentName": "BoldTodoRenderer_value"
-    },
-    {
-      "kind": "ScalarField",
-      "alias": "__module_component",
-      "name": "js",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "module",
-          "value": "BoldTodoRenderer.react",
-          "type": "String"
-        }
-      ],
-      "storageKey": "__module_component"
-    }
-  ]
-},
-v9 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "user",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "User",
-  "plural": false,
-  "selections": [
-    (v5/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "totalCount",
-      "args": null,
-      "storageKey": null
-    }
-  ]
-};
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -228,128 +228,23 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "addPlainTodo",
-        "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "AddPlainTodoPayload",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "todoEdge",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "TodoEdge",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Todo",
-                "plural": false,
-                "selections": [
-                  (v4/*: any*/),
-                  (v5/*: any*/),
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "content",
-                    "storageKey": "content(BoldTodoRenderer_value:BoldTodoRenderer.react,PlainTodoRenderer_value:PlainTodoRenderer.react)",
-                    "args": (v6/*: any*/),
-                    "concreteType": null,
-                    "plural": false,
-                    "selections": [
-                      (v7/*: any*/),
-                      (v8/*: any*/)
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          (v9/*: any*/)
-        ]
-      }
-    ]
+    "selections": (v3/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "AddPlainTodoMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "addPlainTodo",
-        "storageKey": null,
-        "args": (v1/*: any*/),
-        "concreteType": "AddPlainTodoPayload",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "todoEdge",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "TodoEdge",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Todo",
-                "plural": false,
-                "selections": [
-                  (v4/*: any*/),
-                  (v5/*: any*/),
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "content",
-                    "storageKey": "content(BoldTodoRenderer_value:BoldTodoRenderer.react,PlainTodoRenderer_value:PlainTodoRenderer.react)",
-                    "args": (v6/*: any*/),
-                    "concreteType": null,
-                    "plural": false,
-                    "selections": [
-                      (v2/*: any*/),
-                      (v7/*: any*/),
-                      (v8/*: any*/)
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          (v9/*: any*/)
-        ]
-      }
-    ]
+    "selections": (v3/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
     "name": "AddPlainTodoMutation",
     "id": null,
-    "text": "mutation AddPlainTodoMutation(\n  $input: AddPlainTodoInput!\n) {\n  addPlainTodo(input: $input) {\n    todoEdge {\n      __typename\n      cursor\n      node {\n        complete\n        id\n        content(supported: [\"PlainContent\", \"BoldContent\"]) {\n          __typename\n          ... on PlainContent {\n            ...PlainTodoRenderer_value\n            __module_operation: js(module: \"PlainTodoRenderer_value$normalization.graphql\")\n            __module_component: js(module: \"PlainTodoRenderer.react\")\n          }\n          ... on BoldContent {\n            ...BoldTodoRenderer_value\n            __module_operation: js(module: \"BoldTodoRenderer_value$normalization.graphql\")\n            __module_component: js(module: \"BoldTodoRenderer.react\")\n          }\n        }\n      }\n    }\n    user {\n      id\n      totalCount\n    }\n  }\n}\n\nfragment PlainTodoRenderer_value on PlainContent {\n  data {\n    id\n    plainText\n  }\n}\n\nfragment BoldTodoRenderer_value on BoldContent {\n  data {\n    id\n    boldText\n  }\n}\n",
+    "text": "mutation AddPlainTodoMutation(\n  $input: AddPlainTodoInput!\n) {\n  addPlainTodo(input: $input) {\n    todoEdge {\n      __typename\n      cursor\n      node {\n        __typename\n        id\n        complete\n        ...Todo_todo\n        __module_operation: js(module: \"Todo_todo$normalization.graphql\")\n        __module_component: js(module: \"Todo\")\n      }\n    }\n    user {\n      id\n      totalCount\n    }\n  }\n}\n\nfragment Todo_todo on Todo {\n  complete\n  id\n  content(supported: [\"PlainContent\", \"BoldContent\"]) {\n    __typename\n    ... on PlainContent {\n      ...PlainTodoRenderer_value\n      __module_operation: js(module: \"PlainTodoRenderer_value$normalization.graphql\")\n      __module_component: js(module: \"PlainTodoRenderer\")\n    }\n    ... on BoldContent {\n      ...BoldTodoRenderer_value\n      __module_operation: js(module: \"BoldTodoRenderer_value$normalization.graphql\")\n      __module_component: js(module: \"BoldTodoRenderer\")\n    }\n  }\n}\n\nfragment PlainTodoRenderer_value on PlainContent {\n  data {\n    id\n    plainText\n  }\n}\n\nfragment BoldTodoRenderer_value on BoldContent {\n  data {\n    id\n    boldText\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '40d83eaeaa19f0d67c68c063cfffd3fa';
+(node/*: any*/).hash = '6b207716393be12d90d8713e77d4047e';
 module.exports = node;

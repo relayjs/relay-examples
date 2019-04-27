@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoListFooter_user$ref: FragmentReference;
+declare export opaque type TodoListFooter_user$fragmentType: TodoListFooter_user$ref;
 export type TodoListFooter_user = {|
   +id: string,
   +userId: string,
@@ -25,6 +26,11 @@ export type TodoListFooter_user = {|
   +totalCount: number,
   +$refType: TodoListFooter_user$ref,
 |};
+export type TodoListFooter_user$data = TodoListFooter_user;
+export type TodoListFooter_user$key = {
+  +$data?: TodoListFooter_user$data,
+  +$fragmentRefs: TodoListFooter_user$ref,
+};
 */
 
 

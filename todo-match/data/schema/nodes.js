@@ -160,6 +160,16 @@ const GraphQLTodo = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLBoolean),
       resolve: (todo: Todo): boolean => todo.complete,
     },
+    js: {
+      type: JSDependency,
+      args: {
+        module: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_: mixed, {module}: {module: string}): JSDependencyType =>
+        toJSDependency(module),
+    },
   },
   interfaces: [nodeInterface],
 });
