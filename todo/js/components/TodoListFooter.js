@@ -51,21 +51,23 @@ class TodoListFooter extends React.Component {
 
 export default createFragmentContainer(
   TodoListFooter,
-  graphql`
-    fragment TodoListFooter_viewer on User {
-      id
-      completedCount
-      todos(
-        first: 2147483647 # max GraphQLInt
-      ) @connection(key: "TodoList_todos") {
-        edges {
-          node {
-            id
-            complete
+  {
+    viewer: graphql`
+      fragment TodoListFooter_viewer on User {
+        id
+        completedCount
+        todos(
+          first: 2147483647 # max GraphQLInt
+        ) @connection(key: "TodoList_todos") {
+          edges {
+            node {
+              id
+              complete
+            }
           }
         }
+        totalCount
       }
-      totalCount
-    }
-  `,
+    `,
+  }
 );
