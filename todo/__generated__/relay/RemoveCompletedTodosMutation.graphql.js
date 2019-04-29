@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 29235426b5fa989ea5e97fa3aabafff5
+ * @relayHash 2e1235ca40b6161f5531cab5a24486bf
  */
 
 /* eslint-disable */
@@ -60,8 +60,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "input",
-    "variableName": "input",
-    "type": "RemoveCompletedTodosInput!"
+    "variableName": "input"
   }
 ],
 v2 = {

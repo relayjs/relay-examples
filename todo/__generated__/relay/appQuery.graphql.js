@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0f281556b68e577ffb0887229610022b
+ * @relayHash e1ad56628c51b94ece49a2c016e334a5
  */
 
 /* eslint-disable */
@@ -114,8 +114,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "userId",
-    "type": "String"
+    "variableName": "userId"
   }
 ],
 v2 = {
@@ -129,8 +128,7 @@ v3 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 2147483647,
-    "type": "Int"
+    "value": 2147483647
   }
 ];
 return {

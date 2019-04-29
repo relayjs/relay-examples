@@ -12,6 +12,7 @@ import type { Todo_todo$ref } from "./Todo_todo.graphql";
 import type { Todo_user$ref } from "./Todo_user.graphql";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoList_user$ref: FragmentReference;
+declare export opaque type TodoList_user$fragmentType: TodoList_user$ref;
 export type TodoList_user = {|
   +todos: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -29,6 +30,11 @@ export type TodoList_user = {|
   +$fragmentRefs: Todo_user$ref,
   +$refType: TodoList_user$ref,
 |};
+export type TodoList_user$data = TodoList_user;
+export type TodoList_user$key = {
+  +$data?: TodoList_user$data,
+  +$fragmentRefs: TodoList_user$ref,
+};
 */
 
 
@@ -94,16 +100,16 @@ return {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "Todo_todo",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "Todo_todo",
+                  "args": null
                 }
               ]
             },

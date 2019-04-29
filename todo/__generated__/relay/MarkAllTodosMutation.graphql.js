@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f025f7f6fbc1806e005bbf0b9453a9a0
+ * @relayHash bd070297db36f06c6f9beb7f2cfc14fc
  */
 
 /* eslint-disable */
@@ -79,8 +79,7 @@ v2 = [
       {
         "kind": "Variable",
         "name": "input",
-        "variableName": "input",
-        "type": "MarkAllTodosInput!"
+        "variableName": "input"
       }
     ],
     "concreteType": "MarkAllTodosPayload",

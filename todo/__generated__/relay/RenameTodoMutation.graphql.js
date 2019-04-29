@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e6de23b68fa42de78bf11ceb07fbfdcd
+ * @relayHash f433a1b216b4d686a085e845430d5808
  */
 
 /* eslint-disable */
@@ -64,8 +64,7 @@ v1 = [
       {
         "kind": "Variable",
         "name": "input",
-        "variableName": "input",
-        "type": "RenameTodoInput!"
+        "variableName": "input"
       }
     ],
     "concreteType": "RenameTodoPayload",
