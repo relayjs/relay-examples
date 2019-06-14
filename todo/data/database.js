@@ -117,8 +117,8 @@ export function markAllTodos(complete: boolean): $ReadOnlyArray<string> {
     (todo: Todo): boolean => todo.complete !== complete,
   );
 
-  todosToChange.forEach(
-    (todo: Todo): void => changeTodoStatus(todo.id, complete),
+  todosToChange.forEach((todo: Todo): void =>
+    changeTodoStatus(todo.id, complete),
   );
 
   return todosToChange.map((todo: Todo): string => todo.id);

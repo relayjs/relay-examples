@@ -65,12 +65,10 @@ function getOptimisticResponse(
 
   const changedTodos: ChangedTodos = validNodes
     .filter((node: Node): boolean => node.complete !== complete)
-    .map(
-      (node: Node): ChangedTodo => ({
-        complete: complete,
-        id: node.id,
-      }),
-    );
+    .map((node: Node): ChangedTodo => ({
+      complete: complete,
+      id: node.id,
+    }));
 
   return {
     markAllTodos: {
