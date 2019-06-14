@@ -49,8 +49,8 @@ function sharedUpdater(
   const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
 
   // Purposefully type forEach as void, to toss the result of deleteNode
-  deletedIDs.forEach(
-    (deletedID: string): void => ConnectionHandler.deleteNode(conn, deletedID),
+  deletedIDs.forEach((deletedID: string): void =>
+    ConnectionHandler.deleteNode(conn, deletedID),
   );
 }
 
