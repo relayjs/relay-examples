@@ -15,12 +15,14 @@ import {GraphQLObjectType, GraphQLSchema} from 'graphql';
 
 import {nodeField} from './nodes.js';
 import {UserQuery} from './queries/UserQuery';
-import {AddTodoMutation} from './mutations/AddTodoMutation';
+import {AddPlainTodoMutation} from './mutations/AddPlainTodoMutation';
+import {AddBoldTodoMutation} from './mutations/AddBoldTodoMutation';
 import {ChangeTodoStatusMutation} from './mutations/ChangeTodoStatusMutation';
 import {MarkAllTodosMutation} from './mutations/MarkAllTodosMutation';
 import {RemoveCompletedTodosMutation} from './mutations/RemoveCompletedTodosMutation';
 import {RemoveTodoMutation} from './mutations/RemoveTodoMutation';
-import {RenameTodoMutation} from './mutations/RenameTodoMutation';
+import {UpdatePlainContentDataMutation} from './mutations/UpdatePlainContentDataMutation';
+import {UpdateBoldContentDataMutation} from './mutations/UpdateBoldContentDataMutation';
 
 const Query = new GraphQLObjectType({
   name: 'Query',
@@ -33,12 +35,14 @@ const Query = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    addTodo: AddTodoMutation,
+    addPlainTodo: AddPlainTodoMutation,
+    addBoldTodo: AddBoldTodoMutation,
     changeTodoStatus: ChangeTodoStatusMutation,
     markAllTodos: MarkAllTodosMutation,
     removeCompletedTodos: RemoveCompletedTodosMutation,
     removeTodo: RemoveTodoMutation,
-    renameTodo: RenameTodoMutation,
+    updatePlainContentData: UpdatePlainContentDataMutation,
+    updateBoldContentData: UpdateBoldContentDataMutation,
   },
 });
 

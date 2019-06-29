@@ -19,6 +19,8 @@ export type TodoList_user = {|
       +node: ?{|
         +id: string,
         +complete: boolean,
+        +__fragmentPropName?: ?string,
+        +__module_component?: ?string,
         +$fragmentRefs: Todo_todo$ref,
       |}
     |}>
@@ -107,9 +109,10 @@ return {
                   "storageKey": null
                 },
                 {
-                  "kind": "FragmentSpread",
-                  "name": "Todo_todo",
-                  "args": null
+                  "kind": "ModuleImport",
+                  "documentName": "TodoList_user",
+                  "fragmentName": "Todo_todo",
+                  "fragmentPropName": "todo"
                 }
               ]
             },
@@ -180,5 +183,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4c169798c328a2b4d9b4ae5227d016bb';
+(node/*: any*/).hash = '7324454150299a2e165c955d7e53fff4';
 module.exports = node;

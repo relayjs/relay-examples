@@ -1,13 +1,36 @@
-input AddTodoInput {
+input AddBoldTodoInput {
   text: String!
   userId: ID!
   clientMutationId: String
 }
 
-type AddTodoPayload {
+type AddBoldTodoPayload {
   todoEdge: TodoEdge!
   user: User!
   clientMutationId: String
+}
+
+input AddPlainTodoInput {
+  text: String!
+  userId: ID!
+  clientMutationId: String
+}
+
+type AddPlainTodoPayload {
+  todoEdge: TodoEdge!
+  user: User!
+  clientMutationId: String
+}
+
+type BoldContent {
+  data: BoldContentData
+  js(module: String!, id: String): JSDependency
+}
+
+type BoldContentData {
+  """The ID of an object"""
+  id: ID!
+  boldText: String
 }
 
 input ChangeTodoStatusInput {
@@ -23,6 +46,11 @@ type ChangeTodoStatusPayload {
   clientMutationId: String
 }
 
+union FormattedContent = PlainContent | BoldContent
+
+"""A scalar to utilize the @match and @module directive from relay."""
+scalar JSDependency
+
 input MarkAllTodosInput {
   complete: Boolean!
   userId: ID!
@@ -36,12 +64,14 @@ type MarkAllTodosPayload {
 }
 
 type Mutation {
-  addTodo(input: AddTodoInput!): AddTodoPayload
+  addPlainTodo(input: AddPlainTodoInput!): AddPlainTodoPayload
+  addBoldTodo(input: AddBoldTodoInput!): AddBoldTodoPayload
   changeTodoStatus(input: ChangeTodoStatusInput!): ChangeTodoStatusPayload
   markAllTodos(input: MarkAllTodosInput!): MarkAllTodosPayload
   removeCompletedTodos(input: RemoveCompletedTodosInput!): RemoveCompletedTodosPayload
   removeTodo(input: RemoveTodoInput!): RemoveTodoPayload
-  renameTodo(input: RenameTodoInput!): RenameTodoPayload
+  updatePlainContentData(input: UpdatePlainContentDataInput!): UpdatePlainContentDataPayload
+  updateBoldContentData(input: UpdateBoldContentDataInput!): UpdateBoldContentDataPayload
 }
 
 """An object with an ID"""
@@ -63,6 +93,17 @@ type PageInfo {
 
   """When paginating forwards, the cursor to continue."""
   endCursor: String
+}
+
+type PlainContent {
+  data: PlainContentData
+  js(module: String!, id: String): JSDependency
+}
+
+type PlainContentData {
+  """The ID of an object"""
+  id: ID!
+  plainText: String
 }
 
 type Query {
@@ -98,22 +139,12 @@ type RemoveTodoPayload {
   clientMutationId: String
 }
 
-input RenameTodoInput {
-  id: ID!
-  text: String!
-  clientMutationId: String
-}
-
-type RenameTodoPayload {
-  todo: Todo!
-  clientMutationId: String
-}
-
 type Todo implements Node {
   """The ID of an object"""
   id: ID!
-  text: String!
+  content(supported: [String!]!): FormattedContent
   complete: Boolean!
+  js(module: String!, id: String): JSDependency
 }
 
 """A connection to a list of items."""
@@ -132,6 +163,28 @@ type TodoEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+input UpdateBoldContentDataInput {
+  id: ID!
+  text: String!
+  clientMutationId: String
+}
+
+type UpdateBoldContentDataPayload {
+  boldContentData: BoldContentData!
+  clientMutationId: String
+}
+
+input UpdatePlainContentDataInput {
+  id: ID!
+  text: String!
+  clientMutationId: String
+}
+
+type UpdatePlainContentDataPayload {
+  plainContentData: PlainContentData!
+  clientMutationId: String
 }
 
 type User implements Node {

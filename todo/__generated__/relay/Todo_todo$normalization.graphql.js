@@ -7,36 +7,17 @@
 'use strict';
 
 /*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { BoldTodoRenderer_value$ref } from "./BoldTodoRenderer_value.graphql";
-import type { PlainTodoRenderer_value$ref } from "./PlainTodoRenderer_value.graphql";
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type Todo_todo$ref: FragmentReference;
-declare export opaque type Todo_todo$fragmentType: Todo_todo$ref;
-export type Todo_todo = {|
-  +complete: boolean,
-  +id: string,
-  +content: ?{|
-    +__fragmentPropName?: ?string,
-    +__module_component?: ?string,
-    +$fragmentRefs: PlainTodoRenderer_value$ref & BoldTodoRenderer_value$ref,
-  |},
-  +$refType: Todo_todo$ref,
-|};
-export type Todo_todo$data = Todo_todo;
-export type Todo_todo$key = {
-  +$data?: Todo_todo$data,
-  +$fragmentRefs: Todo_todo$ref,
-};
+import type { NormalizationSplitOperation } from 'relay-runtime';
+
 */
 
 
-const node/*: ReaderFragment*/ = {
-  "kind": "Fragment",
-  "name": "Todo_todo",
-  "type": "Todo",
-  "metadata": null,
-  "argumentDefinitions": [],
+const node/*: NormalizationSplitOperation*/ = {
+  "kind": "SplitOperation",
+  "name": "Todo_todo$normalization",
+  "metadata": {
+    "derivedFrom": "Todo_todo"
+  },
   "selections": [
     {
       "kind": "ScalarField",
@@ -70,6 +51,13 @@ const node/*: ReaderFragment*/ = {
       "concreteType": null,
       "plural": false,
       "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "__typename",
+          "args": null,
+          "storageKey": null
+        },
         {
           "kind": "InlineFragment",
           "type": "PlainContent",

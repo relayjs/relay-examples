@@ -79,6 +79,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.text-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.format-picker {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
 .new-todo,
 .edit {
   position: relative;
@@ -164,8 +175,8 @@ label[for='toggle-all'] {
   margin: 0 0 0 43px;
 }
 
-.todo-list li.editing .view {
-  display: none;
+.todo-list li .format-picker {
+  display:none;
 }
 
 .todo-list li .toggle {
@@ -199,6 +210,10 @@ label[for='toggle-all'] {
   transition: color 0.4s;
 }
 
+.todo-list li .text-input {
+  margin-left: 59px;
+}
+
 .todo-list li.completed label {
   color: #d9d9d9;
   text-decoration: line-through;
@@ -229,10 +244,6 @@ label[for='toggle-all'] {
 
 .todo-list li:hover .destroy {
   display: block;
-}
-
-.todo-list li .edit {
-  display: none;
 }
 
 .todo-list li.editing:last-child {

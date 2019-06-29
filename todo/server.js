@@ -39,7 +39,9 @@ const compiler: webpack.Compiler = webpack({
   },
   output: {
     filename: 'app.js',
+    chunkFilename: '[name].bundle.js',
     path: '/',
+    publicPath: '/js/',
   },
 });
 
@@ -58,6 +60,7 @@ app.use(
   graphQLHTTP({
     schema: schema,
     pretty: true,
+    graphiql: true,
   }),
 );
 

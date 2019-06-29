@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e1ad56628c51b94ece49a2c016e334a5
+ * @relayHash 1283f8c327a90839eb97e8fe8a0eff31
  */
 
 /* eslint-disable */
@@ -71,6 +71,8 @@ fragment TodoList_user on User {
         id
         complete
         ...Todo_todo
+        __module_operation_TodoList_user: js(module: "Todo_todo$normalization.graphql")
+        __module_component_TodoList_user: js(module: "Todo")
         __typename
       }
       cursor
@@ -90,7 +92,19 @@ fragment TodoList_user on User {
 fragment Todo_todo on Todo {
   complete
   id
-  text
+  content(supported: ["PlainContent", "BoldContent"]) {
+    __typename
+    ... on PlainContent {
+      ...PlainTodoRenderer_value
+      __module_operation_Todo_todo: js(module: "PlainTodoRenderer_value$normalization.graphql")
+      __module_component_Todo_todo: js(module: "PlainTodoRenderer")
+    }
+    ... on BoldContent {
+      ...BoldTodoRenderer_value
+      __module_operation_Todo_todo: js(module: "BoldTodoRenderer_value$normalization.graphql")
+      __module_component_Todo_todo: js(module: "BoldTodoRenderer")
+    }
+  }
 }
 
 fragment Todo_user on User {
@@ -98,6 +112,20 @@ fragment Todo_user on User {
   userId
   totalCount
   completedCount
+}
+
+fragment PlainTodoRenderer_value on PlainContent {
+  data {
+    id
+    plainText
+  }
+}
+
+fragment BoldTodoRenderer_value on BoldContent {
+  data {
+    id
+    boldText
+  }
 }
 */
 
@@ -237,11 +265,10 @@ return {
                         "storageKey": null
                       },
                       {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "text",
-                        "args": null,
-                        "storageKey": null
+                        "kind": "ModuleImport",
+                        "documentName": "TodoList_user",
+                        "fragmentName": "Todo_todo",
+                        "fragmentPropName": "todo"
                       }
                     ]
                   },
@@ -298,7 +325,7 @@ return {
     "operationKind": "query",
     "name": "appQuery",
     "id": null,
-    "text": "query appQuery(\n  $userId: String\n) {\n  user(id: $userId) {\n    ...TodoApp_user\n    id\n  }\n}\n\nfragment TodoApp_user on User {\n  id\n  userId\n  totalCount\n  ...TodoListFooter_user\n  ...TodoList_user\n}\n\nfragment TodoListFooter_user on User {\n  id\n  userId\n  completedCount\n  todos(first: 2147483647) {\n    edges {\n      node {\n        id\n        complete\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  totalCount\n}\n\nfragment TodoList_user on User {\n  todos(first: 2147483647) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  userId\n  totalCount\n  completedCount\n  ...Todo_user\n}\n\nfragment Todo_todo on Todo {\n  complete\n  id\n  text\n}\n\nfragment Todo_user on User {\n  id\n  userId\n  totalCount\n  completedCount\n}\n",
+    "text": "query appQuery(\n  $userId: String\n) {\n  user(id: $userId) {\n    ...TodoApp_user\n    id\n  }\n}\n\nfragment TodoApp_user on User {\n  id\n  userId\n  totalCount\n  ...TodoListFooter_user\n  ...TodoList_user\n}\n\nfragment TodoListFooter_user on User {\n  id\n  userId\n  completedCount\n  todos(first: 2147483647) {\n    edges {\n      node {\n        id\n        complete\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  totalCount\n}\n\nfragment TodoList_user on User {\n  todos(first: 2147483647) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __module_operation_TodoList_user: js(module: \"Todo_todo$normalization.graphql\")\n        __module_component_TodoList_user: js(module: \"Todo\")\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  userId\n  totalCount\n  completedCount\n  ...Todo_user\n}\n\nfragment Todo_todo on Todo {\n  complete\n  id\n  content(supported: [\"PlainContent\", \"BoldContent\"]) {\n    __typename\n    ... on PlainContent {\n      ...PlainTodoRenderer_value\n      __module_operation_Todo_todo: js(module: \"PlainTodoRenderer_value$normalization.graphql\")\n      __module_component_Todo_todo: js(module: \"PlainTodoRenderer\")\n    }\n    ... on BoldContent {\n      ...BoldTodoRenderer_value\n      __module_operation_Todo_todo: js(module: \"BoldTodoRenderer_value$normalization.graphql\")\n      __module_component_Todo_todo: js(module: \"BoldTodoRenderer\")\n    }\n  }\n}\n\nfragment Todo_user on User {\n  id\n  userId\n  totalCount\n  completedCount\n}\n\nfragment PlainTodoRenderer_value on PlainContent {\n  data {\n    id\n    plainText\n  }\n}\n\nfragment BoldTodoRenderer_value on BoldContent {\n  data {\n    id\n    boldText\n  }\n}\n",
     "metadata": {}
   }
 };

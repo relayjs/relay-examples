@@ -11,7 +11,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import AddTodoMutation from '../mutations/AddTodoMutation';
+import AddBoldTodoMutation from '../mutations/AddBoldTodoMutation';
+import AddPlainTodoMutation from '../mutations/AddPlainTodoMutation';
 import TodoList from './TodoList';
 import TodoListFooter from './TodoListFooter';
 import TodoTextInput from './TodoTextInput';
@@ -27,8 +28,12 @@ type Props = {|
 |};
 
 const TodoApp = ({relay, user}: Props) => {
-  const handleTextInputSave = (text: string) => {
-    AddTodoMutation.commit(relay.environment, text, user);
+  const handleTextInputSave = (text: string, type: string) => {
+    if (type == 'PLAIN') {
+      AddPlainTodoMutation.commit(relay.environment, text, user);
+    } else {
+      AddBoldTodoMutation.commit(relay.environment, text, user);
+    }
     return;
   };
 

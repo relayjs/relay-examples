@@ -22,18 +22,19 @@ import {
 
 import {ConnectionHandler} from 'relay-runtime';
 import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
-import type {AddTodoInput} from 'relay/AddTodoMutation.graphql';
+import type {AddBoldTodoInput} from 'relay/AddBoldTodoMutation.graphql';
 
 const mutation = graphql`
-  mutation AddTodoMutation($input: AddTodoInput!) {
-    addTodo(input: $input) {
+  mutation AddBoldTodoMutation($input: AddBoldTodoInput!) {
+    addBoldTodo(input: $input) {
       todoEdge {
         __typename
         cursor
         node {
-          complete
+          __typename
           id
-          text
+          complete
+          ...Todo_todo @module(name: "Todo")
         }
       }
       user {
@@ -61,7 +62,7 @@ function commit(
   text: string,
   user: TodoApp_user,
 ): Disposable {
-  const input: AddTodoInput = {
+  const input: AddBoldTodoInput = {
     text,
     userId: user.userId,
     clientMutationId: `${tempID++}`,
@@ -73,15 +74,35 @@ function commit(
       input,
     },
     updater: (store: RecordSourceSelectorProxy) => {
-      const payload = store.getRootField('addTodo');
+      const payload = store.getRootField('addBoldTodo');
       const newEdge = payload.getLinkedRecord('todoEdge');
       sharedUpdater(store, user, newEdge);
     },
     optimisticUpdater: (store: RecordSourceSelectorProxy) => {
-      const id = 'client:newTodo:' + tempID++;
+      const boldContentDataId = 'client:newBoldContentData:' + tempID++;
+      const boldContentData = store.create(
+        boldContentDataId,
+        'BoldContentData',
+      );
+      boldContentData.setValue(text, 'boldText');
+      boldContentData.setValue(boldContentDataId, 'id');
+
+      const boldContentId = 'client:newBoldContent:' + tempID++;
+      const boldContent = store.create(boldContentId, 'BoldContent');
+      boldContent.setValue('BoldTodoRenderer', '__module_component');
+      boldContent.setValue(
+        'BoldTodoRenderer_value$normalization.graphql',
+        '__module_operation',
+      );
+      boldContent.setLinkedRecord(boldContentData, 'data');
+
+      const id = 'client:newBoldTodo:' + tempID++;
       const node = store.create(id, 'Todo');
-      node.setValue(text, 'text');
       node.setValue(id, 'id');
+      node.setValue(false, 'complete');
+      node.setValue('Todo', '__module_component');
+      node.setValue('Todo_todo$normalization.graphql', '__module_operation');
+      node.setLinkedRecord(boldContent, 'content');
 
       const newEdge = store.create('client:newEdge:' + tempID++, 'TodoEdge');
       newEdge.setLinkedRecord(node, 'node');

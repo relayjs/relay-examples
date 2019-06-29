@@ -18,6 +18,8 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
+  GraphQLUnionType,
+  GraphQLList,
 } from 'graphql';
 
 import {
@@ -31,12 +33,19 @@ import {
 
 import {
   Todo,
+  type TodoType,
+  BOLD_TODO,
   User,
   USER_ID,
   getTodoOrThrow,
   getTodos,
   getUserOrThrow,
 } from '../database';
+
+import JSDependency, {
+  toJSDependency,
+  type JSDependencyType,
+} from './JSDependency';
 
 // $FlowFixMe graphql-relay types not available in flow-typed, strengthen this typing
 const {nodeInterface, nodeField} = nodeDefinitions(
@@ -60,17 +69,115 @@ const {nodeInterface, nodeField} = nodeDefinitions(
   },
 );
 
+const GraphQLPlainContentData = new GraphQLObjectType({
+  name: 'PlainContentData',
+  fields: {
+    id: globalIdField('PlainContentData'),
+    plainText: {
+      type: GraphQLString,
+      resolve: (todo: Todo): string => todo.text,
+    },
+  },
+});
+
+const GraphQLBoldContentData = new GraphQLObjectType({
+  name: 'BoldContentData',
+  fields: {
+    id: globalIdField('BoldContentData'),
+    boldText: {
+      type: GraphQLString,
+      resolve: (todo: Todo): string => todo.text,
+    },
+  },
+});
+
+const PlainContent = new GraphQLObjectType({
+  name: 'PlainContent',
+  fields: {
+    data: {
+      type: GraphQLPlainContentData,
+      resolve: (todo: Todo): Todo => todo,
+    },
+    js: {
+      type: JSDependency,
+      args: {
+        module: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        id: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_: mixed, {module}: {module: string}): JSDependencyType =>
+        toJSDependency(module),
+    },
+  },
+});
+
+const BoldContent = new GraphQLObjectType({
+  name: 'BoldContent',
+  fields: {
+    data: {
+      type: GraphQLBoldContentData,
+      resolve: (todo: Todo): Todo => todo,
+    },
+    js: {
+      type: JSDependency,
+      args: {
+        module: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        id: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_: mixed, {module}: {module: string}): JSDependencyType =>
+        toJSDependency(module),
+    },
+  },
+});
+
+const FormattedContent = new GraphQLUnionType({
+  name: 'FormattedContent',
+  types: [PlainContent, BoldContent],
+  resolveType: resolveFormatType,
+});
+
+function resolveFormatType({type}: {|type: TodoType|}) {
+  return type === BOLD_TODO ? BoldContent : PlainContent;
+}
+
 const GraphQLTodo = new GraphQLObjectType({
   name: 'Todo',
   fields: {
     id: globalIdField('Todo'),
-    text: {
-      type: new GraphQLNonNull(GraphQLString),
-      resolve: (todo: Todo): string => todo.text,
+    content: {
+      type: FormattedContent,
+      args: {
+        supported: {
+          type: new GraphQLNonNull(
+            new GraphQLList(new GraphQLNonNull(GraphQLString)),
+          ),
+        },
+      },
+      resolve: (todo: Todo): Todo => todo,
     },
     complete: {
       type: new GraphQLNonNull(GraphQLBoolean),
       resolve: (todo: Todo): boolean => todo.complete,
+    },
+    js: {
+      type: JSDependency,
+      args: {
+        module: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        id: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_: mixed, {module}: {module: string}): JSDependencyType =>
+        toJSDependency(module),
     },
   },
   interfaces: [nodeInterface],
@@ -122,4 +229,11 @@ const GraphQLUser = new GraphQLObjectType({
   interfaces: [nodeInterface],
 });
 
-export {nodeField, GraphQLTodo, GraphQLTodoEdge, GraphQLUser};
+export {
+  nodeField,
+  GraphQLTodo,
+  GraphQLTodoEdge,
+  GraphQLUser,
+  GraphQLPlainContentData,
+  GraphQLBoldContentData,
+};

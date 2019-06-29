@@ -11,11 +11,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
-import Todo from './Todo';
-
 import React from 'react';
 import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
+import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
+import SuspenseMatchContainer from '../utils/SuspenseMatchContainer';
 import type {TodoList_user} from 'relay/TodoList_user.graphql';
 type Todos = $NonMaybeType<$ElementType<TodoList_user, 'todos'>>;
 type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
@@ -61,7 +60,15 @@ const TodoList = ({
 
       <ul className="todo-list">
         {nodes.map((node: Node) => (
-          <Todo key={node.id} todo={node} user={user} />
+          // $FlowFixMe TODO: property complete,id is missing in Match [1] but exists in object type [2] in property match.
+          <SuspenseMatchContainer
+            key={node.id}
+            match={node}
+            fallback={'Loading...'}
+            getProps={(match: mixed) => {
+              return {todo: match, user: user};
+            }}
+          />
         ))}
       </ul>
     </section>
@@ -78,7 +85,7 @@ export default createFragmentContainer(TodoList, {
           node {
             id
             complete
-            ...Todo_todo
+            ...Todo_todo @module(name: "Todo")
           }
         }
       }

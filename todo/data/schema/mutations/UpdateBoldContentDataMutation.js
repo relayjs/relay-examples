@@ -13,60 +13,38 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  cursorForObjectInConnection,
-  mutationWithClientMutationId,
-} from 'graphql-relay';
-
+import {mutationWithClientMutationId, fromGlobalId} from 'graphql-relay';
 import {GraphQLID, GraphQLNonNull, GraphQLString} from 'graphql';
-import {GraphQLTodoEdge, GraphQLUser} from '../nodes';
-
-import {
-  addTodo,
-  getTodoOrThrow,
-  getTodos,
-  getUserOrThrow,
-  User,
-} from '../../database';
+import {GraphQLBoldContentData} from '../nodes';
+import {getTodoOrThrow, renameTodo, Todo} from '../../database';
 
 type Input = {|
+  +id: string,
   +text: string,
-  +userId: string,
 |};
 
 type Payload = {|
-  +todoId: string,
-  +userId: string,
+  +localTodoId: string,
 |};
 
-const AddTodoMutation = mutationWithClientMutationId({
-  name: 'AddTodo',
+const UpdateBoldContentDataMutation = mutationWithClientMutationId({
+  name: 'UpdateBoldContentData',
   inputFields: {
+    id: {type: new GraphQLNonNull(GraphQLID)},
     text: {type: new GraphQLNonNull(GraphQLString)},
-    userId: {type: new GraphQLNonNull(GraphQLID)},
   },
   outputFields: {
-    todoEdge: {
-      type: new GraphQLNonNull(GraphQLTodoEdge),
-      resolve: ({todoId}: Payload) => {
-        const todo = getTodoOrThrow(todoId);
-
-        return {
-          cursor: cursorForObjectInConnection([...getTodos()], todo),
-          node: todo,
-        };
-      },
-    },
-    user: {
-      type: new GraphQLNonNull(GraphQLUser),
-      resolve: ({userId}: Payload): User => getUserOrThrow(userId),
+    boldContentData: {
+      type: new GraphQLNonNull(GraphQLBoldContentData),
+      resolve: ({localTodoId}: Payload): Todo => getTodoOrThrow(localTodoId),
     },
   },
-  mutateAndGetPayload: ({text, userId}: Input): Payload => {
-    const todoId = addTodo(text, false);
+  mutateAndGetPayload: ({id, text}: Input): Payload => {
+    const localTodoId = fromGlobalId(id).id;
+    renameTodo(localTodoId, text, 'BOLD');
 
-    return {todoId, userId};
+    return {localTodoId};
   },
 });
 
-export {AddTodoMutation};
+export {UpdateBoldContentDataMutation};

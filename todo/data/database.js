@@ -11,13 +11,19 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+export type TodoType = typeof PLAIN_TODO | typeof BOLD_TODO;
+export const PLAIN_TODO: 'PLAIN' = 'PLAIN';
+export const BOLD_TODO: 'BOLD' = 'BOLD';
+
 export class Todo {
   +id: string;
+  +type: TodoType;
   +text: string;
   +complete: boolean;
 
-  constructor(id: string, text: string, complete: boolean) {
+  constructor(id: string, type: TodoType, text: string, complete: boolean) {
     this.id = id;
+    this.type = type;
     this.text = text;
     this.complete = complete;
   }
@@ -46,14 +52,20 @@ const todoIdsByUser: Map<string, $ReadOnlyArray<string>> = new Map([
 // Seed initial data
 let nextTodoId: number = 0;
 addTodo('Taste JavaScript', true);
+addTodo('Learn GraphQL', true, BOLD_TODO);
+addTodo('Learn Relay', false, BOLD_TODO);
 addTodo('Buy a unicorn', false);
 
 function getTodoIdsForUser(id: string): $ReadOnlyArray<string> {
   return todoIdsByUser.get(id) || [];
 }
 
-export function addTodo(text: string, complete: boolean): string {
-  const todo = new Todo(`${nextTodoId++}`, text, complete);
+export function addTodo(
+  text: string,
+  complete: boolean,
+  type: TodoType = PLAIN_TODO,
+): string {
+  const todo = new Todo(`${nextTodoId++}`, type, text, complete);
   todosById.set(todo.id, todo);
 
   const todoIdsForUser = getTodoIdsForUser(USER_ID);
@@ -66,7 +78,7 @@ export function changeTodoStatus(id: string, complete: boolean) {
   const todo = getTodoOrThrow(id);
 
   // Replace with the modified complete value
-  todosById.set(id, new Todo(id, todo.text, complete));
+  todosById.set(id, new Todo(id, todo.type, todo.text, complete));
 }
 
 // Private, for strongest typing, only export `getTodoOrThrow`
@@ -158,9 +170,9 @@ export function removeCompletedTodos(): $ReadOnlyArray<string> {
   return todoIdsToRemove;
 }
 
-export function renameTodo(id: string, text: string) {
+export function renameTodo(id: string, text: string, type: TodoType) {
   const todo = getTodoOrThrow(id);
 
   // Replace with the modified text value
-  todosById.set(id, new Todo(id, text, todo.complete));
+  todosById.set(id, new Todo(id, type, text, todo.complete));
 }

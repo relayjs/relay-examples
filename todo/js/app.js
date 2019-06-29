@@ -24,6 +24,7 @@ import {
   Store,
   type RequestNode,
   type Variables,
+  type NormalizationSplitOperation,
 } from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
@@ -46,10 +47,32 @@ async function fetchQuery(
 
   return response.json();
 }
+const getOperation = (reference: string) =>
+  import(
+    /* webpackChunkName: "[request]" */ `../__generated__/relay/${reference}`
+  );
 
 const modernEnvironment: Environment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource()),
+  operationLoader: {
+    /**
+     * Synchronously load an operation, returning either the node or null if it
+     * cannot be resolved synchronously.
+     */
+    async get(reference: mixed): ?NormalizationSplitOperation {
+      console.log('get triggered', reference);
+      return await getOperation(String(reference));
+    },
+
+    /**
+     * Asynchronously load an operation.
+     */
+    load(reference: mixed): Promise<?NormalizationSplitOperation> {
+      console.log('load triggered', reference);
+      return getOperation(String(reference));
+    },
+  },
 });
 
 const rootElement = document.getElementById('root');

@@ -9,5 +9,6 @@ declare module 'relay-runtime' {
   declare export type Variables = any;
   declare export type ReaderFragment = any;
   declare export type ConcreteRequest = any;
+  declare export type NormalizationSplitOperation = any;
   declare export opaque type FragmentReference;
 }
