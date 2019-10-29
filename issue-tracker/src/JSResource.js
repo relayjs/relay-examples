@@ -28,7 +28,6 @@ class Resource {
 
   get() {
     if (this._result != null) {
-      console.log(this._result);
       return this._result;
     }
   }

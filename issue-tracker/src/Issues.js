@@ -1,7 +1,7 @@
 import graphql from 'babel-plugin-relay/macro';
 import React from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
-import { Link } from 'react-router-dom';
+import Link from './routing/Link';
 
 const { useCallback } = React;
 
