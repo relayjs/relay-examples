@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Relay Example App",
+  "name": "Relay Example App - GitHub Issues Clone",
   "icons": [
     {
       "src": "favicon.ico",
