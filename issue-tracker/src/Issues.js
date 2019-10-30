@@ -5,7 +5,16 @@ import IssuesListItem from './IssuesListItem';
 
 const { useCallback } = React;
 
+/**
+ * Renders a list of issues for a given repository.
+ */
 export default function Issues(props) {
+  // Given a reference to a repository in props.repository, defines *what*
+  // data the component needs about that repository. In this case we fetch
+  // the list of issues starting at a given cursor (initially null to start
+  // at the beginning of the issues list). See the usePaginationFragment()
+  // docs: https://relay.dev/docs/en/experimental/api-reference#usepaginationfragment
+  // for more details about how to use this hook to paginate over lists.
   const { data, loadNext, isLoadingNext } = usePaginationFragment(
     graphql`
       fragment Issues_repository on Repository
@@ -20,6 +29,8 @@ export default function Issues(props) {
           edges {
             __id
             node {
+              # Compose the data dependencies of child components
+              # by spreading their fragments:
               ...IssuesListItem_issue
             }
           }
@@ -29,7 +40,9 @@ export default function Issues(props) {
     props.repository,
   );
 
+  // Callback to paginate the issues list
   const loadMore = useCallback(() => {
+    // Don't fetch again if we're already loading the next page
     if (isLoadingNext) {
       return;
     }
@@ -44,6 +57,7 @@ export default function Issues(props) {
         }
         return (
           <div className="issues-issue" key={edge.__id}>
+            {/* Note how we also spread IssuesListItem's fragment above */}
             <IssuesListItem issue={edge.node} />
           </div>
         );
