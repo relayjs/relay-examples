@@ -3,7 +3,14 @@ import graphql from 'babel-plugin-relay/macro';
 import { usePreloadedQuery } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
 
-export default function Issues(props) {
+/**
+ * The root component for the issue detail route.
+ */
+export default function IssueDetailRoot(props) {
+  // Defines *what* data the component needs via a query. The responsibility of
+  // actually fetching this data belongs to the route definition: it calls
+  // preloadQuery() with the query and variables, and the result is passed
+  // on props.prepared.issueDetailQuery - see src/routes.js
   const { repository, node: issue } = usePreloadedQuery(
     graphql`
       query IssueDetailRootQuery($id: ID!, $owner: String!, $name: String!) {
@@ -12,7 +19,6 @@ export default function Issues(props) {
             login
           }
           name
-          ...Issues_repository
         }
         node(id: $id) {
           ... on Issue {

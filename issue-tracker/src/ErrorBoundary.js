@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * A reusable component for handling errors in a React (sub)tree.
+ */
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
