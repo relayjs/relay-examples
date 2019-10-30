@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "history": "^4.10.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "react": "^0.0.0-experimental-f6b8d31a7",
     "react-dom": "^0.0.0-experimental-f6b8d31a7",
     "react-markdown": "^4.2.2",
@@ -38,8 +40,21 @@
   },
   "devDependencies": {
     "babel-plugin-relay": "^7.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^14.5.8",
+    "prettier": "^1.18.2",
     "relay-compiler": "^7.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsxjson,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

@@ -11,16 +11,19 @@ class Resource {
   load() {
     let promise = this._promise;
     if (promise == null) {
-      promise = this._loader().then(result => {
-        if (result.default) {
-          result = result.default;
-        }
-        this._result = result;
-        return result;
-      }, error => {
-        this._error = error;
-        throw error;
-      });
+      promise = this._loader().then(
+        result => {
+          if (result.default) {
+            result = result.default;
+          }
+          this._result = result;
+          return result;
+        },
+        error => {
+          this._error = error;
+          throw error;
+        },
+      );
       this._promise = promise;
     }
     return promise;

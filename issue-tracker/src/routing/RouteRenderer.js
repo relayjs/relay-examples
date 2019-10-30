@@ -1,7 +1,7 @@
 import React from 'react';
 import RoutingContext from './RoutingContext';
 import ErrorBoundary from '../ErrorBoundary';
-import './RouteRenderer.css'
+import './RouteRenderer.css';
 
 const { useContext, useEffect, useTransition, Suspense, useState } = React;
 
@@ -33,11 +33,17 @@ export default function RouterRenderer() {
   }, [router, startTransition]);
   return (
     <ErrorBoundary>
-      <Suspense fallback={"Loading fallback..."}>
-        {isPending ? <div className="RouteRenderer-pending">Loading pending...</div> : null}
-        <RouteComponent component={routeEntry.route.component} route={routeEntry.match} prepared={routeEntry.prepared} />
+      <Suspense fallback={'Loading fallback...'}>
+        {isPending ? (
+          <div className="RouteRenderer-pending">Loading pending...</div>
+        ) : null}
+        <RouteComponent
+          component={routeEntry.route.component}
+          route={routeEntry.match}
+          prepared={routeEntry.prepared}
+        />
       </Suspense>
-    </ErrorBoundary >
+    </ErrorBoundary>
   );
 }
 

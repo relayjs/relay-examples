@@ -4,33 +4,43 @@ import RelayEnvironment from './RelayEnvironment';
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     exact: true,
     component: JSResource('HomeRoot', () => import('./HomeRoot')),
     prepare: params => {
       const IssuesQuery = require('./__generated__/HomeRootIssuesQuery.graphql');
       return {
-        issuesQuery: preloadQuery(RelayEnvironment, IssuesQuery, {
-          owner: 'facebook',
-          name: 'relay',
-        }, { fetchPolicy: 'store-or-network' }),
+        issuesQuery: preloadQuery(
+          RelayEnvironment,
+          IssuesQuery,
+          {
+            owner: 'facebook',
+            name: 'relay',
+          },
+          { fetchPolicy: 'store-or-network' },
+        ),
       };
     },
   },
   {
-    path: "/issue/:id",
+    path: '/issue/:id',
     component: JSResource('IssueDetailRoot', () => import('./IssueDetailRoot')),
     prepare: params => {
       const IssueDetailQuery = require('./__generated__/IssueDetailRootQuery.graphql');
       return {
-        issueDetailQuery: preloadQuery(RelayEnvironment, IssueDetailQuery, {
-          id: params.id,
-          name: 'relay',
-          owner: 'facebook',
-        }, { fetchPolicy: 'store-or-network' }),
+        issueDetailQuery: preloadQuery(
+          RelayEnvironment,
+          IssueDetailQuery,
+          {
+            id: params.id,
+            name: 'relay',
+            owner: 'facebook',
+          },
+          { fetchPolicy: 'store-or-network' },
+        ),
       };
     },
-  }
+  },
 ];
 
 export default routes;

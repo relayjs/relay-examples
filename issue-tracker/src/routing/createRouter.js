@@ -40,10 +40,10 @@ export default function createRouter(routes, options) {
       const id = nextId++;
       const dispose = () => {
         subscribers.delete(id);
-      }
+      };
       subscribers.set(id, cb);
       return dispose;
-    }
+    },
   };
 
   return { cleanup, context };

@@ -4,7 +4,7 @@ async function fetchRelay(params, variables, _cacheConfig) {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      'Authorization': `bearer ${process.env.REACT_APP_GITHUB_AUTH_TOKEN}`,
+      Authorization: `bearer ${process.env.REACT_APP_GITHUB_AUTH_TOKEN}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({

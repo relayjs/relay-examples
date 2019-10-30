@@ -4,15 +4,20 @@ import Issues from './Issues';
 import React from 'react';
 
 export default function HomeRoot(props) {
-  const data = usePreloadedQuery(graphql`
-    query HomeRootIssuesQuery($owner: String!, $name: String!) {
-      repository(owner: $owner, name: $name) {
-        owner { login }
-        name
-        ...Issues_repository
+  const data = usePreloadedQuery(
+    graphql`
+      query HomeRootIssuesQuery($owner: String!, $name: String!) {
+        repository(owner: $owner, name: $name) {
+          owner {
+            login
+          }
+          name
+          ...Issues_repository
+        }
       }
-    }
-  `, props.prepared.issuesQuery);
+    `,
+    props.prepared.issuesQuery,
+  );
   const { repository } = data;
 
   return (

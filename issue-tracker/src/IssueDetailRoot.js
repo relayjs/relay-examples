@@ -4,26 +4,33 @@ import { usePreloadedQuery } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
 
 export default function Issues(props) {
-  const { repository, node: issue } = usePreloadedQuery(graphql`
-    query IssueDetailRootQuery($id: ID!, $owner: String!, $name: String!) {
-      repository(owner: $owner, name: $name) {
-        owner { login }
-        name
-        ...Issues_repository
-      }
-      node(id: $id) {
-        ... on  Issue {
-          title
-          number
-          author { login }
-          body 
-          closed
+  const { repository, node: issue } = usePreloadedQuery(
+    graphql`
+      query IssueDetailRootQuery($id: ID!, $owner: String!, $name: String!) {
+        repository(owner: $owner, name: $name) {
+          owner {
+            login
+          }
+          name
+          ...Issues_repository
+        }
+        node(id: $id) {
+          ... on Issue {
+            title
+            number
+            author {
+              login
+            }
+            body
+            closed
+          }
         }
       }
-    }
-  `, props.prepared.issueDetailQuery);
+    `,
+    props.prepared.issueDetailQuery,
+  );
   if (issue == null) {
-    return "Issue not found";
+    return 'Issue not found';
   }
 
   return (
@@ -33,9 +40,13 @@ export default function Issues(props) {
       </header>
       <section className="content">
         <div className="issue">
-          <div className="issue-title">#{issue.number} - {issue.title} - {issue.closed ? 'Closed' : 'Open'}</div>
+          <div className="issue-title">
+            #{issue.number} - {issue.title} - {issue.closed ? 'Closed' : 'Open'}
+          </div>
           <div className="issue-author">@{issue.author.login}</div>
-          <div className="issue-body"><ReactMarkdown source={issue.body} /></div>
+          <div className="issue-body">
+            <ReactMarkdown source={issue.body} />
+          </div>
         </div>
       </section>
     </div>

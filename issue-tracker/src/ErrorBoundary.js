@@ -8,7 +8,7 @@ export default class ErrorBoundary extends React.Component {
 
   static getDerivedStateFromError(error) {
     return {
-      error
+      error,
     };
   }
 
@@ -17,7 +17,9 @@ export default class ErrorBoundary extends React.Component {
       return (
         <div>
           <div>Error: {this.state.error.message}</div>
-          <div><pre>{JSON.stringify(this.state.error.source, null, 2)}</pre></div>
+          <div>
+            <pre>{JSON.stringify(this.state.error.source, null, 2)}</pre>
+          </div>
         </div>
       );
     }
