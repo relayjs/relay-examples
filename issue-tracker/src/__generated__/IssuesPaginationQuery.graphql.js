@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c05f80391decbcce4c61e94625d9d1eb
+ * @relayHash c20c5e509b583e8bb481961cbb95ea21
  */
 
 /* eslint-disable */
@@ -42,12 +42,17 @@ query IssuesPaginationQuery(
   }
 }
 
+fragment IssuesListItem_issue on Issue {
+  id
+  title
+}
+
 fragment Issues_repository_a4QoT on Repository {
   issues(after: $cursor, first: $count, states: $states) {
     edges {
       node {
+        ...IssuesListItem_issue
         id
-        title
         __typename
       }
       cursor
@@ -292,7 +297,7 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'IssuesPaginationQuery',
       id: null,
       text:
-        'query IssuesPaginationQuery(\n  $cursor: String\n  $count: Int = 10\n  $states: [IssueState!] = [OPEN]\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Issues_repository_a4QoT\n    id\n  }\n}\n\nfragment Issues_repository_a4QoT on Repository {\n  issues(after: $cursor, first: $count, states: $states) {\n    edges {\n      node {\n        id\n        title\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssuesPaginationQuery(\n  $cursor: String\n  $count: Int = 10\n  $states: [IssueState!] = [OPEN]\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Issues_repository_a4QoT\n    id\n  }\n}\n\nfragment IssuesListItem_issue on Issue {\n  id\n  title\n}\n\nfragment Issues_repository_a4QoT on Repository {\n  issues(after: $cursor, first: $count, states: $states) {\n    edges {\n      node {\n        ...IssuesListItem_issue\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {
         derivedFrom: 'Issues_repository',
         isRefetchableQuery: true,
@@ -301,5 +306,5 @@ const node /*: ConcreteRequest*/ = (function() {
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '56371158ab0936e7d2b06e4c45ff62b8';
+(node/*: any*/).hash = '5040d7f86ce7f263d3a1bf6e624a6953';
 module.exports = node;

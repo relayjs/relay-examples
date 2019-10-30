@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bb43032c4bc1c63cd81ece302e01dd76
+ * @relayHash d4e60b46aa6253b03eed678141e80ffa
  */
 
 /* eslint-disable */
@@ -74,12 +74,17 @@ query IssueDetailRootQuery(
   }
 }
 
+fragment IssuesListItem_issue on Issue {
+  id
+  title
+}
+
 fragment Issues_repository on Repository {
   issues(first: 10, states: [OPEN]) {
     edges {
       node {
+        ...IssuesListItem_issue
         id
-        title
         __typename
       }
       cursor
@@ -429,7 +434,7 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'IssueDetailRootQuery',
       id: null,
       text:
-        'query IssueDetailRootQuery(\n  $id: ID!\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    ...Issues_repository\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n    }\n    id\n  }\n}\n\nfragment Issues_repository on Repository {\n  issues(first: 10, states: [OPEN]) {\n    edges {\n      node {\n        id\n        title\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssueDetailRootQuery(\n  $id: ID!\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    ...Issues_repository\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n    }\n    id\n  }\n}\n\nfragment IssuesListItem_issue on Issue {\n  id\n  title\n}\n\nfragment Issues_repository on Repository {\n  issues(first: 10, states: [OPEN]) {\n    edges {\n      node {\n        ...IssuesListItem_issue\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
   };

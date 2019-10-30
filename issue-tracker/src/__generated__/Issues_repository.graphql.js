@@ -8,6 +8,7 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type IssuesListItem_issue$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Issues_repository$ref: FragmentReference;
 declare export opaque type Issues_repository$fragmentType: Issues_repository$ref;
@@ -16,8 +17,7 @@ export type Issues_repository = {|
     +edges: ?$ReadOnlyArray<?{|
       +__id: string,
       +node: ?{|
-        +id: string,
-        +title: string,
+        +$fragmentRefs: IssuesListItem_issue$ref
       |},
     |}>
   |},
@@ -32,14 +32,7 @@ export type Issues_repository$key = {
 */
 
 const node /*: ReaderFragment*/ = (function() {
-  var v0 = ['issues'],
-    v1 = {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'id',
-      args: null,
-      storageKey: null,
-    };
+  var v0 = ['issues'];
   return {
     kind: 'Fragment',
     name: 'Issues_repository',
@@ -120,20 +113,17 @@ const node /*: ReaderFragment*/ = (function() {
                 concreteType: 'Issue',
                 plural: false,
                 selections: [
-                  (v1 /*: any*/),
-                  {
-                    kind: 'ScalarField',
-                    alias: null,
-                    name: 'title',
-                    args: null,
-                    storageKey: null,
-                  },
                   {
                     kind: 'ScalarField',
                     alias: null,
                     name: '__typename',
                     args: null,
                     storageKey: null,
+                  },
+                  {
+                    kind: 'FragmentSpread',
+                    name: 'IssuesListItem_issue',
+                    args: null,
                   },
                 ],
               },
@@ -185,10 +175,16 @@ const node /*: ReaderFragment*/ = (function() {
           },
         ],
       },
-      (v1 /*: any*/),
+      {
+        kind: 'ScalarField',
+        alias: null,
+        name: 'id',
+        args: null,
+        storageKey: null,
+      },
     ],
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '56371158ab0936e7d2b06e4c45ff62b8';
+(node/*: any*/).hash = '5040d7f86ce7f263d3a1bf6e624a6953';
 module.exports = node;

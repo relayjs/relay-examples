@@ -16,12 +16,12 @@
     "relay-runtime": "^7.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
+    "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "update-schema": "get-graphql-schema -h \"Authorization=bearer $REACT_APP_GITHUB_AUTH_TOKEN\" https://api.github.com/graphql > schema/schema.graphql",
-    "relay": "yarn run relay-compiler --watch --schema schema/schema.graphql --src ./src/"
+    "relay": "yarn run relay-compiler --schema schema/schema.graphql --src ./src/ $@"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "babel-plugin-relay": "^7.0.0",
+    "concurrently": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^14.5.8",
@@ -52,7 +53,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsxjson,css,md}": [
+    "src/**/*.{js,jsx,json,css,md}": [
       "prettier --write",
       "git add"
     ]

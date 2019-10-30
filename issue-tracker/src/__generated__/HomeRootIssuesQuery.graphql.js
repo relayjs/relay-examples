@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash aba6bef186c00347c3764a553584f2c5
+ * @relayHash 418cdc02edacdd2f6670e094fd7bc9aa
  */
 
 /* eslint-disable */
@@ -46,12 +46,17 @@ query HomeRootIssuesQuery(
   }
 }
 
+fragment IssuesListItem_issue on Issue {
+  id
+  title
+}
+
 fragment Issues_repository on Repository {
   issues(first: 10, states: [OPEN]) {
     edges {
       node {
+        ...IssuesListItem_issue
         id
-        title
         __typename
       }
       cursor
@@ -300,7 +305,7 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'HomeRootIssuesQuery',
       id: null,
       text:
-        'query HomeRootIssuesQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    ...Issues_repository\n    id\n  }\n}\n\nfragment Issues_repository on Repository {\n  issues(first: 10, states: [OPEN]) {\n    edges {\n      node {\n        id\n        title\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query HomeRootIssuesQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    ...Issues_repository\n    id\n  }\n}\n\nfragment IssuesListItem_issue on Issue {\n  id\n  title\n}\n\nfragment Issues_repository on Repository {\n  issues(first: 10, states: [OPEN]) {\n    edges {\n      node {\n        ...IssuesListItem_issue\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
   };

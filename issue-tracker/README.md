@@ -1,8 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Relay Hooks Example App - GitHub Issues Clone
+
+This is an example app that implements a (partial) clone of GitHub's issue feature. The focus is on demonstrating experimental React and Relay features in the context of a real app, including Concurrent Mode, Suspense, and Relay Hooks, which are fully compatible with Concurrent Mode and Suspense out of the box. Key features include:
+
+* Implementing the "render-as-you-fetch" pattern discussed in our [React Conf 2019 talk](https://youtu.be/JDDxR1a15Yo?t=3647) about Suspense for Data-Fetching as well as the [React Suspense docs](https://reactjs.org/docs/concurrent-mode-suspense.html#approach-3-render-as-you-fetch-using-suspense). During route transitions the app is configured to load the code and data for new routes *in parallel*, rendering whatever is available.
+* Using Concurrent Mode and Suspense to improve the loading sequence, including [`useTransition()`](https://reactjs.org/docs/concurrent-mode-reference.html#usetransition) for route transitions in order to continue showing the previous route for a brief period while the next route is prepared/rendered.
+* Uses Relay Hooks - `useFragment()` and friends - to colocate data-dependencies of components within the components themselves. 
+* Integrates with React Router primitives to allow preloading of code/data: this is currently a custom integration but we're working with the React Router team to implement support for preloading directly in the framework.
+
+## Setup
+
+This app is meant for experimentation; we recommend cloning and running locally, hacking on the source code, trying to change things and see how it affects the user experience.
+
+1. First, clone the app:
+
+        git clone git@github.com:relayjs/relay-examples.git
+
+2. Change into the app's directory:
+
+        cd relay-examples/issue-tracker
+
+3. Install the app's dependencies:
+
+        # npm users:
+        npm install
+
+        # yarn users:
+        yarn
+
+3. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
+  a. Open https://github.com/settings/tokens.
+  b. Ensure that at least the `repo` scope is selected.
+  c. Generate the token
+  d. Create a file `./relay-examples/issue-tracker/.env.local` and add the following contents (substiture <TOKEN> for your authentication token):
+
+          # issue-tracker/.env.local
+          REACT_APP_GITHUB_AUTH_TOKEN=<TOKEN>
+
+Now you're ready to run the app!
+
+## Running The App
+
+You can run the app by navigating to `relay-examples/issue-tracker/` and then running the start command:
+
+        # npm users:
+        npm start
+
+        # yarn users:
+        yarn start
+
+This will start the development server (including Relay Compiler) and open a browser to [localhost:3000](http://localhost:3000).
+
+## About the App
+
+This app uses a number of technologies including (among others):
+
+- [Create React App](https://github.com/facebook/create-react-app): The app has only a few additions to the default Create React App (CRA) setup - note that these all follow the CRA documentation - the app is *not* ejected:
+  - The app follows the steps in https://create-react-app.dev/docs/adding-relay/ to use CRA's built-in support for Relay GraphQL queries.
+  - The app uses CRA's support for environment variables - https://create-react-app.dev/docs/adding-custom-environment-variables - to allow configuring the GitHub authentication token.
+  - The app enables [prettier](https://prettier.io) for code formatting, as discussed in https://create-react-app.dev/docs/setting-up-your-editor#formatting-code-automatically.
+  - Note that Create React App itself builds upon many great technologies, see the docs for more details!
+- React's [experimental release with Concurrent Mode and Suspense](https://reactjs.org/docs/concurrent-mode-intro.html). 
+- Relay's [experimental release with Hooks and Concurrent Mode/Suspense compatibility](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay).
+- [React Router](https://github.com/ReactTraining/react-router) does not yet support preloading data for routes (the React Router team is working on this), so the app uses React Router's primitives instead, specifically the [`history` package](https://github.com/ReactTraining/history/) and [`react-router-config` package](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config).
 
 ## Available Scripts
 
-In the project directory, you can run:
+The available scripts are primarily those defined by Create React App. In the project directory, you can run:
 
 ### `yarn start`
 
@@ -41,7 +104,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To learn React, check out the [React documentation](https://reactjs.org/concurrent).
+
+To learn Relay, check out the [Relay documentation](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay).
 
 ### Code Splitting
 

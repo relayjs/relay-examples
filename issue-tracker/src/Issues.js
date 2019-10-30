@@ -1,7 +1,7 @@
 import graphql from 'babel-plugin-relay/macro';
 import React from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
-import Link from './routing/Link';
+import IssuesListItem from './IssuesListItem';
 
 const { useCallback } = React;
 
@@ -20,8 +20,7 @@ export default function Issues(props) {
           edges {
             __id
             node {
-              id
-              title
+              ...IssuesListItem_issue
             }
           }
         }
@@ -39,12 +38,22 @@ export default function Issues(props) {
 
   return (
     <div className="issues">
-      {data.issues.edges.map(edge => (
-        <div className="issues-issue" key={edge.__id}>
-          <Link to={`/issue/${edge.node.id}`}>{edge.node.title}</Link>
-        </div>
-      ))}
-      <button className="issues-load-more" onClick={loadMore}>
+      {data.issues.edges.map(edge => {
+        if (edge == null || edge.node == null) {
+          return null;
+        }
+        return (
+          <div className="issues-issue" key={edge.__id}>
+            <IssuesListItem issue={edge.node} />
+          </div>
+        );
+      })}
+      <button
+        name="load more issues"
+        type="button"
+        className="issues-load-more"
+        onClick={loadMore}
+      >
         Load More
       </button>
     </div>
