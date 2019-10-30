@@ -16,7 +16,7 @@
     "relay-runtime": "^7.0.0"
   },
   "scripts": {
-    "start": "yarn run relay || concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
+    "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
     "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
