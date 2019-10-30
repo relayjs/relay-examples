@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash aa58bcba0600f6d89f1b7571b5e9ad41
+ * @relayHash aba6bef186c00347c3764a553584f2c5
  */
 
 /* eslint-disable */
@@ -248,6 +248,18 @@ return {
                     "name": "cursor",
                     "args": null,
                     "storageKey": null
+                  },
+                  {
+                    "kind": "ClientExtension",
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "__id",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
                   }
                 ]
               },

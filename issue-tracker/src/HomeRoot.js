@@ -1,5 +1,4 @@
-import './HomeRoot.css';
-import { usePreloadedQuery} from 'react-relay/hooks';
+import { usePreloadedQuery } from 'react-relay/hooks';
 import graphql from 'babel-plugin-relay/macro';
 import Issues from './Issues';
 import React from 'react';
@@ -17,11 +16,11 @@ export default function HomeRoot(props) {
   const { repository } = data;
 
   return (
-    <div className="HomeRoot">
-      <header className="HomeRoot-header">
+    <div className="root">
+      <header className="header">
         {repository.owner.login}/{repository.name}: Issues
       </header>
-      <section className="HomeRoot-content">
+      <section className="content">
         <Issues repository={repository} />
       </section>
     </div>

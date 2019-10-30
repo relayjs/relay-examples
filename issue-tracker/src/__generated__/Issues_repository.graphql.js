@@ -14,10 +14,11 @@ declare export opaque type Issues_repository$fragmentType: Issues_repository$ref
 export type Issues_repository = {|
   +issues: {|
     +edges: ?$ReadOnlyArray<?{|
+      +__id: string,
       +node: ?{|
         +id: string,
         +title: string,
-      |}
+      |},
     |}>
   |},
   +id: ?string,
@@ -149,6 +150,18 @@ return {
               "name": "cursor",
               "args": null,
               "storageKey": null
+            },
+            {
+              "kind": "ClientExtension",
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "__id",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
             }
           ]
         },
@@ -184,5 +197,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2d2de776cc9c06d2f617811ff14bb0f2';
+(node/*: any*/).hash = '56371158ab0936e7d2b06e4c45ff62b8';
 module.exports = node;

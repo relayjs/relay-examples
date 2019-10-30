@@ -25,6 +25,8 @@ const routes = [
       return {
         issueDetailQuery: preloadQuery(RelayEnvironment, IssueDetailQuery, {
           id: params.id,
+          name: 'relay',
+          owner: 'facebook',
         }, { fetchPolicy: 'store-or-network' }),
       };
     },
