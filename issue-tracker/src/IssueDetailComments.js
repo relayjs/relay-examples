@@ -9,7 +9,7 @@ const { useCallback, useTransition, Suspense, SuspenseList } = React;
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 /**
- * Renders a list of issues for a given repository.
+ * Renders a list of comments for a given issue.
  */
 export default function IssueDetailComments(props) {
   // Given a reference to an issue in props.issue, defines *what*
@@ -44,6 +44,10 @@ export default function IssueDetailComments(props) {
     `,
     props.issue,
   );
+  // Individual comments may suspend while any images are loading (for the
+  // author avatar or content within the comment body). Using `useTransition()`
+  // allows us to continue showing existing comments while the next page of
+  // results is still loading in the background.
   const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 
   // Callback to paginate the issues list
@@ -62,6 +66,10 @@ export default function IssueDetailComments(props) {
     return <div className="issue-no-comments">No comments</div>;
   }
 
+  // Per above, individual comments may suspend while images load. Using <SuspenseList>
+  // allows us to render comments as they are ready, while avoiding showing them out of
+  // order, as could happen if images for a later comment resolved before images for
+  // an earlier comment.
   return (
     <SuspenseList revealOrder="forwards">
       {comments.map(edge => {
@@ -70,6 +78,8 @@ export default function IssueDetailComments(props) {
         }
         const comment = edge.node;
         return (
+          // Wrap each comment in a separate suspense fallback to allow them to commit
+          // individually; SuspenseList ensures they'll reveal in-order.
           <Suspense fallback={null}>
             <div className="issue-comment" key={edge.__id}>
               <SuspenseImage
