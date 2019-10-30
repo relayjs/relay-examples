@@ -48,7 +48,8 @@ code {
   padding: 2px 0;
 }
 
-.issues-load-more {
+.issues-load-more,
+.issue-comments-load-more {
   margin-top: 20px;
   padding: 4px 10px;
   background-color: #fff;
@@ -61,11 +62,44 @@ code {
 
 .issue-title {
   font-size: 120%;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #282c34;
+}
+
+.issue-title-github-link {
+  float: right;
 }
 
 .issue-author {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.issue-comment {
+  padding: 10px 0px;
+  margin-left: 48px;
   border-bottom: 1px solid #282c34;
+}
+
+.issue-comment-body p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.issue-comment-author-name {
+  font-weight: bold;
+  padding: 8px 0px;
+}
+
+.issue-comment-author-image {
+  float: left;
+  margin-left: -48px;
+  padding-right: 16px;
+  width: 32px;
+  height: 32px;
+}
+
+.issue-no-comments {
+  margin-top: 20px;
+  font-weight: bold;
 }
