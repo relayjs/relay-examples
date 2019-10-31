@@ -109,9 +109,7 @@ export default function IssueDetailComments(props) {
         >
           {isPending || isLoadingNext ? 'Loading...' : 'Load More'}
         </button>
-      ) : (
-        <div className="issue-no-comments">No more comments</div>
-      )}
+      ) : null}
     </SuspenseList>
   );
 }
