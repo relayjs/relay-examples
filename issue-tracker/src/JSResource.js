@@ -91,7 +91,6 @@ export default function JSResource(moduleId, loader) {
   let resource = resourceMap.get(moduleId);
   if (resource == null) {
     resource = new Resource(loader);
-    resource.id = moduleId;
     resourceMap.set(moduleId, resource);
   }
   return resource;
