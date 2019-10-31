@@ -80,8 +80,8 @@ export default function IssueDetailComments(props) {
         return (
           // Wrap each comment in a separate suspense fallback to allow them to commit
           // individually; SuspenseList ensures they'll reveal in-order.
-          <Suspense fallback={null}>
-            <div className="issue-comment" key={edge.__id}>
+          <Suspense fallback={null} key={edge.__id}>
+            <div className="issue-comment">
               <SuspenseImage
                 className="issue-comment-author-image"
                 title={`${comment.author.login}'s avatar`}
@@ -109,7 +109,9 @@ export default function IssueDetailComments(props) {
         >
           {isPending || isLoadingNext ? 'Loading...' : 'Load More'}
         </button>
-      ) : null}
+      ) : (
+        <div className="issue-no-comments">No more comments</div>
+      )}
     </SuspenseList>
   );
 }

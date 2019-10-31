@@ -4,6 +4,7 @@ import { usePreloadedQuery } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
 import SuspenseImage from './SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
+import IssueActions from './IssueActions';
 
 /**
  * The root component for the issue detail route.
@@ -34,6 +35,7 @@ export default function IssueDetailRoot(props) {
             closed
             url
             ...IssueDetailComments_issue
+            ...IssueActions_issue
           }
         }
       }
@@ -78,6 +80,7 @@ export default function IssueDetailRoot(props) {
             </div>
           </div>
           <IssueDetailComments issue={issue} />
+          <IssueActions issue={issue} />
         </div>
       </section>
     </div>
