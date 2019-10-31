@@ -12,13 +12,11 @@ export default function createRouter(routes, options) {
   const history = createBrowserHistory(options);
 
   // Find the initial match and prepare it
-  const initialMatch = matchRoute(routes, history.location);
-  const initialPrepared = prepareRoute(initialMatch.route, initialMatch.match);
+  const initialMatches = matchRoute(routes, history.location);
+  const initialEntries = prepareMatches(initialMatches);
   let currentEntry = {
     location: history.location,
-    match: initialMatch.match,
-    prepared: initialPrepared,
-    route: initialMatch.route,
+    entries: initialEntries,
   };
 
   // maintain a set of subscribers to the active entry
@@ -30,16 +28,13 @@ export default function createRouter(routes, options) {
   // occurs *outside* of - and *before* - rendering.
   const cleanup = history.listen((location, action) => {
     if (location.pathname === currentEntry.location.pathname) {
-      console.log('history change but same pathname');
       return;
     }
-    const matched = matchRoute(routes, location);
-    const prepared = prepareRoute(matched.route, matched.match);
+    const matches = matchRoute(routes, location);
+    const entries = prepareMatches(matches);
     const nextEntry = {
       location,
-      match: matched.match,
-      prepared,
-      route: matched.route,
+      entries,
     };
     currentEntry = nextEntry;
     subscribers.forEach(cb => cb(nextEntry));
@@ -70,20 +65,23 @@ export default function createRouter(routes, options) {
  */
 function matchRoute(routes, location) {
   const matchedRoutes = matchRoutes(routes, location.pathname);
-  if (!Array.isArray(matchedRoutes) || matchedRoutes.length !== 1) {
+  if (!Array.isArray(matchedRoutes) || matchedRoutes.length === 0) {
     throw new Error('No route for ' + location.pathname);
   }
-  return matchedRoutes[0];
+  return matchedRoutes;
 }
 
 /**
  * Load the data for the matched route, given the params extracted from the route
  */
-function prepareRoute(matchedRoute, matchData) {
-  const prepared = matchedRoute.prepare(matchData.params);
-  const Component = matchedRoute.component.get();
-  if (Component == null) {
-    matchedRoute.component.load(); // eagerly load
-  }
-  return prepared;
+function prepareMatches(matches) {
+  return matches.map(match => {
+    const { route, match: matchData } = match;
+    const prepared = route.prepare(matchData.params);
+    const Component = route.component.get();
+    if (Component == null) {
+      route.component.load(); // eagerly load
+    }
+    return { component: route.component, prepared, routeData: matchData };
+  });
 }

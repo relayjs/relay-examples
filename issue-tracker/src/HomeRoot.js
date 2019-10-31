@@ -15,11 +15,6 @@ export default function HomeRoot(props) {
     graphql`
       query HomeRootIssuesQuery($owner: String!, $name: String!) {
         repository(owner: $owner, name: $name) {
-          owner {
-            login
-          }
-          name
-
           # Compose the data dependencies of child components
           # by spreading their fragments:
           ...Issues_repository
@@ -30,15 +25,5 @@ export default function HomeRoot(props) {
   );
   const { repository } = data;
 
-  return (
-    <div className="root">
-      <header className="header">
-        {repository.owner.login}/{repository.name}: Issues
-      </header>
-      <section className="content">
-        {/* Note how we also spread Issues's fragment above */}
-        <Issues repository={repository} />
-      </section>
-    </div>
-  );
+  return <Issues repository={repository} />;
 }

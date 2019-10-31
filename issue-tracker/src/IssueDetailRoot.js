@@ -16,13 +16,7 @@ export default function IssueDetailRoot(props) {
   // on props.prepared.issueDetailQuery - see src/routes.js
   const { repository, node: issue } = usePreloadedQuery(
     graphql`
-      query IssueDetailRootQuery($id: ID!, $owner: String!, $name: String!) {
-        repository(owner: $owner, name: $name) {
-          owner {
-            login
-          }
-          name
-        }
+      query IssueDetailRootQuery($id: ID!) {
         node(id: $id) {
           ... on Issue {
             title
@@ -47,42 +41,33 @@ export default function IssueDetailRoot(props) {
   }
 
   return (
-    <div className="root">
-      <header className="header">
-        {repository.owner.login}/{repository.name}: Issues
-      </header>
-      <section className="content">
-        <div className="issue">
-          <div className="issue-title">
-            #{issue.number} - {issue.title} - {issue.closed ? 'Closed' : 'Open'}
-            <a
-              className="issue-title-github-link"
-              href={issue.url}
-              title="Issue on GitHub"
-            >
-              View on GitHub
-            </a>
-          </div>
-          <div className="issue-comment">
-            <SuspenseImage
-              className="issue-comment-author-image"
-              title={`${issue.author.login}'s avatar`}
-              src={issue.author.avatarUrl}
-            />
-            <div className="issue-comment-author-name">
-              {issue.author.login}
-            </div>
-            <div className="issue-comment-body">
-              <ReactMarkdown
-                source={issue.body}
-                renderers={{ image: SuspenseImage }}
-              />
-            </div>
-          </div>
-          <IssueDetailComments issue={issue} />
-          <IssueActions issue={issue} />
+    <div className="issue">
+      <div className="issue-title">
+        #{issue.number} - {issue.title} - {issue.closed ? 'Closed' : 'Open'}
+        <a
+          className="issue-title-github-link"
+          href={issue.url}
+          title="Issue on GitHub"
+        >
+          View on GitHub
+        </a>
+      </div>
+      <div className="issue-comment">
+        <SuspenseImage
+          className="issue-comment-author-image"
+          title={`${issue.author.login}'s avatar`}
+          src={issue.author.avatarUrl}
+        />
+        <div className="issue-comment-author-name">{issue.author.login}</div>
+        <div className="issue-comment-body">
+          <ReactMarkdown
+            source={issue.body}
+            renderers={{ image: SuspenseImage }}
+          />
         </div>
-      </section>
+      </div>
+      <IssueDetailComments issue={issue} />
+      <IssueActions issue={issue} />
     </div>
   );
 }
