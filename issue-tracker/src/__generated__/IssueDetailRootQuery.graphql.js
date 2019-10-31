@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2ab80ea2b0af2587436cbc7d70a2cb2e
+ * @relayHash 80ef64da38db11ae1b3579d45ec2c8ef
  */
 
 /* eslint-disable */
@@ -12,17 +12,9 @@ import type { ConcreteRequest } from 'relay-runtime';
 type IssueActions_issue$ref = any;
 type IssueDetailComments_issue$ref = any;
 export type IssueDetailRootQueryVariables = {|
-  id: string,
-  owner: string,
-  name: string,
+  id: string
 |};
 export type IssueDetailRootQueryResponse = {|
-  +repository: ?{|
-    +owner: {|
-      +login: string
-    |},
-    +name: string,
-  |},
   +node: ?{|
     +title?: string,
     +number?: number,
@@ -34,7 +26,7 @@ export type IssueDetailRootQueryResponse = {|
     +closed?: boolean,
     +url?: any,
     +$fragmentRefs: IssueDetailComments_issue$ref & IssueActions_issue$ref,
-  |},
+  |}
 |};
 export type IssueDetailRootQuery = {|
   variables: IssueDetailRootQueryVariables,
@@ -45,18 +37,7 @@ export type IssueDetailRootQuery = {|
 /*
 query IssueDetailRootQuery(
   $id: ID!
-  $owner: String!
-  $name: String!
 ) {
-  repository(owner: $owner, name: $name) {
-    owner {
-      __typename
-      login
-      id
-    }
-    name
-    id
-  }
   node(id: $id) {
     __typename
     ... on Issue {
@@ -119,109 +100,78 @@ const node /*: ConcreteRequest*/ = (function() {
         type: 'ID!',
         defaultValue: null,
       },
-      {
-        kind: 'LocalArgument',
-        name: 'owner',
-        type: 'String!',
-        defaultValue: null,
-      },
-      {
-        kind: 'LocalArgument',
-        name: 'name',
-        type: 'String!',
-        defaultValue: null,
-      },
     ],
     v1 = [
-      {
-        kind: 'Variable',
-        name: 'name',
-        variableName: 'name',
-      },
-      {
-        kind: 'Variable',
-        name: 'owner',
-        variableName: 'owner',
-      },
-    ],
-    v2 = {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'login',
-      args: null,
-      storageKey: null,
-    },
-    v3 = {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'name',
-      args: null,
-      storageKey: null,
-    },
-    v4 = [
       {
         kind: 'Variable',
         name: 'id',
         variableName: 'id',
       },
     ],
-    v5 = {
+    v2 = {
       kind: 'ScalarField',
       alias: null,
       name: 'title',
       args: null,
       storageKey: null,
     },
-    v6 = {
+    v3 = {
       kind: 'ScalarField',
       alias: null,
       name: 'number',
       args: null,
       storageKey: null,
     },
-    v7 = {
+    v4 = {
+      kind: 'ScalarField',
+      alias: null,
+      name: 'login',
+      args: null,
+      storageKey: null,
+    },
+    v5 = {
       kind: 'ScalarField',
       alias: null,
       name: 'avatarUrl',
       args: null,
       storageKey: null,
     },
-    v8 = {
+    v6 = {
       kind: 'ScalarField',
       alias: null,
       name: 'body',
       args: null,
       storageKey: null,
     },
-    v9 = {
+    v7 = {
       kind: 'ScalarField',
       alias: null,
       name: 'closed',
       args: null,
       storageKey: null,
     },
-    v10 = {
+    v8 = {
       kind: 'ScalarField',
       alias: null,
       name: 'url',
       args: null,
       storageKey: null,
     },
-    v11 = {
+    v9 = {
       kind: 'ScalarField',
       alias: null,
       name: '__typename',
       args: null,
       storageKey: null,
     },
-    v12 = {
+    v10 = {
       kind: 'ScalarField',
       alias: null,
       name: 'id',
       args: null,
       storageKey: null,
     },
-    v13 = {
+    v11 = {
       kind: 'LinkedField',
       alias: null,
       name: 'author',
@@ -230,13 +180,13 @@ const node /*: ConcreteRequest*/ = (function() {
       concreteType: null,
       plural: false,
       selections: [
-        (v11 /*: any*/),
-        (v2 /*: any*/),
-        (v7 /*: any*/),
-        (v12 /*: any*/),
+        (v9 /*: any*/),
+        (v4 /*: any*/),
+        (v5 /*: any*/),
+        (v10 /*: any*/),
       ],
     },
-    v14 = [
+    v12 = [
       {
         kind: 'Literal',
         name: 'first',
@@ -255,31 +205,9 @@ const node /*: ConcreteRequest*/ = (function() {
         {
           kind: 'LinkedField',
           alias: null,
-          name: 'repository',
-          storageKey: null,
-          args: (v1 /*: any*/),
-          concreteType: 'Repository',
-          plural: false,
-          selections: [
-            {
-              kind: 'LinkedField',
-              alias: null,
-              name: 'owner',
-              storageKey: null,
-              args: null,
-              concreteType: null,
-              plural: false,
-              selections: [(v2 /*: any*/)],
-            },
-            (v3 /*: any*/),
-          ],
-        },
-        {
-          kind: 'LinkedField',
-          alias: null,
           name: 'node',
           storageKey: null,
-          args: (v4 /*: any*/),
+          args: (v1 /*: any*/),
           concreteType: null,
           plural: false,
           selections: [
@@ -287,8 +215,8 @@ const node /*: ConcreteRequest*/ = (function() {
               kind: 'InlineFragment',
               type: 'Issue',
               selections: [
-                (v5 /*: any*/),
-                (v6 /*: any*/),
+                (v2 /*: any*/),
+                (v3 /*: any*/),
                 {
                   kind: 'LinkedField',
                   alias: null,
@@ -297,11 +225,11 @@ const node /*: ConcreteRequest*/ = (function() {
                   args: null,
                   concreteType: null,
                   plural: false,
-                  selections: [(v2 /*: any*/), (v7 /*: any*/)],
+                  selections: [(v4 /*: any*/), (v5 /*: any*/)],
                 },
+                (v6 /*: any*/),
+                (v7 /*: any*/),
                 (v8 /*: any*/),
-                (v9 /*: any*/),
-                (v10 /*: any*/),
                 {
                   kind: 'FragmentSpread',
                   name: 'IssueDetailComments_issue',
@@ -326,53 +254,30 @@ const node /*: ConcreteRequest*/ = (function() {
         {
           kind: 'LinkedField',
           alias: null,
-          name: 'repository',
-          storageKey: null,
-          args: (v1 /*: any*/),
-          concreteType: 'Repository',
-          plural: false,
-          selections: [
-            {
-              kind: 'LinkedField',
-              alias: null,
-              name: 'owner',
-              storageKey: null,
-              args: null,
-              concreteType: null,
-              plural: false,
-              selections: [(v11 /*: any*/), (v2 /*: any*/), (v12 /*: any*/)],
-            },
-            (v3 /*: any*/),
-            (v12 /*: any*/),
-          ],
-        },
-        {
-          kind: 'LinkedField',
-          alias: null,
           name: 'node',
           storageKey: null,
-          args: (v4 /*: any*/),
+          args: (v1 /*: any*/),
           concreteType: null,
           plural: false,
           selections: [
-            (v11 /*: any*/),
-            (v12 /*: any*/),
+            (v9 /*: any*/),
+            (v10 /*: any*/),
             {
               kind: 'InlineFragment',
               type: 'Issue',
               selections: [
-                (v5 /*: any*/),
+                (v2 /*: any*/),
+                (v3 /*: any*/),
+                (v11 /*: any*/),
                 (v6 /*: any*/),
-                (v13 /*: any*/),
+                (v7 /*: any*/),
                 (v8 /*: any*/),
-                (v9 /*: any*/),
-                (v10 /*: any*/),
                 {
                   kind: 'LinkedField',
                   alias: null,
                   name: 'comments',
                   storageKey: 'comments(first:10)',
-                  args: (v14 /*: any*/),
+                  args: (v12 /*: any*/),
                   concreteType: 'IssueCommentConnection',
                   plural: false,
                   selections: [
@@ -394,10 +299,10 @@ const node /*: ConcreteRequest*/ = (function() {
                           concreteType: 'IssueComment',
                           plural: false,
                           selections: [
-                            (v12 /*: any*/),
-                            (v13 /*: any*/),
-                            (v8 /*: any*/),
+                            (v10 /*: any*/),
                             (v11 /*: any*/),
+                            (v6 /*: any*/),
+                            (v9 /*: any*/),
                           ],
                         },
                         {
@@ -452,7 +357,7 @@ const node /*: ConcreteRequest*/ = (function() {
                   kind: 'LinkedHandle',
                   alias: null,
                   name: 'comments',
-                  args: (v14 /*: any*/),
+                  args: (v12 /*: any*/),
                   handle: 'connection',
                   key: 'IssueDetailComments_comments',
                   filters: null,
@@ -468,11 +373,11 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'IssueDetailRootQuery',
       id: null,
       text:
-        'query IssueDetailRootQuery(\n  $id: ID!\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssueDetailRootQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fa28996e3441334e3d927e85af10315f';
+(node/*: any*/).hash = '42e7a1bc529086397c84040c8f84c752';
 module.exports = node;
