@@ -56,6 +56,10 @@ code {
   border-color: #282c34;
 }
 
+.issue-comments-load-more {
+  margin-left: 48px;
+}
+
 .issue {
   /* max-width: 50vw; */
 }
@@ -101,5 +105,28 @@ code {
 
 .issue-no-comments {
   margin-top: 20px;
+  margin-left: 48px;
   font-weight: bold;
+}
+
+.issue-actions {
+  margin-top: 20px;
+  margin-left: 48px;
+  padding-top: 10px;
+  border-top: 1px solid #282c34;
+}
+
+.issue-actions-text {
+  display: block;
+  padding: 4px 10px;
+  background-color: #fff;
+  border-color: #282c34;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.issue-actions-submit {
+  padding: 4px 10px;
+  background-color: #fff;
+  border-color: #282c34;
 }

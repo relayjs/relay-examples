@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f0aa55683059dc236ee106eadb649ef9
+ * @relayHash 2ab80ea2b0af2587436cbc7d70a2cb2e
  */
 
 /* eslint-disable */
@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type IssueActions_issue$ref = any;
 type IssueDetailComments_issue$ref = any;
 export type IssueDetailRootQueryVariables = {|
   id: string,
@@ -32,7 +33,7 @@ export type IssueDetailRootQueryResponse = {|
     +body?: string,
     +closed?: boolean,
     +url?: any,
-    +$fragmentRefs: IssueDetailComments_issue$ref,
+    +$fragmentRefs: IssueDetailComments_issue$ref & IssueActions_issue$ref,
   |},
 |};
 export type IssueDetailRootQuery = {|
@@ -73,9 +74,14 @@ query IssueDetailRootQuery(
       closed
       url
       ...IssueDetailComments_issue
+      ...IssueActions_issue
     }
     id
   }
+}
+
+fragment IssueActions_issue on Issue {
+  id
 }
 
 fragment IssueDetailComments_issue on Issue {
@@ -301,6 +307,11 @@ const node /*: ConcreteRequest*/ = (function() {
                   name: 'IssueDetailComments_issue',
                   args: null,
                 },
+                {
+                  kind: 'FragmentSpread',
+                  name: 'IssueActions_issue',
+                  args: null,
+                },
               ],
             },
           ],
@@ -457,11 +468,11 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'IssueDetailRootQuery',
       id: null,
       text:
-        'query IssueDetailRootQuery(\n  $id: ID!\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n    }\n    id\n  }\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssueDetailRootQuery(\n  $id: ID!\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'eb7a581c8bab5b46c9dafa3a023cfb55';
+(node/*: any*/).hash = 'fa28996e3441334e3d927e85af10315f';
 module.exports = node;

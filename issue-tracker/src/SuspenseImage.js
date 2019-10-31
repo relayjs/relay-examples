@@ -2,7 +2,6 @@ import React from 'react';
 import JSResource from './JSResource';
 
 export default function SuspenseImage(props) {
-  console.log(props);
   const { src } = props;
   if (src != null) {
     // JSResource is meant for loading resources, but the implementation is
