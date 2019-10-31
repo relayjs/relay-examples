@@ -121,12 +121,14 @@ code {
   padding: 4px 10px;
   background-color: #fff;
   border-color: #282c34;
+  box-sizing: border-box;
   width: 100%;
   margin-bottom: 20px;
 }
 
-.issue-actions-submit {
+.issue-actions-button {
   padding: 4px 10px;
   background-color: #fff;
   border-color: #282c34;
+  margin-right: 10px;
 }

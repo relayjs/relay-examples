@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 80ef64da38db11ae1b3579d45ec2c8ef
+ * @relayHash ad22b58a838582f6871494562ce52544
  */
 
 /* eslint-disable */
@@ -63,6 +63,7 @@ query IssueDetailRootQuery(
 
 fragment IssueActions_issue on Issue {
   id
+  closed
 }
 
 fragment IssueDetailComments_issue on Issue {
@@ -373,7 +374,7 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'IssueDetailRootQuery',
       id: null,
       text:
-        'query IssueDetailRootQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssueDetailRootQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n  closed\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
   };

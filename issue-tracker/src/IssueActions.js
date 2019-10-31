@@ -26,6 +26,26 @@ const AddCommentMutation = graphql`
   }
 `;
 
+const CloseIssueMutation = graphql`
+  mutation IssueActionsCloseIssueMutation($input: CloseIssueInput!) {
+    closeIssue(input: $input) {
+      issue {
+        closed
+      }
+    }
+  }
+`;
+
+const ReopenIssueMutation = graphql`
+  mutation IssueActionsReopenIssueMutation($input: ReopenIssueInput!) {
+    reopenIssue(input: $input) {
+      issue {
+        closed
+      }
+    }
+  }
+`;
+
 export default function IssueActions(props) {
   // Get the active Relay environment; developers should always prefer to use the environment
   // from context rather than a singleton, as this keeps the app flexible. For example, this
@@ -53,6 +73,7 @@ export default function IssueActions(props) {
     graphql`
       fragment IssueActions_issue on Issue {
         id
+        closed
       }
     `,
     props.issue,
@@ -138,6 +159,46 @@ export default function IssueActions(props) {
     [environment, commentText, setCommentText, issueId, pendingMutationRef],
   );
 
+  // Reopen/Close the issue
+  const onToggleOpen = useCallback(
+    event => {
+      event.preventDefault();
+
+      // If there's already a mutation pending bail out
+      if (pendingMutationRef.current != null) {
+        return;
+      }
+
+      // Switch mutation based on the current open/close status
+      const mutation = data.closed ? ReopenIssueMutation : CloseIssueMutation;
+
+      const request = commitMutation(environment, {
+        mutation,
+        variables: {
+          input: {
+            issueId: data.id,
+          },
+        },
+        onCompleted: () => {
+          pendingMutationRef.current = null;
+          setPending(false);
+        },
+        onError: errors => {
+          console.error(errors);
+          pendingMutationRef.current = null;
+          setPending(false);
+        },
+        // note: there's no need for an updater() function here, Relay merges fields
+        // for objects that have an `id`
+      });
+      // Immediately update the ref with the current request
+      pendingMutationRef.current = request;
+      // Mark the mutation as pending
+      setPending(true);
+    },
+    [environment, data, pendingMutationRef],
+  );
+
   useEffect(() => {
     // Cancel the mutation when the component unmounts; this is necessary to
     // avoid attempting to modify the unmountd component (e.g. w setPending)
@@ -157,11 +218,19 @@ export default function IssueActions(props) {
         placeholder={'Leave a comment'}
       />
       <button
-        className="issue-actions-submit"
+        className="issue-actions-button"
         type="submit"
         disabled={isPending || commentText.trim() === ''}
       >
         Comment
+      </button>
+      <button
+        className="issue-actions-button"
+        type="button"
+        onClick={onToggleOpen}
+        disabled={isPending}
+      >
+        {data.closed ? 'Reopen' : 'Close'}
       </button>
     </form>
   );
