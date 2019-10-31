@@ -2,6 +2,8 @@ import graphql from 'babel-plugin-relay/macro';
 import React from 'react';
 import { usePreloadedQuery } from 'react-relay/hooks';
 
+const { Suspense } = React;
+
 export default function Root(props) {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
@@ -27,7 +29,11 @@ export default function Root(props) {
       <header className="header">
         {repository.owner.login}/{repository.name}: Issues
       </header>
-      <section className="content">{props.children}</section>
+      <section className="content">
+        {/* Wrap the child in a Suspense boundary to allow rendering the 
+        layout even if the main content isn't ready */}
+        <Suspense fallback={'Loading...'}>{props.children}</Suspense>
+      </section>
     </div>
   );
 }
