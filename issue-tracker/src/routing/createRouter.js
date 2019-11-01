@@ -48,7 +48,7 @@ export default function createRouter(routes, options) {
     },
     preloadCode(pathname) {
       // preload just the code for a route, without storing the result
-      const matches = matchRoutes(routes, { pathname });
+      const matches = matchRoutes(routes, pathname);
       matches.forEach(({ route }) => route.component.load());
     },
     preload(pathname) {
