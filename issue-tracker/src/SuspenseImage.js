@@ -16,6 +16,10 @@ export default function SuspenseImage(props) {
         img.onload = () => {
           resolve(src);
         };
+        img.onerror = error => {
+          console.error(error);
+          resolve(src);
+        };
         img.src = src;
       });
     });
