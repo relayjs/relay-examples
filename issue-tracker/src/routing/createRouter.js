@@ -46,6 +46,16 @@ export default function createRouter(routes, options) {
     get() {
       return currentEntry;
     },
+    preloadCode(pathname) {
+      // preload just the code for a route, without storing the result
+      const matches = matchRoutes(routes, pathname);
+      matches.forEach(({ route }) => route.component.load());
+    },
+    preload(pathname) {
+      // preload the code and data for a route, without storing the result
+      const matches = matchRoutes(routes, pathname);
+      prepareMatches(matches);
+    },
     subscribe(cb) {
       const id = nextId++;
       const dispose = () => {
