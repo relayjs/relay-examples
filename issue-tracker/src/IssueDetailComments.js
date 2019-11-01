@@ -106,6 +106,7 @@ export default function IssueDetailComments(props) {
           type="button"
           className="issue-comments-load-more"
           onClick={loadMore}
+          disabled={isPending || isLoadingNext}
         >
           {isPending || isLoadingNext ? 'Loading...' : 'Load More'}
         </button>
