@@ -71,35 +71,37 @@ export default function IssueDetailComments(props) {
   // order, as could happen if images for a later comment resolved before images for
   // an earlier comment.
   return (
-    <SuspenseList revealOrder="forwards">
-      {comments.map(edge => {
-        if (edge == null || edge.node == null) {
-          return null;
-        }
-        const comment = edge.node;
-        return (
-          // Wrap each comment in a separate suspense fallback to allow them to commit
-          // individually; SuspenseList ensures they'll reveal in-order.
-          <Suspense fallback={null} key={edge.__id}>
-            <div className="issue-comment">
-              <SuspenseImage
-                className="issue-comment-author-image"
-                title={`${comment.author.login}'s avatar`}
-                src={comment.author.avatarUrl}
-              />
-              <div className="issue-comment-author-name">
-                {comment.author.login}
-              </div>
-              <div className="issue-comment-body">
-                <ReactMarkdown
-                  source={comment.body}
-                  renderers={{ image: SuspenseImage }}
+    <>
+      <SuspenseList revealOrder="forwards">
+        {comments.map(edge => {
+          if (edge == null || edge.node == null) {
+            return null;
+          }
+          const comment = edge.node;
+          return (
+            // Wrap each comment in a separate suspense fallback to allow them to commit
+            // individually; SuspenseList ensures they'll reveal in-order.
+            <Suspense fallback={null} key={edge.__id}>
+              <div className="issue-comment">
+                <SuspenseImage
+                  className="issue-comment-author-image"
+                  title={`${comment.author.login}'s avatar`}
+                  src={comment.author.avatarUrl}
                 />
+                <div className="issue-comment-author-name">
+                  {comment.author.login}
+                </div>
+                <div className="issue-comment-body">
+                  <ReactMarkdown
+                    source={comment.body}
+                    renderers={{ image: SuspenseImage }}
+                  />
+                </div>
               </div>
-            </div>
-          </Suspense>
-        );
-      })}
+            </Suspense>
+          );
+        })}
+      </SuspenseList>
       {hasNext ? (
         <button
           name="load more comments"
@@ -111,6 +113,6 @@ export default function IssueDetailComments(props) {
           {isPending || isLoadingNext ? 'Loading...' : 'Load More'}
         </button>
       ) : null}
-    </SuspenseList>
+    </>
   );
 }
