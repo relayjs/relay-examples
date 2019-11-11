@@ -1,10 +1,18 @@
 import { graphql } from 'babel-plugin-relay/macro';
 import React from 'react';
 import { usePreloadedQuery } from 'react-relay/hooks';
+import { RootQuery } from './__generated__/RootQuery.graphql';
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 
 const { Suspense } = React;
 
-export default function Root(props: any) {
+interface Props {
+  prepared: {
+    rootQuery: PreloadedQuery<RootQuery>;
+  };
+}
+
+const Root: React.FC<Props> = props => {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
@@ -22,13 +30,13 @@ export default function Root(props: any) {
     `,
     props.prepared.rootQuery,
   );
-  // @ts-ignore: FIX
+
   const { repository } = data;
 
   return (
     <div className="root">
       <header className="header">
-        {repository.owner.login}/{repository.name}: Issues
+        {repository!.owner.login}/{repository!.name}: Issues
       </header>
       <section className="content">
         {/* Wrap the child in a Suspense boundary to allow rendering the 
@@ -37,4 +45,6 @@ export default function Root(props: any) {
       </section>
     </div>
   );
-}
+};
+
+export default Root;

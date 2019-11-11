@@ -5,16 +5,23 @@ import ReactMarkdown from 'react-markdown';
 import SuspenseImage from './utils/SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
 import IssueActions from './IssueActions';
-
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
+import { IssueDetailRootQuery } from './__generated__/IssueDetailRootQuery.graphql';
 /**
  * The root component for the issue detail route.
  */
-export default function IssueDetailRoot(props: any) {
+
+interface Props {
+  prepared: {
+    issueDetailQuery: PreloadedQuery<IssueDetailRootQuery>;
+  };
+}
+
+const IssueDetailRoot: React.FC<Props> = props => {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
   // on props.prepared.issueDetailQuery - see src/routes.js
-  // @ts-ignore: Fix
   const { node: issue } = usePreloadedQuery(
     graphql`
       query IssueDetailRootQuery($id: ID!) {
@@ -39,7 +46,7 @@ export default function IssueDetailRoot(props: any) {
   );
 
   if (issue == null) {
-    return 'Issue not found';
+    return <div>'Issue not found'</div>;
   }
 
   return (
@@ -48,7 +55,7 @@ export default function IssueDetailRoot(props: any) {
         #{issue.number} - {issue.title} - {issue.closed ? 'Closed' : 'Open'}
         <a
           className="issue-title-github-link"
-          href={issue.url}
+          href={issue.url as string}
           title="Issue on GitHub"
         >
           View on GitHub
@@ -57,10 +64,10 @@ export default function IssueDetailRoot(props: any) {
       <div className="issue-comment">
         <SuspenseImage
           className="issue-comment-author-image"
-          title={`${issue.author.login}'s avatar`}
-          src={issue.author.avatarUrl}
+          title={`${issue!.author!.login}'s avatar`}
+          src={issue!.author!.avatarUrl as string}
         />
-        <div className="issue-comment-author-name">{issue.author.login}</div>
+        <div className="issue-comment-author-name">{issue!.author!.login}</div>
         <div className="issue-comment-body">
           <ReactMarkdown
             source={issue.body}
@@ -72,4 +79,6 @@ export default function IssueDetailRoot(props: any) {
       <IssueActions issue={issue} />
     </div>
   );
-}
+};
+
+export default IssueDetailRoot;

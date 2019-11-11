@@ -3,6 +3,7 @@ import React from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
 import SuspenseImage from './utils/SuspenseImage';
+import { IssueDetailComments_issue$key } from './__generated__/IssueDetailComments_issue.graphql';
 
 const { useCallback, useTransition, Suspense, SuspenseList } = React;
 
@@ -11,7 +12,12 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 /**
  * Renders a list of comments for a given issue.
  */
-export default function IssueDetailComments(props: any) {
+
+interface Props {
+  issue: IssueDetailComments_issue$key;
+}
+
+const IssueDetailComments: React.FC<Props> = props => {
   // Given a reference to an issue in props.issue, defines *what*
   // data the component needs about that repository. In this case we fetch
   // the list of comments starting at a given cursor (initially null to start
@@ -61,7 +67,7 @@ export default function IssueDetailComments(props: any) {
     });
   }, [isLoadingNext, loadNext, startTransition]);
 
-  const comments = data.comments.edges;
+  const comments = data!.comments.edges;
   if (comments == null || comments.length === 0) {
     return <div className="issue-no-comments">No comments</div>;
   }
@@ -75,7 +81,7 @@ export default function IssueDetailComments(props: any) {
       <SuspenseList revealOrder="forwards">
         {comments.map((edge: any) => {
           if (edge == null || edge.node == null) {
-            return null;
+            return <></>;
           }
           const comment = edge.node;
           return (
@@ -115,4 +121,6 @@ export default function IssueDetailComments(props: any) {
       ) : null}
     </>
   );
-}
+};
+
+export default IssueDetailComments;

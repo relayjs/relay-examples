@@ -3,6 +3,7 @@ import React from 'react';
 import { useFragment } from 'react-relay/hooks';
 import { ConnectionHandler } from 'relay-runtime';
 import useMutation from './utils/useMutation';
+import { IssueActions_issue$key } from './__generated__/IssueActions_issue.graphql';
 
 const { useCallback, useState } = React;
 
@@ -47,7 +48,11 @@ const ReopenIssueMutation = graphql`
   }
 `;
 
-export default function IssueActions(props: any) {
+interface Props {
+  issue: IssueActions_issue$key;
+}
+
+export const IssueActions: React.FC<Props> = props => {
   // Track the current comment text - this is used as the value of the comment textarea
   const [commentText, setCommentText] = useState('');
 
@@ -170,4 +175,6 @@ export default function IssueActions(props: any) {
       </button>
     </form>
   );
-}
+};
+
+export default IssueActions;
