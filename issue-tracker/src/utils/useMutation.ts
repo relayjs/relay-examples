@@ -4,7 +4,10 @@ import { commitMutation } from 'relay-runtime';
 
 const { useState, useRef, useCallback, useEffect } = React;
 
-export default function useMutation(mutation) {
+// TODO: fix
+export default function useMutation(
+  mutation: any,
+): [boolean, (...args: any[]) => void] {
   const environment = useRelayEnvironment();
   const [isPending, setPending] = useState(false);
   const requestRef = useRef(null);
@@ -35,6 +38,7 @@ export default function useMutation(mutation) {
         },
         mutation,
       });
+      // @ts-ignore: FIX
       requestRef.current = request;
       setPending(true);
     },
@@ -42,7 +46,9 @@ export default function useMutation(mutation) {
   );
   useEffect(() => {
     mountedRef.current = true;
-    return () => (mountedRef.current = false);
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
   return [isPending, execute];
 }

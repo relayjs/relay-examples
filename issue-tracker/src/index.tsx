@@ -1,3 +1,5 @@
+/// <reference types="react-dom/experimental" />
+/// <reference types="react/experimental" />
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
@@ -11,7 +13,7 @@ import RouterRenderer from './routing/RouteRenderer';
 // Uses the custom router setup to define a router instanace that we can pass through context
 const router = createRouter(routes);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <RelayEnvironmentProvider environment={RelayEnvironment}>
     <RoutingContext.Provider value={router.context}>
       {/* Render the active route */}

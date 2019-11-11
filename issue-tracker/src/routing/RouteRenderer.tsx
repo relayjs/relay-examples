@@ -21,12 +21,12 @@ export default function RouterRenderer() {
 
   // Store the active entry in state - this allows the renderer to use features like
   // useTransition to delay when state changes become visible to the user.
-  const [routeEntry, setRouteEntry] = useState(router.get());
+  const [routeEntry, setRouteEntry] = useState(router!.get());
 
   // On mount subscribe for route changes
   useEffect(() => {
     // Check if the route has changed between the last render and commit:
-    const currentEntry = router.get();
+    const currentEntry = router!.get();
     if (currentEntry !== routeEntry) {
       // if there was a concurrent modification, rerender and exit
       setRouteEntry(currentEntry);
@@ -35,7 +35,7 @@ export default function RouterRenderer() {
 
     // If there *wasn't* a concurrent change to the route, then the UI
     // is current: subscribe for subsequent route updates
-    const dispose = router.subscribe(nextEntry => {
+    const dispose = router!.subscribe(nextEntry => {
       // startTransition() delays the effect of the setRouteEntry (setState) call
       // for a brief period, continuing to show the old state while the new
       // state (route) is prepared.
@@ -69,7 +69,7 @@ export default function RouterRenderer() {
   // To achieve this, we reverse the list so we can start at the bottom-most
   // component, and iteratively construct parent components w the previous
   // value as the child of the next one:
-  const reversedItems = [].concat(routeEntry.entries).reverse(); // reverse is in place, but we want a copy so concat
+  const reversedItems = [...routeEntry.entries].reverse(); // reverse is in place, but we want a copy so concat
   const firstItem = reversedItems[0];
   // the bottom-most component is special since it will have no children
   // (though we could probably just pass null children to it)
@@ -119,7 +119,8 @@ export default function RouterRenderer() {
  * our ErrorBoundary/Suspense components, so we have to ensure that the suspend/error happens
  * in a child component.
  */
-function RouteComponent(props) {
+// TODO: Fix Typings
+function RouteComponent(props: any) {
   const Component = props.component.read();
   const { routeData, prepared } = props;
   return (

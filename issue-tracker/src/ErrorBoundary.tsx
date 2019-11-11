@@ -3,13 +3,19 @@ import React from 'react';
 /**
  * A reusable component for handling errors in a React (sub)tree.
  */
-export default class ErrorBoundary extends React.Component {
-  constructor(props) {
+
+interface Props {}
+interface State {
+  error: { message: string; source: any } | null;
+}
+
+export default class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { error: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: State['error']) {
     return {
       error,
     };

@@ -1,7 +1,12 @@
 import React from 'react';
 import JSResource from './JSResource';
 
-export default function SuspenseImage(props) {
+const SuspenseImage: React.FC<{
+  src: string;
+  alt?: string;
+  className?: string;
+  title?: string;
+}> = props => {
   const { src } = props;
   if (src != null) {
     // JSResource is meant for loading resources, but the implementation is
@@ -27,4 +32,6 @@ export default function SuspenseImage(props) {
     resource.read(); // suspends while the image is pending
   }
   return <img alt={props.alt} {...props} />;
-}
+};
+
+export default SuspenseImage;

@@ -1,19 +1,20 @@
 import React from 'react';
-import graphql from 'babel-plugin-relay/macro';
+import { graphql } from 'babel-plugin-relay/macro';
 import { usePreloadedQuery } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
-import SuspenseImage from './SuspenseImage';
+import SuspenseImage from './utils/SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
 import IssueActions from './IssueActions';
 
 /**
  * The root component for the issue detail route.
  */
-export default function IssueDetailRoot(props) {
+export default function IssueDetailRoot(props: any) {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
   // on props.prepared.issueDetailQuery - see src/routes.js
+  // @ts-ignore: Fix
   const { node: issue } = usePreloadedQuery(
     graphql`
       query IssueDetailRootQuery($id: ID!) {
@@ -36,6 +37,7 @@ export default function IssueDetailRoot(props) {
     `,
     props.prepared.issueDetailQuery,
   );
+
   if (issue == null) {
     return 'Issue not found';
   }

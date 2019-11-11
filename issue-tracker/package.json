@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-relay": "^7.0.1",
     "history": "^4.10.1",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
@@ -16,12 +17,12 @@
     "relay-runtime": "^7.0.0"
   },
   "scripts": {
-    "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
+    "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"PORT=3001 react-scripts start\" \"yarn run relay --watch\"",
     "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "update-schema": "get-graphql-schema -h \"Authorization=bearer $REACT_APP_GITHUB_AUTH_TOKEN\" https://api.github.com/graphql > schema/schema.graphql",
-    "relay": "yarn run relay-compiler --schema schema/schema.graphql --src ./src/ $@"
+    "relay": "yarn run relay-compiler --schema schema/schema.graphql --language typescript --src ./src/ $@"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,13 +40,20 @@
     ]
   },
   "devDependencies": {
+    "@types/history": "^4.7.3",
+    "@types/node": "^12.12.7",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-router-config": "^5.0.1",
     "babel-plugin-relay": "^7.0.0",
     "concurrently": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^14.5.8",
     "prettier": "^1.18.2",
-    "relay-compiler": "^7.0.0"
+    "relay-compiler": "^7.0.0",
+    "relay-compiler-language-typescript": "^10.1.0",
+    "typescript": "^3.7.2"
   },
   "husky": {
     "hooks": {

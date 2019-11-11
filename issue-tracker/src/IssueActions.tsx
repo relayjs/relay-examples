@@ -1,8 +1,8 @@
-import graphql from 'babel-plugin-relay/macro';
+import { graphql } from 'babel-plugin-relay/macro';
 import React from 'react';
 import { useFragment } from 'react-relay/hooks';
 import { ConnectionHandler } from 'relay-runtime';
-import useMutation from './useMutation';
+import useMutation from './utils/useMutation';
 
 const { useCallback, useState } = React;
 
@@ -47,7 +47,7 @@ const ReopenIssueMutation = graphql`
   }
 `;
 
-export default function IssueActions(props) {
+export default function IssueActions(props: any) {
   // Track the current comment text - this is used as the value of the comment textarea
   const [commentText, setCommentText] = useState('');
 
@@ -94,7 +94,7 @@ export default function IssueActions(props) {
          * doesn't magically know where addComment.commentEdge should be added into the data graph.
          * So we define an `updater` function to imperatively update thee store.
          */
-        updater: store => {
+        updater: (store: any) => {
           // Get a reference to the issue
           const issue = store.get(issueId);
           if (issue == null) {
