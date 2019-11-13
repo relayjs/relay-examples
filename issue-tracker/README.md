@@ -2,24 +2,24 @@
 
 This is an example app that implements a (partial) clone of GitHub's issue feature. The focus is on demonstrating experimental React and Relay features in the context of a real app, including Concurrent Mode, Suspense, and Relay Hooks, which are fully compatible with Concurrent Mode and Suspense out of the box. Key features include:
 
-- Implementing the "render-as-you-fetch" pattern discussed in our [React Conf 2019 talk](https://youtu.be/JDDxR1a15Yo?t=3647) about Suspense for Data-Fetching as well as the [React Suspense docs](https://reactjs.org/docs/concurrent-mode-suspense.html#approach-3-render-as-you-fetch-using-suspense). During route transitions the app is configured to load the code and data for new routes _in parallel_, rendering whatever is available.
-- Using Concurrent Mode and Suspense to improve the loading sequence, including [`useTransition()`](https://reactjs.org/docs/concurrent-mode-reference.html#usetransition) for route transitions in order to continue showing the previous route for a brief period while the next route is prepared/rendered.
-- Uses Relay Hooks - `useFragment()` and friends - to colocate data-dependencies of components within the components themselves.
-- Integrates with React Router primitives to allow preloading of code/data: this is currently a custom integration but we're working with the React Router team to implement support for preloading directly in the framework.
+- * Implementing the "render-as-you-fetch" pattern discussed in our [React Conf 2019 talk](https://youtu.be/JDDxR1a15Yo?t=3647) about Suspense for Data-Fetching as well as the [React Suspense docs](https://reactjs.org/docs/concurrent-mode-suspense.html#approach-3-render-as-you-fetch-using-suspense). During route transitions the app is configured to load the code and data for new routes *in parallel*, rendering whatever is available.
+- * Using Concurrent Mode and Suspense to improve the loading sequence, including [`useTransition()`](https://reactjs.org/docs/concurrent-mode-reference.html#usetransition) for route transitions in order to continue showing the previous route for a brief period while the next route is prepared/rendered.
+- * Uses Relay Hooks - `useFragment()` and friends - to colocate data-dependencies of components within the components themselves.
+- * Integrates with React Router primitives to allow preloading of code/data: this is currently a custom integration but we're working with the React Router team to implement support for preloading directly in the framework.
 
 ## Setup
 
 This app is meant for experimentation; we recommend cloning and running locally, hacking on the source code, trying to change things and see how it affects the user experience.
 
-1.  First, clone the app:
+1. First, clone the app:
 
         git clone git@github.com:relayjs/relay-examples.git
 
-2.  Change into the app's directory:
+2. Change into the app's directory:
 
         cd relay-examples/issue-tracker
 
-3.  Install the app's dependencies:
+3. Install the app's dependencies:
 
         # npm users:
         npm install
@@ -27,7 +27,7 @@ This app is meant for experimentation; we recommend cloning and running locally,
         # yarn users:
         yarn
 
-4.  Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
+4. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
     a. Open https://github.com/settings/tokens.
     b. Ensure that at least the `repo` scope is selected.
     c. Generate the token
@@ -54,7 +54,7 @@ This will start the development server (including Relay Compiler) and open a bro
 
 This app uses a number of technologies including (among others):
 
-- [Create React App](https://github.com/facebook/create-react-app): The app has only a few additions to the default Create React App (CRA) setup - note that these all follow the CRA documentation - the app is _not_ ejected:
+- [Create React App](https://github.com/facebook/create-react-app): The app has only a few additions to the default Create React App (CRA) setup - note that these all follow the CRA documentation - the app is *not* ejected:
   - The app follows the steps in https://create-react-app.dev/docs/adding-relay/ to use CRA's built-in support for Relay GraphQL queries.
   - The app uses CRA's support for environment variables - https://create-react-app.dev/docs/adding-custom-environment-variables - to allow configuring the GitHub authentication token.
   - The app enables [prettier](https://prettier.io) for code formatting, as discussed in https://create-react-app.dev/docs/setting-up-your-editor#formatting-code-automatically.
