@@ -14,8 +14,9 @@ interface Props {
 export default function Link(props: Props) {
   const router = useContext(RoutingContext);
 
-  if (router == null)
+  if (router == null) {
     throw new Error('<Link> requires a routing context to be set.');
+  }
 
   // When the user clicks, change route
   const changeRoute = useCallback(

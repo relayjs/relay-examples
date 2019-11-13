@@ -29,7 +29,9 @@ export default function useMutation<TOperationType extends MutationParameters>(
         ...config,
         mutation,
         onCompleted: (response, errors) => {
-          if (!mountedRef.current) return;
+          if (!mountedRef.current) {
+            return;
+          }
 
           requestRef.current = null;
           setPending(false);
