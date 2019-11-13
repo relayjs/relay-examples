@@ -5,7 +5,7 @@ import React, {
   Suspense,
   useTransition,
 } from 'react';
-import RoutingContext, { RouteComponentProps } from './RoutingContext';
+import RoutingContext, { Entry } from './RoutingContext';
 import ErrorBoundary from '../ErrorBoundary';
 import './RouteRenderer.css';
 
@@ -107,6 +107,10 @@ export default function RouterRenderer() {
       </Suspense>
     </ErrorBoundary>
   );
+}
+
+export interface RouteComponentProps extends Entry {
+  children?: JSX.Element;
 }
 
 /**

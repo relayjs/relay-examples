@@ -8,9 +8,6 @@ export type PreparedQuery = {
   [queryName: string]: PreloadedQuery<any>;
 };
 
-export interface RouteComponentProps extends Entry {
-  children?: JSX.Element;
-}
 export interface Route {
   location: Location;
   entries: Entry[];
