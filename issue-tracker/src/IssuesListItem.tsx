@@ -13,7 +13,7 @@ interface Props {
 /**
  * Renders a single item (issue) in the issues list.
  */
-export default function IssueListItem(props: Props) {
+export default function IssuesListItem(props: Props) {
   // Given a reference to a specific issue - props.issue - define *what*
   // data the component needs about the issue in order to render it.
   // Note that Relay will only give the component access to the exact fields

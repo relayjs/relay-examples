@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
 import graphql from 'babel-plugin-relay/macro';
 
-import IssueListItem from './IssueListItem';
+import IssuesListItem from './IssuesListItem';
 
 import { Issues_repository$key } from './__generated__/Issues_repository.graphql';
 
@@ -60,7 +60,7 @@ export default function Issues(props: Props) {
         return (
           <div className="issues-issue" key={edge.__id}>
             {/* Note how we also spread IssuesListItem's fragment above */}
-            <IssueListItem issue={edge.node} />
+            <IssuesListItem issue={edge.node} />
           </div>
         );
       })}
