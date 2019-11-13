@@ -35,7 +35,7 @@ const Root = (props: Props) => {
   return (
     <div className="root">
       <header className="header">
-        {repository!.owner.login}/{repository!.name}: Issues
+        {repository?.owner.login}/{repository?.name}: Issues
       </header>
       <section className="content">
         {/* Wrap the child in a Suspense boundary to allow rendering the
