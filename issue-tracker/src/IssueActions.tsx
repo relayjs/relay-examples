@@ -84,13 +84,16 @@ export default function IssueActions(props: Props) {
   );
   const issueId = data.id;
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentText(e.target.value);
-  }, []);
+  const onChange = useCallback(
+    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setCommentText(event.target.value);
+    },
+    [],
+  );
 
   const onSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
       addComment({
         variables: {
           input: {
@@ -130,8 +133,8 @@ export default function IssueActions(props: Props) {
   );
 
   const onToggleOpen = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.preventDefault();
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.preventDefault();
 
       // Switch mutation based on the current open/close status
       const config = {
