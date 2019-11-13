@@ -13,8 +13,15 @@ export interface Route {
   entries: Entry[];
 }
 
+export interface GenericRouteComponentProps extends Entry {
+  children?: JSX.Element;
+}
+export type GenericRouteComponent = (
+  props: GenericRouteComponentProps,
+) => JSX.Element;
+
 export interface Entry {
-  component?: Resource;
+  component?: Resource<GenericRouteComponent>;
   prepared: PreparedQuery;
   routeData: match<{}>;
 }

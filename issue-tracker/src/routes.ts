@@ -3,6 +3,7 @@ import { preloadQuery } from 'react-relay/hooks';
 import JSResource from './JSResource';
 import RelayEnvironment from './RelayEnvironment';
 import { RouteConfig } from './routing/createRouter';
+import { GenericRouteComponent } from './routing/RoutingContext';
 
 import PreloadRootQuery, { RootQuery } from './__generated__/RootQuery.graphql';
 import PreloadIssuesQuery, {
@@ -14,7 +15,10 @@ import PreloadIssueDetailRootQuery, {
 
 const routes: RouteConfig[] = [
   {
-    component: JSResource('Root', () => import('./Root')),
+    component: JSResource<GenericRouteComponent>(
+      'Root',
+      () => import('./Root') as any,
+    ),
     prepare: () => ({
       rootQuery: preloadQuery<RootQuery>(
         RelayEnvironment,
@@ -42,7 +46,10 @@ const routes: RouteConfig[] = [
          * implemented in our mini-router yet, but one can imagine iterating over all
          * the matched route entries and calling .load() on each of their components.
          */
-        component: JSResource('HomeRoot', () => import('./HomeRoot')),
+        component: JSResource<GenericRouteComponent>(
+          'HomeRoot',
+          () => import('./HomeRoot') as any,
+        ),
         /**
          * A function to prepare the data for the `component` in parallel with loading
          * that component code. The actual data to fetch is defined by the component
@@ -66,8 +73,9 @@ const routes: RouteConfig[] = [
       },
       {
         path: '/issue/:id',
-        component: JSResource('IssueDetailRoot', () =>
-          import('./IssueDetailRoot'),
+        component: JSResource<GenericRouteComponent>(
+          'IssueDetailRoot',
+          () => import('./IssueDetailRoot') as any,
         ),
         prepare: params => ({
           issueDetailQuery: preloadQuery<IssueDetailRootQuery>(

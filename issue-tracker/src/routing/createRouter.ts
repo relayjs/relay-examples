@@ -7,7 +7,7 @@ import {
   matchRoutes,
   RouteConfig as DefaultRouteConfig,
 } from 'react-router-config';
-import { Router, Route, Entry } from './RoutingContext';
+import { Router, Route, Entry, GenericRouteComponent } from './RoutingContext';
 import { Resource } from '../JSResource';
 import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import { match } from 'react-router';
@@ -18,7 +18,7 @@ export interface RouteConfig {
   path?: string | string[];
   exact?: boolean;
   strict?: boolean;
-  component: Resource;
+  component: Resource<GenericRouteComponent>;
   prepare?: (params: {
     [key: string]: string;
   }) => { [queryName: string]: PreloadedQuery<any> };

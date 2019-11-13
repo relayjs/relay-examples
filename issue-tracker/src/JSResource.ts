@@ -1,5 +1,5 @@
 declare const UniqueId: string;
-type Loader = () => Promise<Result>;
+type Loader<T> = () => Promise<T>;
 
 export type Result = any;
 
@@ -9,23 +9,25 @@ export type Result = any;
  * modules, so to be able to access already-loaded modules synchronously we
  * must have stored the previous result somewhere.
  */
-const resourceMap = new Map<typeof UniqueId, Resource>();
+const resourceMap = new Map<typeof UniqueId, Resource<any>>();
 
 /**
  * A generic resource: given some method to asynchronously load a value - the loader()
  * argument - it allows accessing the state of the resource.
  */
-export class Resource {
+export class Resource<T> {
   private error: Error | null;
-  private loader: Loader;
-  private promise: Promise<Result> | null;
-  private result: Result | null;
+  private loader: Loader<T>;
+  private promise: Promise<T> | null;
+  private result: T | null; // can't distinguish if a value is loaded if T is nullable, so we have to add a 'state' field
+  private state: 'uninitialized' | 'loaded' | 'error' | 'pending';
 
-  constructor(loader: Loader) {
+  constructor(loader: Loader<T>) {
     this.error = null;
     this.loader = loader;
     this.promise = null;
     this.result = null;
+    this.state = 'uninitialized';
   }
 
   /**
@@ -35,18 +37,21 @@ export class Resource {
     let promise = this.promise;
     if (promise == null) {
       promise = this.loader()
-        .then(result => {
+        .then((result: T & { default?: T }) => {
           if (result.default) {
             result = result.default;
           }
           this.result = result;
+          this.state = 'loaded';
           return result;
         })
         .catch(error => {
           this.error = error;
+          this.state = 'error';
           throw error;
         });
       this.promise = promise;
+      this.state = 'pending';
     }
     return promise;
   }
@@ -70,9 +75,9 @@ export class Resource {
    * - Return the data of the resource if available.
    */
   read() {
-    if (this.result != null) {
+    if (this.state === 'loaded') {
       return this.result;
-    } else if (this.error != null) {
+    } else if (this.state === 'error') {
       throw this.error;
     } else {
       throw this.promise;
@@ -97,7 +102,10 @@ export class Resource {
  * @param {*} moduleId A globally unique identifier for the resource used for caching
  * @param {*} loader A method to load the resource's data if necessary
  */
-export default function JSResource(moduleId: typeof UniqueId, loader: Loader) {
+export default function JSResource<T>(
+  moduleId: typeof UniqueId,
+  loader: Loader<T>,
+): Resource<T> {
   let resource = resourceMap.get(moduleId);
   if (resource == null) {
     resource = new Resource(loader);

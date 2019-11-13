@@ -125,7 +125,7 @@ export interface RouteComponentProps extends Entry {
  * in a child component.
  */
 function RouteComponent(props: RouteComponentProps) {
-  const Component = props.component!.read();
+  const Component = props.component!.read()!;
   const { routeData, prepared } = props;
   return (
     <Component
