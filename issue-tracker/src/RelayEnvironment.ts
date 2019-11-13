@@ -68,7 +68,7 @@ export default new Environment({
     // query results, allowing the user to return to recently visited pages
     // and reusing cached data if its available/fresh.
 
-    // TODO: RelayModernStore needs to be updated on @types/relay-runtime in order to allow Scheduler config such as gcReleaseBufferSize
+    // TODO: RelayModernStore needs to be updated on @types/relay-runtime in order to allow new configuration options such as gcReleaseBufferSize
     // @ts-ignore
     gcReleaseBufferSize: 10,
   }),
