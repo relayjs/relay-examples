@@ -6,7 +6,7 @@ import {
   RequestParameters,
   Variables,
   CacheConfig,
-} from 'relay-runtime'
+} from 'relay-runtime';
 
 /**
  * Relay requires developers to configure a "fetch" function that tells Relay how to load
@@ -19,11 +19,11 @@ async function fetchRelay(
   _cacheConfig: CacheConfig,
 ) {
   // Check that the auth token is configured
-  const REACT_APP_GITHUB_AUTH_TOKEN = process.env.REACT_APP_GITHUB_AUTH_TOKEN
+  const REACT_APP_GITHUB_AUTH_TOKEN = process.env.REACT_APP_GITHUB_AUTH_TOKEN;
   if (REACT_APP_GITHUB_AUTH_TOKEN == null) {
     throw new Error(
       'This app requires a GitHub authentication token to be configured. See readme.md for setup details.',
-    )
+    );
   }
 
   // Fetch data from GitHub's GraphQL API:
@@ -37,27 +37,27 @@ async function fetchRelay(
       query: params.text,
       variables,
     }),
-  })
+  });
 
   // Get the response as JSON
-  const json = await response.json()
+  const json = await response.json();
 
   // GraphQL returns exceptions (for example, a missing required variable) in the "errors"
   // property of the response. If any exceptions occurred when processing the request,
   // throw an error to indicate to the developer what went wrong.
   if (Array.isArray(json.errors)) {
-    console.log(json.errors)
+    console.log(json.errors);
     throw new Error(`
       Error fetching GraphQL query '${
   params.name
 }' with variables '${JSON.stringify(variables)}': ${JSON.stringify(
   json.errors,
 )}
-    `)
+    `);
   }
 
   // Otherwise, return the full payload.
-  return json
+  return json;
 }
 
 export default new Environment({
@@ -72,4 +72,4 @@ export default new Environment({
     // @ts-ignore
     gcReleaseBufferSize: 10,
   }),
-})
+});

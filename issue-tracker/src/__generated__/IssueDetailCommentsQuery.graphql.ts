@@ -1,21 +1,21 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
 export type IssueDetailCommentsQueryVariables = {
-  cursor?: string | null
-  count?: number | null
-  id: string
-}
+  cursor?: string | null;
+  count?: number | null;
+  id: string;
+};
 export type IssueDetailCommentsQueryResponse = {
   readonly node: {
-    readonly ' $fragmentRefs': FragmentRefs<'IssueDetailComments_issue'>
-  } | null
-}
+    readonly ' $fragmentRefs': FragmentRefs<'IssueDetailComments_issue'>;
+  } | null;
+};
 export type IssueDetailCommentsQuery = {
-  readonly response: IssueDetailCommentsQueryResponse
-  readonly variables: IssueDetailCommentsQueryVariables
-}
+  readonly response: IssueDetailCommentsQueryResponse;
+  readonly variables: IssueDetailCommentsQueryVariables;
+};
 
 /*
 query IssueDetailCommentsQuery(
@@ -110,7 +110,7 @@ const node: ConcreteRequest = (function() {
         name: 'first',
         variableName: 'count',
       },
-    ]
+    ];
   return {
     kind: 'Request',
     fragment: {
@@ -308,7 +308,7 @@ const node: ConcreteRequest = (function() {
         isRefetchableQuery: true,
       },
     },
-  }
-})()
-;(node as any).hash = '674952f209c2653f27a5fad5539df511'
-export default node
+  };
+})();
+(node as any).hash = '674952f209c2653f27a5fad5539df511';
+export default node;

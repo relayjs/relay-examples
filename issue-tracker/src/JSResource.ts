@@ -1,7 +1,7 @@
-declare const UniqueId: string
-type Loader = () => Promise<Result>
+declare const UniqueId: string;
+type Loader = () => Promise<Result>;
 
-export type Result = any
+export type Result = any;
 
 /**
  * A cache of resources to avoid loading the same module twice. This is important
@@ -9,46 +9,46 @@ export type Result = any
  * modules, so to be able to access already-loaded modules synchronously we
  * must have stored the previous result somewhere.
  */
-const resourceMap = new Map<typeof UniqueId, Resource>()
+const resourceMap = new Map<typeof UniqueId, Resource>();
 
 /**
  * A generic resource: given some method to asynchronously load a value - the loader()
  * argument - it allows accessing the state of the resource.
  */
 export class Resource {
-  private error: Error | null
-  private loader: Loader
-  private promise: Promise<Result> | null
-  private result: Result | null
+  private error: Error | null;
+  private loader: Loader;
+  private promise: Promise<Result> | null;
+  private result: Result | null;
 
   constructor(loader: Loader) {
-    this.error = null
-    this.loader = loader
-    this.promise = null
-    this.result = null
+    this.error = null;
+    this.loader = loader;
+    this.promise = null;
+    this.result = null;
   }
 
   /**
    * Loads the resource if necessary.
    */
   load() {
-    let promise = this.promise
+    let promise = this.promise;
     if (promise == null) {
       promise = this.loader()
         .then(result => {
           if (result.default) {
-            result = result.default
+            result = result.default;
           }
-          this.result = result
-          return result
+          this.result = result;
+          return result;
         })
         .catch(error => {
-          this.error = error
-          throw error
-        })
-      this.promise = promise
+          this.error = error;
+          throw error;
+        });
+      this.promise = promise;
     }
-    return promise
+    return promise;
   }
 
   /**
@@ -57,7 +57,7 @@ export class Resource {
    */
   get() {
     if (this.result != null) {
-      return this.result
+      return this.result;
     }
   }
 
@@ -71,11 +71,11 @@ export class Resource {
    */
   read() {
     if (this.result != null) {
-      return this.result
+      return this.result;
     } else if (this.error != null) {
-      throw this.error
+      throw this.error;
     } else {
-      throw this.promise
+      throw this.promise;
     }
   }
 }
@@ -98,10 +98,10 @@ export class Resource {
  * @param {*} loader A method to load the resource's data if necessary
  */
 export default function JSResource(moduleId: typeof UniqueId, loader: Loader) {
-  let resource = resourceMap.get(moduleId)
+  let resource = resourceMap.get(moduleId);
   if (resource == null) {
-    resource = new Resource(loader)
-    resourceMap.set(moduleId, resource)
+    resource = new Resource(loader);
+    resourceMap.set(moduleId, resource);
   }
-  return resource
+  return resource;
 }

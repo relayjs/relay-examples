@@ -3,20 +3,20 @@ import React, {
   SuspenseList,
   useCallback,
   Suspense,
-} from 'react'
-import { usePaginationFragment } from 'react-relay/hooks'
-import graphql from 'babel-plugin-relay/macro'
+} from 'react';
+import { usePaginationFragment } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
 
-import SuspenseImage from './SuspenseImage'
+import SuspenseImage from './SuspenseImage';
 
-import { IssueDetailComments_issue$key } from './__generated__/IssueDetailComments_issue.graphql'
-import ReactMarkdown from 'react-markdown'
+import { IssueDetailComments_issue$key } from './__generated__/IssueDetailComments_issue.graphql';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
-  issue: IssueDetailComments_issue$key
+  issue: IssueDetailComments_issue$key;
 }
 
-const SUSPENSE_CONFIG = { timeoutMs: 2000 }
+const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 /**
  * Renders a list of comments for a given issue.
@@ -53,26 +53,26 @@ export default function IssueDetailComments(props: Props) {
       }
     `,
     props.issue,
-  )
+  );
   // Individual comments may suspend while any images are loading (for the
   // author avatar or content within the comment body). Using `useTransition()`
   // allows us to continue showing existing comments while the next page of
   // results is still loading in the background.
-  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG)
+  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 
   // Callback to paginate the issues list
   const loadMore = useCallback(() => {
     // Don't fetch again if we're already loading the next page
     if (isLoadingNext) {
-      return
+      return;
     }
     startTransition(() => {
-      loadNext(10)
-    })
-  }, [isLoadingNext, loadNext, startTransition])
+      loadNext(10);
+    });
+  }, [isLoadingNext, loadNext, startTransition]);
 
   if (data?.comments.edges == null || data.comments.edges.length === 0) {
-    return <div className="issue-no-comments">No comments</div>
+    return <div className="issue-no-comments">No comments</div>;
   }
 
   return (
@@ -110,5 +110,5 @@ export default function IssueDetailComments(props: Props) {
         </button>
       ) : null}
     </>
-  )
+  );
 }

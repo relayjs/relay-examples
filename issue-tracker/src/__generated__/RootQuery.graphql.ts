@@ -1,22 +1,22 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
 export type RootQueryVariables = {
-  owner: string
-  name: string
-}
+  owner: string;
+  name: string;
+};
 export type RootQueryResponse = {
   readonly repository: {
     readonly owner: {
-      readonly login: string
-    }
-    readonly name: string
-  } | null
-}
+      readonly login: string;
+    };
+    readonly name: string;
+  } | null;
+};
 export type RootQuery = {
-  readonly response: RootQueryResponse
-  readonly variables: RootQueryVariables
-}
+  readonly response: RootQueryResponse;
+  readonly variables: RootQueryVariables;
+};
 
 /*
 query RootQuery(
@@ -82,7 +82,7 @@ const node: ConcreteRequest = (function() {
       name: 'id',
       args: null,
       storageKey: null,
-    }
+    };
   return {
     kind: 'Request',
     fragment: {
@@ -164,7 +164,7 @@ const node: ConcreteRequest = (function() {
         'query RootQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    id\n  }\n}\n',
       metadata: {},
     },
-  }
-})()
-;(node as any).hash = '86d44615100f8e82c5a3ff63daa08bd5'
-export default node
+  };
+})();
+(node as any).hash = '86d44615100f8e82c5a3ff63daa08bd5';
+export default node;

@@ -1,13 +1,13 @@
-import React, { useCallback } from 'react'
-import { usePaginationFragment } from 'react-relay/hooks'
-import graphql from 'babel-plugin-relay/macro'
+import React, { useCallback } from 'react';
+import { usePaginationFragment } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
 
-import IssueListItem from './IssueListItem'
+import IssueListItem from './IssueListItem';
 
-import { Issues_repository$key } from './__generated__/Issues_repository.graphql'
+import { Issues_repository$key } from './__generated__/Issues_repository.graphql';
 
 interface Props {
-  repository: Issues_repository$key
+  repository: Issues_repository$key;
 }
 
 /**
@@ -43,26 +43,26 @@ export default function Issues(props: Props) {
       }
     `,
     props.repository,
-  )
+  );
 
   // Callback to paginate the issues list
   const loadMore = useCallback(() => {
     // Don't fetch again if we're already loading the next page
-    if (isLoadingNext) return
-    loadNext(10)
-  }, [isLoadingNext, loadNext])
+    if (isLoadingNext) return;
+    loadNext(10);
+  }, [isLoadingNext, loadNext]);
 
   return (
     <div className="issues">
       {data?.issues.edges?.map(edge => {
-        if (edge == null || edge.node == null) return null
+        if (edge == null || edge.node == null) return null;
 
         return (
           <div className="issues-issue" key={edge.__id}>
             {/* Note how we also spread IssuesListItem's fragment above */}
             <IssueListItem issue={edge.node} />
           </div>
-        )
+        );
       })}
       <button
         name="load more issues"
@@ -73,5 +73,5 @@ export default function Issues(props: Props) {
         Load More
       </button>
     </div>
-  )
+  );
 }

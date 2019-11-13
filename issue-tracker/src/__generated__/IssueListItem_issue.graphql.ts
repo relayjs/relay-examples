@@ -1,17 +1,17 @@
 /* tslint:disable */
 
-import { ReaderFragment } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
+import { ReaderFragment } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
 export type IssueListItem_issue = {
-  readonly id: string
-  readonly title: string
-  readonly ' $refType': 'IssueListItem_issue'
-}
-export type IssueListItem_issue$data = IssueListItem_issue
+  readonly id: string;
+  readonly title: string;
+  readonly ' $refType': 'IssueListItem_issue';
+};
+export type IssueListItem_issue$data = IssueListItem_issue;
 export type IssueListItem_issue$key = {
-  readonly ' $data'?: IssueListItem_issue$data
-  readonly ' $fragmentRefs': FragmentRefs<'IssueListItem_issue'>
-}
+  readonly ' $data'?: IssueListItem_issue$data;
+  readonly ' $fragmentRefs': FragmentRefs<'IssueListItem_issue'>;
+};
 
 const node: ReaderFragment = {
   kind: 'Fragment',
@@ -35,6 +35,6 @@ const node: ReaderFragment = {
       storageKey: null,
     },
   ],
-}
-;(node as any).hash = '3d4a1f32013aca926236a60256c1f43e'
-export default node
+};
+(node as any).hash = '3d4a1f32013aca926236a60256c1f43e';
+export default node;

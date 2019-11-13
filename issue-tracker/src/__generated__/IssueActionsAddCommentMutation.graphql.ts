@@ -1,36 +1,36 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
 export type AddCommentInput = {
-  readonly subjectId: string
-  readonly body: string
-  readonly clientMutationId?: string | null
-}
+  readonly subjectId: string;
+  readonly body: string;
+  readonly clientMutationId?: string | null;
+};
 export type IssueActionsAddCommentMutationVariables = {
-  input: AddCommentInput
-}
+  input: AddCommentInput;
+};
 export type IssueActionsAddCommentMutationResponse = {
   readonly addComment: {
     readonly subject: {
-      readonly id: string
-    } | null
+      readonly id: string;
+    } | null;
     readonly commentEdge: {
-      readonly __id: string
+      readonly __id: string;
       readonly node: {
-        readonly id: string
+        readonly id: string;
         readonly author: {
-          readonly login: string
-          readonly avatarUrl: unknown
-        } | null
-        readonly body: string
-      } | null
-    } | null
-  } | null
-}
+          readonly login: string;
+          readonly avatarUrl: unknown;
+        } | null;
+        readonly body: string;
+      } | null;
+    } | null;
+  } | null;
+};
 export type IssueActionsAddCommentMutation = {
-  readonly response: IssueActionsAddCommentMutationResponse
-  readonly variables: IssueActionsAddCommentMutationVariables
-}
+  readonly response: IssueActionsAddCommentMutationResponse;
+  readonly variables: IssueActionsAddCommentMutationVariables;
+};
 
 /*
 mutation IssueActionsAddCommentMutation(
@@ -121,7 +121,7 @@ const node: ConcreteRequest = (function() {
       name: '__typename',
       args: null,
       storageKey: null,
-    }
+    };
   return {
     kind: 'Request',
     fragment: {
@@ -265,7 +265,7 @@ const node: ConcreteRequest = (function() {
         'mutation IssueActionsAddCommentMutation(\n  $input: AddCommentInput!\n) {\n  addComment(input: $input) {\n    subject {\n      __typename\n      id\n    }\n    commentEdge {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n      }\n    }\n  }\n}\n',
       metadata: {},
     },
-  }
-})()
-;(node as any).hash = 'f777dc7f1873d5cdab111f485ef8f404'
-export default node
+  };
+})();
+(node as any).hash = 'f777dc7f1873d5cdab111f485ef8f404';
+export default node;

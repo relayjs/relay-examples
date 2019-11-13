@@ -1,15 +1,15 @@
-import React, { useState, useCallback } from 'react'
-import { ConnectionHandler } from 'relay-runtime'
-import { useFragment } from 'react-relay/hooks'
-import graphql from 'babel-plugin-relay/macro'
+import React, { useState, useCallback } from 'react';
+import { ConnectionHandler } from 'relay-runtime';
+import { useFragment } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
 
-import useMutation from './useMutation'
+import useMutation from './useMutation';
 
-import { IssueActions_issue$key } from './__generated__/IssueActions_issue.graphql'
+import { IssueActions_issue$key } from './__generated__/IssueActions_issue.graphql';
 
-import { IssueActionsAddCommentMutation as AddComment } from './__generated__/IssueActionsAddCommentMutation.graphql'
-import { IssueActionsCloseIssueMutation as CloseIssue } from './__generated__/IssueActionsCloseIssueMutation.graphql'
-import { IssueActionsReopenIssueMutation as ReopenIssue } from './__generated__/IssueActionsReopenIssueMutation.graphql'
+import { IssueActionsAddCommentMutation as AddComment } from './__generated__/IssueActionsAddCommentMutation.graphql';
+import { IssueActionsCloseIssueMutation as CloseIssue } from './__generated__/IssueActionsCloseIssueMutation.graphql';
+import { IssueActionsReopenIssueMutation as ReopenIssue } from './__generated__/IssueActionsReopenIssueMutation.graphql';
 
 const AddCommentMutation = graphql`
   mutation IssueActionsAddCommentMutation($input: AddCommentInput!) {
@@ -30,7 +30,7 @@ const AddCommentMutation = graphql`
       }
     }
   }
-`
+`;
 
 const CloseIssueMutation = graphql`
   mutation IssueActionsCloseIssueMutation($input: CloseIssueInput!) {
@@ -40,7 +40,7 @@ const CloseIssueMutation = graphql`
       }
     }
   }
-`
+`;
 
 const ReopenIssueMutation = graphql`
   mutation IssueActionsReopenIssueMutation($input: ReopenIssueInput!) {
@@ -50,26 +50,26 @@ const ReopenIssueMutation = graphql`
       }
     }
   }
-`
+`;
 
 interface Props {
-  issue: IssueActions_issue$key
+  issue: IssueActions_issue$key;
 }
 
 export default function IssueActions(props: Props) {
   // Track the current comment text - this is used as the value of the comment textarea
-  const [commentText, setCommentText] = useState('')
+  const [commentText, setCommentText] = useState('');
 
   const [isCommentPending, addComment] = useMutation<AddComment>(
     AddCommentMutation,
-  )
+  );
   const [isClosePending, closeIssue] = useMutation<CloseIssue>(
     CloseIssueMutation,
-  )
+  );
   const [isReopenPending, reopenIssue] = useMutation<ReopenIssue>(
     ReopenIssueMutation,
-  )
-  const isPending = isCommentPending || isClosePending || isReopenPending
+  );
+  const isPending = isCommentPending || isClosePending || isReopenPending;
 
   // Get the data we need about the issue in order to execute the mutation. Right now that's just
   // the id, but in the future this component might neeed more information.
@@ -81,16 +81,16 @@ export default function IssueActions(props: Props) {
       }
     `,
     props.issue,
-  )
-  const issueId = data.id
+  );
+  const issueId = data.id;
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentText(e.target.value)
-  }, [])
+    setCommentText(e.target.value);
+  }, []);
 
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
+      e.preventDefault();
       addComment({
         variables: {
           input: {
@@ -106,32 +106,32 @@ export default function IssueActions(props: Props) {
          */
         updater: store => {
           // Get a reference to the issue
-          const issue = store.get(issueId)
-          if (issue == null) return
+          const issue = store.get(issueId);
+          if (issue == null) return;
           // Get the list of comments using the same 'key' value as defined in
           // IssueDetailComments
           const comments = ConnectionHandler.getConnection(
             issue,
             'IssueDetailComments_comments', // See IssueDetailsComments @connection
-          )
-          if (comments == null) return
+          );
+          if (comments == null) return;
           // Insert the edge at the end of the list
           ConnectionHandler.insertEdgeAfter(
             comments,
             store.getRootField('addComment').getLinkedRecord('commentEdge'),
             null, // we can specify a cursor value here to insert the new edge after that cursor
-          )
+          );
         },
-      })
+      });
       // Reset the comment text
-      setCommentText('')
+      setCommentText('');
     },
     [addComment, commentText, issueId],
-  )
+  );
 
   const onToggleOpen = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.preventDefault()
+      e.preventDefault();
 
       // Switch mutation based on the current open/close status
       const config = {
@@ -140,15 +140,15 @@ export default function IssueActions(props: Props) {
             issueId,
           },
         },
-      }
+      };
       if (data.closed) {
-        reopenIssue(config)
+        reopenIssue(config);
       } else {
-        closeIssue(config)
+        closeIssue(config);
       }
     },
     [closeIssue, data.closed, issueId, reopenIssue],
-  )
+  );
 
   return (
     <form className="issue-actions" onSubmit={onSubmit}>
@@ -173,5 +173,5 @@ export default function IssueActions(props: Props) {
         {data.closed ? 'Reopen' : 'Close'}
       </button>
     </form>
-  )
+  );
 }

@@ -1,18 +1,18 @@
-import React from 'react'
-import { usePreloadedQuery } from 'react-relay/hooks'
-import ReactMarkdown from 'react-markdown'
-import graphql from 'babel-plugin-relay/macro'
+import React from 'react';
+import { usePreloadedQuery } from 'react-relay/hooks';
+import ReactMarkdown from 'react-markdown';
+import graphql from 'babel-plugin-relay/macro';
 
-import { IssueDetailRootQuery } from './__generated__/IssueDetailRootQuery.graphql'
-import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes'
-import SuspenseImage from './SuspenseImage'
-import IssueDetailComments from './IssueDetailComments'
-import IssueActions from './IssueActions'
+import { IssueDetailRootQuery } from './__generated__/IssueDetailRootQuery.graphql';
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
+import SuspenseImage from './SuspenseImage';
+import IssueDetailComments from './IssueDetailComments';
+import IssueActions from './IssueActions';
 
 interface Props {
   prepared: {
-    issueDetailQuery: PreloadedQuery<IssueDetailRootQuery>
-  }
+    issueDetailQuery: PreloadedQuery<IssueDetailRootQuery>;
+  };
 }
 
 /**
@@ -44,9 +44,9 @@ export default function IssueDetailRoot(props: Props) {
       }
     `,
     props.prepared.issueDetailQuery,
-  )
+  );
   if (issue == null) {
-    return 'Issue not found'
+    return 'Issue not found';
   }
 
   return (
@@ -75,5 +75,5 @@ export default function IssueDetailRoot(props: Props) {
       <IssueDetailComments issue={issue} />
       <IssueActions issue={issue} />
     </div>
-  )
+  );
 }

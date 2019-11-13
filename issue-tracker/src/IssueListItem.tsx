@@ -1,13 +1,13 @@
-import React from 'react'
-import { useFragment } from 'react-relay/hooks'
-import graphql from 'babel-plugin-relay/macro'
+import React from 'react';
+import { useFragment } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
 
-import Link from './routing/Link'
+import Link from './routing/Link';
 
-import { IssueListItem_issue$key } from './__generated__/IssueListItem_issue.graphql'
+import { IssueListItem_issue$key } from './__generated__/IssueListItem_issue.graphql';
 
 interface Props {
-  issue: IssueListItem_issue$key
+  issue: IssueListItem_issue$key;
 }
 
 /**
@@ -28,8 +28,8 @@ export default function IssueListItem(props: Props) {
       }
     `,
     props.issue,
-  )
+  );
 
   // Describe how to render the data:
-  return <Link to={`/issue/${issue.id}`}>{issue.title}</Link>
+  return <Link to={`/issue/${issue.id}`}>{issue.title}</Link>;
 }

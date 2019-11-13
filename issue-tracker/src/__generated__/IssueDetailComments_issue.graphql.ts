@@ -1,29 +1,29 @@
 /* tslint:disable */
 
-import { ReaderFragment } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
+import { ReaderFragment } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
 export type IssueDetailComments_issue = {
   readonly comments: {
     readonly edges: ReadonlyArray<{
-      readonly __id: string
+      readonly __id: string;
       readonly node: {
-        readonly id: string
+        readonly id: string;
         readonly author: {
-          readonly login: string
-          readonly avatarUrl: unknown
-        } | null
-        readonly body: string
-      } | null
-    } | null> | null
-  }
-  readonly id: string | null
-  readonly ' $refType': 'IssueDetailComments_issue'
-}
-export type IssueDetailComments_issue$data = IssueDetailComments_issue
+          readonly login: string;
+          readonly avatarUrl: unknown;
+        } | null;
+        readonly body: string;
+      } | null;
+    } | null> | null;
+  };
+  readonly id: string | null;
+  readonly ' $refType': 'IssueDetailComments_issue';
+};
+export type IssueDetailComments_issue$data = IssueDetailComments_issue;
 export type IssueDetailComments_issue$key = {
-  readonly ' $data'?: IssueDetailComments_issue$data
-  readonly ' $fragmentRefs': FragmentRefs<'IssueDetailComments_issue'>
-}
+  readonly ' $data'?: IssueDetailComments_issue$data;
+  readonly ' $fragmentRefs': FragmentRefs<'IssueDetailComments_issue'>;
+};
 
 const node: ReaderFragment = (function() {
   var v0 = ['comments'],
@@ -33,7 +33,7 @@ const node: ReaderFragment = (function() {
       name: 'id',
       args: null,
       storageKey: null,
-    }
+    };
   return {
     kind: 'Fragment',
     name: 'IssueDetailComments_issue',
@@ -194,7 +194,7 @@ const node: ReaderFragment = (function() {
       },
       v1 /*: any*/,
     ],
-  }
-})()
-;(node as any).hash = '674952f209c2653f27a5fad5539df511'
-export default node
+  };
+})();
+(node as any).hash = '674952f209c2653f27a5fad5539df511';
+export default node;

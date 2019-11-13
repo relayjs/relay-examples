@@ -1,27 +1,27 @@
 /* tslint:disable */
 
-import { ReaderFragment } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
+import { ReaderFragment } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
 export type Issues_repository = {
   readonly issues: {
     readonly edges: ReadonlyArray<{
-      readonly __id: string
+      readonly __id: string;
       readonly node: {
-        readonly ' $fragmentRefs': FragmentRefs<'IssueListItem_issue'>
-      } | null
-    } | null> | null
-  }
-  readonly id: string | null
-  readonly ' $refType': 'Issues_repository'
-}
-export type Issues_repository$data = Issues_repository
+        readonly ' $fragmentRefs': FragmentRefs<'IssueListItem_issue'>;
+      } | null;
+    } | null> | null;
+  };
+  readonly id: string | null;
+  readonly ' $refType': 'Issues_repository';
+};
+export type Issues_repository$data = Issues_repository;
 export type Issues_repository$key = {
-  readonly ' $data'?: Issues_repository$data
-  readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>
-}
+  readonly ' $data'?: Issues_repository$data;
+  readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>;
+};
 
 const node: ReaderFragment = (function() {
-  var v0 = ['issues']
+  var v0 = ['issues'];
   return {
     kind: 'Fragment',
     name: 'Issues_repository',
@@ -172,7 +172,7 @@ const node: ReaderFragment = (function() {
         storageKey: null,
       },
     ],
-  }
-})()
-;(node as any).hash = '97f2b1fb82f838eb80e38bcc20d765b5'
-export default node
+  };
+})();
+(node as any).hash = '97f2b1fb82f838eb80e38bcc20d765b5';
+export default node;

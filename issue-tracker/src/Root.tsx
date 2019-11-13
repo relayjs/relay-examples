@@ -1,15 +1,15 @@
-import React, { Suspense } from 'react'
-import { usePreloadedQuery } from 'react-relay/hooks'
-import graphql from 'babel-plugin-relay/macro'
+import React, { Suspense } from 'react';
+import { usePreloadedQuery } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
 
-import { RootQuery } from './__generated__/RootQuery.graphql'
-import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes'
+import { RootQuery } from './__generated__/RootQuery.graphql';
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 
 interface Props {
   prepared: {
-    rootQuery: PreloadedQuery<RootQuery>
-  }
-  children: React.ReactChildren
+    rootQuery: PreloadedQuery<RootQuery>;
+  };
+  children: React.ReactChildren;
 }
 
 const Root = (props: Props) => {
@@ -29,8 +29,8 @@ const Root = (props: Props) => {
       }
     `,
     props.prepared.rootQuery,
-  )
-  const { repository } = data
+  );
+  const { repository } = data;
 
   return (
     <div className="root">
@@ -43,7 +43,7 @@ const Root = (props: Props) => {
         <Suspense fallback={'Loading...'}>{props.children}</Suspense>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Root
+export default Root;

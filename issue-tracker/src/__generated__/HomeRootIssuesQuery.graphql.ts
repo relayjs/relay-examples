@@ -1,20 +1,20 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
 export type HomeRootIssuesQueryVariables = {
-  owner: string
-  name: string
-}
+  owner: string;
+  name: string;
+};
 export type HomeRootIssuesQueryResponse = {
   readonly repository: {
-    readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>
-  } | null
-}
+    readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>;
+  } | null;
+};
 export type HomeRootIssuesQuery = {
-  readonly response: HomeRootIssuesQueryResponse
-  readonly variables: HomeRootIssuesQueryVariables
-}
+  readonly response: HomeRootIssuesQueryResponse;
+  readonly variables: HomeRootIssuesQueryVariables;
+};
 
 /*
 query HomeRootIssuesQuery(
@@ -96,7 +96,7 @@ const node: ConcreteRequest = (function() {
       name: 'id',
       args: null,
       storageKey: null,
-    }
+    };
   return {
     kind: 'Request',
     fragment: {
@@ -252,7 +252,7 @@ const node: ConcreteRequest = (function() {
         'query HomeRootIssuesQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    ...Issues_repository\n    id\n  }\n}\n\nfragment IssueListItem_issue on Issue {\n  id\n  title\n}\n\nfragment Issues_repository on Repository {\n  issues(first: 10, states: [OPEN]) {\n    edges {\n      node {\n        ...IssueListItem_issue\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
-  }
-})()
-;(node as any).hash = '123ee85bfef2bb303a99a7320127372f'
-export default node
+  };
+})();
+(node as any).hash = '123ee85bfef2bb303a99a7320127372f';
+export default node;

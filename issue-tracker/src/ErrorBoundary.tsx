@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 interface State {
   error: {
-    message: string
-    source: {}
-  } | null
+    message: string;
+    source: {};
+  } | null;
 }
 
 /**
  * A reusable component for handling errors in a React (sub)tree.
  */
 export default class ErrorBoundary extends Component {
-  state: State = { error: null }
+  state: State = { error: null };
 
   static getDerivedStateFromError(error: Error) {
     return {
       error,
-    }
+    };
   }
 
   render() {
-    const { error } = this.state
+    const { error } = this.state;
     if (error) {
       return (
         <div>
@@ -29,8 +29,8 @@ export default class ErrorBoundary extends Component {
             <pre>{JSON.stringify(error.source, null, 2)}</pre>
           </div>
         </div>
-      )
+      );
     }
-    return this.props.children
+    return this.props.children;
   }
 }

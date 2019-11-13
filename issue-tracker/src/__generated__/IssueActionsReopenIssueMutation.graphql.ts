@@ -1,24 +1,24 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
 export type ReopenIssueInput = {
-  readonly issueId: string
-  readonly clientMutationId?: string | null
-}
+  readonly issueId: string;
+  readonly clientMutationId?: string | null;
+};
 export type IssueActionsReopenIssueMutationVariables = {
-  input: ReopenIssueInput
-}
+  input: ReopenIssueInput;
+};
 export type IssueActionsReopenIssueMutationResponse = {
   readonly reopenIssue: {
     readonly issue: {
-      readonly closed: boolean
-    } | null
-  } | null
-}
+      readonly closed: boolean;
+    } | null;
+  } | null;
+};
 export type IssueActionsReopenIssueMutation = {
-  readonly response: IssueActionsReopenIssueMutationResponse
-  readonly variables: IssueActionsReopenIssueMutationVariables
-}
+  readonly response: IssueActionsReopenIssueMutationResponse;
+  readonly variables: IssueActionsReopenIssueMutationVariables;
+};
 
 /*
 mutation IssueActionsReopenIssueMutation(
@@ -55,7 +55,7 @@ const node: ConcreteRequest = (function() {
       name: 'closed',
       args: null,
       storageKey: null,
-    }
+    };
   return {
     kind: 'Request',
     fragment: {
@@ -133,7 +133,7 @@ const node: ConcreteRequest = (function() {
         'mutation IssueActionsReopenIssueMutation(\n  $input: ReopenIssueInput!\n) {\n  reopenIssue(input: $input) {\n    issue {\n      closed\n      id\n    }\n  }\n}\n',
       metadata: {},
     },
-  }
-})()
-;(node as any).hash = '6dbb9d9a672b1703eb0983667e9638db'
-export default node
+  };
+})();
+(node as any).hash = '6dbb9d9a672b1703eb0983667e9638db';
+export default node;

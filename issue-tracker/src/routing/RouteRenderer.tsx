@@ -4,33 +4,33 @@ import React, {
   useEffect,
   Suspense,
   useTransition,
-} from 'react'
-import RoutingContext, { RouteComponentProps } from './RoutingContext'
-import ErrorBoundary from '../ErrorBoundary'
-import './RouteRenderer.css'
+} from 'react';
+import RoutingContext, { RouteComponentProps } from './RoutingContext';
+import ErrorBoundary from '../ErrorBoundary';
+import './RouteRenderer.css';
 
-const SUSPENSE_CONFIG = { timeoutMs: 2000 }
+const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 export default function RouterRenderer() {
   // Access the router
-  const router = useContext(RoutingContext)
+  const router = useContext(RoutingContext);
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
-  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG)
+  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 
   // Store the active entry in state - this allows the renderer to use features like
   // useTransition to delay when state changes become visible to the user.
-  const [routeEntry, setRouteEntry] = useState(router!.get())
+  const [routeEntry, setRouteEntry] = useState(router!.get());
 
   // On mount subscribe to route changes
   useEffect(() => {
     // Check if the route has changed between the last render and commit:
-    const currentEntry = router!.get()
+    const currentEntry = router!.get();
     if (currentEntry !== routeEntry) {
       // if there was a concurrent modification, rerender and exit
-      setRouteEntry(currentEntry)
-      return
+      setRouteEntry(currentEntry);
+      return;
     }
 
     // If there *wasn't* a concurrent change to the route, then the UI
@@ -40,15 +40,15 @@ export default function RouterRenderer() {
       // for a brief period, continuing to show the old state while the new
       // state (route) is prepared.
       startTransition(() => {
-        setRouteEntry(nextEntry)
-      })
-    })
-    return () => dispose()
+        setRouteEntry(nextEntry);
+      });
+    });
+    return () => dispose();
     // Note: this hook updates routeEntry manually; we exclude that variable
     // from the hook deps to avoid recomputing the effect after each change
     // triggered by the effect itself.
     // eslint-disable-next-line
-  }, [router, startTransition])
+  }, [router, startTransition]);
 
   // The current route value is an array of matching entries - one entry per
   // level of routes (to allow nested routes). We have to map each one to a
@@ -68,9 +68,9 @@ export default function RouterRenderer() {
   // To achieve this, we reverse the list so we can start at the bottom-most
   // component, and iteratively construct parent components w the previous
   // value as the child of the next one:
-  const { entries } = routeEntry
-  const reversedItems = entries.reverse() // reverse is in place
-  const firstItem = reversedItems[0]
+  const { entries } = routeEntry;
+  const reversedItems = entries.reverse(); // reverse is in place
+  const firstItem = reversedItems[0];
   // the bottom-most component is special since it will have no children
   // (though we could probably just pass null children to it)
   let routeComponent = (
@@ -79,9 +79,9 @@ export default function RouterRenderer() {
       prepared={firstItem.prepared}
       routeData={firstItem.routeData}
     />
-  )
+  );
   for (let ii = 1; ii < reversedItems.length; ii++) {
-    const nextItem = reversedItems[ii]
+    const nextItem = reversedItems[ii];
     routeComponent = (
       <RouteComponent
         component={nextItem.component}
@@ -90,7 +90,7 @@ export default function RouterRenderer() {
       >
         {routeComponent}
       </RouteComponent>
-    )
+    );
   }
 
   // Routes can error so wrap in an <ErrorBoundary>
@@ -106,7 +106,7 @@ export default function RouterRenderer() {
         {routeComponent}
       </Suspense>
     </ErrorBoundary>
-  )
+  );
 }
 
 /**
@@ -121,13 +121,13 @@ export default function RouterRenderer() {
  * in a child component.
  */
 function RouteComponent(props: RouteComponentProps) {
-  const Component = props.component!.read()
-  const { routeData, prepared } = props
+  const Component = props.component!.read();
+  const { routeData, prepared } = props;
   return (
     <Component
       routeData={routeData}
       prepared={prepared}
       children={props.children}
     />
-  )
+  );
 }

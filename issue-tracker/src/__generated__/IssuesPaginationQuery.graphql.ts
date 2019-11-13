@@ -1,23 +1,23 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
-export type IssueState = 'CLOSED' | 'OPEN' | '%future added value'
+import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
+export type IssueState = 'CLOSED' | 'OPEN' | '%future added value';
 export type IssuesPaginationQueryVariables = {
-  cursor?: string | null
-  count?: number | null
-  states?: ReadonlyArray<IssueState> | null
-  id: string
-}
+  cursor?: string | null;
+  count?: number | null;
+  states?: ReadonlyArray<IssueState> | null;
+  id: string;
+};
 export type IssuesPaginationQueryResponse = {
   readonly node: {
-    readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>
-  } | null
-}
+    readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>;
+  } | null;
+};
 export type IssuesPaginationQuery = {
-  readonly response: IssuesPaginationQueryResponse
-  readonly variables: IssuesPaginationQueryVariables
-}
+  readonly response: IssuesPaginationQueryResponse;
+  readonly variables: IssuesPaginationQueryVariables;
+};
 
 /*
 query IssuesPaginationQuery(
@@ -122,7 +122,7 @@ const node: ConcreteRequest = (function() {
         variableName: 'count',
       },
       v2 /*: any*/,
-    ]
+    ];
   return {
     kind: 'Request',
     fragment: {
@@ -294,7 +294,7 @@ const node: ConcreteRequest = (function() {
         isRefetchableQuery: true,
       },
     },
-  }
-})()
-;(node as any).hash = '97f2b1fb82f838eb80e38bcc20d765b5'
-export default node
+  };
+})();
+(node as any).hash = '97f2b1fb82f838eb80e38bcc20d765b5';
+export default node;

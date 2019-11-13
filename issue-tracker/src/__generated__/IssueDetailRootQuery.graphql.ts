@@ -1,30 +1,30 @@
 /* tslint:disable */
 
-import { ConcreteRequest } from 'relay-runtime'
-import { FragmentRefs } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
 export type IssueDetailRootQueryVariables = {
-  id: string
-}
+  id: string;
+};
 export type IssueDetailRootQueryResponse = {
   readonly node: {
-    readonly title?: string
-    readonly number?: number
+    readonly title?: string;
+    readonly number?: number;
     readonly author?: {
-      readonly login: string
-      readonly avatarUrl: unknown
-    } | null
-    readonly body?: string
-    readonly closed?: boolean
-    readonly url?: unknown
+      readonly login: string;
+      readonly avatarUrl: unknown;
+    } | null;
+    readonly body?: string;
+    readonly closed?: boolean;
+    readonly url?: unknown;
     readonly ' $fragmentRefs': FragmentRefs<
       'IssueDetailComments_issue' | 'IssueActions_issue'
-    >
-  } | null
-}
+    >;
+  } | null;
+};
 export type IssueDetailRootQuery = {
-  readonly response: IssueDetailRootQueryResponse
-  readonly variables: IssueDetailRootQueryVariables
-}
+  readonly response: IssueDetailRootQueryResponse;
+  readonly variables: IssueDetailRootQueryVariables;
+};
 
 /*
 query IssueDetailRootQuery(
@@ -180,7 +180,7 @@ const node: ConcreteRequest = (function() {
         name: 'first',
         value: 10,
       },
-    ]
+    ];
   return {
     kind: 'Request',
     fragment: {
@@ -364,7 +364,7 @@ const node: ConcreteRequest = (function() {
         'query IssueDetailRootQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n  closed\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {},
     },
-  }
-})()
-;(node as any).hash = '42e7a1bc529086397c84040c8f84c752'
-export default node
+  };
+})();
+(node as any).hash = '42e7a1bc529086397c84040c8f84c752';
+export default node;

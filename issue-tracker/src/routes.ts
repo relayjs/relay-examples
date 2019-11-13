@@ -1,16 +1,16 @@
-import { preloadQuery } from 'react-relay/hooks'
+import { preloadQuery } from 'react-relay/hooks';
 
-import JSResource from './JSResource'
-import RelayEnvironment from './RelayEnvironment'
-import { RouteConfig } from './routing/createRouter'
+import JSResource from './JSResource';
+import RelayEnvironment from './RelayEnvironment';
+import { RouteConfig } from './routing/createRouter';
 
-import PreloadRootQuery, { RootQuery } from './__generated__/RootQuery.graphql'
+import PreloadRootQuery, { RootQuery } from './__generated__/RootQuery.graphql';
 import PreloadIssuesQuery, {
   HomeRootIssuesQuery,
-} from './__generated__/HomeRootIssuesQuery.graphql'
+} from './__generated__/HomeRootIssuesQuery.graphql';
 import PreloadIssueDetailRootQuery, {
   IssueDetailRootQuery,
-} from './__generated__/IssueDetailRootQuery.graphql'
+} from './__generated__/IssueDetailRootQuery.graphql';
 
 const routes: RouteConfig[] = [
   {
@@ -82,6 +82,6 @@ const routes: RouteConfig[] = [
       },
     ],
   },
-]
+];
 
-export default routes
+export default routes;
