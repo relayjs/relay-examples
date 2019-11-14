@@ -71,33 +71,41 @@ export default function IssueDetailComments(props: Props) {
     });
   }, [isLoadingNext, loadNext, startTransition]);
 
-  if (data?.comments.edges == null || data.comments.edges.length === 0) {
+  const comments = data?.comments.edges;
+  if (comments == null || comments.length === 0) {
     return <div className="issue-no-comments">No comments</div>;
   }
 
   return (
     <>
       <SuspenseList revealOrder="forwards">
-        {data.comments.edges.map(edge => (
-          <Suspense fallback={null} key={edge?.__id}>
-            <div className="issue-comment">
-              <SuspenseImage
-                className="issue-comment-author-image"
-                title={`${edge?.node?.author?.login}'s avatar`}
-                src={edge?.node?.author?.avatarUrl as string}
-              />
-              <div className="issue-comment-author-name">
-                {edge?.node?.author?.login}
-              </div>
-              <div className="issue-comment-body">
-                <ReactMarkdown
-                  source={edge?.node?.body}
-                  renderers={{ image: SuspenseImage }}
+        {comments.map(edge => {
+          if (edge == null || edge.node == null) {
+            return <Suspense fallback={null} />;
+          }
+
+          const comment = edge.node;
+          return (
+            <Suspense fallback={null} key={edge?.__id}>
+              <div className="issue-comment">
+                <SuspenseImage
+                  className="issue-comment-author-image"
+                  title={`${comment.author?.login}'s avatar`}
+                  src={comment.author?.avatarUrl as string}
                 />
+                <div className="issue-comment-author-name">
+                  {comment.author?.login}
+                </div>
+                <div className="issue-comment-body">
+                  <ReactMarkdown
+                    source={comment.body}
+                    renderers={{ image: SuspenseImage }}
+                  />
+                </div>
               </div>
-            </div>
-          </Suspense>
-        ))}
+            </Suspense>
+          );
+        })}
       </SuspenseList>
       {hasNext ? (
         <button
