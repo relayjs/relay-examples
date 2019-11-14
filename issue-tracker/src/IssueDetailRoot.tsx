@@ -56,9 +56,9 @@ export default function IssueDetailRoot(props: Props) {
         <a
           href={issue.url as string}
           className="issue-title-github-link"
-          title="Issue on Github"
+          title="Issue on GitHub"
         >
-          View on Github
+          View on GitHub
         </a>
       </div>
       <div className="issue-comment">
