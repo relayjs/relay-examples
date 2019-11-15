@@ -3,9 +3,7 @@ import {
   Network,
   RecordSource,
   Store,
-  RequestParameters,
-  Variables,
-  CacheConfig,
+  FetchFunction,
 } from 'relay-runtime';
 
 /**
@@ -13,11 +11,7 @@ import {
  * the results of GraphQL queries from your server (or other data source). See more at
  * https://relay.dev/docs/en/quick-start-guide#relay-environment.
  */
-async function fetchRelay(
-  params: RequestParameters,
-  variables: Variables,
-  _cacheConfig: CacheConfig,
-) {
+const fetchRelay: FetchFunction = async (params, variables, _cacheConfig) => {
   // Check that the auth token is configured
   const REACT_APP_GITHUB_AUTH_TOKEN = process.env.REACT_APP_GITHUB_AUTH_TOKEN;
   if (REACT_APP_GITHUB_AUTH_TOKEN == null) {
@@ -58,7 +52,7 @@ async function fetchRelay(
 
   // Otherwise, return the full payload.
   return json;
-}
+};
 
 export default new Environment({
   network: Network.create(fetchRelay),
