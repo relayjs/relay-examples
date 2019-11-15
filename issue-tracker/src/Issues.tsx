@@ -54,7 +54,7 @@ export default function Issues(props: Props) {
 
   return (
     <div className="issues">
-      {data?.issues.edges?.map(edge => {
+      {data!.issues.edges!.map(edge => {
         if (edge == null || edge.node == null) return null;
 
         return (

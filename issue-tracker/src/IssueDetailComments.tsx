@@ -71,7 +71,7 @@ export default function IssueDetailComments(props: Props) {
     });
   }, [isLoadingNext, loadNext, startTransition]);
 
-  const comments = data?.comments.edges;
+  const comments = data!.comments.edges;
   if (comments == null || comments.length === 0) {
     return <div className="issue-no-comments">No comments</div>;
   }
@@ -86,15 +86,15 @@ export default function IssueDetailComments(props: Props) {
 
           const comment = edge.node;
           return (
-            <Suspense fallback={null} key={edge?.__id}>
+            <Suspense fallback={null} key={edge!.__id}>
               <div className="issue-comment">
                 <SuspenseImage
                   className="issue-comment-author-image"
-                  title={`${comment.author?.login}'s avatar`}
-                  src={comment.author?.avatarUrl as string}
+                  title={`${comment.author!.login}'s avatar`}
+                  src={comment.author!.avatarUrl as string}
                 />
                 <div className="issue-comment-author-name">
-                  {comment.author?.login}
+                  {comment.author!.login}
                 </div>
                 <div className="issue-comment-body">
                   <ReactMarkdown

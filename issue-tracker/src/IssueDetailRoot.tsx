@@ -64,10 +64,10 @@ export default function IssueDetailRoot(props: Props) {
       <div className="issue-comment">
         <SuspenseImage
           className="issue-comment-author-image"
-          title={`${issue.author?.login}'s avatar`}
-          src={issue.author?.avatarUrl as string}
+          title={`${issue.author!.login}'s avatar`}
+          src={issue.author!.avatarUrl as string}
         />
-        <div className="issue-comment-author-name">{issue.author?.login}</div>
+        <div className="issue-comment-author-name">{issue.author!.login}</div>
         <div className="issue-comment-body">
           <ReactMarkdown source={issue.body} renderers={{ SuspenseImage }} />
         </div>
