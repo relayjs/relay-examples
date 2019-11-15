@@ -68,8 +68,7 @@ export default function RouterRenderer() {
   // To achieve this, we reverse the list so we can start at the bottom-most
   // component, and iteratively construct parent components w the previous
   // value as the child of the next one:
-  const { entries } = routeEntry;
-  const reversedItems = entries.reverse(); // reverse is in place
+  const reversedItems = [...routeEntry.entries].reverse(); // reverse is in place, but we want a copy so concat
   const firstItem = reversedItems[0];
   // the bottom-most component is special since it will have no children
   // (though we could probably just pass null children to it)
