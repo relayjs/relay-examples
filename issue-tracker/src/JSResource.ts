@@ -37,8 +37,8 @@ export class Resource<T> {
     let promise = this.promise;
     if (promise == null) {
       promise = this.loader()
-        .then((result: T & { default?: T }) => {
-          if (result.default) {
+        .then((result: T | { default: T }) => {
+          if ('default' in result) {
             result = result.default;
           }
           this.result = result;
