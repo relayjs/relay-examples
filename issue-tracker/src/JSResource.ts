@@ -80,7 +80,7 @@ export class Resource<T> {
     } else if (this.state === 'error') {
       throw this.error;
     } else {
-      throw this.promise;
+      throw this.load();
     }
   }
 }
