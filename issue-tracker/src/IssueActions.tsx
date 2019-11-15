@@ -172,6 +172,7 @@ export default function IssueActions(props: Props) {
         className="issue-actions-button"
         type="button"
         onClick={onToggleOpen}
+        disabled={isPending}
       >
         {data.closed ? 'Reopen' : 'Close'}
       </button>
