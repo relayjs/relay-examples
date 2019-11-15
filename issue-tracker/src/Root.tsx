@@ -12,7 +12,7 @@ interface Props {
   children: React.ReactChildren;
 }
 
-const Root = (props: Props) => {
+export default function Root(props: Props) {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
@@ -44,6 +44,4 @@ const Root = (props: Props) => {
       </section>
     </div>
   );
-};
-
-export default Root;
+}
