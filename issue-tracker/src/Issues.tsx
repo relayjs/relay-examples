@@ -36,7 +36,7 @@ export default function Issues(props: Props) {
             node {
               # Compose the data dependencies of child components
               # by spreading their fragments:
-              ...IssueListItem_issue
+              ...IssuesListItem_issue
             }
           }
         }

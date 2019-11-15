@@ -4,10 +4,10 @@ import graphql from 'babel-plugin-relay/macro';
 
 import Link from './routing/Link';
 
-import { IssueListItem_issue$key } from './__generated__/IssueListItem_issue.graphql';
+import { IssuesListItem_issue$key } from './__generated__/IssuesListItem_issue.graphql';
 
 interface Props {
-  issue: IssueListItem_issue$key;
+  issue: IssuesListItem_issue$key;
 }
 
 /**
@@ -22,7 +22,7 @@ export default function IssuesListItem(props: Props) {
   // or the data being refetched.
   const issue = useFragment(
     graphql`
-      fragment IssueListItem_issue on Issue {
+      fragment IssuesListItem_issue on Issue {
         id
         title
       }
