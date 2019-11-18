@@ -12,6 +12,13 @@ export type Result = any;
 const resourceMap = new Map<typeof UniqueId, Resource<any>>();
 
 /**
+ * Type guardian to safely identify if a resource has a default property
+ */
+function hasDefaultProperty<T>(obj: T | { default: T }): obj is { default: T } {
+  return !!(obj as { default: T }).default;
+}
+
+/**
  * A generic resource: given some method to asynchronously load a value - the loader()
  * argument - it allows accessing the state of the resource.
  */
@@ -38,7 +45,7 @@ export class Resource<T> {
     if (promise == null) {
       promise = this.loader()
         .then((result: T | { default: T }) => {
-          if ('default' in result) {
+          if (hasDefaultProperty(result)) {
             result = result.default;
           }
           this.result = result;
