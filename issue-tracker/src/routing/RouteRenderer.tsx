@@ -14,6 +14,11 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 export default function RouterRenderer() {
   // Access the router
   const router = useContext(RoutingContext);
+
+  if (router == null) {
+    throw new Error('RoutingContext not set');
+  }
+
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
@@ -21,7 +26,7 @@ export default function RouterRenderer() {
 
   // Store the active entry in state - this allows the renderer to use features like
   // useTransition to delay when state changes become visible to the user.
-  const [routeEntry, setRouteEntry] = useState(router!.get());
+  const [routeEntry, setRouteEntry] = useState(router.get());
 
   // On mount subscribe to route changes
   useEffect(() => {
