@@ -113,10 +113,6 @@ export default function RouterRenderer() {
   );
 }
 
-export interface RouteComponentProps extends Entry {
-  children?: JSX.Element;
-}
-
 /**
  * The `component` property from the route entry is a Resource, which may or may not be ready.
  * We use a helper child component to unwrap the resource with component.read(), and then
@@ -128,7 +124,7 @@ export interface RouteComponentProps extends Entry {
  * our ErrorBoundary/Suspense components, so we have to ensure that the suspend/error happens
  * in a child component.
  */
-function RouteComponent(props: RouteComponentProps) {
+const RouteComponent: React.FC<Entry> = props => {
   const Component = props.component!.read()!;
   const { routeData, prepared } = props;
   return (
@@ -138,4 +134,4 @@ function RouteComponent(props: RouteComponentProps) {
       children={props.children}
     />
   );
-}
+};

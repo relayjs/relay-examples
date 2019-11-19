@@ -13,12 +13,7 @@ export interface Route {
   entries: Entry[];
 }
 
-export interface GenericRouteComponentProps extends Entry {
-  children?: JSX.Element;
-}
-export type GenericRouteComponent = (
-  props: GenericRouteComponentProps,
-) => JSX.Element;
+export type GenericRouteComponent = React.FC<Entry>;
 
 export interface Entry {
   component?: Resource<GenericRouteComponent>;
