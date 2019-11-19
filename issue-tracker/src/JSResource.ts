@@ -68,7 +68,7 @@ export class Resource<T> {
    * is resolved yet.
    */
   get() {
-    if (this.result != null) {
+    if (this.state === 'loaded') {
       return this.result;
     }
   }
