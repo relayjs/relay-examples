@@ -27,11 +27,11 @@ This app is meant for experimentation; we recommend cloning and running locally,
         # yarn users:
         yarn
 
-3. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
-  a. Open https://github.com/settings/tokens.
-  b. Ensure that at least the `repo` scope is selected.
-  c. Generate the token
-  d. Create a file `./relay-examples/issue-tracker/.env.local` and add the following contents (substiture <TOKEN> for your authentication token):
+4. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
+   1. Open https://github.com/settings/tokens.
+   2. Ensure that at least the `repo` scope is selected.
+   3. Generate the token
+   4. Create a file `./relay-examples/issue-tracker/.env.local` and add the following contents (substitute `<TOKEN>` for your authentication token):
 
           # issue-tracker/.env.local
           REACT_APP_GITHUB_AUTH_TOKEN=<TOKEN>
