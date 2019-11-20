@@ -13,7 +13,7 @@ interface Props {
 /**
  * Renders a list of issues for a given repository.
  */
-export default function Issues(props: Props) {
+const Issues: React.FC<Props> = props => {
   // Given a reference to a repository in props.repository, defines *what*
   // data the component needs about that repository. In this case we fetch
   // the list of issues starting at a given cursor (initially null to start
@@ -74,4 +74,6 @@ export default function Issues(props: Props) {
       </button>
     </div>
   );
-}
+};
+
+export default Issues;

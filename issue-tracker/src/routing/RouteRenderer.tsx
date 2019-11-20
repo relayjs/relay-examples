@@ -11,7 +11,7 @@ import './RouteRenderer.css';
 
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
-export default function RouterRenderer() {
+const RouterRenderer = () => {
   // Access the router
   const router = useContext(RoutingContext);
 
@@ -111,7 +111,9 @@ export default function RouterRenderer() {
       </Suspense>
     </ErrorBoundary>
   );
-}
+};
+
+export default RouterRenderer;
 
 /**
  * The `component` property from the route entry is a Resource, which may or may not be ready.

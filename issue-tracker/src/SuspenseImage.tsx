@@ -6,7 +6,7 @@ type Props = React.DetailedHTMLProps<
   HTMLImageElement
 >;
 
-export default function SuspenseImage(props: Props) {
+const SuspenseImage: React.FC<Props> = props => {
   const { src, alt } = props;
 
   if (src != null) {
@@ -34,4 +34,6 @@ export default function SuspenseImage(props: Props) {
   }
 
   return <img alt={alt} {...props} />;
-}
+};
+
+export default SuspenseImage;

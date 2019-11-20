@@ -18,7 +18,7 @@ interface Props {
 /**
  * The root component for the issue detail route.
  */
-export default function IssueDetailRoot(props: Props) {
+const IssueDetailRoot: React.FC<Props> = props => {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
@@ -46,7 +46,7 @@ export default function IssueDetailRoot(props: Props) {
     props.prepared.issueDetailQuery,
   );
   if (issue == null) {
-    return 'Issue not found';
+    return <div>Issue not found</div>;
   }
 
   return (
@@ -76,4 +76,6 @@ export default function IssueDetailRoot(props: Props) {
       <IssueActions issue={issue} />
     </div>
   );
-}
+};
+
+export default IssueDetailRoot;

@@ -21,7 +21,7 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 /**
  * Renders a list of comments for a given issue.
  */
-export default function IssueDetailComments(props: Props) {
+const IssueDetailComments: React.FC<Props> = props => {
   // Given a reference to an issue in props.issue, defines *what*
   // data the component needs about that repository. In this case we fetch
   // the list of comments starting at a given cursor (initially null to start
@@ -119,4 +119,6 @@ export default function IssueDetailComments(props: Props) {
       ) : null}
     </>
   );
-}
+};
+
+export default IssueDetailComments;

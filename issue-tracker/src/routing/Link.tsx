@@ -11,7 +11,7 @@ interface Props {
  * An alternative to react-router's Link component that works with
  * our custom RoutingContext.
  */
-export default function Link(props: Props) {
+const Link: React.FC<Props> = props => {
   const router = useContext(RoutingContext);
 
   if (router == null) {
@@ -51,4 +51,6 @@ export default function Link(props: Props) {
       {props.children}
     </a>
   );
-}
+};
+
+export default Link;

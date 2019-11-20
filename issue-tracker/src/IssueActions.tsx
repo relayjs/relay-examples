@@ -56,7 +56,7 @@ interface Props {
   issue: IssueActions_issue$key;
 }
 
-export default function IssueActions(props: Props) {
+const IssueActions: React.FC<Props> = props => {
   // Track the current comment text - this is used as the value of the comment textarea
   const [commentText, setCommentText] = useState('');
 
@@ -178,4 +178,6 @@ export default function IssueActions(props: Props) {
       </button>
     </form>
   );
-}
+};
+
+export default IssueActions;
