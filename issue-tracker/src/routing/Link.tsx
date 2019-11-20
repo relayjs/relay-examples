@@ -4,7 +4,6 @@ import RoutingContext from './RoutingContext';
 
 interface Props {
   to: string;
-  children: React.ReactNode;
 }
 
 /**

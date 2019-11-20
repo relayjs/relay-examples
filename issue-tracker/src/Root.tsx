@@ -9,7 +9,6 @@ interface Props {
   prepared: {
     rootQuery: PreloadedQuery<RootQuery>;
   };
-  children: React.ReactChildren;
 }
 
 const Root: React.FC<Props> = props => {
