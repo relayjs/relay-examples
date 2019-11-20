@@ -28,7 +28,6 @@ This app is meant for experimentation; we recommend cloning and running locally,
         yarn
 
 4. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
-
    1. Open https://github.com/settings/tokens.
    2. Ensure that at least the `repo` scope is selected.
    3. Generate the token
