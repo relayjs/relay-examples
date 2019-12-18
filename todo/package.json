@@ -46,8 +46,8 @@
     "flow-typed": "^2.6.0",
     "prettier": "^1.16.4",
     "relay-compiler": "^6.0.0",
-    "webpack": "^4.41.0",
-    "webpack-dev-server": "^3.8.2"
+    "webpack": "^4.41.3",
+    "webpack-dev-server": "3.9.0"
   },
   "prettier": {
     "singleQuote": true,
