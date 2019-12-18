@@ -50,6 +50,14 @@ You can run the app by navigating to `relay-examples/issue-tracker/` and then ru
 
 This will start the development server (including Relay Compiler) and open a browser to [localhost:3000](http://localhost:3000).
 
+If you are running into the following error:
+
+```
+Module not found: Can't resolve 'react-relay/hooks' in 'D:\w\relay-examples\issue-tracker\src'
+```
+
+running `npm install react-relay@experimental` (or `yarn install react-relay@experimental`) should fix it.
+
 ## About the App
 
 This app uses a number of technologies including (among others):
