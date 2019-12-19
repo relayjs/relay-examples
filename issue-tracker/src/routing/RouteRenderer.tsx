@@ -1,19 +1,24 @@
-import React from 'react';
-import RoutingContext from './RoutingContext';
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  Suspense,
+  useTransition,
+} from 'react';
+import RoutingContext, { Entry } from './RoutingContext';
 import ErrorBoundary from '../ErrorBoundary';
 import './RouteRenderer.css';
 
-const { useContext, useEffect, useTransition, Suspense, useState } = React;
-
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
-/**
- * A component that accesses the current route entry from RoutingContext and renders
- * that entry.
- */
-export default function RouterRenderer() {
+const RouterRenderer = () => {
   // Access the router
   const router = useContext(RoutingContext);
+
+  if (router == null) {
+    throw new Error('RoutingContext not set');
+  }
+
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
@@ -23,7 +28,7 @@ export default function RouterRenderer() {
   // useTransition to delay when state changes become visible to the user.
   const [routeEntry, setRouteEntry] = useState(router.get());
 
-  // On mount subscribe for route changes
+  // On mount subscribe to route changes
   useEffect(() => {
     // Check if the route has changed between the last render and commit:
     const currentEntry = router.get();
@@ -44,7 +49,6 @@ export default function RouterRenderer() {
       });
     });
     return () => dispose();
-
     // Note: this hook updates routeEntry manually; we exclude that variable
     // from the hook deps to avoid recomputing the effect after each change
     // triggered by the effect itself.
@@ -69,7 +73,7 @@ export default function RouterRenderer() {
   // To achieve this, we reverse the list so we can start at the bottom-most
   // component, and iteratively construct parent components w the previous
   // value as the child of the next one:
-  const reversedItems = [].concat(routeEntry.entries).reverse(); // reverse is in place, but we want a copy so concat
+  const reversedItems = [...routeEntry.entries].reverse(); // reverse is in place, but we want a copy so concat
   const firstItem = reversedItems[0];
   // the bottom-most component is special since it will have no children
   // (though we could probably just pass null children to it)
@@ -95,6 +99,7 @@ export default function RouterRenderer() {
 
   // Routes can error so wrap in an <ErrorBoundary>
   // Routes can suspend, so wrap in <Suspense>
+
   return (
     <ErrorBoundary>
       <Suspense fallback={'Loading fallback...'}>
@@ -106,7 +111,9 @@ export default function RouterRenderer() {
       </Suspense>
     </ErrorBoundary>
   );
-}
+};
+
+export default RouterRenderer;
 
 /**
  * The `component` property from the route entry is a Resource, which may or may not be ready.
@@ -119,8 +126,8 @@ export default function RouterRenderer() {
  * our ErrorBoundary/Suspense components, so we have to ensure that the suspend/error happens
  * in a child component.
  */
-function RouteComponent(props) {
-  const Component = props.component.read();
+const RouteComponent: React.FC<Entry> = props => {
+  const Component = props.component!.read()!;
   const { routeData, prepared } = props;
   return (
     <Component
@@ -129,4 +136,4 @@ function RouteComponent(props) {
       children={props.children}
     />
   );
-}
+};

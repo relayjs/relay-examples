@@ -1,18 +1,25 @@
+/* eslint no-restricted-globals:0 */
+import React, { useCallback, useContext } from 'react';
 import RoutingContext from './RoutingContext';
-import React from 'react';
 
-const { useCallback, useContext } = React;
+interface Props {
+  to: string;
+}
 
 /**
  * An alternative to react-router's Link component that works with
  * our custom RoutingContext.
  */
-export default function Link(props) {
+const Link: React.FC<Props> = props => {
   const router = useContext(RoutingContext);
+
+  if (router == null) {
+    throw new Error('<Link> requires a routing context to be set.');
+  }
 
   // When the user clicks, change route
   const changeRoute = useCallback(
-    event => {
+    (event: React.MouseEvent) => {
       event.preventDefault();
       router.history.push(props.to);
     },
@@ -43,4 +50,6 @@ export default function Link(props) {
       {props.children}
     </a>
   );
-}
+};
+
+export default Link;

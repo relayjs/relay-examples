@@ -1,10 +1,15 @@
-import graphql from 'babel-plugin-relay/macro';
-import React from 'react';
-import { useFragment } from 'react-relay/hooks';
+import React, { useState, useCallback } from 'react';
 import { ConnectionHandler } from 'relay-runtime';
+import { useFragment } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
+
 import useMutation from './useMutation';
 
-const { useCallback, useState } = React;
+import { IssueActions_issue$key } from './__generated__/IssueActions_issue.graphql';
+
+import { IssueActionsAddCommentMutation as AddComment } from './__generated__/IssueActionsAddCommentMutation.graphql';
+import { IssueActionsCloseIssueMutation as CloseIssue } from './__generated__/IssueActionsCloseIssueMutation.graphql';
+import { IssueActionsReopenIssueMutation as ReopenIssue } from './__generated__/IssueActionsReopenIssueMutation.graphql';
 
 const AddCommentMutation = graphql`
   mutation IssueActionsAddCommentMutation($input: AddCommentInput!) {
@@ -47,13 +52,23 @@ const ReopenIssueMutation = graphql`
   }
 `;
 
-export default function IssueActions(props) {
+interface Props {
+  issue: IssueActions_issue$key;
+}
+
+const IssueActions: React.FC<Props> = props => {
   // Track the current comment text - this is used as the value of the comment textarea
   const [commentText, setCommentText] = useState('');
 
-  const [isCommentPending, addComment] = useMutation(AddCommentMutation);
-  const [isClosePending, closeIssue] = useMutation(CloseIssueMutation);
-  const [isReopenPending, reopenIssue] = useMutation(ReopenIssueMutation);
+  const [isCommentPending, addComment] = useMutation<AddComment>(
+    AddCommentMutation,
+  );
+  const [isClosePending, closeIssue] = useMutation<CloseIssue>(
+    CloseIssueMutation,
+  );
+  const [isReopenPending, reopenIssue] = useMutation<ReopenIssue>(
+    ReopenIssueMutation,
+  );
   const isPending = isCommentPending || isClosePending || isReopenPending;
 
   // Get the data we need about the issue in order to execute the mutation. Right now that's just
@@ -69,17 +84,15 @@ export default function IssueActions(props) {
   );
   const issueId = data.id;
 
-  // Callback to handle edits to the comment text
   const onChange = useCallback(
-    event => {
+    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       setCommentText(event.target.value);
     },
-    [setCommentText],
+    [],
   );
 
-  // Form submit callback
   const onSubmit = useCallback(
-    event => {
+    (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       addComment({
         variables: {
@@ -97,42 +110,37 @@ export default function IssueActions(props) {
         updater: store => {
           // Get a reference to the issue
           const issue = store.get(issueId);
-          if (issue == null) {
-            return;
-          }
+          if (issue == null) return;
           // Get the list of comments using the same 'key' value as defined in
           // IssueDetailComments
           const comments = ConnectionHandler.getConnection(
             issue,
             'IssueDetailComments_comments', // See IssueDetailsComments @connection
           );
-          if (comments == null) {
-            return;
-          }
+          if (comments == null) return;
           // Insert the edge at the end of the list
           ConnectionHandler.insertEdgeAfter(
             comments,
             store.getRootField('addComment').getLinkedRecord('commentEdge'),
-            null, // we can specify a cursor value here to insert the new edge after that  cursor
+            null, // we can specify a cursor value here to insert the new edge after that cursor
           );
         },
       });
       // Reset the comment text
       setCommentText('');
     },
-    [commentText, setCommentText, issueId, addComment],
+    [addComment, commentText, issueId],
   );
 
-  // Reopen/Close the issue
   const onToggleOpen = useCallback(
-    event => {
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
 
       // Switch mutation based on the current open/close status
       const config = {
         variables: {
           input: {
-            issueId: data.id,
+            issueId,
           },
         },
       };
@@ -142,16 +150,16 @@ export default function IssueActions(props) {
         closeIssue(config);
       }
     },
-    [data, reopenIssue, closeIssue],
+    [closeIssue, data.closed, issueId, reopenIssue],
   );
 
   return (
-    <form onSubmit={onSubmit} className="issue-actions">
+    <form className="issue-actions" onSubmit={onSubmit}>
       <textarea
         className="issue-actions-text"
         onChange={onChange}
         value={commentText}
-        placeholder={'Leave a comment'}
+        placeholder="Leave a comment"
       />
       <button
         className="issue-actions-button"
@@ -170,4 +178,6 @@ export default function IssueActions(props) {
       </button>
     </form>
   );
-}
+};
+
+export default IssueActions;

@@ -1,12 +1,18 @@
+import React from 'react';
 import { usePreloadedQuery } from 'react-relay/hooks';
 import graphql from 'babel-plugin-relay/macro';
-import Issues from './Issues';
-import React from 'react';
 
-/**
- * The root component for the home route.
- */
-export default function HomeRoot(props) {
+import { HomeRootIssuesQuery } from './__generated__/HomeRootIssuesQuery.graphql';
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
+import Issues from './Issues';
+
+interface Props {
+  prepared: {
+    issuesQuery: PreloadedQuery<HomeRootIssuesQuery>;
+  };
+}
+
+const HomeRoot: React.FC<Props> = props => {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
@@ -25,5 +31,7 @@ export default function HomeRoot(props) {
   );
   const { repository } = data;
 
-  return <Issues repository={repository} />;
-}
+  return <Issues repository={repository!} />;
+};
+
+export default HomeRoot;

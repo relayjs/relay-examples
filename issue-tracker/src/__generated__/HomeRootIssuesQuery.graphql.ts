@@ -1,29 +1,20 @@
-/**
- * @flow
- * @relayHash 6151c16628b268d07513227f7dd71353
- */
+/* tslint:disable */
 
-/* eslint-disable */
-
-'use strict';
-
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type Issues_repository$ref = any;
-export type HomeRootIssuesQueryVariables = {|
-  owner: string,
-  name: string,
-|};
-export type HomeRootIssuesQueryResponse = {|
-  +repository: ?{|
-    +$fragmentRefs: Issues_repository$ref
-  |}
-|};
-export type HomeRootIssuesQuery = {|
-  variables: HomeRootIssuesQueryVariables,
-  response: HomeRootIssuesQueryResponse,
-|};
-*/
+import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
+export type HomeRootIssuesQueryVariables = {
+  owner: string;
+  name: string;
+};
+export type HomeRootIssuesQueryResponse = {
+  readonly repository: {
+    readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>;
+  } | null;
+};
+export type HomeRootIssuesQuery = {
+  readonly response: HomeRootIssuesQueryResponse;
+  readonly variables: HomeRootIssuesQueryVariables;
+};
 
 /*
 query HomeRootIssuesQuery(
@@ -60,7 +51,7 @@ fragment Issues_repository on Repository {
 }
 */
 
-const node /*: ConcreteRequest*/ = (function() {
+const node: ConcreteRequest = (function() {
   var v0 = [
       {
         kind: 'LocalArgument',
@@ -113,14 +104,14 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'HomeRootIssuesQuery',
       type: 'Query',
       metadata: null,
-      argumentDefinitions: (v0 /*: any*/),
+      argumentDefinitions: v0 /*: any*/,
       selections: [
         {
           kind: 'LinkedField',
           alias: null,
           name: 'repository',
           storageKey: null,
-          args: (v1 /*: any*/),
+          args: v1 /*: any*/,
           concreteType: 'Repository',
           plural: false,
           selections: [
@@ -136,14 +127,14 @@ const node /*: ConcreteRequest*/ = (function() {
     operation: {
       kind: 'Operation',
       name: 'HomeRootIssuesQuery',
-      argumentDefinitions: (v0 /*: any*/),
+      argumentDefinitions: v0 /*: any*/,
       selections: [
         {
           kind: 'LinkedField',
           alias: null,
           name: 'repository',
           storageKey: null,
-          args: (v1 /*: any*/),
+          args: v1 /*: any*/,
           concreteType: 'Repository',
           plural: false,
           selections: [
@@ -152,7 +143,7 @@ const node /*: ConcreteRequest*/ = (function() {
               alias: null,
               name: 'issues',
               storageKey: 'issues(first:10,states:["OPEN"])',
-              args: (v2 /*: any*/),
+              args: v2 /*: any*/,
               concreteType: 'IssueConnection',
               plural: false,
               selections: [
@@ -174,7 +165,7 @@ const node /*: ConcreteRequest*/ = (function() {
                       concreteType: 'Issue',
                       plural: false,
                       selections: [
-                        (v3 /*: any*/),
+                        v3 /*: any*/,
                         {
                           kind: 'ScalarField',
                           alias: null,
@@ -243,12 +234,12 @@ const node /*: ConcreteRequest*/ = (function() {
               kind: 'LinkedHandle',
               alias: null,
               name: 'issues',
-              args: (v2 /*: any*/),
+              args: v2 /*: any*/,
               handle: 'connection',
               key: 'Issues_issues',
               filters: ['states'],
             },
-            (v3 /*: any*/),
+            v3 /*: any*/,
           ],
         },
       ],
@@ -263,6 +254,5 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '123ee85bfef2bb303a99a7320127372f';
-module.exports = node;
+(node as any).hash = '123ee85bfef2bb303a99a7320127372f';
+export default node;

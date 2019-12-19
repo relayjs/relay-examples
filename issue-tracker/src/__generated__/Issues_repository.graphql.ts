@@ -1,37 +1,26 @@
-/**
- * @flow
- */
+/* tslint:disable */
 
-/* eslint-disable */
-
-'use strict';
-
-/*::
-import type { ReaderFragment } from 'relay-runtime';
-type IssuesListItem_issue$ref = any;
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type Issues_repository$ref: FragmentReference;
-declare export opaque type Issues_repository$fragmentType: Issues_repository$ref;
-export type Issues_repository = {|
-  +issues: {|
-    +edges: ?$ReadOnlyArray<?{|
-      +__id: string,
-      +node: ?{|
-        +$fragmentRefs: IssuesListItem_issue$ref
-      |},
-    |}>
-  |},
-  +id: ?string,
-  +$refType: Issues_repository$ref,
-|};
+import { ReaderFragment } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
+export type Issues_repository = {
+  readonly issues: {
+    readonly edges: ReadonlyArray<{
+      readonly __id: string;
+      readonly node: {
+        readonly ' $fragmentRefs': FragmentRefs<'IssuesListItem_issue'>;
+      } | null;
+    } | null> | null;
+  };
+  readonly id: string | null;
+  readonly ' $refType': 'Issues_repository';
+};
 export type Issues_repository$data = Issues_repository;
 export type Issues_repository$key = {
-  +$data?: Issues_repository$data,
-  +$fragmentRefs: Issues_repository$ref,
+  readonly ' $data'?: Issues_repository$data;
+  readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>;
 };
-*/
 
-const node /*: ReaderFragment*/ = (function() {
+const node: ReaderFragment = (function() {
   var v0 = ['issues'];
   return {
     kind: 'Fragment',
@@ -43,7 +32,7 @@ const node /*: ReaderFragment*/ = (function() {
           count: 'count',
           cursor: 'cursor',
           direction: 'forward',
-          path: (v0 /*: any*/),
+          path: v0 /*: any*/,
         },
       ],
       refetch: {
@@ -53,9 +42,9 @@ const node /*: ReaderFragment*/ = (function() {
             cursor: 'cursor',
           },
           backward: null,
-          path: (v0 /*: any*/),
+          path: v0 /*: any*/,
         },
-        operation: require('./IssuesPaginationQuery.graphql.js'),
+        operation: require('./IssuesPaginationQuery.graphql.ts'),
         fragmentPathInResult: ['node'],
       },
     },
@@ -185,6 +174,5 @@ const node /*: ReaderFragment*/ = (function() {
     ],
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '5040d7f86ce7f263d3a1bf6e624a6953';
-module.exports = node;
+(node as any).hash = '5040d7f86ce7f263d3a1bf6e624a6953';
+export default node;

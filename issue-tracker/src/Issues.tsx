@@ -1,14 +1,19 @@
-import graphql from 'babel-plugin-relay/macro';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
+import graphql from 'babel-plugin-relay/macro';
+
 import IssuesListItem from './IssuesListItem';
 
-const { useCallback } = React;
+import { Issues_repository$key } from './__generated__/Issues_repository.graphql';
+
+interface Props {
+  repository: Issues_repository$key;
+}
 
 /**
  * Renders a list of issues for a given repository.
  */
-export default function Issues(props) {
+const Issues: React.FC<Props> = props => {
   // Given a reference to a repository in props.repository, defines *what*
   // data the component needs about that repository. In this case we fetch
   // the list of issues starting at a given cursor (initially null to start
@@ -43,18 +48,15 @@ export default function Issues(props) {
   // Callback to paginate the issues list
   const loadMore = useCallback(() => {
     // Don't fetch again if we're already loading the next page
-    if (isLoadingNext) {
-      return;
-    }
+    if (isLoadingNext) return;
     loadNext(10);
   }, [isLoadingNext, loadNext]);
 
   return (
     <div className="issues">
-      {data.issues.edges.map(edge => {
-        if (edge == null || edge.node == null) {
-          return null;
-        }
+      {data!.issues.edges!.map(edge => {
+        if (edge == null || edge.node == null) return null;
+
         return (
           <div className="issues-issue" key={edge.__id}>
             {/* Note how we also spread IssuesListItem's fragment above */}
@@ -72,4 +74,6 @@ export default function Issues(props) {
       </button>
     </div>
   );
-}
+};
+
+export default Issues;

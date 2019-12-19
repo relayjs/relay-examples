@@ -1,17 +1,27 @@
-import graphql from 'babel-plugin-relay/macro';
-import React from 'react';
+import React, {
+  useTransition,
+  SuspenseList,
+  useCallback,
+  Suspense,
+} from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
-import ReactMarkdown from 'react-markdown';
+import graphql from 'babel-plugin-relay/macro';
+
 import SuspenseImage from './SuspenseImage';
 
-const { useCallback, useTransition, Suspense, SuspenseList } = React;
+import { IssueDetailComments_issue$key } from './__generated__/IssueDetailComments_issue.graphql';
+import ReactMarkdown from 'react-markdown';
+
+interface Props {
+  issue: IssueDetailComments_issue$key;
+}
 
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 /**
  * Renders a list of comments for a given issue.
  */
-export default function IssueDetailComments(props) {
+const IssueDetailComments: React.FC<Props> = props => {
   // Given a reference to an issue in props.issue, defines *what*
   // data the component needs about that repository. In this case we fetch
   // the list of comments starting at a given cursor (initially null to start
@@ -61,35 +71,30 @@ export default function IssueDetailComments(props) {
     });
   }, [isLoadingNext, loadNext, startTransition]);
 
-  const comments = data.comments.edges;
+  const comments = data!.comments.edges;
   if (comments == null || comments.length === 0) {
     return <div className="issue-no-comments">No comments</div>;
   }
 
-  // Per above, individual comments may suspend while images load. Using <SuspenseList>
-  // allows us to render comments as they are ready, while avoiding showing them out of
-  // order, as could happen if images for a later comment resolved before images for
-  // an earlier comment.
   return (
     <>
       <SuspenseList revealOrder="forwards">
         {comments.map(edge => {
           if (edge == null || edge.node == null) {
-            return null;
+            return <Suspense fallback={null} />;
           }
+
           const comment = edge.node;
           return (
-            // Wrap each comment in a separate suspense fallback to allow them to commit
-            // individually; SuspenseList ensures they'll reveal in-order.
-            <Suspense fallback={null} key={edge.__id}>
+            <Suspense fallback={null} key={edge!.__id}>
               <div className="issue-comment">
                 <SuspenseImage
                   className="issue-comment-author-image"
-                  title={`${comment.author.login}'s avatar`}
-                  src={comment.author.avatarUrl}
+                  title={`${comment.author!.login}'s avatar`}
+                  src={comment.author!.avatarUrl as string}
                 />
                 <div className="issue-comment-author-name">
-                  {comment.author.login}
+                  {comment.author!.login}
                 </div>
                 <div className="issue-comment-body">
                   <ReactMarkdown
@@ -104,9 +109,8 @@ export default function IssueDetailComments(props) {
       </SuspenseList>
       {hasNext ? (
         <button
-          name="load more comments"
-          type="button"
           className="issue-comments-load-more"
+          name="load more comments"
           onClick={loadMore}
           disabled={isPending || isLoadingNext}
         >
@@ -115,4 +119,6 @@ export default function IssueDetailComments(props) {
       ) : null}
     </>
   );
-}
+};
+
+export default IssueDetailComments;

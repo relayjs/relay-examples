@@ -1,7 +1,8 @@
 /**
- * Delay the pending indicator in case the transition is very fast: 
- * https://reactjs.org/docs/concurrent-mode-patterns.html#delaying-a-pending-indicator 
+ * Delay the pending indicator in case the transition is very fast:
+ * https://reactjs.org/docs/concurrent-mode-patterns.html#delaying-a-pending-indicator
  */
+
 .RouteRenderer-pending {
   position: absolute;
   z-index: 1;

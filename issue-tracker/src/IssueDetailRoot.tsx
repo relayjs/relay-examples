@@ -1,15 +1,24 @@
 import React from 'react';
-import graphql from 'babel-plugin-relay/macro';
 import { usePreloadedQuery } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
+import graphql from 'babel-plugin-relay/macro';
+
+import { IssueDetailRootQuery } from './__generated__/IssueDetailRootQuery.graphql';
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import SuspenseImage from './SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
 import IssueActions from './IssueActions';
 
+interface Props {
+  prepared: {
+    issueDetailQuery: PreloadedQuery<IssueDetailRootQuery>;
+  };
+}
+
 /**
  * The root component for the issue detail route.
  */
-export default function IssueDetailRoot(props) {
+const IssueDetailRoot: React.FC<Props> = props => {
   // Defines *what* data the component needs via a query. The responsibility of
   // actually fetching this data belongs to the route definition: it calls
   // preloadQuery() with the query and variables, and the result is passed
@@ -37,7 +46,7 @@ export default function IssueDetailRoot(props) {
     props.prepared.issueDetailQuery,
   );
   if (issue == null) {
-    return 'Issue not found';
+    return <div>Issue not found</div>;
   }
 
   return (
@@ -45,8 +54,8 @@ export default function IssueDetailRoot(props) {
       <div className="issue-title">
         #{issue.number} - {issue.title} - {issue.closed ? 'Closed' : 'Open'}
         <a
+          href={issue.url as string}
           className="issue-title-github-link"
-          href={issue.url}
           title="Issue on GitHub"
         >
           View on GitHub
@@ -55,19 +64,18 @@ export default function IssueDetailRoot(props) {
       <div className="issue-comment">
         <SuspenseImage
           className="issue-comment-author-image"
-          title={`${issue.author.login}'s avatar`}
-          src={issue.author.avatarUrl}
+          title={`${issue.author!.login}'s avatar`}
+          src={issue.author!.avatarUrl as string}
         />
-        <div className="issue-comment-author-name">{issue.author.login}</div>
+        <div className="issue-comment-author-name">{issue.author!.login}</div>
         <div className="issue-comment-body">
-          <ReactMarkdown
-            source={issue.body}
-            renderers={{ image: SuspenseImage }}
-          />
+          <ReactMarkdown source={issue.body} renderers={{ SuspenseImage }} />
         </div>
       </div>
       <IssueDetailComments issue={issue} />
       <IssueActions issue={issue} />
     </div>
   );
-}
+};
+
+export default IssueDetailRoot;

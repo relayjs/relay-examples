@@ -1,58 +1,49 @@
-/**
- * @flow
- * @relayHash dd3fa1f8fd5623331d1137219fb1b091
- */
+/* tslint:disable */
 
-/* eslint-disable */
-
-'use strict';
-
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type IssueDetailComments_issue$ref = any;
-export type IssueDetailCommentsQueryVariables = {|
-  cursor?: ?string,
-  count?: ?number,
-  id: string,
-|};
-export type IssueDetailCommentsQueryResponse = {|
-  +node: ?{|
-    +$fragmentRefs: IssueDetailComments_issue$ref
-  |}
-|};
-export type IssueDetailCommentsQuery = {|
-  variables: IssueDetailCommentsQueryVariables,
-  response: IssueDetailCommentsQueryResponse,
-|};
-*/
+import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from 'relay-runtime';
+export type IssueState = 'CLOSED' | 'OPEN' | '%future added value';
+export type IssuesPaginationQueryVariables = {
+  cursor?: string | null;
+  count?: number | null;
+  states?: ReadonlyArray<IssueState> | null;
+  id: string;
+};
+export type IssuesPaginationQueryResponse = {
+  readonly node: {
+    readonly ' $fragmentRefs': FragmentRefs<'Issues_repository'>;
+  } | null;
+};
+export type IssuesPaginationQuery = {
+  readonly response: IssuesPaginationQueryResponse;
+  readonly variables: IssuesPaginationQueryVariables;
+};
 
 /*
-query IssueDetailCommentsQuery(
+query IssuesPaginationQuery(
   $cursor: String
   $count: Int = 10
+  $states: [IssueState!] = [OPEN]
   $id: ID!
 ) {
   node(id: $id) {
     __typename
-    ...IssueDetailComments_issue_1G22uz
+    ...Issues_repository_a4QoT
     id
   }
 }
 
-fragment IssueDetailComments_issue_1G22uz on Issue {
-  comments(after: $cursor, first: $count) {
+fragment IssuesListItem_issue on Issue {
+  id
+  title
+}
+
+fragment Issues_repository_a4QoT on Repository {
+  issues(after: $cursor, first: $count, states: $states) {
     edges {
       node {
+        ...IssuesListItem_issue
         id
-        author {
-          __typename
-          login
-          avatarUrl
-          ... on Node {
-            id
-          }
-        }
-        body
         __typename
       }
       cursor
@@ -66,7 +57,7 @@ fragment IssueDetailComments_issue_1G22uz on Issue {
 }
 */
 
-const node /*: ConcreteRequest*/ = (function() {
+const node: ConcreteRequest = (function() {
   var v0 = [
       {
         kind: 'LocalArgument',
@@ -79,6 +70,12 @@ const node /*: ConcreteRequest*/ = (function() {
         name: 'count',
         type: 'Int',
         defaultValue: 10,
+      },
+      {
+        kind: 'LocalArgument',
+        name: 'states',
+        type: '[IssueState!]',
+        defaultValue: ['OPEN'],
       },
       {
         kind: 'LocalArgument',
@@ -95,20 +92,25 @@ const node /*: ConcreteRequest*/ = (function() {
       },
     ],
     v2 = {
+      kind: 'Variable',
+      name: 'states',
+      variableName: 'states',
+    },
+    v3 = {
       kind: 'ScalarField',
       alias: null,
       name: '__typename',
       args: null,
       storageKey: null,
     },
-    v3 = {
+    v4 = {
       kind: 'ScalarField',
       alias: null,
       name: 'id',
       args: null,
       storageKey: null,
     },
-    v4 = [
+    v5 = [
       {
         kind: 'Variable',
         name: 'after',
@@ -119,28 +121,29 @@ const node /*: ConcreteRequest*/ = (function() {
         name: 'first',
         variableName: 'count',
       },
+      v2 /*: any*/,
     ];
   return {
     kind: 'Request',
     fragment: {
       kind: 'Fragment',
-      name: 'IssueDetailCommentsQuery',
+      name: 'IssuesPaginationQuery',
       type: 'Query',
       metadata: null,
-      argumentDefinitions: (v0 /*: any*/),
+      argumentDefinitions: v0 /*: any*/,
       selections: [
         {
           kind: 'LinkedField',
           alias: null,
           name: 'node',
           storageKey: null,
-          args: (v1 /*: any*/),
+          args: v1 /*: any*/,
           concreteType: null,
           plural: false,
           selections: [
             {
               kind: 'FragmentSpread',
-              name: 'IssueDetailComments_issue',
+              name: 'Issues_repository',
               args: [
                 {
                   kind: 'Variable',
@@ -152,6 +155,7 @@ const node /*: ConcreteRequest*/ = (function() {
                   name: 'cursor',
                   variableName: 'cursor',
                 },
+                v2 /*: any*/,
               ],
             },
           ],
@@ -160,31 +164,31 @@ const node /*: ConcreteRequest*/ = (function() {
     },
     operation: {
       kind: 'Operation',
-      name: 'IssueDetailCommentsQuery',
-      argumentDefinitions: (v0 /*: any*/),
+      name: 'IssuesPaginationQuery',
+      argumentDefinitions: v0 /*: any*/,
       selections: [
         {
           kind: 'LinkedField',
           alias: null,
           name: 'node',
           storageKey: null,
-          args: (v1 /*: any*/),
+          args: v1 /*: any*/,
           concreteType: null,
           plural: false,
           selections: [
-            (v2 /*: any*/),
-            (v3 /*: any*/),
+            v3 /*: any*/,
+            v4 /*: any*/,
             {
               kind: 'InlineFragment',
-              type: 'Issue',
+              type: 'Repository',
               selections: [
                 {
                   kind: 'LinkedField',
                   alias: null,
-                  name: 'comments',
+                  name: 'issues',
                   storageKey: null,
-                  args: (v4 /*: any*/),
-                  concreteType: 'IssueCommentConnection',
+                  args: v5 /*: any*/,
+                  concreteType: 'IssueConnection',
                   plural: false,
                   selections: [
                     {
@@ -193,7 +197,7 @@ const node /*: ConcreteRequest*/ = (function() {
                       name: 'edges',
                       storageKey: null,
                       args: null,
-                      concreteType: 'IssueCommentEdge',
+                      concreteType: 'IssueEdge',
                       plural: true,
                       selections: [
                         {
@@ -202,45 +206,18 @@ const node /*: ConcreteRequest*/ = (function() {
                           name: 'node',
                           storageKey: null,
                           args: null,
-                          concreteType: 'IssueComment',
+                          concreteType: 'Issue',
                           plural: false,
                           selections: [
-                            (v3 /*: any*/),
-                            {
-                              kind: 'LinkedField',
-                              alias: null,
-                              name: 'author',
-                              storageKey: null,
-                              args: null,
-                              concreteType: null,
-                              plural: false,
-                              selections: [
-                                (v2 /*: any*/),
-                                {
-                                  kind: 'ScalarField',
-                                  alias: null,
-                                  name: 'login',
-                                  args: null,
-                                  storageKey: null,
-                                },
-                                {
-                                  kind: 'ScalarField',
-                                  alias: null,
-                                  name: 'avatarUrl',
-                                  args: null,
-                                  storageKey: null,
-                                },
-                                (v3 /*: any*/),
-                              ],
-                            },
+                            v4 /*: any*/,
                             {
                               kind: 'ScalarField',
                               alias: null,
-                              name: 'body',
+                              name: 'title',
                               args: null,
                               storageKey: null,
                             },
-                            (v2 /*: any*/),
+                            v3 /*: any*/,
                           ],
                         },
                         {
@@ -294,11 +271,11 @@ const node /*: ConcreteRequest*/ = (function() {
                 {
                   kind: 'LinkedHandle',
                   alias: null,
-                  name: 'comments',
-                  args: (v4 /*: any*/),
+                  name: 'issues',
+                  args: v5 /*: any*/,
                   handle: 'connection',
-                  key: 'IssueDetailComments_comments',
-                  filters: null,
+                  key: 'Issues_issues',
+                  filters: ['states'],
                 },
               ],
             },
@@ -308,17 +285,16 @@ const node /*: ConcreteRequest*/ = (function() {
     },
     params: {
       operationKind: 'query',
-      name: 'IssueDetailCommentsQuery',
+      name: 'IssuesPaginationQuery',
       id: null,
       text:
-        'query IssueDetailCommentsQuery(\n  $cursor: String\n  $count: Int = 10\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...IssueDetailComments_issue_1G22uz\n    id\n  }\n}\n\nfragment IssueDetailComments_issue_1G22uz on Issue {\n  comments(after: $cursor, first: $count) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssuesPaginationQuery(\n  $cursor: String\n  $count: Int = 10\n  $states: [IssueState!] = [OPEN]\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Issues_repository_a4QoT\n    id\n  }\n}\n\nfragment IssuesListItem_issue on Issue {\n  id\n  title\n}\n\nfragment Issues_repository_a4QoT on Repository {\n  issues(after: $cursor, first: $count, states: $states) {\n    edges {\n      node {\n        ...IssuesListItem_issue\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
       metadata: {
-        derivedFrom: 'IssueDetailComments_issue',
+        derivedFrom: 'Issues_repository',
         isRefetchableQuery: true,
       },
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '674952f209c2653f27a5fad5539df511';
-module.exports = node;
+(node as any).hash = '5040d7f86ce7f263d3a1bf6e624a6953';
+export default node;
