@@ -24,6 +24,7 @@ export type TodoApp_user$data = TodoApp_user;
 export type TodoApp_user$key = {
   +$data?: TodoApp_user$data,
   +$fragmentRefs: TodoApp_user$ref,
+  ...
 };
 */
 

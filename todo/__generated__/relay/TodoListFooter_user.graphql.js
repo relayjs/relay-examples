@@ -30,6 +30,7 @@ export type TodoListFooter_user$data = TodoListFooter_user;
 export type TodoListFooter_user$key = {
   +$data?: TodoListFooter_user$data,
   +$fragmentRefs: TodoListFooter_user$ref,
+  ...
 };
 */
 
