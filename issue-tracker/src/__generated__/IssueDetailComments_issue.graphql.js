@@ -32,6 +32,7 @@ export type IssueDetailComments_issue$data = IssueDetailComments_issue;
 export type IssueDetailComments_issue$key = {
   +$data?: IssueDetailComments_issue$data,
   +$fragmentRefs: IssueDetailComments_issue$ref,
+  ...
 };
 */
 

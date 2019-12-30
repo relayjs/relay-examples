@@ -20,6 +20,7 @@ export type IssuesListItem_issue$data = IssuesListItem_issue;
 export type IssuesListItem_issue$key = {
   +$data?: IssuesListItem_issue$data,
   +$fragmentRefs: IssuesListItem_issue$ref,
+  ...
 };
 */
 

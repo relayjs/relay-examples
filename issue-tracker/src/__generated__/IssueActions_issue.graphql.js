@@ -20,6 +20,7 @@ export type IssueActions_issue$data = IssueActions_issue;
 export type IssueActions_issue$key = {
   +$data?: IssueActions_issue$data,
   +$fragmentRefs: IssueActions_issue$ref,
+  ...
 };
 */
 
