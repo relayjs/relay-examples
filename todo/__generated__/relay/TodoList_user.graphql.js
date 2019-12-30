@@ -34,6 +34,7 @@ export type TodoList_user$data = TodoList_user;
 export type TodoList_user$key = {
   +$data?: TodoList_user$data,
   +$fragmentRefs: TodoList_user$ref,
+  ...
 };
 */
 

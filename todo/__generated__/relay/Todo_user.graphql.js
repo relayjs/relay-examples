@@ -22,6 +22,7 @@ export type Todo_user$data = Todo_user;
 export type Todo_user$key = {
   +$data?: Todo_user$data,
   +$fragmentRefs: Todo_user$ref,
+  ...
 };
 */
 
