@@ -28,6 +28,7 @@ export type Issues_repository$data = Issues_repository;
 export type Issues_repository$key = {
   +$data?: Issues_repository$data,
   +$fragmentRefs: Issues_repository$ref,
+  ...
 };
 */
 

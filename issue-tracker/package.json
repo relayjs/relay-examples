@@ -6,14 +6,14 @@
     "history": "^4.10.1",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
-    "react": "^0.0.0-experimental-f6b8d31a7",
-    "react-dom": "^0.0.0-experimental-f6b8d31a7",
+    "react": "0.0.0-experimental-f42431abe",
+    "react-dom": "0.0.0-experimental-f42431abe",
     "react-markdown": "^4.2.2",
-    "react-relay": "0.0.0-experimental-a1a40b68",
+    "react-relay": "0.0.0-experimental-5f1cb628",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-scripts": "3.2.0",
-    "relay-runtime": "^7.0.0"
+    "relay-runtime": "8.0.0"
   },
   "scripts": {
     "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
@@ -39,13 +39,13 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-relay": "^7.0.0",
+    "babel-plugin-relay": "8.0.0",
     "concurrently": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^14.5.8",
     "prettier": "^1.18.2",
-    "relay-compiler": "^7.0.0"
+    "relay-compiler": "8.0.0"
   },
   "husky": {
     "hooks": {
