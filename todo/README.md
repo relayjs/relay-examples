@@ -11,14 +11,14 @@ yarn
 Set up generated files:
 
 ```
-yarn run update-schema
-yarn run build
+yarn update-schema
+yarn build
 ```
 
 Start a local server:
 
 ```
-yarn run start
+yarn start
 ```
 
 ## Developing
@@ -30,9 +30,9 @@ If at any time you make changes to `data/schema.js`, stop the server,
 regenerate `data/schema.graphql`, and restart the server:
 
 ```
-yarn run update-schema
-yarn run build
-yarn run start
+yarn update-schema
+yarn build
+yarn start
 ```
 
 ## License
