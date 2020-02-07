@@ -22,6 +22,8 @@ import classnames from 'classnames';
 import type {Todo_todo} from 'relay/Todo_todo.graphql';
 import type {Todo_user} from 'relay/Todo_user.graphql';
 
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 type Props = {|
   +relay: RelayProp,
   +todo: Todo_todo,
