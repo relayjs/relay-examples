@@ -99,6 +99,7 @@ const GraphQLUser = new GraphQLObjectType({
           type: GraphQLString,
           defaultValue: 'any',
         },
+        // $FlowFixMe
         ...connectionArgs,
       },
       // eslint-disable-next-line flowtype/require-parameter-type
