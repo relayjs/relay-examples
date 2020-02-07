@@ -3,7 +3,7 @@
   "scripts": {
     "start": "babel-node ./server.js",
     "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
-    "flow-typed": "flow-typed install --flowVersion=0.94.0",
+    "flow-typed": "flow-typed install --flowVersion=0.118.0",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "lint": "eslint ./ --cache"
   },
