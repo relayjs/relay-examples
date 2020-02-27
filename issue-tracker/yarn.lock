@@ -8934,15 +8934,15 @@ react-markdown@^4.2.2:
     unist-util-visit "^1.3.0"
     xtend "^4.0.1"
 
-react-relay@0.0.0-experimental-5f1cb628:
-  version "0.0.0-experimental-5f1cb628"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-0.0.0-experimental-5f1cb628.tgz#37df83345bf565ff7f7af88368f7e68e7772b0bc"
-  integrity sha512-VVHJsQtSgknZlncLtz3Wexs8AcGbYmWmcPrZDP7OJefOyKerfdw4spzNZUYHrqnpLckZxVQYpZ7cb76LW8D6iA==
+react-relay@0.0.0-experimental-8cc94ddc:
+  version "0.0.0-experimental-8cc94ddc"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-0.0.0-experimental-8cc94ddc.tgz#bafb71953fb41ebf9c122cb0443e96ab8df3e710"
+  integrity sha512-1yrSsajW8dOQlCWa8EHc7YcxgXnlyypPKtdooCZ7Oq6gQ3FawR4Ft5wvCiILoORDwI343BcpG5NZ4Ed7ae0O8Q==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
     nullthrows "^1.1.1"
-    relay-runtime "8.0.0"
+    relay-runtime "9.0.0"
 
 react-router-config@^5.1.1:
   version "5.1.1"
@@ -9239,14 +9239,6 @@ relay-compiler@^9.0.0:
     relay-runtime "9.0.0"
     signedsource "^1.0.0"
     yargs "^14.2.0"
-
-relay-runtime@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-8.0.0.tgz#52585a7bf04a710bd1bc664bfb0a60dbff3ce6e1"
-  integrity sha512-lOaZ7K/weTuCIt3pWHkxUG8s7iohI4IyYj65YV4sB9iX6W0uMvt626BFJ4GvNXFmd+OrgNnXcvx1mqRFqJaV8A==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    fbjs "^1.0.0"
 
 relay-runtime@9.0.0, relay-runtime@^9.0.0:
   version "9.0.0"
