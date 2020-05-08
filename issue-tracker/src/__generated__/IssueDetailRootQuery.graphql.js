@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ad22b58a838582f6871494562ce52544
+ * @relayHash 249d97bae8f48cb29dc8d9998af618df
  */
 
 /* eslint-disable */
@@ -11,6 +11,7 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type IssueActions_issue$ref = any;
 type IssueDetailComments_issue$ref = any;
+type IssueDetailRoot_timelineItems$ref = any;
 export type IssueDetailRootQueryVariables = {|
   id: string
 |};
@@ -25,6 +26,12 @@ export type IssueDetailRootQueryResponse = {|
     +body?: string,
     +closed?: boolean,
     +url?: any,
+    +timelineItems?: {|
+      +nodes: ?$ReadOnlyArray<?{|
+        +__typename: string,
+        +$fragmentRefs: IssueDetailRoot_timelineItems$ref,
+      |}>
+    |},
     +$fragmentRefs: IssueDetailComments_issue$ref & IssueActions_issue$ref,
   |}
 |};
@@ -56,6 +63,15 @@ query IssueDetailRootQuery(
       url
       ...IssueDetailComments_issue
       ...IssueActions_issue
+      timelineItems(first: 10) {
+        nodes {
+          __typename
+          ...IssueDetailRoot_timelineItems
+          ... on Node {
+            id
+          }
+        }
+      }
     }
     id
   }
@@ -90,6 +106,16 @@ fragment IssueDetailComments_issue on Issue {
     }
   }
   id
+}
+
+fragment IssueDetailRoot_timelineItems on IssueTimelineItems {
+  __typename
+  ... on IssueComment {
+    body
+  }
+  ... on CrossReferencedEvent {
+    willCloseTarget
+  }
 }
 */
 
@@ -158,21 +184,28 @@ const node /*: ConcreteRequest*/ = (function() {
       args: null,
       storageKey: null,
     },
-    v9 = {
+    v9 = [
+      {
+        kind: 'Literal',
+        name: 'first',
+        value: 10,
+      },
+    ],
+    v10 = {
       kind: 'ScalarField',
       alias: null,
       name: '__typename',
       args: null,
       storageKey: null,
     },
-    v10 = {
+    v11 = {
       kind: 'ScalarField',
       alias: null,
       name: 'id',
       args: null,
       storageKey: null,
     },
-    v11 = {
+    v12 = {
       kind: 'LinkedField',
       alias: null,
       name: 'author',
@@ -181,19 +214,12 @@ const node /*: ConcreteRequest*/ = (function() {
       concreteType: null,
       plural: false,
       selections: [
-        (v9 /*: any*/),
+        (v10 /*: any*/),
         (v4 /*: any*/),
         (v5 /*: any*/),
-        (v10 /*: any*/),
+        (v11 /*: any*/),
       ],
-    },
-    v12 = [
-      {
-        kind: 'Literal',
-        name: 'first',
-        value: 10,
-      },
-    ];
+    };
   return {
     kind: 'Request',
     fragment: {
@@ -232,6 +258,34 @@ const node /*: ConcreteRequest*/ = (function() {
                 (v7 /*: any*/),
                 (v8 /*: any*/),
                 {
+                  kind: 'LinkedField',
+                  alias: null,
+                  name: 'timelineItems',
+                  storageKey: 'timelineItems(first:10)',
+                  args: (v9 /*: any*/),
+                  concreteType: 'IssueTimelineItemsConnection',
+                  plural: false,
+                  selections: [
+                    {
+                      kind: 'LinkedField',
+                      alias: null,
+                      name: 'nodes',
+                      storageKey: null,
+                      args: null,
+                      concreteType: null,
+                      plural: true,
+                      selections: [
+                        (v10 /*: any*/),
+                        {
+                          kind: 'FragmentSpread',
+                          name: 'IssueDetailRoot_timelineItems',
+                          args: null,
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
                   kind: 'FragmentSpread',
                   name: 'IssueDetailComments_issue',
                   args: null,
@@ -261,15 +315,15 @@ const node /*: ConcreteRequest*/ = (function() {
           concreteType: null,
           plural: false,
           selections: [
-            (v9 /*: any*/),
             (v10 /*: any*/),
+            (v11 /*: any*/),
             {
               kind: 'InlineFragment',
               type: 'Issue',
               selections: [
                 (v2 /*: any*/),
                 (v3 /*: any*/),
-                (v11 /*: any*/),
+                (v12 /*: any*/),
                 (v6 /*: any*/),
                 (v7 /*: any*/),
                 (v8 /*: any*/),
@@ -278,7 +332,7 @@ const node /*: ConcreteRequest*/ = (function() {
                   alias: null,
                   name: 'comments',
                   storageKey: 'comments(first:10)',
-                  args: (v12 /*: any*/),
+                  args: (v9 /*: any*/),
                   concreteType: 'IssueCommentConnection',
                   plural: false,
                   selections: [
@@ -300,10 +354,10 @@ const node /*: ConcreteRequest*/ = (function() {
                           concreteType: 'IssueComment',
                           plural: false,
                           selections: [
-                            (v10 /*: any*/),
                             (v11 /*: any*/),
+                            (v12 /*: any*/),
                             (v6 /*: any*/),
-                            (v9 /*: any*/),
+                            (v10 /*: any*/),
                           ],
                         },
                         {
@@ -358,10 +412,52 @@ const node /*: ConcreteRequest*/ = (function() {
                   kind: 'LinkedHandle',
                   alias: null,
                   name: 'comments',
-                  args: (v12 /*: any*/),
+                  args: (v9 /*: any*/),
                   handle: 'connection',
                   key: 'IssueDetailComments_comments',
                   filters: null,
+                },
+                {
+                  kind: 'LinkedField',
+                  alias: null,
+                  name: 'timelineItems',
+                  storageKey: 'timelineItems(first:10)',
+                  args: (v9 /*: any*/),
+                  concreteType: 'IssueTimelineItemsConnection',
+                  plural: false,
+                  selections: [
+                    {
+                      kind: 'LinkedField',
+                      alias: null,
+                      name: 'nodes',
+                      storageKey: null,
+                      args: null,
+                      concreteType: null,
+                      plural: true,
+                      selections: [
+                        (v10 /*: any*/),
+                        (v11 /*: any*/),
+                        {
+                          kind: 'InlineFragment',
+                          type: 'IssueComment',
+                          selections: [(v6 /*: any*/)],
+                        },
+                        {
+                          kind: 'InlineFragment',
+                          type: 'CrossReferencedEvent',
+                          selections: [
+                            {
+                              kind: 'ScalarField',
+                              alias: null,
+                              name: 'willCloseTarget',
+                              args: null,
+                              storageKey: null,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
             },
@@ -374,11 +470,12 @@ const node /*: ConcreteRequest*/ = (function() {
       name: 'IssueDetailRootQuery',
       id: null,
       text:
-        'query IssueDetailRootQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n  closed\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n',
+        'query IssueDetailRootQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on Issue {\n      title\n      number\n      author {\n        __typename\n        login\n        avatarUrl\n        ... on Node {\n          id\n        }\n      }\n      body\n      closed\n      url\n      ...IssueDetailComments_issue\n      ...IssueActions_issue\n      timelineItems(first: 10) {\n        nodes {\n          __typename\n          ...IssueDetailRoot_timelineItems\n          ... on Node {\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n\nfragment IssueActions_issue on Issue {\n  id\n  closed\n}\n\nfragment IssueDetailComments_issue on Issue {\n  comments(first: 10) {\n    edges {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment IssueDetailRoot_timelineItems on IssueTimelineItems {\n  __typename\n  ... on IssueComment {\n    body\n  }\n  ... on CrossReferencedEvent {\n    willCloseTarget\n  }\n}\n',
       metadata: {},
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '42e7a1bc529086397c84040c8f84c752';
+(node/*: any*/).hash = '097af6f02b71169f37b75d179900d639';
+
 module.exports = node;

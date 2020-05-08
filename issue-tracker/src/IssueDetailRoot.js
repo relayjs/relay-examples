@@ -1,6 +1,6 @@
 import React from 'react';
 import graphql from 'babel-plugin-relay/macro';
-import { usePreloadedQuery } from 'react-relay/hooks';
+import { usePreloadedQuery, useFragment } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
 import SuspenseImage from './SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
@@ -30,12 +30,33 @@ export default function IssueDetailRoot(props) {
             url
             ...IssueDetailComments_issue
             ...IssueActions_issue
+            timelineItems(first: 10) {
+              nodes {
+                __typename
+                ...IssueDetailRoot_timelineItems
+              }
+            }
           }
         }
       }
     `,
     props.prepared.issueDetailQuery,
   );
+
+  let fragment = useFragment(
+    graphql`
+      fragment IssueDetailRoot_timelineItems on IssueTimelineItems {
+        __typename
+        ... on IssueComment {
+          body
+        }
+        ... on CrossReferencedEvent {
+          willCloseTarget
+        }
+      }
+    `,
+  );
+
   if (issue == null) {
     return 'Issue not found';
   }
