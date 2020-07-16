@@ -24,29 +24,31 @@ export type IssuesListItem_issue$key = {
 };
 */
 
-const node /*: ReaderFragment*/ = {
-  kind: 'Fragment',
-  name: 'IssuesListItem_issue',
-  type: 'Issue',
-  metadata: null,
-  argumentDefinitions: [],
-  selections: [
+
+const node/*: ReaderFragment*/ = {
+  "kind": "Fragment",
+  "name": "IssuesListItem_issue",
+  "type": "Issue",
+  "metadata": null,
+  "argumentDefinitions": [],
+  "selections": [
     {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'id',
-      args: null,
-      storageKey: null,
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
     },
     {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'title',
-      args: null,
-      storageKey: null,
-    },
-  ],
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "title",
+      "args": null,
+      "storageKey": null
+    }
+  ]
 };
 // prettier-ignore
 (node/*: any*/).hash = '4759ca84c6b2c9e515e40652369fe5a9';
+
 module.exports = node;
