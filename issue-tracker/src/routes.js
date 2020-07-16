@@ -1,5 +1,5 @@
 import JSResource from './JSResource';
-import { preloadQuery } from 'react-relay/hooks';
+import preloadQuery from 'react-relay/lib/relay-experimental/preloadQuery_DEPRECATED';
 import RelayEnvironment from './RelayEnvironment';
 
 const routes = [
