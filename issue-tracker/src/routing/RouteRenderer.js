@@ -3,7 +3,7 @@ import RoutingContext from './RoutingContext';
 import ErrorBoundary from '../ErrorBoundary';
 import './RouteRenderer.css';
 
-const { useContext, useEffect, useTransition, Suspense, useState } = React;
+const { useContext, useEffect, unstable_useTransition, Suspense, useState } = React;
 
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
@@ -17,7 +17,7 @@ export default function RouterRenderer() {
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
-  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+  const [startTransition, isPending] = unstable_useTransition(SUSPENSE_CONFIG);
 
   // Store the active entry in state - this allows the renderer to use features like
   // useTransition to delay when state changes become visible to the user.

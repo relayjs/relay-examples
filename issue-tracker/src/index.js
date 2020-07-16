@@ -11,7 +11,7 @@ import RouterRenderer from './routing/RouteRenderer';
 // Uses the custom router setup to define a router instanace that we can pass through context
 const router = createRouter(routes);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.unstable_createRoot(document.getElementById('root')).render(
   <RelayEnvironmentProvider environment={RelayEnvironment}>
     <RoutingContext.Provider value={router.context}>
       {/* Render the active route */}
