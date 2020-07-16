@@ -1,6 +1,5 @@
 /**
  * @flow
- * @relayHash 21278f2a218ad37f605645cdbbf005d6
  */
 
 /* eslint-disable */
@@ -29,6 +28,7 @@ export type IssueActionsCloseIssueMutation = {|
 |};
 */
 
+
 /*
 mutation IssueActionsCloseIssueMutation(
   $input: CloseIssueInput!
@@ -42,108 +42,111 @@ mutation IssueActionsCloseIssueMutation(
 }
 */
 
-const node /*: ConcreteRequest*/ = (function() {
-  var v0 = [
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "input"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
+  }
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "closed",
+  "storageKey": null
+};
+return {
+  "fragment": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "IssueActionsCloseIssueMutation",
+    "selections": [
       {
-        kind: 'LocalArgument',
-        name: 'input',
-        type: 'CloseIssueInput!',
-        defaultValue: null,
-      },
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "CloseIssuePayload",
+        "kind": "LinkedField",
+        "name": "closeIssue",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Issue",
+            "kind": "LinkedField",
+            "name": "issue",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/)
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
     ],
-    v1 = [
+    "type": "Mutation",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Operation",
+    "name": "IssueActionsCloseIssueMutation",
+    "selections": [
       {
-        kind: 'Variable',
-        name: 'input',
-        variableName: 'input',
-      },
-    ],
-    v2 = {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'closed',
-      args: null,
-      storageKey: null,
-    };
-  return {
-    kind: 'Request',
-    fragment: {
-      kind: 'Fragment',
-      name: 'IssueActionsCloseIssueMutation',
-      type: 'Mutation',
-      metadata: null,
-      argumentDefinitions: (v0 /*: any*/),
-      selections: [
-        {
-          kind: 'LinkedField',
-          alias: null,
-          name: 'closeIssue',
-          storageKey: null,
-          args: (v1 /*: any*/),
-          concreteType: 'CloseIssuePayload',
-          plural: false,
-          selections: [
-            {
-              kind: 'LinkedField',
-              alias: null,
-              name: 'issue',
-              storageKey: null,
-              args: null,
-              concreteType: 'Issue',
-              plural: false,
-              selections: [(v2 /*: any*/)],
-            },
-          ],
-        },
-      ],
-    },
-    operation: {
-      kind: 'Operation',
-      name: 'IssueActionsCloseIssueMutation',
-      argumentDefinitions: (v0 /*: any*/),
-      selections: [
-        {
-          kind: 'LinkedField',
-          alias: null,
-          name: 'closeIssue',
-          storageKey: null,
-          args: (v1 /*: any*/),
-          concreteType: 'CloseIssuePayload',
-          plural: false,
-          selections: [
-            {
-              kind: 'LinkedField',
-              alias: null,
-              name: 'issue',
-              storageKey: null,
-              args: null,
-              concreteType: 'Issue',
-              plural: false,
-              selections: [
-                (v2 /*: any*/),
-                {
-                  kind: 'ScalarField',
-                  alias: null,
-                  name: 'id',
-                  args: null,
-                  storageKey: null,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    params: {
-      operationKind: 'mutation',
-      name: 'IssueActionsCloseIssueMutation',
-      id: null,
-      text:
-        'mutation IssueActionsCloseIssueMutation(\n  $input: CloseIssueInput!\n) {\n  closeIssue(input: $input) {\n    issue {\n      closed\n      id\n    }\n  }\n}\n',
-      metadata: {},
-    },
-  };
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "CloseIssuePayload",
+        "kind": "LinkedField",
+        "name": "closeIssue",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Issue",
+            "kind": "LinkedField",
+            "name": "issue",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
+  },
+  "params": {
+    "cacheID": "f9a79bf09d01cf694389761b6824ebd0",
+    "id": null,
+    "metadata": {},
+    "name": "IssueActionsCloseIssueMutation",
+    "operationKind": "mutation",
+    "text": "mutation IssueActionsCloseIssueMutation(\n  $input: CloseIssueInput!\n) {\n  closeIssue(input: $input) {\n    issue {\n      closed\n      id\n    }\n  }\n}\n"
+  }
+};
 })();
 // prettier-ignore
 (node/*: any*/).hash = '51e445c25b3f4b3c48c3d6ca6c5f2f5a';
+
 module.exports = node;

@@ -21,7 +21,7 @@ export type Issues_repository = {|
       |},
     |}>
   |},
-  +id: ?string,
+  +id: string,
   +$refType: Issues_repository$ref,
 |};
 export type Issues_repository$data = Issues_repository;
@@ -38,9 +38,26 @@ var v0 = [
   "issues"
 ];
 return {
+  "argumentDefinitions": [
+    {
+      "defaultValue": 10,
+      "kind": "LocalArgument",
+      "name": "count"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "cursor"
+    },
+    {
+      "defaultValue": [
+        "OPEN"
+      ],
+      "kind": "LocalArgument",
+      "name": "states"
+    }
+  ],
   "kind": "Fragment",
-  "name": "Issues_repository",
-  "type": "Repository",
   "metadata": {
     "connection": [
       {
@@ -59,40 +76,17 @@ return {
         "backward": null,
         "path": (v0/*: any*/)
       },
-      "operation": require('./IssuesPaginationQuery.graphql.js'),
       "fragmentPathInResult": [
         "node"
-      ]
+      ],
+      "operation": require('./IssuesPaginationQuery.graphql.js'),
+      "identifierField": "id"
     }
   },
-  "argumentDefinitions": [
-    {
-      "kind": "LocalArgument",
-      "name": "cursor",
-      "type": "String",
-      "defaultValue": null
-    },
-    {
-      "kind": "LocalArgument",
-      "name": "count",
-      "type": "Int",
-      "defaultValue": 10
-    },
-    {
-      "kind": "LocalArgument",
-      "name": "states",
-      "type": "[IssueState!]",
-      "defaultValue": [
-        "OPEN"
-      ]
-    }
-  ],
+  "name": "Issues_repository",
   "selections": [
     {
-      "kind": "LinkedField",
       "alias": "issues",
-      "name": "__Issues_issues_connection",
-      "storageKey": null,
       "args": [
         {
           "kind": "Variable",
@@ -101,99 +95,104 @@ return {
         }
       ],
       "concreteType": "IssueConnection",
+      "kind": "LinkedField",
+      "name": "__Issues_issues_connection",
       "plural": false,
       "selections": [
         {
-          "kind": "LinkedField",
           "alias": null,
-          "name": "edges",
-          "storageKey": null,
           "args": null,
           "concreteType": "IssueEdge",
+          "kind": "LinkedField",
+          "name": "edges",
           "plural": true,
           "selections": [
             {
-              "kind": "LinkedField",
               "alias": null,
-              "name": "node",
-              "storageKey": null,
               "args": null,
               "concreteType": "Issue",
+              "kind": "LinkedField",
+              "name": "node",
               "plural": false,
               "selections": [
                 {
-                  "kind": "ScalarField",
                   "alias": null,
-                  "name": "__typename",
                   "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
                   "storageKey": null
                 },
                 {
+                  "args": null,
                   "kind": "FragmentSpread",
-                  "name": "IssuesListItem_issue",
-                  "args": null
+                  "name": "IssuesListItem_issue"
                 }
-              ]
+              ],
+              "storageKey": null
             },
             {
-              "kind": "ScalarField",
               "alias": null,
-              "name": "cursor",
               "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
               "storageKey": null
             },
             {
               "kind": "ClientExtension",
               "selections": [
                 {
-                  "kind": "ScalarField",
                   "alias": null,
-                  "name": "__id",
                   "args": null,
+                  "kind": "ScalarField",
+                  "name": "__id",
                   "storageKey": null
                 }
               ]
             }
-          ]
+          ],
+          "storageKey": null
         },
         {
-          "kind": "LinkedField",
           "alias": null,
-          "name": "pageInfo",
-          "storageKey": null,
           "args": null,
           "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
           "plural": false,
           "selections": [
             {
-              "kind": "ScalarField",
               "alias": null,
-              "name": "endCursor",
               "args": null,
+              "kind": "ScalarField",
+              "name": "endCursor",
               "storageKey": null
             },
             {
-              "kind": "ScalarField",
               "alias": null,
-              "name": "hasNextPage",
               "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
               "storageKey": null
             }
-          ]
+          ],
+          "storageKey": null
         }
-      ]
+      ],
+      "storageKey": null
     },
     {
-      "kind": "ScalarField",
       "alias": null,
-      "name": "id",
       "args": null,
+      "kind": "ScalarField",
+      "name": "id",
       "storageKey": null
     }
-  ]
+  ],
+  "type": "Repository",
+  "abstractKey": null
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5040d7f86ce7f263d3a1bf6e624a6953';
+(node/*: any*/).hash = 'db89fba0114168336bc69b1d7576ae19';
 
 module.exports = node;

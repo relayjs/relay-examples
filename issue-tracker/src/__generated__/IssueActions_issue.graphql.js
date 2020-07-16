@@ -26,27 +26,28 @@ export type IssueActions_issue$key = {
 
 
 const node/*: ReaderFragment*/ = {
-  "kind": "Fragment",
-  "name": "IssueActions_issue",
-  "type": "Issue",
-  "metadata": null,
   "argumentDefinitions": [],
+  "kind": "Fragment",
+  "metadata": null,
+  "name": "IssueActions_issue",
   "selections": [
     {
-      "kind": "ScalarField",
       "alias": null,
-      "name": "id",
       "args": null,
+      "kind": "ScalarField",
+      "name": "id",
       "storageKey": null
     },
     {
-      "kind": "ScalarField",
       "alias": null,
-      "name": "closed",
       "args": null,
+      "kind": "ScalarField",
+      "name": "closed",
       "storageKey": null
     }
-  ]
+  ],
+  "type": "Issue",
+  "abstractKey": null
 };
 // prettier-ignore
 (node/*: any*/).hash = '12c79d27df99eb9656621cead33c9d08';
