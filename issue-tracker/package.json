@@ -4,13 +4,13 @@
   "private": true,
   "dependencies": {
     "history": "^4.10.1",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "react": "0.0.0-experimental-f42431abe",
     "react-dom": "0.0.0-experimental-f42431abe",
-    "react-markdown": "^4.2.2",
+    "react-markdown": "^4.3.1",
     "react-relay": "0.0.0-experimental-8cc94ddc",
-    "react-router": "^5.1.2",
+    "react-router": "^5.2.0",
     "react-router-config": "^5.1.1",
     "react-scripts": "3.2.0",
     "relay-runtime": "^9.0.0"
@@ -40,11 +40,11 @@
   },
   "devDependencies": {
     "babel-plugin-relay": "^9.0.0",
-    "concurrently": "^5.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
+    "concurrently": "^5.2.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^14.5.8",
-    "prettier": "^1.18.2",
+    "prettier": "^2.0.5",
     "relay-compiler": "^9.0.0"
   },
   "husky": {
