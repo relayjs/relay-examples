@@ -26,7 +26,7 @@ export default function createRouter(routes, options) {
   // Listen for location changes, match to the route entry, prepare the entry,
   // and notify subscribers. Note that this pattern ensures that data-loading
   // occurs *outside* of - and *before* - rendering.
-  const cleanup = history.listen((location, action) => {
+  const cleanup = history.listen(({ location, action }) => {
     if (location.pathname === currentEntry.location.pathname) {
       return;
     }

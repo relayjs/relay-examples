@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "history": "^4.10.1",
+    "history": "^5.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "react": "^0.0.0-experimental-7f28234f8",
