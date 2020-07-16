@@ -3,8 +3,7 @@ import React from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
 import SuspenseImage from './SuspenseImage';
-
-const { useCallback, unstable_useTransition, Suspense, unstable_SuspenseList } = React;
+import { useCallback, unstable_useTransition as useTransition, Suspense, unstable_SuspenseList as SuspenseList } from 'react';
 
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
@@ -48,7 +47,7 @@ export default function IssueDetailComments(props) {
   // author avatar or content within the comment body). Using `useTransition()`
   // allows us to continue showing existing comments while the next page of
   // results is still loading in the background.
-  const [startTransition, isPending] = unstable_useTransition(SUSPENSE_CONFIG);
+  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 
   // Callback to paginate the issues list
   const loadMore = useCallback(() => {
@@ -72,7 +71,7 @@ export default function IssueDetailComments(props) {
   // an earlier comment.
   return (
     <>
-      <unstable_SuspenseList revealOrder="forwards">
+      <SuspenseList revealOrder="forwards">
         {comments.map(edge => {
           if (edge == null || edge.node == null) {
             return null;
@@ -101,7 +100,7 @@ export default function IssueDetailComments(props) {
             </Suspense>
           );
         })}
-      </unstable_SuspenseList>
+      </SuspenseList>
       {hasNext ? (
         <button
           name="load more comments"
