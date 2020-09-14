@@ -31,9 +31,7 @@ const routes = [
          * use React.lazy here: that would start loading the component only when it's rendered.
          * By using a custom alternative we can start loading the code instantly. This is
          * especially useful with nested routes, where React.lazy would not fetch the
-         * component until its parents code/data had loaded. Nested route support isn't
-         * implemented in our mini-router yet, but one can imagine iterating over all
-         * the matched route entries and calling .load() on each of their components.
+         * component until its parents code/data had loaded.
          */
         component: JSResource('HomeRoot', () => import('./HomeRoot')),
         /**
