@@ -40,6 +40,6 @@ module.exports = {
     react: {
       version: '16.8.1',
       flowVersion: '0.94.0',
-    }
+    },
   },
 };
