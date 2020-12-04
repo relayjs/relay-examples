@@ -19,7 +19,7 @@ type Props = {|
   +initialValue?: string,
   +onCancel?: () => void,
   +onDelete?: () => void,
-  +onSave: string => void,
+  +onSave: (string) => void,
   +placeholder?: string,
 |};
 
