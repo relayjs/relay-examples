@@ -12,7 +12,7 @@
  */
 
 import express from 'express';
-import graphQLHTTP from 'express-graphql';
+import {graphqlHTTP} from 'express-graphql';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
@@ -55,7 +55,7 @@ app.use('/', express.static(path.resolve(__dirname, 'public')));
 // Setup GraphQL endpoint
 app.use(
   '/graphql',
-  graphQLHTTP({
+  graphqlHTTP({
     schema: schema,
     pretty: true,
   }),

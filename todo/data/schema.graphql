@@ -1,53 +1,35 @@
-input AddTodoInput {
-  text: String!
-  userId: ID!
-  clientMutationId: String
+type Query {
+  user(id: String): User
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
 }
 
-type AddTodoPayload {
-  todoEdge: TodoEdge!
-  user: User!
-  clientMutationId: String
-}
-
-input ChangeTodoStatusInput {
-  complete: Boolean!
+type User implements Node {
+  """The ID of an object"""
   id: ID!
-  userId: ID!
-  clientMutationId: String
-}
-
-type ChangeTodoStatusPayload {
-  todo: Todo!
-  user: User!
-  clientMutationId: String
-}
-
-input MarkAllTodosInput {
-  complete: Boolean!
-  userId: ID!
-  clientMutationId: String
-}
-
-type MarkAllTodosPayload {
-  changedTodos: [Todo!]
-  user: User!
-  clientMutationId: String
-}
-
-type Mutation {
-  addTodo(input: AddTodoInput!): AddTodoPayload
-  changeTodoStatus(input: ChangeTodoStatusInput!): ChangeTodoStatusPayload
-  markAllTodos(input: MarkAllTodosInput!): MarkAllTodosPayload
-  removeCompletedTodos(input: RemoveCompletedTodosInput!): RemoveCompletedTodosPayload
-  removeTodo(input: RemoveTodoInput!): RemoveTodoPayload
-  renameTodo(input: RenameTodoInput!): RenameTodoPayload
+  userId: String!
+  todos(status: String = "any", after: String, first: Int, before: String, last: Int): TodoConnection
+  totalCount: Int!
+  completedCount: Int!
 }
 
 """An object with an ID"""
 interface Node {
   """The id of the object."""
   id: ID!
+}
+
+"""A connection to a list of items."""
+type TodoConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TodoEdge]
 }
 
 """Information about pagination in a connection."""
@@ -65,17 +47,64 @@ type PageInfo {
   endCursor: String
 }
 
-type Query {
-  user(id: String): User
+"""An edge in a connection."""
+type TodoEdge {
+  """The item at the end of the edge"""
+  node: Todo
 
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
-input RemoveCompletedTodosInput {
+type Todo implements Node {
+  """The ID of an object"""
+  id: ID!
+  text: String!
+  complete: Boolean!
+}
+
+type Mutation {
+  addTodo(input: AddTodoInput!): AddTodoPayload
+  changeTodoStatus(input: ChangeTodoStatusInput!): ChangeTodoStatusPayload
+  markAllTodos(input: MarkAllTodosInput!): MarkAllTodosPayload
+  removeCompletedTodos(input: RemoveCompletedTodosInput!): RemoveCompletedTodosPayload
+  removeTodo(input: RemoveTodoInput!): RemoveTodoPayload
+  renameTodo(input: RenameTodoInput!): RenameTodoPayload
+}
+
+type AddTodoPayload {
+  todoEdge: TodoEdge!
+  user: User!
+  clientMutationId: String
+}
+
+input AddTodoInput {
+  text: String!
+  userId: ID!
+  clientMutationId: String
+}
+
+type ChangeTodoStatusPayload {
+  todo: Todo!
+  user: User!
+  clientMutationId: String
+}
+
+input ChangeTodoStatusInput {
+  complete: Boolean!
+  id: ID!
+  userId: ID!
+  clientMutationId: String
+}
+
+type MarkAllTodosPayload {
+  changedTodos: [Todo!]
+  user: User!
+  clientMutationId: String
+}
+
+input MarkAllTodosInput {
+  complete: Boolean!
   userId: ID!
   clientMutationId: String
 }
@@ -86,8 +115,7 @@ type RemoveCompletedTodosPayload {
   clientMutationId: String
 }
 
-input RemoveTodoInput {
-  id: ID!
+input RemoveCompletedTodosInput {
   userId: ID!
   clientMutationId: String
 }
@@ -98,9 +126,9 @@ type RemoveTodoPayload {
   clientMutationId: String
 }
 
-input RenameTodoInput {
+input RemoveTodoInput {
   id: ID!
-  text: String!
+  userId: ID!
   clientMutationId: String
 }
 
@@ -109,36 +137,8 @@ type RenameTodoPayload {
   clientMutationId: String
 }
 
-type Todo implements Node {
-  """The ID of an object"""
+input RenameTodoInput {
   id: ID!
   text: String!
-  complete: Boolean!
-}
-
-"""A connection to a list of items."""
-type TodoConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [TodoEdge]
-}
-
-"""An edge in a connection."""
-type TodoEdge {
-  """The item at the end of the edge"""
-  node: Todo
-
-  """A cursor for use in pagination"""
-  cursor: String!
-}
-
-type User implements Node {
-  """The ID of an object"""
-  id: ID!
-  userId: String!
-  todos(status: String = "any", after: String, first: Int, before: String, last: Int): TodoConnection
-  totalCount: Int!
-  completedCount: Int!
+  clientMutationId: String
 }
