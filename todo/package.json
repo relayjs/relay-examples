@@ -19,7 +19,7 @@
     "react-relay": "^10.1.0",
     "todomvc-app-css": "^2.3.0",
     "todomvc-common": "^1.0.3",
-    "whatwg-fetch": "3.0.0"
+    "whatwg-fetch": "3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
