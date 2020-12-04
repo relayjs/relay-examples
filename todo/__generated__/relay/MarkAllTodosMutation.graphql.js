@@ -1,6 +1,5 @@
 /**
  * @flow
- * @relayHash bd070297db36f06c6f9beb7f2cfc14fc
  */
 
 /* eslint-disable */
@@ -56,25 +55,21 @@ mutation MarkAllTodosMutation(
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
+    "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "input",
-    "type": "MarkAllTodosInput!",
-    "defaultValue": null
+    "name": "input"
   }
 ],
 v1 = {
-  "kind": "ScalarField",
   "alias": null,
-  "name": "id",
   "args": null,
+  "kind": "ScalarField",
+  "name": "id",
   "storageKey": null
 },
 v2 = [
   {
-    "kind": "LinkedField",
     "alias": null,
-    "name": "markAllTodos",
-    "storageKey": null,
     "args": [
       {
         "kind": "Variable",
@@ -83,74 +78,80 @@ v2 = [
       }
     ],
     "concreteType": "MarkAllTodosPayload",
+    "kind": "LinkedField",
+    "name": "markAllTodos",
     "plural": false,
     "selections": [
       {
-        "kind": "LinkedField",
         "alias": null,
-        "name": "changedTodos",
-        "storageKey": null,
         "args": null,
         "concreteType": "Todo",
+        "kind": "LinkedField",
+        "name": "changedTodos",
         "plural": true,
         "selections": [
           (v1/*: any*/),
           {
-            "kind": "ScalarField",
             "alias": null,
-            "name": "complete",
             "args": null,
+            "kind": "ScalarField",
+            "name": "complete",
             "storageKey": null
           }
-        ]
+        ],
+        "storageKey": null
       },
       {
-        "kind": "LinkedField",
         "alias": null,
-        "name": "user",
-        "storageKey": null,
         "args": null,
         "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "user",
         "plural": false,
         "selections": [
           (v1/*: any*/),
           {
-            "kind": "ScalarField",
             "alias": null,
-            "name": "completedCount",
             "args": null,
+            "kind": "ScalarField",
+            "name": "completedCount",
             "storageKey": null
           }
-        ]
+        ],
+        "storageKey": null
       }
-    ]
+    ],
+    "storageKey": null
   }
 ];
 return {
-  "kind": "Request",
   "fragment": {
-    "kind": "Fragment",
-    "name": "MarkAllTodosMutation",
-    "type": "Mutation",
-    "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v2/*: any*/)
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "MarkAllTodosMutation",
+    "selections": (v2/*: any*/),
+    "type": "Mutation",
+    "abstractKey": null
   },
+  "kind": "Request",
   "operation": {
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "MarkAllTodosMutation",
-    "argumentDefinitions": (v0/*: any*/),
     "selections": (v2/*: any*/)
   },
   "params": {
-    "operationKind": "mutation",
-    "name": "MarkAllTodosMutation",
+    "cacheID": "db9904c31d91416f21d45fe3d153884c",
     "id": null,
-    "text": "mutation MarkAllTodosMutation(\n  $input: MarkAllTodosInput!\n) {\n  markAllTodos(input: $input) {\n    changedTodos {\n      id\n      complete\n    }\n    user {\n      id\n      completedCount\n    }\n  }\n}\n",
-    "metadata": {}
+    "metadata": {},
+    "name": "MarkAllTodosMutation",
+    "operationKind": "mutation",
+    "text": "mutation MarkAllTodosMutation(\n  $input: MarkAllTodosInput!\n) {\n  markAllTodos(input: $input) {\n    changedTodos {\n      id\n      complete\n    }\n    user {\n      id\n      completedCount\n    }\n  }\n}\n"
   }
 };
 })();
 // prettier-ignore
 (node/*: any*/).hash = '779c582c4ba0ee3c5be19942628dfaf3';
+
 module.exports = node;

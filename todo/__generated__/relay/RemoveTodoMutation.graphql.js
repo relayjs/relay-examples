@@ -1,6 +1,5 @@
 /**
  * @flow
- * @relayHash 33792f404f742bd7adbadb9ac42b7055
  */
 
 /* eslint-disable */
@@ -51,10 +50,9 @@ mutation RemoveTodoMutation(
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
+    "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "input",
-    "type": "RemoveTodoInput!",
-    "defaultValue": null
+    "name": "input"
   }
 ],
 v1 = [
@@ -65,110 +63,113 @@ v1 = [
   }
 ],
 v2 = {
-  "kind": "ScalarField",
   "alias": null,
-  "name": "deletedTodoId",
   "args": null,
+  "kind": "ScalarField",
+  "name": "deletedTodoId",
   "storageKey": null
 },
 v3 = {
-  "kind": "ScalarField",
   "alias": null,
-  "name": "completedCount",
   "args": null,
+  "kind": "ScalarField",
+  "name": "completedCount",
   "storageKey": null
 },
 v4 = {
-  "kind": "ScalarField",
   "alias": null,
-  "name": "totalCount",
   "args": null,
+  "kind": "ScalarField",
+  "name": "totalCount",
   "storageKey": null
 };
 return {
-  "kind": "Request",
   "fragment": {
-    "kind": "Fragment",
-    "name": "RemoveTodoMutation",
-    "type": "Mutation",
-    "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "RemoveTodoMutation",
     "selections": [
       {
-        "kind": "LinkedField",
         "alias": null,
-        "name": "removeTodo",
-        "storageKey": null,
         "args": (v1/*: any*/),
         "concreteType": "RemoveTodoPayload",
+        "kind": "LinkedField",
+        "name": "removeTodo",
         "plural": false,
         "selections": [
           (v2/*: any*/),
           {
-            "kind": "LinkedField",
             "alias": null,
-            "name": "user",
-            "storageKey": null,
             "args": null,
             "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "user",
             "plural": false,
             "selections": [
               (v3/*: any*/),
               (v4/*: any*/)
-            ]
+            ],
+            "storageKey": null
           }
-        ]
+        ],
+        "storageKey": null
       }
-    ]
+    ],
+    "type": "Mutation",
+    "abstractKey": null
   },
+  "kind": "Request",
   "operation": {
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "RemoveTodoMutation",
-    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
-        "kind": "LinkedField",
         "alias": null,
-        "name": "removeTodo",
-        "storageKey": null,
         "args": (v1/*: any*/),
         "concreteType": "RemoveTodoPayload",
+        "kind": "LinkedField",
+        "name": "removeTodo",
         "plural": false,
         "selections": [
           (v2/*: any*/),
           {
-            "kind": "LinkedField",
             "alias": null,
-            "name": "user",
-            "storageKey": null,
             "args": null,
             "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "user",
             "plural": false,
             "selections": [
               (v3/*: any*/),
               (v4/*: any*/),
               {
-                "kind": "ScalarField",
                 "alias": null,
-                "name": "id",
                 "args": null,
+                "kind": "ScalarField",
+                "name": "id",
                 "storageKey": null
               }
-            ]
+            ],
+            "storageKey": null
           }
-        ]
+        ],
+        "storageKey": null
       }
     ]
   },
   "params": {
-    "operationKind": "mutation",
-    "name": "RemoveTodoMutation",
+    "cacheID": "aba626ea9bdf465954e89e5590eb2c1a",
     "id": null,
-    "text": "mutation RemoveTodoMutation(\n  $input: RemoveTodoInput!\n) {\n  removeTodo(input: $input) {\n    deletedTodoId\n    user {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n",
-    "metadata": {}
+    "metadata": {},
+    "name": "RemoveTodoMutation",
+    "operationKind": "mutation",
+    "text": "mutation RemoveTodoMutation(\n  $input: RemoveTodoInput!\n) {\n  removeTodo(input: $input) {\n    deletedTodoId\n    user {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 // prettier-ignore
 (node/*: any*/).hash = 'fd5052095c290ad9d2b30d377d3da474';
+
 module.exports = node;
