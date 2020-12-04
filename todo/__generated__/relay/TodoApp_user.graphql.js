@@ -30,45 +30,47 @@ export type TodoApp_user$key = {
 
 
 const node/*: ReaderFragment*/ = {
-  "kind": "Fragment",
-  "name": "TodoApp_user",
-  "type": "User",
-  "metadata": null,
   "argumentDefinitions": [],
+  "kind": "Fragment",
+  "metadata": null,
+  "name": "TodoApp_user",
   "selections": [
     {
-      "kind": "ScalarField",
       "alias": null,
+      "args": null,
+      "kind": "ScalarField",
       "name": "id",
-      "args": null,
       "storageKey": null
     },
     {
-      "kind": "ScalarField",
       "alias": null,
+      "args": null,
+      "kind": "ScalarField",
       "name": "userId",
-      "args": null,
       "storageKey": null
     },
     {
-      "kind": "ScalarField",
       "alias": null,
-      "name": "totalCount",
       "args": null,
+      "kind": "ScalarField",
+      "name": "totalCount",
       "storageKey": null
     },
     {
+      "args": null,
       "kind": "FragmentSpread",
-      "name": "TodoListFooter_user",
-      "args": null
+      "name": "TodoListFooter_user"
     },
     {
+      "args": null,
       "kind": "FragmentSpread",
-      "name": "TodoList_user",
-      "args": null
+      "name": "TodoList_user"
     }
-  ]
+  ],
+  "type": "User",
+  "abstractKey": null
 };
 // prettier-ignore
 (node/*: any*/).hash = '2b7e5675921fb837e60dedfe29de4d93';
+
 module.exports = node;
