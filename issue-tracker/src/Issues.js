@@ -21,7 +21,7 @@ export default function Issues(props) {
         @argumentDefinitions(
           cursor: { type: "String" }
           count: { type: "Int", defaultValue: 10 }
-          states: { type: "[IssueState!]", defaultValue: ["OPEN"] }
+          states: { type: "[IssueState!]", defaultValue: OPEN }
         )
         @refetchable(queryName: "IssuesPaginationQuery") {
         issues(after: $cursor, first: $count, states: $states)

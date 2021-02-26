@@ -1,6 +1,5 @@
 /**
  * @flow
- * @relayHash 8bc8e9af28299cc8ba03a1b3326731de
  */
 
 /* eslint-disable */
@@ -45,10 +44,9 @@ mutation IssueActionsReopenIssueMutation(
 const node /*: ConcreteRequest*/ = (function() {
   var v0 = [
       {
+        defaultValue: null,
         kind: 'LocalArgument',
         name: 'input',
-        type: 'ReopenIssueInput!',
-        defaultValue: null,
       },
     ],
     v1 = [
@@ -59,91 +57,94 @@ const node /*: ConcreteRequest*/ = (function() {
       },
     ],
     v2 = {
-      kind: 'ScalarField',
       alias: null,
-      name: 'closed',
       args: null,
+      kind: 'ScalarField',
+      name: 'closed',
       storageKey: null,
     };
   return {
-    kind: 'Request',
     fragment: {
-      kind: 'Fragment',
-      name: 'IssueActionsReopenIssueMutation',
-      type: 'Mutation',
-      metadata: null,
       argumentDefinitions: (v0 /*: any*/),
+      kind: 'Fragment',
+      metadata: null,
+      name: 'IssueActionsReopenIssueMutation',
       selections: [
         {
-          kind: 'LinkedField',
           alias: null,
-          name: 'reopenIssue',
-          storageKey: null,
           args: (v1 /*: any*/),
           concreteType: 'ReopenIssuePayload',
+          kind: 'LinkedField',
+          name: 'reopenIssue',
           plural: false,
           selections: [
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'issue',
-              storageKey: null,
               args: null,
               concreteType: 'Issue',
+              kind: 'LinkedField',
+              name: 'issue',
               plural: false,
               selections: [(v2 /*: any*/)],
+              storageKey: null,
             },
           ],
+          storageKey: null,
         },
       ],
+      type: 'Mutation',
+      abstractKey: null,
     },
+    kind: 'Request',
     operation: {
+      argumentDefinitions: (v0 /*: any*/),
       kind: 'Operation',
       name: 'IssueActionsReopenIssueMutation',
-      argumentDefinitions: (v0 /*: any*/),
       selections: [
         {
-          kind: 'LinkedField',
           alias: null,
-          name: 'reopenIssue',
-          storageKey: null,
           args: (v1 /*: any*/),
           concreteType: 'ReopenIssuePayload',
+          kind: 'LinkedField',
+          name: 'reopenIssue',
           plural: false,
           selections: [
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'issue',
-              storageKey: null,
               args: null,
               concreteType: 'Issue',
+              kind: 'LinkedField',
+              name: 'issue',
               plural: false,
               selections: [
                 (v2 /*: any*/),
                 {
-                  kind: 'ScalarField',
                   alias: null,
-                  name: 'id',
                   args: null,
+                  kind: 'ScalarField',
+                  name: 'id',
                   storageKey: null,
                 },
               ],
+              storageKey: null,
             },
           ],
+          storageKey: null,
         },
       ],
     },
     params: {
-      operationKind: 'mutation',
-      name: 'IssueActionsReopenIssueMutation',
+      cacheID: '88165904756e596325dcd84150ec8ed6',
       id: null,
+      metadata: {},
+      name: 'IssueActionsReopenIssueMutation',
+      operationKind: 'mutation',
       text:
         'mutation IssueActionsReopenIssueMutation(\n  $input: ReopenIssueInput!\n) {\n  reopenIssue(input: $input) {\n    issue {\n      closed\n      id\n    }\n  }\n}\n',
-      metadata: {},
     },
   };
 })();
 // prettier-ignore
 (node/*: any*/).hash = '6dbb9d9a672b1703eb0983667e9638db';
+
 module.exports = node;

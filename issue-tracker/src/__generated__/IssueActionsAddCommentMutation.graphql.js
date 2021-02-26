@@ -1,6 +1,5 @@
 /**
  * @flow
- * @relayHash 597534f4a759d30eb6e559ab1b9d4dc3
  */
 
 /* eslint-disable */
@@ -58,6 +57,7 @@ mutation IssueActionsAddCommentMutation(
           login
           avatarUrl
           ... on Node {
+            __isNode: __typename
             id
           }
         }
@@ -71,10 +71,9 @@ mutation IssueActionsAddCommentMutation(
 const node /*: ConcreteRequest*/ = (function() {
   var v0 = [
       {
+        defaultValue: null,
         kind: 'LocalArgument',
         name: 'input',
-        type: 'AddCommentInput!',
-        defaultValue: null,
       },
     ],
     v1 = [
@@ -85,197 +84,206 @@ const node /*: ConcreteRequest*/ = (function() {
       },
     ],
     v2 = {
-      kind: 'ScalarField',
       alias: null,
+      args: null,
+      kind: 'ScalarField',
       name: 'id',
-      args: null,
       storageKey: null,
     },
-    v3 = {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'login',
-      args: null,
-      storageKey: null,
-    },
+    v3 = [(v2 /*: any*/)],
     v4 = {
-      kind: 'ScalarField',
       alias: null,
-      name: 'avatarUrl',
       args: null,
+      kind: 'ScalarField',
+      name: 'login',
       storageKey: null,
     },
     v5 = {
-      kind: 'ScalarField',
       alias: null,
-      name: 'body',
       args: null,
+      kind: 'ScalarField',
+      name: 'avatarUrl',
       storageKey: null,
     },
     v6 = {
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'body',
+      storageKey: null,
+    },
+    v7 = {
       kind: 'ClientExtension',
       selections: [
         {
-          kind: 'ScalarField',
           alias: null,
-          name: '__id',
           args: null,
+          kind: 'ScalarField',
+          name: '__id',
           storageKey: null,
         },
       ],
     },
-    v7 = {
-      kind: 'ScalarField',
+    v8 = {
       alias: null,
-      name: '__typename',
       args: null,
+      kind: 'ScalarField',
+      name: '__typename',
       storageKey: null,
     };
   return {
-    kind: 'Request',
     fragment: {
-      kind: 'Fragment',
-      name: 'IssueActionsAddCommentMutation',
-      type: 'Mutation',
-      metadata: null,
       argumentDefinitions: (v0 /*: any*/),
+      kind: 'Fragment',
+      metadata: null,
+      name: 'IssueActionsAddCommentMutation',
       selections: [
         {
-          kind: 'LinkedField',
           alias: null,
-          name: 'addComment',
-          storageKey: null,
           args: (v1 /*: any*/),
           concreteType: 'AddCommentPayload',
+          kind: 'LinkedField',
+          name: 'addComment',
           plural: false,
           selections: [
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'subject',
-              storageKey: null,
               args: null,
               concreteType: null,
+              kind: 'LinkedField',
+              name: 'subject',
               plural: false,
-              selections: [(v2 /*: any*/)],
+              selections: (v3 /*: any*/),
+              storageKey: null,
             },
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'commentEdge',
-              storageKey: null,
               args: null,
               concreteType: 'IssueCommentEdge',
+              kind: 'LinkedField',
+              name: 'commentEdge',
               plural: false,
               selections: [
                 {
-                  kind: 'LinkedField',
                   alias: null,
-                  name: 'node',
-                  storageKey: null,
                   args: null,
                   concreteType: 'IssueComment',
+                  kind: 'LinkedField',
+                  name: 'node',
                   plural: false,
                   selections: [
                     (v2 /*: any*/),
                     {
-                      kind: 'LinkedField',
                       alias: null,
-                      name: 'author',
-                      storageKey: null,
                       args: null,
                       concreteType: null,
+                      kind: 'LinkedField',
+                      name: 'author',
                       plural: false,
-                      selections: [(v3 /*: any*/), (v4 /*: any*/)],
+                      selections: [(v4 /*: any*/), (v5 /*: any*/)],
+                      storageKey: null,
                     },
-                    (v5 /*: any*/),
+                    (v6 /*: any*/),
                   ],
+                  storageKey: null,
                 },
-                (v6 /*: any*/),
+                (v7 /*: any*/),
               ],
+              storageKey: null,
             },
           ],
+          storageKey: null,
         },
       ],
+      type: 'Mutation',
+      abstractKey: null,
     },
+    kind: 'Request',
     operation: {
+      argumentDefinitions: (v0 /*: any*/),
       kind: 'Operation',
       name: 'IssueActionsAddCommentMutation',
-      argumentDefinitions: (v0 /*: any*/),
       selections: [
         {
-          kind: 'LinkedField',
           alias: null,
-          name: 'addComment',
-          storageKey: null,
           args: (v1 /*: any*/),
           concreteType: 'AddCommentPayload',
+          kind: 'LinkedField',
+          name: 'addComment',
           plural: false,
           selections: [
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'subject',
-              storageKey: null,
               args: null,
               concreteType: null,
+              kind: 'LinkedField',
+              name: 'subject',
               plural: false,
-              selections: [(v7 /*: any*/), (v2 /*: any*/)],
+              selections: [(v8 /*: any*/), (v2 /*: any*/)],
+              storageKey: null,
             },
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'commentEdge',
-              storageKey: null,
               args: null,
               concreteType: 'IssueCommentEdge',
+              kind: 'LinkedField',
+              name: 'commentEdge',
               plural: false,
               selections: [
                 {
-                  kind: 'LinkedField',
                   alias: null,
-                  name: 'node',
-                  storageKey: null,
                   args: null,
                   concreteType: 'IssueComment',
+                  kind: 'LinkedField',
+                  name: 'node',
                   plural: false,
                   selections: [
                     (v2 /*: any*/),
                     {
-                      kind: 'LinkedField',
                       alias: null,
-                      name: 'author',
-                      storageKey: null,
                       args: null,
                       concreteType: null,
+                      kind: 'LinkedField',
+                      name: 'author',
                       plural: false,
                       selections: [
-                        (v7 /*: any*/),
-                        (v3 /*: any*/),
+                        (v8 /*: any*/),
                         (v4 /*: any*/),
-                        (v2 /*: any*/),
+                        (v5 /*: any*/),
+                        {
+                          kind: 'InlineFragment',
+                          selections: (v3 /*: any*/),
+                          type: 'Node',
+                          abstractKey: '__isNode',
+                        },
                       ],
+                      storageKey: null,
                     },
-                    (v5 /*: any*/),
+                    (v6 /*: any*/),
                   ],
+                  storageKey: null,
                 },
-                (v6 /*: any*/),
+                (v7 /*: any*/),
               ],
+              storageKey: null,
             },
           ],
+          storageKey: null,
         },
       ],
     },
     params: {
-      operationKind: 'mutation',
-      name: 'IssueActionsAddCommentMutation',
+      cacheID: '19434bd8bebd271b879ea580f6c6ecaf',
       id: null,
-      text:
-        'mutation IssueActionsAddCommentMutation(\n  $input: AddCommentInput!\n) {\n  addComment(input: $input) {\n    subject {\n      __typename\n      id\n    }\n    commentEdge {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            id\n          }\n        }\n        body\n      }\n    }\n  }\n}\n',
       metadata: {},
+      name: 'IssueActionsAddCommentMutation',
+      operationKind: 'mutation',
+      text:
+        'mutation IssueActionsAddCommentMutation(\n  $input: AddCommentInput!\n) {\n  addComment(input: $input) {\n    subject {\n      __typename\n      id\n    }\n    commentEdge {\n      node {\n        id\n        author {\n          __typename\n          login\n          avatarUrl\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        body\n      }\n    }\n  }\n}\n',
     },
   };
 })();
 // prettier-ignore
 (node/*: any*/).hash = 'f777dc7f1873d5cdab111f485ef8f404';
+
 module.exports = node;

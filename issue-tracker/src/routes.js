@@ -1,5 +1,5 @@
 import JSResource from './JSResource';
-import { preloadQuery } from 'react-relay/hooks';
+import { loadQuery } from 'react-relay/hooks';
 import RelayEnvironment from './RelayEnvironment';
 
 const routes = [
@@ -8,7 +8,7 @@ const routes = [
     prepare: params => {
       const RootQuery = require('./__generated__/RootQuery.graphql');
       return {
-        rootQuery: preloadQuery(
+        rootQuery: loadQuery(
           RelayEnvironment,
           RootQuery,
           {
@@ -43,7 +43,7 @@ const routes = [
         prepare: params => {
           const IssuesQuery = require('./__generated__/HomeRootIssuesQuery.graphql');
           return {
-            issuesQuery: preloadQuery(
+            issuesQuery: loadQuery(
               RelayEnvironment,
               IssuesQuery,
               {
@@ -66,7 +66,7 @@ const routes = [
         prepare: params => {
           const IssueDetailQuery = require('./__generated__/IssueDetailRootQuery.graphql');
           return {
-            issueDetailQuery: preloadQuery(
+            issueDetailQuery: loadQuery(
               RelayEnvironment,
               IssueDetailQuery,
               {

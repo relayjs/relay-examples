@@ -1,6 +1,5 @@
 /**
  * @flow
- * @relayHash 12fb16a08ec8df23613b82e1905f679b
  */
 
 /* eslint-disable */
@@ -45,21 +44,17 @@ query RootQuery(
 */
 
 const node /*: ConcreteRequest*/ = (function() {
-  var v0 = [
-      {
-        kind: 'LocalArgument',
-        name: 'owner',
-        type: 'String!',
-        defaultValue: null,
-      },
-      {
-        kind: 'LocalArgument',
-        name: 'name',
-        type: 'String!',
-        defaultValue: null,
-      },
-    ],
-    v1 = [
+  var v0 = {
+      defaultValue: null,
+      kind: 'LocalArgument',
+      name: 'name',
+    },
+    v1 = {
+      defaultValue: null,
+      kind: 'LocalArgument',
+      name: 'owner',
+    },
+    v2 = [
       {
         kind: 'Variable',
         name: 'name',
@@ -71,110 +66,113 @@ const node /*: ConcreteRequest*/ = (function() {
         variableName: 'owner',
       },
     ],
-    v2 = {
-      kind: 'ScalarField',
-      alias: null,
-      name: 'login',
-      args: null,
-      storageKey: null,
-    },
     v3 = {
-      kind: 'ScalarField',
       alias: null,
-      name: 'name',
       args: null,
+      kind: 'ScalarField',
+      name: 'login',
       storageKey: null,
     },
     v4 = {
-      kind: 'ScalarField',
       alias: null,
-      name: 'id',
       args: null,
+      kind: 'ScalarField',
+      name: 'name',
+      storageKey: null,
+    },
+    v5 = {
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'id',
       storageKey: null,
     };
   return {
-    kind: 'Request',
     fragment: {
+      argumentDefinitions: [(v0 /*: any*/), (v1 /*: any*/)],
       kind: 'Fragment',
-      name: 'RootQuery',
-      type: 'Query',
       metadata: null,
-      argumentDefinitions: (v0 /*: any*/),
+      name: 'RootQuery',
       selections: [
         {
-          kind: 'LinkedField',
           alias: null,
-          name: 'repository',
-          storageKey: null,
-          args: (v1 /*: any*/),
+          args: (v2 /*: any*/),
           concreteType: 'Repository',
+          kind: 'LinkedField',
+          name: 'repository',
           plural: false,
           selections: [
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'owner',
-              storageKey: null,
               args: null,
               concreteType: null,
+              kind: 'LinkedField',
+              name: 'owner',
               plural: false,
-              selections: [(v2 /*: any*/)],
+              selections: [(v3 /*: any*/)],
+              storageKey: null,
             },
-            (v3 /*: any*/),
+            (v4 /*: any*/),
           ],
+          storageKey: null,
         },
       ],
+      type: 'Query',
+      abstractKey: null,
     },
+    kind: 'Request',
     operation: {
+      argumentDefinitions: [(v1 /*: any*/), (v0 /*: any*/)],
       kind: 'Operation',
       name: 'RootQuery',
-      argumentDefinitions: (v0 /*: any*/),
       selections: [
         {
-          kind: 'LinkedField',
           alias: null,
-          name: 'repository',
-          storageKey: null,
-          args: (v1 /*: any*/),
+          args: (v2 /*: any*/),
           concreteType: 'Repository',
+          kind: 'LinkedField',
+          name: 'repository',
           plural: false,
           selections: [
             {
-              kind: 'LinkedField',
               alias: null,
-              name: 'owner',
-              storageKey: null,
               args: null,
               concreteType: null,
+              kind: 'LinkedField',
+              name: 'owner',
               plural: false,
               selections: [
                 {
-                  kind: 'ScalarField',
                   alias: null,
-                  name: '__typename',
                   args: null,
+                  kind: 'ScalarField',
+                  name: '__typename',
                   storageKey: null,
                 },
-                (v2 /*: any*/),
-                (v4 /*: any*/),
+                (v3 /*: any*/),
+                (v5 /*: any*/),
               ],
+              storageKey: null,
             },
-            (v3 /*: any*/),
             (v4 /*: any*/),
+            (v5 /*: any*/),
           ],
+          storageKey: null,
         },
       ],
     },
     params: {
-      operationKind: 'query',
-      name: 'RootQuery',
+      cacheID: '674c9501866eec3ed327ca3a09ab8145',
       id: null,
+      metadata: {},
+      name: 'RootQuery',
+      operationKind: 'query',
       text:
         'query RootQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    owner {\n      __typename\n      login\n      id\n    }\n    name\n    id\n  }\n}\n',
-      metadata: {},
     },
   };
 })();
 // prettier-ignore
 (node/*: any*/).hash = '86d44615100f8e82c5a3ff63daa08bd5';
+
 module.exports = node;

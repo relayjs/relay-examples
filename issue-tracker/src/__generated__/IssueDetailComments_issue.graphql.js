@@ -25,7 +25,7 @@ export type IssueDetailComments_issue = {|
       |},
     |}>
   |},
-  +id: ?string,
+  +id: string,
   +$refType: IssueDetailComments_issue$ref,
 |};
 export type IssueDetailComments_issue$data = IssueDetailComments_issue;
@@ -39,16 +39,26 @@ export type IssueDetailComments_issue$key = {
 const node /*: ReaderFragment*/ = (function() {
   var v0 = ['comments'],
     v1 = {
-      kind: 'ScalarField',
       alias: null,
-      name: 'id',
       args: null,
+      kind: 'ScalarField',
+      name: 'id',
       storageKey: null,
     };
   return {
+    argumentDefinitions: [
+      {
+        defaultValue: 10,
+        kind: 'LocalArgument',
+        name: 'count',
+      },
+      {
+        defaultValue: null,
+        kind: 'LocalArgument',
+        name: 'cursor',
+      },
+    ],
     kind: 'Fragment',
-    name: 'IssueDetailComments_issue',
-    type: 'Issue',
     metadata: {
       connection: [
         {
@@ -67,146 +77,137 @@ const node /*: ReaderFragment*/ = (function() {
           backward: null,
           path: (v0 /*: any*/),
         },
-        operation: require('./IssueDetailCommentsQuery.graphql.js'),
         fragmentPathInResult: ['node'],
+        operation: require('./IssueDetailCommentsQuery.graphql.js'),
+        identifierField: 'id',
       },
     },
-    argumentDefinitions: [
-      {
-        kind: 'LocalArgument',
-        name: 'cursor',
-        type: 'String',
-        defaultValue: null,
-      },
-      {
-        kind: 'LocalArgument',
-        name: 'count',
-        type: 'Int',
-        defaultValue: 10,
-      },
-    ],
+    name: 'IssueDetailComments_issue',
     selections: [
       {
-        kind: 'LinkedField',
         alias: 'comments',
-        name: '__IssueDetailComments_comments_connection',
-        storageKey: null,
         args: null,
         concreteType: 'IssueCommentConnection',
+        kind: 'LinkedField',
+        name: '__IssueDetailComments_comments_connection',
         plural: false,
         selections: [
           {
-            kind: 'LinkedField',
             alias: null,
-            name: 'edges',
-            storageKey: null,
             args: null,
             concreteType: 'IssueCommentEdge',
+            kind: 'LinkedField',
+            name: 'edges',
             plural: true,
             selections: [
               {
-                kind: 'LinkedField',
                 alias: null,
-                name: 'node',
-                storageKey: null,
                 args: null,
                 concreteType: 'IssueComment',
+                kind: 'LinkedField',
+                name: 'node',
                 plural: false,
                 selections: [
                   (v1 /*: any*/),
                   {
-                    kind: 'LinkedField',
                     alias: null,
-                    name: 'author',
-                    storageKey: null,
                     args: null,
                     concreteType: null,
+                    kind: 'LinkedField',
+                    name: 'author',
                     plural: false,
                     selections: [
                       {
-                        kind: 'ScalarField',
                         alias: null,
-                        name: 'login',
                         args: null,
+                        kind: 'ScalarField',
+                        name: 'login',
                         storageKey: null,
                       },
                       {
-                        kind: 'ScalarField',
                         alias: null,
-                        name: 'avatarUrl',
                         args: null,
+                        kind: 'ScalarField',
+                        name: 'avatarUrl',
                         storageKey: null,
                       },
                     ],
-                  },
-                  {
-                    kind: 'ScalarField',
-                    alias: null,
-                    name: 'body',
-                    args: null,
                     storageKey: null,
                   },
                   {
-                    kind: 'ScalarField',
                     alias: null,
-                    name: '__typename',
                     args: null,
+                    kind: 'ScalarField',
+                    name: 'body',
+                    storageKey: null,
+                  },
+                  {
+                    alias: null,
+                    args: null,
+                    kind: 'ScalarField',
+                    name: '__typename',
                     storageKey: null,
                   },
                 ],
+                storageKey: null,
               },
               {
-                kind: 'ScalarField',
                 alias: null,
-                name: 'cursor',
                 args: null,
+                kind: 'ScalarField',
+                name: 'cursor',
                 storageKey: null,
               },
               {
                 kind: 'ClientExtension',
                 selections: [
                   {
-                    kind: 'ScalarField',
                     alias: null,
-                    name: '__id',
                     args: null,
+                    kind: 'ScalarField',
+                    name: '__id',
                     storageKey: null,
                   },
                 ],
               },
             ],
+            storageKey: null,
           },
           {
-            kind: 'LinkedField',
             alias: null,
-            name: 'pageInfo',
-            storageKey: null,
             args: null,
             concreteType: 'PageInfo',
+            kind: 'LinkedField',
+            name: 'pageInfo',
             plural: false,
             selections: [
               {
-                kind: 'ScalarField',
                 alias: null,
-                name: 'endCursor',
                 args: null,
+                kind: 'ScalarField',
+                name: 'endCursor',
                 storageKey: null,
               },
               {
-                kind: 'ScalarField',
                 alias: null,
-                name: 'hasNextPage',
                 args: null,
+                kind: 'ScalarField',
+                name: 'hasNextPage',
                 storageKey: null,
               },
             ],
+            storageKey: null,
           },
         ],
+        storageKey: null,
       },
       (v1 /*: any*/),
     ],
+    type: 'Issue',
+    abstractKey: null,
   };
 })();
 // prettier-ignore
 (node/*: any*/).hash = '674952f209c2653f27a5fad5539df511';
+
 module.exports = node;
