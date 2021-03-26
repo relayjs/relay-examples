@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<0d116c7b1a01bbeab46a3a2580612e15>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -14,15 +17,15 @@ export type RenameTodoInput = {|
   clientMutationId?: ?string,
 |};
 export type RenameTodoMutationVariables = {|
-  input: RenameTodoInput
+  input: RenameTodoInput,
 |};
 export type RenameTodoMutationResponse = {|
   +renameTodo: ?{|
     +todo: {|
       +id: string,
       +text: string,
-    |}
-  |}
+    |},
+  |},
 |};
 export type RenameTodoMutation = {|
   variables: RenameTodoMutationVariables,
@@ -30,21 +33,7 @@ export type RenameTodoMutation = {|
 |};
 */
 
-
-/*
-mutation RenameTodoMutation(
-  $input: RenameTodoInput!
-) {
-  renameTodo(input: $input) {
-    todo {
-      id
-      text
-    }
-  }
-}
-*/
-
-const node/*: ConcreteRequest*/ = (function(){
+var node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "defaultValue": null,
@@ -123,7 +112,7 @@ return {
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = 'de4aa1639055c2e6a78ee22cce29870a';
+
+(node/*: any*/).hash = "de4aa1639055c2e6a78ee22cce29870a";
 
 module.exports = node;
