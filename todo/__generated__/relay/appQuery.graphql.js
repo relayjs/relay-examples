@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<7b0e84a93e5d7ed553363735841c2ece>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -8,14 +11,14 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-import type { TodoApp_user$ref } from "./TodoApp_user.graphql";
+type TodoApp_user$ref = any;
 export type appQueryVariables = {|
-  userId?: ?string
+  userId?: ?string,
 |};
 export type appQueryResponse = {|
   +user: ?{|
-    +$fragmentRefs: TodoApp_user$ref
-  |}
+    +$fragmentRefs: TodoApp_user$ref,
+  |},
 |};
 export type appQuery = {|
   variables: appQueryVariables,
@@ -23,84 +26,7 @@ export type appQuery = {|
 |};
 */
 
-
-/*
-query appQuery(
-  $userId: String
-) {
-  user(id: $userId) {
-    ...TodoApp_user
-    id
-  }
-}
-
-fragment TodoApp_user on User {
-  id
-  userId
-  totalCount
-  ...TodoListFooter_user
-  ...TodoList_user
-}
-
-fragment TodoListFooter_user on User {
-  id
-  userId
-  completedCount
-  todos(first: 2147483647) {
-    edges {
-      node {
-        id
-        complete
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-  totalCount
-}
-
-fragment TodoList_user on User {
-  todos(first: 2147483647) {
-    edges {
-      node {
-        id
-        complete
-        ...Todo_todo
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-  id
-  userId
-  totalCount
-  completedCount
-  ...Todo_user
-}
-
-fragment Todo_todo on Todo {
-  complete
-  id
-  text
-}
-
-fragment Todo_user on User {
-  id
-  userId
-  totalCount
-  completedCount
-}
-*/
-
-const node/*: ConcreteRequest*/ = (function(){
+var node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "defaultValue": null,
@@ -303,7 +229,7 @@ return {
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = 'a2e70f652f32c53fa112a1013d9981ea';
+
+(node/*: any*/).hash = "a2e70f652f32c53fa112a1013d9981ea";
 
 module.exports = node;

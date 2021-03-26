@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<33d2943ecffedb7902e2fe14c5c8474e>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -15,7 +18,7 @@ export type ChangeTodoStatusInput = {|
   clientMutationId?: ?string,
 |};
 export type ChangeTodoStatusMutationVariables = {|
-  input: ChangeTodoStatusInput
+  input: ChangeTodoStatusInput,
 |};
 export type ChangeTodoStatusMutationResponse = {|
   +changeTodoStatus: ?{|
@@ -27,7 +30,7 @@ export type ChangeTodoStatusMutationResponse = {|
       +id: string,
       +completedCount: number,
     |},
-  |}
+  |},
 |};
 export type ChangeTodoStatusMutation = {|
   variables: ChangeTodoStatusMutationVariables,
@@ -35,25 +38,7 @@ export type ChangeTodoStatusMutation = {|
 |};
 */
 
-
-/*
-mutation ChangeTodoStatusMutation(
-  $input: ChangeTodoStatusInput!
-) {
-  changeTodoStatus(input: $input) {
-    todo {
-      id
-      complete
-    }
-    user {
-      id
-      completedCount
-    }
-  }
-}
-*/
-
-const node/*: ConcreteRequest*/ = (function(){
+var node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "defaultValue": null,
@@ -152,7 +137,7 @@ return {
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = 'e232227a4f30f0e16f4e1e1a2e0cea75';
+
+(node/*: any*/).hash = "e232227a4f30f0e16f4e1e1a2e0cea75";
 
 module.exports = node;
