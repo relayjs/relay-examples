@@ -20,14 +20,29 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install watchman
-        run: >
-          (git clone https://github.com/facebook/watchman.git -b v4.9.0 --depth 1 && \
-            cd watchman && \
-            ./autogen.sh && \
-            ./configure && \
-            make && \
-            sudo make install)
-      - name: Install dependencies
-        run: cd ./todo && yarn install --frozen-lockfile
-      - name: Run lint, build and flow
-        run: cd ./todo && yarn run lint && yarn run update-schema && yarn run build && yarn run flow
+        run: |
+          mkdir watchman
+          cd watchman
+          curl -L -O 'https://github.com/facebook/watchman/releases/download/v2021.05.24.00/watchman-v2021.05.24.00-linux.zip'
+          unzip watchman-v2021.05.24.00-linux.zip
+          cd watchman-v2021.05.24.00-linux
+          sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
+          sudo cp bin/* /usr/local/bin
+          sudo cp lib/* /usr/local/lib
+          sudo chmod 755 /usr/local/bin/watchman
+          sudo chmod 2777 /usr/local/var/run/watchman
+      - name: yarn install (todo)
+        working-directory: todo
+        run: yarn install --frozen-lockfile
+      - name: lint (todo)
+        working-directory: todo
+        run: yarn run lint
+      - name: flow (todo)
+        working-directory: todo
+        run: yarn run flow
+      - name: Update schema (todo)
+        working-directory: todo
+        run: yarn run update-schema
+      - name: Yarn build (todo)
+        working-directory: todo
+        run: yarn run build
