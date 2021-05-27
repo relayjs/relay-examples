@@ -1249,13 +1249,15 @@ declare module 'react-relay' {
 
   declare export type ClassicEnvironment = RelayEnvironmentInterface;
 
-  declare export class QueryRenderer extends React$Component<{
-    cacheConfig?: ?CacheConfig,
-    environment: Environment | ClassicEnvironment,
-    query: ?GraphQLTaggedNode,
-    render: (readyState: ReadyState) => ?React$Element<*>,
-    variables: Variables,
-  }> {}
+  declare export class QueryRenderer
+    extends
+      React$Component<{
+        cacheConfig?: ?CacheConfig,
+        environment: Environment | ClassicEnvironment,
+        query: ?GraphQLTaggedNode,
+        render: (readyState: ReadyState) => ?React$Element<*>,
+        variables: Variables,
+      }> {}
 
   // https://github.com/facebook/relay/blob/master/packages/relay-runtime/network/RelayNetworkTypes.js
   /**
