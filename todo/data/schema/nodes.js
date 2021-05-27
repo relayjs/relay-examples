@@ -76,13 +76,11 @@ const GraphQLTodo = new GraphQLObjectType({
   interfaces: [nodeInterface],
 });
 
-const {
-  connectionType: TodosConnection,
-  edgeType: GraphQLTodoEdge,
-} = connectionDefinitions({
-  name: 'Todo',
-  nodeType: GraphQLTodo,
-});
+const {connectionType: TodosConnection, edgeType: GraphQLTodoEdge} =
+  connectionDefinitions({
+    name: 'Todo',
+    nodeType: GraphQLTodo,
+  });
 
 const GraphQLUser = new GraphQLObjectType({
   name: 'User',

@@ -5,8 +5,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:relay/recommended',
-    'prettier/flowtype',
-    'prettier/react',
   ],
   parser: 'babel-eslint',
   plugins: ['babel', 'flowtype', 'prettier', 'react', 'relay'],
