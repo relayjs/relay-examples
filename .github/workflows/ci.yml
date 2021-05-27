@@ -37,13 +37,13 @@ jobs:
       - name: lint (todo)
         working-directory: todo
         run: yarn run lint
-      - name: flow (todo)
-        working-directory: todo
-        run: yarn run flow
-        continue-on-error: true # FIXME: remove after fixing flow
       - name: Update schema (todo)
         working-directory: todo
         run: yarn run update-schema
       - name: Yarn build (todo)
         working-directory: todo
         run: yarn run build
+      - name: flow (todo)
+        working-directory: todo
+        run: yarn run flow
+        continue-on-error: true # FIXME: remove after fixing flow
