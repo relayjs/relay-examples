@@ -11,8 +11,9 @@ types/
 [options]
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=__generated__
+esproposal.optional_chaining=enable
 
 [strict]
 
 [version]
-^0.118.0
+^0.148.0

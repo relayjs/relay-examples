@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./server.js",
-    "build": "relay-compiler-experimental --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
+    "build": "relay-compiler --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
     "flow-typed": "flow-typed install --flowVersion=0.118.0",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "lint": "eslint ./ --cache"
@@ -43,10 +43,10 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-relay": "^1.8.1",
-    "flow-bin": "^0.118.0",
+    "flow-bin": "^0.148.0",
     "flow-typed": "^2.6.0",
     "prettier": "^2.3.0",
-    "relay-compiler-experimental": "0.0.0-master-46d77385",
+    "relay-compiler": "^11.0.2",
     "webpack": "^4.41.5",
     "webpack-dev-server": "3.10.3"
   },
