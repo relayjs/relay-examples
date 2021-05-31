@@ -16,10 +16,9 @@ import {
   graphql,
   type Disposable,
   type Environment,
-  type RecordSourceSelectorProxy,
 } from 'react-relay';
 
-import {ConnectionHandler} from 'relay-runtime';
+import {ConnectionHandler, type RecordSourceSelectorProxy} from 'relay-runtime';
 import type {Todo_user} from 'relay/Todo_user.graphql';
 import type {Todo_todo} from 'relay/Todo_todo.graphql';
 import type {RemoveTodoInput} from 'relay/RemoveTodoMutation.graphql';
@@ -42,7 +41,9 @@ function sharedUpdater(
   deletedID: string,
 ) {
   const userProxy = store.get(user.id);
+  if (userProxy == null) return;
   const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
+  if (conn == null) return;
   ConnectionHandler.deleteNode(conn, deletedID);
 }
 
@@ -63,7 +64,7 @@ function commit(
     },
     updater: (store: RecordSourceSelectorProxy) => {
       const payload = store.getRootField('removeTodo');
-      const deletedTodoId = payload.getValue('deletedTodoId');
+      const deletedTodoId = payload?.getValue('deletedTodoId');
 
       if (typeof deletedTodoId !== 'string') {
         throw new Error(

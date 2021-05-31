@@ -1,8 +1,5 @@
 /**
- * @generated SignedSource<<2bf9b39f5a172c3ecfdeda04783320c6>>
  * @flow
- * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -16,7 +13,7 @@ export type RemoveCompletedTodosInput = {|
   clientMutationId?: ?string,
 |};
 export type RemoveCompletedTodosMutationVariables = {|
-  input: RemoveCompletedTodosInput,
+  input: RemoveCompletedTodosInput
 |};
 export type RemoveCompletedTodosMutationResponse = {|
   +removeCompletedTodos: ?{|
@@ -25,7 +22,7 @@ export type RemoveCompletedTodosMutationResponse = {|
       +completedCount: number,
       +totalCount: number,
     |},
-  |},
+  |}
 |};
 export type RemoveCompletedTodosMutation = {|
   variables: RemoveCompletedTodosMutationVariables,
@@ -33,7 +30,23 @@ export type RemoveCompletedTodosMutation = {|
 |};
 */
 
-var node/*: ConcreteRequest*/ = (function(){
+
+/*
+mutation RemoveCompletedTodosMutation(
+  $input: RemoveCompletedTodosInput!
+) {
+  removeCompletedTodos(input: $input) {
+    deletedTodoIds
+    user {
+      completedCount
+      totalCount
+      id
+    }
+  }
+}
+*/
+
+const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "defaultValue": null,
@@ -155,7 +168,7 @@ return {
   }
 };
 })();
-
-(node/*: any*/).hash = "9165a0685be5ff8f0b36e5449a8bbcf9";
+// prettier-ignore
+(node/*: any*/).hash = '9165a0685be5ff8f0b36e5449a8bbcf9';
 
 module.exports = node;

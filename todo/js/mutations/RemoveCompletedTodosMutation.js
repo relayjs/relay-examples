@@ -16,10 +16,9 @@ import {
   graphql,
   type Disposable,
   type Environment,
-  type RecordSourceSelectorProxy,
 } from 'react-relay';
 
-import {ConnectionHandler} from 'relay-runtime';
+import {ConnectionHandler, type RecordSourceSelectorProxy} from 'relay-runtime';
 import type {RemoveCompletedTodosInput} from 'relay/RemoveCompletedTodosMutation.graphql';
 
 import type {TodoListFooter_user} from 'relay/TodoListFooter_user.graphql';
@@ -46,7 +45,9 @@ function sharedUpdater(
   deletedIDs: $ReadOnlyArray<string>,
 ) {
   const userProxy = store.get(user.id);
+  if (userProxy == null) return;
   const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
+  if (conn == null) return;
 
   // Purposefully type forEach as void, to toss the result of deleteNode
   deletedIDs.forEach((deletedID: string): void =>
@@ -70,7 +71,7 @@ function commit(
     },
     updater: (store: RecordSourceSelectorProxy) => {
       const payload = store.getRootField('removeCompletedTodos');
-      const deletedIds = payload.getValue('deletedTodoIds');
+      const deletedIds = payload?.getValue('deletedTodoIds');
 
       // $FlowFixMe `payload.getValue` returns mixed, not sure how to check refinement to $ReadOnlyArray<string>
       sharedUpdater(store, user, deletedIds);

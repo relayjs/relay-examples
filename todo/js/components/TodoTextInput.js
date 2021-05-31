@@ -34,7 +34,7 @@ const TodoTextInput = ({
   onDelete,
   onSave,
   placeholder,
-}: Props) => {
+}: Props): React$Node => {
   const [text, setText] = useState<string>(initialValue || '');
   const inputRef = useRef();
 

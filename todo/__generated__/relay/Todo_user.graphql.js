@@ -1,8 +1,5 @@
 /**
- * @generated SignedSource<<1de49c0a4c50dddcb7aa4dd0caba4675>>
  * @flow
- * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -29,7 +26,8 @@ export type Todo_user$key = {
 };
 */
 
-var node/*: ReaderFragment*/ = {
+
+const node/*: ReaderFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -67,7 +65,7 @@ var node/*: ReaderFragment*/ = {
   "type": "User",
   "abstractKey": null
 };
-
-(node/*: any*/).hash = "7d4a99e73771e30c8a0ba7cb397430e3";
+// prettier-ignore
+(node/*: any*/).hash = '7d4a99e73771e30c8a0ba7cb397430e3';
 
 module.exports = node;

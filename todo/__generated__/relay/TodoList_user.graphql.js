@@ -1,8 +1,5 @@
 /**
- * @generated SignedSource<<b1830ef19b4aaca05a839deb5a9cef1a>>
  * @flow
- * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -11,8 +8,8 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type Todo_todo$ref = any;
-type Todo_user$ref = any;
+import type { Todo_todo$ref } from "./Todo_todo.graphql";
+import type { Todo_user$ref } from "./Todo_user.graphql";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoList_user$ref: FragmentReference;
 declare export opaque type TodoList_user$fragmentType: TodoList_user$ref;
@@ -23,8 +20,8 @@ export type TodoList_user = {|
         +id: string,
         +complete: boolean,
         +$fragmentRefs: Todo_todo$ref,
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +id: string,
   +userId: string,
@@ -41,7 +38,8 @@ export type TodoList_user$key = {
 };
 */
 
-var node/*: ReaderFragment*/ = (function(){
+
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "alias": null,
   "args": null,
@@ -99,16 +97,16 @@ return {
                   "storageKey": null
                 },
                 {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "Todo_todo"
-                },
-                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
+                },
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "Todo_todo"
                 }
               ],
               "storageKey": null
@@ -183,7 +181,7 @@ return {
   "abstractKey": null
 };
 })();
-
-(node/*: any*/).hash = "4c169798c328a2b4d9b4ae5227d016bb";
+// prettier-ignore
+(node/*: any*/).hash = '4c169798c328a2b4d9b4ae5227d016bb';
 
 module.exports = node;

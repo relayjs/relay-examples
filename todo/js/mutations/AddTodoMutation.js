@@ -16,12 +16,13 @@ import {
   graphql,
   type Disposable,
   type Environment,
-  type RecordProxy,
-  type RecordSourceSelectorProxy,
 } from 'react-relay';
 
-import {ConnectionHandler} from 'relay-runtime';
-import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
+import {
+  ConnectionHandler,
+  type RecordProxy,
+  type RecordSourceSelectorProxy,
+} from 'relay-runtime';
 import type {AddTodoInput} from 'relay/AddTodoMutation.graphql';
 
 const mutation = graphql`
@@ -46,11 +47,13 @@ const mutation = graphql`
 
 function sharedUpdater(
   store: RecordSourceSelectorProxy,
-  user: TodoApp_user,
+  userId: string,
   newEdge: RecordProxy,
 ) {
-  const userProxy = store.get(user.id);
+  const userProxy = store.get(userId);
+  if (userProxy == null) return;
   const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
+  if (conn == null) return;
   ConnectionHandler.insertEdgeAfter(conn, newEdge);
 }
 
@@ -59,11 +62,11 @@ let tempID = 0;
 function commit(
   environment: Environment,
   text: string,
-  user: TodoApp_user,
+  userId: string,
 ): Disposable {
   const input: AddTodoInput = {
     text,
-    userId: user.userId,
+    userId,
     clientMutationId: `${tempID++}`,
   };
 
@@ -74,8 +77,9 @@ function commit(
     },
     updater: (store: RecordSourceSelectorProxy) => {
       const payload = store.getRootField('addTodo');
-      const newEdge = payload.getLinkedRecord('todoEdge');
-      sharedUpdater(store, user, newEdge);
+      const newEdge = payload?.getLinkedRecord('todoEdge');
+      if (newEdge == null) return;
+      sharedUpdater(store, userId, newEdge);
     },
     optimisticUpdater: (store: RecordSourceSelectorProxy) => {
       const id = 'client:newTodo:' + tempID++;
@@ -85,10 +89,10 @@ function commit(
 
       const newEdge = store.create('client:newEdge:' + tempID++, 'TodoEdge');
       newEdge.setLinkedRecord(node, 'node');
-      sharedUpdater(store, user, newEdge);
+      sharedUpdater(store, userId, newEdge);
 
       // Get the UserProxy, and update the totalCount
-      const userProxy = store.get(user.id);
+      const userProxy = store.get(userId);
 
       if (!userProxy) {
         throw new Error('Failed to retrieve userProxy from store');

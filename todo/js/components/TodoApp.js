@@ -17,18 +17,29 @@ import TodoListFooter from './TodoListFooter';
 import TodoTextInput from './TodoTextInput';
 
 import React from 'react';
-import {createFragmentContainer, graphql} from 'react-relay';
-import type {RelayProp} from 'react-relay';
-import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
+import {useRelayEnvironment, useLazyLoadQuery, graphql} from 'react-relay';
+import type {TodoAppQuery} from 'relay/TodoAppQuery.graphql';
 
-type Props = {|
-  +relay: RelayProp,
-  +user: TodoApp_user,
-|};
+export default function TodoApp(): React$Node {
+  const environment = useRelayEnvironment();
+  const {user} = useLazyLoadQuery<TodoAppQuery>(
+    graphql`
+      query TodoAppQuery($userId: String) {
+        user(id: $userId) {
+          id
+          totalCount
+          ...TodoListFooter_user
+          ...TodoList_user
+        }
+      }
+    `,
+    {userId: 'me'},
+  );
 
-const TodoApp = ({relay, user}: Props) => {
+  if (user == null) return <div>Loading</div>;
+
   const handleTextInputSave = (text: string) => {
-    AddTodoMutation.commit(relay.environment, text, user);
+    AddTodoMutation.commit(environment, text, user.id);
     return;
   };
 
@@ -65,16 +76,4 @@ const TodoApp = ({relay, user}: Props) => {
       </footer>
     </div>
   );
-};
-
-export default createFragmentContainer(TodoApp, {
-  user: graphql`
-    fragment TodoApp_user on User {
-      id
-      userId
-      totalCount
-      ...TodoListFooter_user
-      ...TodoList_user
-    }
-  `,
-});
+}

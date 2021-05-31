@@ -1,8 +1,5 @@
 /**
- * @generated SignedSource<<ab0cde41e88a0c23847e148b7dbf4dd7>>
  * @flow
- * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -23,8 +20,8 @@ export type TodoListFooter_user = {|
       +node: ?{|
         +id: string,
         +complete: boolean,
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +totalCount: number,
   +$refType: TodoListFooter_user$ref,
@@ -37,7 +34,8 @@ export type TodoListFooter_user$key = {
 };
 */
 
-var node/*: ReaderFragment*/ = (function(){
+
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "alias": null,
   "args": null,
@@ -169,7 +167,7 @@ return {
   "abstractKey": null
 };
 })();
-
-(node/*: any*/).hash = "3225adf0f3b5d0a46ee4c63c8dbd9b08";
+// prettier-ignore
+(node/*: any*/).hash = '3225adf0f3b5d0a46ee4c63c8dbd9b08';
 
 module.exports = node;

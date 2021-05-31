@@ -1,8 +1,5 @@
 /**
- * @generated SignedSource<<f0f0d5accddd3980e1d8d88d3f8d66ac>>
  * @flow
- * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -17,7 +14,7 @@ export type MarkAllTodosInput = {|
   clientMutationId?: ?string,
 |};
 export type MarkAllTodosMutationVariables = {|
-  input: MarkAllTodosInput,
+  input: MarkAllTodosInput
 |};
 export type MarkAllTodosMutationResponse = {|
   +markAllTodos: ?{|
@@ -29,7 +26,7 @@ export type MarkAllTodosMutationResponse = {|
       +id: string,
       +completedCount: number,
     |},
-  |},
+  |}
 |};
 export type MarkAllTodosMutation = {|
   variables: MarkAllTodosMutationVariables,
@@ -37,7 +34,25 @@ export type MarkAllTodosMutation = {|
 |};
 */
 
-var node/*: ConcreteRequest*/ = (function(){
+
+/*
+mutation MarkAllTodosMutation(
+  $input: MarkAllTodosInput!
+) {
+  markAllTodos(input: $input) {
+    changedTodos {
+      id
+      complete
+    }
+    user {
+      id
+      completedCount
+    }
+  }
+}
+*/
+
+const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "defaultValue": null,
@@ -136,7 +151,7 @@ return {
   }
 };
 })();
-
-(node/*: any*/).hash = "779c582c4ba0ee3c5be19942628dfaf3";
+// prettier-ignore
+(node/*: any*/).hash = '779c582c4ba0ee3c5be19942628dfaf3';
 
 module.exports = node;
