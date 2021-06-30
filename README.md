@@ -4,8 +4,8 @@ A collection of example applications using [Relay](https://github.com/facebook/r
 
 # Contributing
 
-See [CONTRIBUTING.md](https://github.com/relayjs/relay-examples/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/relayjs/relay-examples/blob/main/CONTRIBUTING.md).
 
 # License
 
-See [LICENSE.md](https://github.com/relayjs/relay-examples/blob/master/LICENSE.md).
+See [LICENSE.md](https://github.com/relayjs/relay-examples/blob/main/LICENSE.md).

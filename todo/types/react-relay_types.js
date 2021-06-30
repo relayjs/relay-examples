@@ -1259,7 +1259,7 @@ declare module 'react-relay' {
         variables: Variables,
       }> {}
 
-  // https://github.com/facebook/relay/blob/master/packages/relay-runtime/network/RelayNetworkTypes.js
+  // https://github.com/facebook/relay/blob/main/packages/relay-runtime/network/RelayNetworkTypes.js
   /**
    * A cache for saving respones to queries (by id) and variables.
    */
