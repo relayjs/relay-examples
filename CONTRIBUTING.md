@@ -8,7 +8,7 @@ We actively welcome your input via pull requests or issues.
 
 ## Pull Requests
 
-1. Fork the repo and create your branch from `master`.
+1. Fork the repo and create your branch from `main`.
 2. If you haven't already, complete the Contributor License Agreement ("CLA").
 
 ## Contributor License Agreement ("CLA")
@@ -23,4 +23,4 @@ Ask questions, provide feedback, or open new topics for discussion by [opening a
 
 ## License
 
-By contributing to relay-examples, you agree that your contributions will be licensed under the terms described in [LICENSE.md](https://github.com/relayjs/relay-examples/blob/master/LICENSE.md).
+By contributing to relay-examples, you agree that your contributions will be licensed under the terms described in [LICENSE.md](https://github.com/relayjs/relay-examples/blob/main/LICENSE.md).
