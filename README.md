@@ -1,4 +1,4 @@
-# Relay Examples [![Build Status](https://travis-ci.org/relayjs/relay-examples.svg?branch=master)](https://travis-ci.org/relayjs/relay-examples)
+# Relay Examples
 
 A collection of example applications using [Relay](https://github.com/facebook/relay).
 
