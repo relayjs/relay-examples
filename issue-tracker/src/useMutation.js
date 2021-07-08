@@ -16,13 +16,13 @@ export default function useMutation(mutation) {
       }
       const request = commitMutation(environment, {
         ...config,
-        onCompleted: () => {
+        onCompleted: (response) => {
           if (!mountedRef.current) {
             return;
           }
           requestRef.current = null;
           setPending(false);
-          config.onCompleted && config.onCompleted();
+          config.onCompleted && config.onCompleted(response);
         },
         onError: error => {
           console.error(error);
