@@ -1,7 +1,7 @@
 import graphql from 'babel-plugin-relay/macro';
 import React from 'react';
 import { useFragment } from 'react-relay/hooks';
-import Link from './routing/Link';
+import Link from '../../routing/Link';
 
 /**
  * Renders a single item (issue) in the issues list.

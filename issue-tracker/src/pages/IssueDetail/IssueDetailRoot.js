@@ -2,7 +2,7 @@ import React from 'react';
 import graphql from 'babel-plugin-relay/macro';
 import { usePreloadedQuery } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
-import SuspenseImage from './SuspenseImage';
+import SuspenseImage from '../../components/SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
 import IssueActions from './IssueActions';
 

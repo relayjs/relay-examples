@@ -2,7 +2,7 @@ import graphql from 'babel-plugin-relay/macro';
 import React from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
 import ReactMarkdown from 'react-markdown';
-import SuspenseImage from './SuspenseImage';
+import SuspenseImage from '../../components/SuspenseImage';
 
 const { useCallback, useTransition, Suspense, SuspenseList } = React;
 

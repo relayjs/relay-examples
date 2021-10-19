@@ -33,7 +33,9 @@ const routes = [
          * especially useful with nested routes, where React.lazy would not fetch the
          * component until its parents code/data had loaded.
          */
-        component: JSResource('HomeRoot', () => import('./HomeRoot')),
+        component: JSResource('HomeRoot', () =>
+          import('./pages/Issues/HomeRoot'),
+        ),
         /**
          * A function to prepare the data for the `component` in parallel with loading
          * that component code. The actual data to fetch is defined by the component
@@ -41,7 +43,7 @@ const routes = [
          * query.
          */
         prepare: params => {
-          const IssuesQuery = require('./__generated__/HomeRootIssuesQuery.graphql');
+          const IssuesQuery = require('./pages/Issues/__generated__/HomeRootIssuesQuery.graphql');
           return {
             issuesQuery: loadQuery(
               RelayEnvironment,
@@ -61,10 +63,10 @@ const routes = [
       {
         path: '/issue/:id',
         component: JSResource('IssueDetailRoot', () =>
-          import('./IssueDetailRoot'),
+          import('./pages/IssueDetail/IssueDetailRoot'),
         ),
         prepare: params => {
-          const IssueDetailQuery = require('./__generated__/IssueDetailRootQuery.graphql');
+          const IssueDetailQuery = require('./pages/IssueDetail/__generated__/IssueDetailRootQuery.graphql');
           return {
             issueDetailQuery: loadQuery(
               RelayEnvironment,
