@@ -1,5 +1,5 @@
 import React from 'react';
-import JSResource from './JSResource';
+import JSResource from '../JSResource';
 
 export default function SuspenseImage(props) {
   const { src } = props;

@@ -2,7 +2,7 @@ import graphql from 'babel-plugin-relay/macro';
 import React from 'react';
 import { useFragment } from 'react-relay/hooks';
 import { ConnectionHandler } from 'relay-runtime';
-import useMutation from './useMutation';
+import useMutation from '../../hooks/useMutation';
 
 const { useCallback, useState } = React;
 

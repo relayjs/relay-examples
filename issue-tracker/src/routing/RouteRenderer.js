@@ -1,6 +1,6 @@
 import React from 'react';
 import RoutingContext from './RoutingContext';
-import ErrorBoundary from '../ErrorBoundary';
+import ErrorBoundary from '../components/ErrorBoundary';
 import './RouteRenderer.css';
 
 const { useContext, useEffect, useTransition, Suspense, useState } = React;

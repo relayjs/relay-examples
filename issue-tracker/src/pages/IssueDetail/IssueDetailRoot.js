@@ -1,10 +1,9 @@
-import React from 'react';
 import graphql from 'babel-plugin-relay/macro';
+import React from 'react';
 import { usePreloadedQuery } from 'react-relay/hooks';
-import ReactMarkdown from 'react-markdown';
-import SuspenseImage from './SuspenseImage';
-import IssueDetailComments from './IssueDetailComments';
 import IssueActions from './IssueActions';
+import IssueDetailComment from './IssueDetailComment';
+import IssueDetailComments from './IssueDetailComments';
 
 /**
  * The root component for the issue detail route.
@@ -52,20 +51,9 @@ export default function IssueDetailRoot(props) {
           View on GitHub
         </a>
       </div>
-      <div className="issue-comment">
-        <SuspenseImage
-          className="issue-comment-author-image"
-          title={`${issue.author.login}'s avatar`}
-          src={issue.author.avatarUrl}
-        />
-        <div className="issue-comment-author-name">{issue.author.login}</div>
-        <div className="issue-comment-body">
-          <ReactMarkdown
-            source={issue.body}
-            renderers={{ image: SuspenseImage }}
-          />
-        </div>
-      </div>
+      {/** The author's comment is divided from comment list */}
+      <IssueDetailComment comment={issue} />
+
       <IssueDetailComments issue={issue} />
       <IssueActions issue={issue} />
     </div>
