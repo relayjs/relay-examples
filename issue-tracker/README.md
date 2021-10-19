@@ -50,6 +50,28 @@ You can run the app by navigating to `relay-examples/issue-tracker/` and then ru
 
 This will start the development server (including Relay Compiler) and open a browser to [localhost:3000](http://localhost:3000).
 
+## Working on IssueTracker
+There are few key parts of IssueTracker:
+
+```shell
+├── public
+├── schema
+└── src
+    ├── __generated__
+    ├── components
+    ├── hooks
+    ├── pages
+    │   ├── IssueDetail
+    │   │   └── __generated__
+    │   └── Issues
+    │       └── __generated__
+    └── routing
+```
+- `schema`: Contains `graphql` schema
+- `components`: Contains foundational components used by other pages (e.g ErrorBoundary, SuspenseImage)
+- `hooks`:  Contains all hooks available on this project
+- `pages`: Contains the modules for our routes and their own components
+- `routing`: Contains configurations and utility functions related to routes 
 ## About the App
 
 This app uses a number of technologies including (among others):
