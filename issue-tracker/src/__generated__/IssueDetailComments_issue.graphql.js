@@ -78,7 +78,7 @@ const node /*: ReaderFragment*/ = (function() {
           path: (v0 /*: any*/),
         },
         fragmentPathInResult: ['node'],
-        operation: require('./IssueDetailCommentsQuery.graphql.js'),
+        operation: require('./IssueDetailCommentsQuery.graphql'),
         identifierField: 'id',
       },
     },
