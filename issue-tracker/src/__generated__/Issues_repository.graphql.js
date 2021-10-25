@@ -72,7 +72,7 @@ const node /*: ReaderFragment*/ = (function() {
           path: (v0 /*: any*/),
         },
         fragmentPathInResult: ['node'],
-        operation: require('./IssuesPaginationQuery.graphql.js'),
+        operation: require('./IssuesPaginationQuery.graphql'),
         identifierField: 'id',
       },
     },

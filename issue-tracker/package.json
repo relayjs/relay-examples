@@ -9,11 +9,11 @@
     "react": "0.0.0-experimental-f42431abe",
     "react-dom": "0.0.0-experimental-f42431abe",
     "react-markdown": "^4.2.2",
-    "react-relay": "^11.0.0-rc.0",
+    "react-relay": "^12.0.0",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-scripts": "3.2.0",
-    "relay-runtime": "^11.0.0-rc.0"
+    "relay-runtime": "^12.0.0"
   },
   "scripts": {
     "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
@@ -40,20 +40,20 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@babel/node": "^7.12.6",
+    "@babel/node": "^7.15.8",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-flow": "^7.12.1",
-    "@babel/preset-react": "^7.12.7",
-    "@babel/runtime": "^7.12.5",
-    "babel-plugin-relay": "^11.0.0-rc.0",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-flow": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/runtime": "^7.15.4",
+    "babel-plugin-relay": "^12.0.0",
     "concurrently": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "get-graphql-schema": "^2.1.2",
-    "graphql": "^15.4.0",
+    "graphql": "^15.6.1",
     "prettier": "^1.18.2",
-    "relay-compiler": "^11.0.0-rc.0"
+    "relay-compiler": "^12.0.0"
   },
   "husky": {
     "hooks": {
