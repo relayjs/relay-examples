@@ -2,22 +2,22 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./server.js",
-    "build": "relay-compiler-experimental --src ./js/ --schema ./data/schema.graphql --artifactDirectory ./__generated__/relay",
+    "build": "relay-compiler-experimental",
     "flow-typed": "flow-typed install --flowVersion=0.118.0",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "lint": "eslint ./ --cache"
   },
   "dependencies": {
     "classnames": "2.3.1",
-    "express": "^4.16.4",
     "express-graphql": "^0.12.0",
-    "graphql": "^15.4.0",
+    "express": "^4.16.4",
     "graphql-relay": "^0.6.0",
+    "graphql": "^15.4.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-relay": "^11.0.2",
-    "relay-runtime": "^11.0.2",
+    "react-relay": "^12.0.0",
+    "react": "^17.0.2",
+    "relay-runtime": "^12.0.0",
     "todomvc-app-css": "^2.4.1",
     "todomvc-common": "^1.0.3",
     "whatwg-fetch": "3.6.2"
@@ -33,8 +33,7 @@
     "@babel/runtime": "^7.14.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
-    "babel-plugin-relay": "^11.0.2",
-    "eslint": "^7.27.0",
+    "babel-plugin-relay": "^12.0.0",
     "eslint-config-fbjs": "^3.1.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-babel": "^5.3.1",
@@ -43,17 +42,24 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-relay": "^1.8.1",
+    "eslint": "^7.27.0",
     "flow-bin": "^0.118.0",
     "flow-typed": "^2.6.0",
     "prettier": "^2.3.0",
-    "relay-compiler-experimental": "0.0.0-master-46d77385",
-    "webpack": "^4.41.5",
-    "webpack-dev-server": "3.10.3"
+    "relay-compiler-experimental": "0.0.0-main-81019ce9",
+    "webpack-dev-server": "3.10.3",
+    "webpack": "^4.41.5"
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all",
     "bracketSpacing": false,
     "jsxBracketSameLine": true
+  },
+  "relay": {
+    "language": "flow",
+    "src": "./js",
+    "schema": "./data/schema.graphql",
+    "artifactDirectory": "./__generated__/relay"
   }
 }
