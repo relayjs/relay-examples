@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<509a16c935c980ad210955ba54619ef1>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -8,7 +11,9 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type IssueDetailComments_issue$ref = any;
+import type { FragmentReference } from "relay-runtime";
+declare export opaque type IssueDetailComments_issue$ref: FragmentReference;
+declare export opaque type IssueDetailComments_issue$fragmentType: IssueDetailComments_issue$ref;
 export type IssueDetailCommentsQueryVariables = {|
   count?: ?number,
   cursor?: ?string,
@@ -16,8 +21,8 @@ export type IssueDetailCommentsQueryVariables = {|
 |};
 export type IssueDetailCommentsQueryResponse = {|
   +node: ?{|
-    +$fragmentRefs: IssueDetailComments_issue$ref
-  |}
+    +$fragmentRefs: IssueDetailComments_issue$ref,
+  |},
 |};
 export type IssueDetailCommentsQuery = {|
   variables: IssueDetailCommentsQueryVariables,
@@ -25,48 +30,7 @@ export type IssueDetailCommentsQuery = {|
 |};
 */
 
-/*
-query IssueDetailCommentsQuery(
-  $count: Int = 10
-  $cursor: String
-  $id: ID!
-) {
-  node(id: $id) {
-    __typename
-    ...IssueDetailComments_issue_1G22uz
-    id
-  }
-}
-
-fragment IssueDetailComments_issue_1G22uz on Issue {
-  comments(after: $cursor, first: $count) {
-    edges {
-      node {
-        id
-        author {
-          __typename
-          login
-          avatarUrl
-          ... on Node {
-            __isNode: __typename
-            id
-          }
-        }
-        body
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-  id
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = [
       {
         defaultValue: 10,
@@ -321,7 +285,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '674952f209c2653f27a5fad5539df511';
+
+(node /*: any*/).hash = '674952f209c2653f27a5fad5539df511';
 
 module.exports = node;

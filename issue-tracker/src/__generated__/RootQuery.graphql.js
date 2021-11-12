@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<8f0c4e8114edf05d25be7adeaadabbc1>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -15,10 +18,10 @@ export type RootQueryVariables = {|
 export type RootQueryResponse = {|
   +repository: ?{|
     +owner: {|
-      +login: string
+      +login: string,
     |},
     +name: string,
-  |}
+  |},
 |};
 export type RootQuery = {|
   variables: RootQueryVariables,
@@ -26,24 +29,7 @@ export type RootQuery = {|
 |};
 */
 
-/*
-query RootQuery(
-  $owner: String!
-  $name: String!
-) {
-  repository(owner: $owner, name: $name) {
-    owner {
-      __typename
-      login
-      id
-    }
-    name
-    id
-  }
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = {
       defaultValue: null,
       kind: 'LocalArgument',
@@ -172,7 +158,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '86d44615100f8e82c5a3ff63daa08bd5';
+
+(node /*: any*/).hash = '86d44615100f8e82c5a3ff63daa08bd5';
 
 module.exports = node;

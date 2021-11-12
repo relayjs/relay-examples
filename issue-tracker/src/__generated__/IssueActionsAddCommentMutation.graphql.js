@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<7f208f122a5092f05e1af950acb2e37b>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -14,12 +17,12 @@ export type AddCommentInput = {|
   clientMutationId?: ?string,
 |};
 export type IssueActionsAddCommentMutationVariables = {|
-  input: AddCommentInput
+  input: AddCommentInput,
 |};
 export type IssueActionsAddCommentMutationResponse = {|
   +addComment: ?{|
     +subject: ?{|
-      +id: string
+      +id: string,
     |},
     +commentEdge: ?{|
       +__id: string,
@@ -32,7 +35,7 @@ export type IssueActionsAddCommentMutationResponse = {|
         +body: string,
       |},
     |},
-  |}
+  |},
 |};
 export type IssueActionsAddCommentMutation = {|
   variables: IssueActionsAddCommentMutationVariables,
@@ -40,35 +43,7 @@ export type IssueActionsAddCommentMutation = {|
 |};
 */
 
-/*
-mutation IssueActionsAddCommentMutation(
-  $input: AddCommentInput!
-) {
-  addComment(input: $input) {
-    subject {
-      __typename
-      id
-    }
-    commentEdge {
-      node {
-        id
-        author {
-          __typename
-          login
-          avatarUrl
-          ... on Node {
-            __isNode: __typename
-            id
-          }
-        }
-        body
-      }
-    }
-  }
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = [
       {
         defaultValue: null,
@@ -283,7 +258,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = 'f777dc7f1873d5cdab111f485ef8f404';
+
+(node /*: any*/).hash = 'f777dc7f1873d5cdab111f485ef8f404';
 
 module.exports = node;
