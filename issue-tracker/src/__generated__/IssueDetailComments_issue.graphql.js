@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<40a769321d79462b8fc2136fe1682034>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -9,8 +12,9 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type IssueDetailComments_issue$ref: FragmentReference;
-declare export opaque type IssueDetailComments_issue$fragmentType: IssueDetailComments_issue$ref;
+type IssueDetailComments_issue$ref = any;
+type IssueDetailComments_issue$fragmentType = any;
+export type { IssueDetailComments_issue$ref, IssueDetailComments_issue$fragmentType };
 export type IssueDetailComments_issue = {|
   +comments: {|
     +edges: ?$ReadOnlyArray<?{|
@@ -23,7 +27,7 @@ export type IssueDetailComments_issue = {|
         |},
         +body: string,
       |},
-    |}>
+    |}>,
   |},
   +id: string,
   +$refType: IssueDetailComments_issue$ref,
@@ -36,7 +40,7 @@ export type IssueDetailComments_issue$key = {
 };
 */
 
-const node /*: ReaderFragment*/ = (function() {
+var node /*: ReaderFragment*/ = (function() {
   var v0 = ['comments'],
     v1 = {
       alias: null,
@@ -207,7 +211,7 @@ const node /*: ReaderFragment*/ = (function() {
     abstractKey: null,
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '674952f209c2653f27a5fad5539df511';
+
+(node /*: any*/).hash = '674952f209c2653f27a5fad5539df511';
 
 module.exports = node;

@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<2841c539008c4e64eae9ee3581fee3f2>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -10,16 +13,17 @@
 import type { ReaderFragment } from 'relay-runtime';
 type IssuesListItem_issue$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type Issues_repository$ref: FragmentReference;
-declare export opaque type Issues_repository$fragmentType: Issues_repository$ref;
+type Issues_repository$ref = any;
+type Issues_repository$fragmentType = any;
+export type { Issues_repository$ref, Issues_repository$fragmentType };
 export type Issues_repository = {|
   +issues: {|
     +edges: ?$ReadOnlyArray<?{|
       +__id: string,
       +node: ?{|
-        +$fragmentRefs: IssuesListItem_issue$ref
+        +$fragmentRefs: IssuesListItem_issue$ref,
       |},
-    |}>
+    |}>,
   |},
   +id: string,
   +$refType: Issues_repository$ref,
@@ -32,7 +36,7 @@ export type Issues_repository$key = {
 };
 */
 
-const node /*: ReaderFragment*/ = (function() {
+var node /*: ReaderFragment*/ = (function() {
   var v0 = ['issues'];
   return {
     argumentDefinitions: [
@@ -109,16 +113,16 @@ const node /*: ReaderFragment*/ = (function() {
                 plural: false,
                 selections: [
                   {
+                    args: null,
+                    kind: 'FragmentSpread',
+                    name: 'IssuesListItem_issue',
+                  },
+                  {
                     alias: null,
                     args: null,
                     kind: 'ScalarField',
                     name: '__typename',
                     storageKey: null,
-                  },
-                  {
-                    args: null,
-                    kind: 'FragmentSpread',
-                    name: 'IssuesListItem_issue',
                   },
                 ],
                 storageKey: null,
@@ -185,7 +189,7 @@ const node /*: ReaderFragment*/ = (function() {
     abstractKey: null,
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '5247d00636acb2216057e2b051be4a3c';
+
+(node /*: any*/).hash = '5247d00636acb2216057e2b051be4a3c';
 
 module.exports = node;

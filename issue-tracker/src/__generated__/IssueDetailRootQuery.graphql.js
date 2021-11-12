@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<fc04150c2ca439132999ca9f9d03eb47>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -11,7 +14,7 @@ import type { ConcreteRequest } from 'relay-runtime';
 type IssueActions_issue$ref = any;
 type IssueDetailComments_issue$ref = any;
 export type IssueDetailRootQueryVariables = {|
-  id: string
+  id: string,
 |};
 export type IssueDetailRootQueryResponse = {|
   +node: ?{|
@@ -25,7 +28,7 @@ export type IssueDetailRootQueryResponse = {|
     +closed?: boolean,
     +url?: any,
     +$fragmentRefs: IssueDetailComments_issue$ref & IssueActions_issue$ref,
-  |}
+  |},
 |};
 export type IssueDetailRootQuery = {|
   variables: IssueDetailRootQueryVariables,
@@ -33,68 +36,7 @@ export type IssueDetailRootQuery = {|
 |};
 */
 
-/*
-query IssueDetailRootQuery(
-  $id: ID!
-) {
-  node(id: $id) {
-    __typename
-    ... on Issue {
-      title
-      number
-      author {
-        __typename
-        login
-        avatarUrl
-        ... on Node {
-          __isNode: __typename
-          id
-        }
-      }
-      body
-      closed
-      url
-      ...IssueDetailComments_issue
-      ...IssueActions_issue
-    }
-    id
-  }
-}
-
-fragment IssueActions_issue on Issue {
-  id
-  closed
-}
-
-fragment IssueDetailComments_issue on Issue {
-  comments(first: 10) {
-    edges {
-      node {
-        id
-        author {
-          __typename
-          login
-          avatarUrl
-          ... on Node {
-            __isNode: __typename
-            id
-          }
-        }
-        body
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-  id
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = [
       {
         defaultValue: null,
@@ -388,7 +330,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '42e7a1bc529086397c84040c8f84c752';
+
+(node /*: any*/).hash = '42e7a1bc529086397c84040c8f84c752';
 
 module.exports = node;

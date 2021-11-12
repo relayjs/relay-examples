@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<db81d1280adcbaa8c9c54fbc2c9ba79c>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -15,8 +18,8 @@ export type HomeRootIssuesQueryVariables = {|
 |};
 export type HomeRootIssuesQueryResponse = {|
   +repository: ?{|
-    +$fragmentRefs: Issues_repository$ref
-  |}
+    +$fragmentRefs: Issues_repository$ref,
+  |},
 |};
 export type HomeRootIssuesQuery = {|
   variables: HomeRootIssuesQueryVariables,
@@ -24,42 +27,7 @@ export type HomeRootIssuesQuery = {|
 |};
 */
 
-/*
-query HomeRootIssuesQuery(
-  $owner: String!
-  $name: String!
-) {
-  repository(owner: $owner, name: $name) {
-    ...Issues_repository
-    id
-  }
-}
-
-fragment IssuesListItem_issue on Issue {
-  id
-  title
-}
-
-fragment Issues_repository on Repository {
-  issues(first: 10, states: OPEN) {
-    edges {
-      node {
-        ...IssuesListItem_issue
-        id
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-  id
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = {
       defaultValue: null,
       kind: 'LocalArgument',
@@ -260,7 +228,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '123ee85bfef2bb303a99a7320127372f';
+
+(node /*: any*/).hash = '123ee85bfef2bb303a99a7320127372f';
 
 module.exports = node;

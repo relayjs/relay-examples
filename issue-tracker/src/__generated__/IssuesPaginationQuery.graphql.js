@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<1c572366ff19dcb7c9549811c4d06d6f>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -8,8 +11,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type Issues_repository$ref = any;
-export type IssueState = "CLOSED" | "OPEN" | "%future added value";
+import type { FragmentReference } from "relay-runtime";
+declare export opaque type Issues_repository$ref: FragmentReference;
+declare export opaque type Issues_repository$fragmentType: Issues_repository$ref;
+export type IssueState = "OPEN" | "CLOSED" | "%future added value";
 export type IssuesPaginationQueryVariables = {|
   count?: ?number,
   cursor?: ?string,
@@ -18,8 +23,8 @@ export type IssuesPaginationQueryVariables = {|
 |};
 export type IssuesPaginationQueryResponse = {|
   +node: ?{|
-    +$fragmentRefs: Issues_repository$ref
-  |}
+    +$fragmentRefs: Issues_repository$ref,
+  |},
 |};
 export type IssuesPaginationQuery = {|
   variables: IssuesPaginationQueryVariables,
@@ -27,45 +32,7 @@ export type IssuesPaginationQuery = {|
 |};
 */
 
-/*
-query IssuesPaginationQuery(
-  $count: Int = 10
-  $cursor: String
-  $states: [IssueState!] = OPEN
-  $id: ID!
-) {
-  node(id: $id) {
-    __typename
-    ...Issues_repository_a4QoT
-    id
-  }
-}
-
-fragment IssuesListItem_issue on Issue {
-  id
-  title
-}
-
-fragment Issues_repository_a4QoT on Repository {
-  issues(after: $cursor, first: $count, states: $states) {
-    edges {
-      node {
-        ...IssuesListItem_issue
-        id
-        __typename
-      }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
-    }
-  }
-  id
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = {
       defaultValue: 10,
       kind: 'LocalArgument',
@@ -308,7 +275,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '5247d00636acb2216057e2b051be4a3c';
+
+(node /*: any*/).hash = '5247d00636acb2216057e2b051be4a3c';
 
 module.exports = node;

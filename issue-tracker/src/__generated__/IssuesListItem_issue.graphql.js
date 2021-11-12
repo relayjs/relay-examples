@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<e9327f63e7f2c2579ee201c686ced863>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -24,7 +27,7 @@ export type IssuesListItem_issue$key = {
 };
 */
 
-const node /*: ReaderFragment*/ = {
+var node /*: ReaderFragment*/ = {
   argumentDefinitions: [],
   kind: 'Fragment',
   metadata: null,
@@ -48,7 +51,7 @@ const node /*: ReaderFragment*/ = {
   type: 'Issue',
   abstractKey: null,
 };
-// prettier-ignore
-(node/*: any*/).hash = '4759ca84c6b2c9e515e40652369fe5a9';
+
+(node /*: any*/).hash = '4759ca84c6b2c9e515e40652369fe5a9';
 
 module.exports = node;

@@ -1,5 +1,8 @@
 /**
+ * @generated SignedSource<<4eff60eee251e2c1b79ff042b0b297ba>>
  * @flow
+ * @lightSyntaxTransform
+ * @nogrep
  */
 
 /* eslint-disable */
@@ -13,14 +16,14 @@ export type ReopenIssueInput = {|
   clientMutationId?: ?string,
 |};
 export type IssueActionsReopenIssueMutationVariables = {|
-  input: ReopenIssueInput
+  input: ReopenIssueInput,
 |};
 export type IssueActionsReopenIssueMutationResponse = {|
   +reopenIssue: ?{|
     +issue: ?{|
-      +closed: boolean
-    |}
-  |}
+      +closed: boolean,
+    |},
+  |},
 |};
 export type IssueActionsReopenIssueMutation = {|
   variables: IssueActionsReopenIssueMutationVariables,
@@ -28,20 +31,7 @@ export type IssueActionsReopenIssueMutation = {|
 |};
 */
 
-/*
-mutation IssueActionsReopenIssueMutation(
-  $input: ReopenIssueInput!
-) {
-  reopenIssue(input: $input) {
-    issue {
-      closed
-      id
-    }
-  }
-}
-*/
-
-const node /*: ConcreteRequest*/ = (function() {
+var node /*: ConcreteRequest*/ = (function() {
   var v0 = [
       {
         defaultValue: null,
@@ -144,7 +134,7 @@ const node /*: ConcreteRequest*/ = (function() {
     },
   };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '6dbb9d9a672b1703eb0983667e9638db';
+
+(node /*: any*/).hash = '6dbb9d9a672b1703eb0983667e9638db';
 
 module.exports = node;
