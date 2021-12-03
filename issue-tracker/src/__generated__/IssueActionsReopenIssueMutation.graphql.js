@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4eff60eee251e2c1b79ff042b0b297ba>>
+ * @generated SignedSource<<21e88348e96e72d7bb649b2248f27b6b>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,131 +10,131 @@
 'use strict';
 
 /*::
-import type { ConcreteRequest } from 'relay-runtime';
+import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ReopenIssueInput = {|
   issueId: string,
   clientMutationId?: ?string,
 |};
-export type IssueActionsReopenIssueMutationVariables = {|
+export type IssueActionsReopenIssueMutation$variables = {|
   input: ReopenIssueInput,
 |};
-export type IssueActionsReopenIssueMutationResponse = {|
+export type IssueActionsReopenIssueMutation$data = {|
   +reopenIssue: ?{|
     +issue: ?{|
       +closed: boolean,
     |},
   |},
 |};
-export type IssueActionsReopenIssueMutation = {|
-  variables: IssueActionsReopenIssueMutationVariables,
-  response: IssueActionsReopenIssueMutationResponse,
-|};
 */
 
-var node /*: ConcreteRequest*/ = (function() {
-  var v0 = [
+var node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "input"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
+  }
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "closed",
+  "storageKey": null
+};
+return {
+  "fragment": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "IssueActionsReopenIssueMutation",
+    "selections": [
       {
-        defaultValue: null,
-        kind: 'LocalArgument',
-        name: 'input',
-      },
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ReopenIssuePayload",
+        "kind": "LinkedField",
+        "name": "reopenIssue",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Issue",
+            "kind": "LinkedField",
+            "name": "issue",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/)
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
     ],
-    v1 = [
+    "type": "Mutation",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Operation",
+    "name": "IssueActionsReopenIssueMutation",
+    "selections": [
       {
-        kind: 'Variable',
-        name: 'input',
-        variableName: 'input',
-      },
-    ],
-    v2 = {
-      alias: null,
-      args: null,
-      kind: 'ScalarField',
-      name: 'closed',
-      storageKey: null,
-    };
-  return {
-    fragment: {
-      argumentDefinitions: (v0 /*: any*/),
-      kind: 'Fragment',
-      metadata: null,
-      name: 'IssueActionsReopenIssueMutation',
-      selections: [
-        {
-          alias: null,
-          args: (v1 /*: any*/),
-          concreteType: 'ReopenIssuePayload',
-          kind: 'LinkedField',
-          name: 'reopenIssue',
-          plural: false,
-          selections: [
-            {
-              alias: null,
-              args: null,
-              concreteType: 'Issue',
-              kind: 'LinkedField',
-              name: 'issue',
-              plural: false,
-              selections: [(v2 /*: any*/)],
-              storageKey: null,
-            },
-          ],
-          storageKey: null,
-        },
-      ],
-      type: 'Mutation',
-      abstractKey: null,
-    },
-    kind: 'Request',
-    operation: {
-      argumentDefinitions: (v0 /*: any*/),
-      kind: 'Operation',
-      name: 'IssueActionsReopenIssueMutation',
-      selections: [
-        {
-          alias: null,
-          args: (v1 /*: any*/),
-          concreteType: 'ReopenIssuePayload',
-          kind: 'LinkedField',
-          name: 'reopenIssue',
-          plural: false,
-          selections: [
-            {
-              alias: null,
-              args: null,
-              concreteType: 'Issue',
-              kind: 'LinkedField',
-              name: 'issue',
-              plural: false,
-              selections: [
-                (v2 /*: any*/),
-                {
-                  alias: null,
-                  args: null,
-                  kind: 'ScalarField',
-                  name: 'id',
-                  storageKey: null,
-                },
-              ],
-              storageKey: null,
-            },
-          ],
-          storageKey: null,
-        },
-      ],
-    },
-    params: {
-      cacheID: '88165904756e596325dcd84150ec8ed6',
-      id: null,
-      metadata: {},
-      name: 'IssueActionsReopenIssueMutation',
-      operationKind: 'mutation',
-      text:
-        'mutation IssueActionsReopenIssueMutation(\n  $input: ReopenIssueInput!\n) {\n  reopenIssue(input: $input) {\n    issue {\n      closed\n      id\n    }\n  }\n}\n',
-    },
-  };
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "ReopenIssuePayload",
+        "kind": "LinkedField",
+        "name": "reopenIssue",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Issue",
+            "kind": "LinkedField",
+            "name": "issue",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
+  },
+  "params": {
+    "cacheID": "88165904756e596325dcd84150ec8ed6",
+    "id": null,
+    "metadata": {},
+    "name": "IssueActionsReopenIssueMutation",
+    "operationKind": "mutation",
+    "text": "mutation IssueActionsReopenIssueMutation(\n  $input: ReopenIssueInput!\n) {\n  reopenIssue(input: $input) {\n    issue {\n      closed\n      id\n    }\n  }\n}\n"
+  }
+};
 })();
 
-(node /*: any*/).hash = '6dbb9d9a672b1703eb0983667e9638db';
+(node/*: any*/).hash = "6dbb9d9a672b1703eb0983667e9638db";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Mutation<
+  IssueActionsReopenIssueMutation$variables,
+  IssueActionsReopenIssueMutation$data,
+>*/);

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c2fdf684664af5e970a5fcdac0a2faf9>>
+ * @generated SignedSource<<84562c6930f6fd8be516461b6f46388c>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,48 +10,49 @@
 'use strict';
 
 /*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type IssueActions_issue$ref: FragmentReference;
-declare export opaque type IssueActions_issue$fragmentType: IssueActions_issue$ref;
-export type IssueActions_issue = {|
+import type { Fragment, ReaderFragment } from 'relay-runtime';
+import type { FragmentType } from "relay-runtime";
+declare export opaque type IssueActions_issue$fragmentType: FragmentType;
+export type IssueActions_issue$data = {|
   +id: string,
   +closed: boolean,
-  +$refType: IssueActions_issue$ref,
+  +$fragmentType: IssueActions_issue$fragmentType,
 |};
-export type IssueActions_issue$data = IssueActions_issue;
 export type IssueActions_issue$key = {
   +$data?: IssueActions_issue$data,
-  +$fragmentRefs: IssueActions_issue$ref,
+  +$fragmentSpreads: IssueActions_issue$fragmentType,
   ...
 };
 */
 
-var node /*: ReaderFragment*/ = {
-  argumentDefinitions: [],
-  kind: 'Fragment',
-  metadata: null,
-  name: 'IssueActions_issue',
-  selections: [
+var node/*: ReaderFragment*/ = {
+  "argumentDefinitions": [],
+  "kind": "Fragment",
+  "metadata": null,
+  "name": "IssueActions_issue",
+  "selections": [
     {
-      alias: null,
-      args: null,
-      kind: 'ScalarField',
-      name: 'id',
-      storageKey: null,
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
     },
     {
-      alias: null,
-      args: null,
-      kind: 'ScalarField',
-      name: 'closed',
-      storageKey: null,
-    },
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "closed",
+      "storageKey": null
+    }
   ],
-  type: 'Issue',
-  abstractKey: null,
+  "type": "Issue",
+  "abstractKey": null
 };
 
-(node /*: any*/).hash = '12c79d27df99eb9656621cead33c9d08';
+(node/*: any*/).hash = "12c79d27df99eb9656621cead33c9d08";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Fragment<
+  IssueActions_issue$fragmentType,
+  IssueActions_issue$data,
+>*/);
