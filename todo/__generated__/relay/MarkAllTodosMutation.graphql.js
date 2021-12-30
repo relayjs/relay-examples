@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f0f0d5accddd3980e1d8d88d3f8d66ac>>
+ * @generated SignedSource<<da0fb7a97d1d0ed5545af26c512a3c21>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,16 +10,17 @@
 'use strict';
 
 /*::
-import type { ConcreteRequest } from 'relay-runtime';
+import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type MarkAllTodosInput = {|
   complete: boolean,
   userId: string,
   clientMutationId?: ?string,
 |};
-export type MarkAllTodosMutationVariables = {|
+export type MarkAllTodosMutation$variables = {|
   input: MarkAllTodosInput,
 |};
-export type MarkAllTodosMutationResponse = {|
+export type MarkAllTodosMutationVariables = MarkAllTodosMutation$variables;
+export type MarkAllTodosMutation$data = {|
   +markAllTodos: ?{|
     +changedTodos: ?$ReadOnlyArray<{|
       +id: string,
@@ -31,9 +32,10 @@ export type MarkAllTodosMutationResponse = {|
     |},
   |},
 |};
+export type MarkAllTodosMutationResponse = MarkAllTodosMutation$data;
 export type MarkAllTodosMutation = {|
   variables: MarkAllTodosMutationVariables,
-  response: MarkAllTodosMutationResponse,
+  response: MarkAllTodosMutation$data,
 |};
 */
 
@@ -139,4 +141,7 @@ return {
 
 (node/*: any*/).hash = "779c582c4ba0ee3c5be19942628dfaf3";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Mutation<
+  MarkAllTodosMutation$variables,
+  MarkAllTodosMutation$data,
+>*/);

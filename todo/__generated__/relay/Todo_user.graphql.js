@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1de49c0a4c50dddcb7aa4dd0caba4675>>
+ * @generated SignedSource<<a79cac49aeb5f01a9d71a2e32db6fc31>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,21 +10,21 @@
 'use strict';
 
 /*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type Todo_user$ref: FragmentReference;
-declare export opaque type Todo_user$fragmentType: Todo_user$ref;
-export type Todo_user = {|
+import type { Fragment, ReaderFragment } from 'relay-runtime';
+import type { FragmentType } from "relay-runtime";
+declare export opaque type Todo_user$fragmentType: FragmentType;
+export type Todo_user$ref = Todo_user$fragmentType;
+export type Todo_user$data = {|
   +id: string,
   +userId: string,
   +totalCount: number,
   +completedCount: number,
-  +$refType: Todo_user$ref,
+  +$fragmentType: Todo_user$fragmentType,
 |};
-export type Todo_user$data = Todo_user;
+export type Todo_user = Todo_user$data;
 export type Todo_user$key = {
   +$data?: Todo_user$data,
-  +$fragmentRefs: Todo_user$ref,
+  +$fragmentSpreads: Todo_user$fragmentType,
   ...
 };
 */
@@ -70,4 +70,7 @@ var node/*: ReaderFragment*/ = {
 
 (node/*: any*/).hash = "7d4a99e73771e30c8a0ba7cb397430e3";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Fragment<
+  Todo_user$fragmentType,
+  Todo_user$data,
+>*/);

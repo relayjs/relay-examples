@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0d116c7b1a01bbeab46a3a2580612e15>>
+ * @generated SignedSource<<a689f99da66c8ff527e3c899b507f867>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,16 +10,17 @@
 'use strict';
 
 /*::
-import type { ConcreteRequest } from 'relay-runtime';
+import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type RenameTodoInput = {|
   id: string,
   text: string,
   clientMutationId?: ?string,
 |};
-export type RenameTodoMutationVariables = {|
+export type RenameTodoMutation$variables = {|
   input: RenameTodoInput,
 |};
-export type RenameTodoMutationResponse = {|
+export type RenameTodoMutationVariables = RenameTodoMutation$variables;
+export type RenameTodoMutation$data = {|
   +renameTodo: ?{|
     +todo: {|
       +id: string,
@@ -27,9 +28,10 @@ export type RenameTodoMutationResponse = {|
     |},
   |},
 |};
+export type RenameTodoMutationResponse = RenameTodoMutation$data;
 export type RenameTodoMutation = {|
   variables: RenameTodoMutationVariables,
-  response: RenameTodoMutationResponse,
+  response: RenameTodoMutation$data,
 |};
 */
 
@@ -115,4 +117,7 @@ return {
 
 (node/*: any*/).hash = "de4aa1639055c2e6a78ee22cce29870a";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Mutation<
+  RenameTodoMutation$variables,
+  RenameTodoMutation$data,
+>*/);

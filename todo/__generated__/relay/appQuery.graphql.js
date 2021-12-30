@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7b0e84a93e5d7ed553363735841c2ece>>
+ * @generated SignedSource<<19776de5c5b9743725623158bed8a54c>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,19 +10,21 @@
 'use strict';
 
 /*::
-import type { ConcreteRequest } from 'relay-runtime';
-type TodoApp_user$ref = any;
-export type appQueryVariables = {|
+import type { ConcreteRequest, Query } from 'relay-runtime';
+import type { TodoApp_user$fragmentType } from "./TodoApp_user.graphql";
+export type appQuery$variables = {|
   userId?: ?string,
 |};
-export type appQueryResponse = {|
+export type appQueryVariables = appQuery$variables;
+export type appQuery$data = {|
   +user: ?{|
-    +$fragmentRefs: TodoApp_user$ref,
+    +$fragmentSpreads: TodoApp_user$fragmentType,
   |},
 |};
+export type appQueryResponse = appQuery$data;
 export type appQuery = {|
   variables: appQueryVariables,
-  response: appQueryResponse,
+  response: appQuery$data,
 |};
 */
 
@@ -232,4 +234,7 @@ return {
 
 (node/*: any*/).hash = "a2e70f652f32c53fa112a1013d9981ea";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Query<
+  appQuery$variables,
+  appQuery$data,
+>*/);
