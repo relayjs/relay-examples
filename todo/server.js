@@ -23,7 +23,7 @@ const APP_PORT: number = 3000;
 // Serve the Relay app
 // Calling webpack() without a callback as 2nd property returns a Compiler object.
 // The libdefs don't like it, but it's fine.  $FlowFixMe https://webpack.js.org/api/node/
-const compiler: webpack.Compiler = webpack({
+const compiler = webpack({
   mode: 'development',
   entry: ['whatwg-fetch', path.resolve(__dirname, 'js', 'app.js')],
   module: {
@@ -43,7 +43,7 @@ const compiler: webpack.Compiler = webpack({
   },
 });
 
-const app: WebpackDevServer = new WebpackDevServer(compiler, {
+const app = new WebpackDevServer(compiler, {
   contentBase: '/public/',
   publicPath: '/js/',
   stats: {colors: true},

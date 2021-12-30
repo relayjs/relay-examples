@@ -14,7 +14,12 @@
 import RemoveCompletedTodosMutation from '../mutations/RemoveCompletedTodosMutation';
 
 import React from 'react';
-import {graphql, createFragmentContainer, type RelayProp} from 'react-relay';
+import {
+  graphql,
+  createFragmentContainer,
+  type RelayProp,
+  type RelayFragmentContainer,
+} from 'react-relay';
 import type {TodoListFooter_user} from 'relay/TodoListFooter_user.graphql';
 type Todos = $NonMaybeType<$ElementType<TodoListFooter_user, 'todos'>>;
 type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
@@ -29,7 +34,7 @@ const TodoListFooter = ({
   relay,
   user,
   user: {todos, completedCount, totalCount},
-}: Props) => {
+}: Props): React$Element<'footer'> => {
   const completedEdges: $ReadOnlyArray<?Edge> =
     todos && todos.edges
       ? todos.edges.filter(
@@ -67,7 +72,7 @@ const TodoListFooter = ({
   );
 };
 
-export default createFragmentContainer(TodoListFooter, {
+export default (createFragmentContainer(TodoListFooter, {
   user: graphql`
     fragment TodoListFooter_user on User {
       id
@@ -86,4 +91,4 @@ export default createFragmentContainer(TodoListFooter, {
       totalCount
     }
   `,
-});
+}): RelayFragmentContainer<typeof TodoListFooter>);

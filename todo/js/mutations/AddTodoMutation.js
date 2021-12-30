@@ -16,11 +16,13 @@ import {
   graphql,
   type Disposable,
   type Environment,
-  type RecordProxy,
-  type RecordSourceSelectorProxy,
 } from 'react-relay';
 
-import {ConnectionHandler} from 'relay-runtime';
+import {
+  ConnectionHandler,
+  type RecordProxy,
+  type RecordSourceSelectorProxy,
+} from 'relay-runtime';
 import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
 import type {AddTodoInput} from 'relay/AddTodoMutation.graphql';
 
@@ -50,8 +52,12 @@ function sharedUpdater(
   newEdge: RecordProxy,
 ) {
   const userProxy = store.get(user.id);
-  const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
-  ConnectionHandler.insertEdgeAfter(conn, newEdge);
+  if (userProxy != null) {
+    const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
+    if (conn != null) {
+      ConnectionHandler.insertEdgeAfter(conn, newEdge);
+    }
+  }
 }
 
 let tempID = 0;
@@ -74,8 +80,10 @@ function commit(
     },
     updater: (store: RecordSourceSelectorProxy) => {
       const payload = store.getRootField('addTodo');
-      const newEdge = payload.getLinkedRecord('todoEdge');
-      sharedUpdater(store, user, newEdge);
+      const newEdge = payload?.getLinkedRecord('todoEdge');
+      if (newEdge != null) {
+        sharedUpdater(store, user, newEdge);
+      }
     },
     optimisticUpdater: (store: RecordSourceSelectorProxy) => {
       const id = 'client:newTodo:' + tempID++;

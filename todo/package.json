@@ -3,7 +3,7 @@
   "scripts": {
     "start": "babel-node ./server.js",
     "build": "relay-compiler",
-    "flow-typed": "flow-typed install --flowVersion=0.118.0",
+    "flow-typed": "flow-typed install --flowVersion=0.168.0",
     "flow": "flow",
     "update-schema": "babel-node ./scripts/updateSchema.js",
     "lint": "eslint ./ --cache"
@@ -44,7 +44,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-relay": "^1.8.1",
-    "flow-bin": "^0.118.0",
+    "flow-bin": "^0.168.0",
     "flow-typed": "^2.6.0",
     "prettier": "^2.3.0",
     "relay-compiler": "^13.0.0-rc.2",

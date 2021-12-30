@@ -18,6 +18,9 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
+  type GraphQLInterfaceType,
+  type GraphQLFieldConfig,
+  type GraphQLFieldConfigArgumentMap,
 } from 'graphql';
 
 import {
@@ -39,14 +42,14 @@ import {
 } from '../database';
 
 // $FlowFixMe graphql-relay types not available in flow-typed, strengthen this typing
-const {nodeInterface, nodeField} = nodeDefinitions(
+const {nodeInterface, nodeField} = (nodeDefinitions(
   (globalId: string): ?{} => {
     const {type, id}: {id: string, type: string} = fromGlobalId(globalId);
 
     if (type === 'Todo') {
-      return getTodoOrThrow(id);
+      return (getTodoOrThrow(id): $FlowFixMe);
     } else if (type === 'User') {
-      return getUserOrThrow(id);
+      return (getUserOrThrow(id): $FlowFixMe);
     }
     return null;
   },
@@ -58,9 +61,13 @@ const {nodeInterface, nodeField} = nodeDefinitions(
     }
     return null;
   },
-);
+): {
+  nodeField: GraphQLFieldConfig<$FlowFixMe, $FlowFixMe>,
+  nodeInterface: GraphQLInterfaceType,
+  nodesField: GraphQLFieldConfig<$FlowFixMe, $FlowFixMe>,
+});
 
-const GraphQLTodo = new GraphQLObjectType({
+const GraphQLTodo: GraphQLObjectType = new GraphQLObjectType({
   name: 'Todo',
   fields: {
     id: globalIdField('Todo'),
@@ -77,12 +84,24 @@ const GraphQLTodo = new GraphQLObjectType({
 });
 
 const {connectionType: TodosConnection, edgeType: GraphQLTodoEdge} =
-  connectionDefinitions({
+  (connectionDefinitions({
     name: 'Todo',
     nodeType: GraphQLTodo,
+  }): {
+    connectionType: GraphQLObjectType,
+    edgeType: GraphQLObjectType,
   });
 
-const GraphQLUser = new GraphQLObjectType({
+// $FlowFixMe[cannot-spread-indexer]
+const todosArgs: GraphQLFieldConfigArgumentMap = {
+  status: {
+    type: GraphQLString,
+    defaultValue: 'any',
+  },
+  ...connectionArgs,
+};
+
+const GraphQLUser: GraphQLObjectType = new GraphQLObjectType({
   name: 'User',
   fields: {
     id: globalIdField('User'),
@@ -92,14 +111,7 @@ const GraphQLUser = new GraphQLObjectType({
     },
     todos: {
       type: TodosConnection,
-      args: {
-        status: {
-          type: GraphQLString,
-          defaultValue: 'any',
-        },
-        // $FlowFixMe
-        ...connectionArgs,
-      },
+      args: todosArgs,
       // eslint-disable-next-line flowtype/require-parameter-type
       resolve: (root: {}, {status, after, before, first, last}) =>
         connectionFromArray([...getTodos(status)], {
