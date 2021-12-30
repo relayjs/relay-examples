@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ab0cde41e88a0c23847e148b7dbf4dd7>>
+ * @generated SignedSource<<59dc121aa1b809d9fa33eb767e347439>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,11 +10,11 @@
 'use strict';
 
 /*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type TodoListFooter_user$ref: FragmentReference;
-declare export opaque type TodoListFooter_user$fragmentType: TodoListFooter_user$ref;
-export type TodoListFooter_user = {|
+import type { Fragment, ReaderFragment } from 'relay-runtime';
+import type { FragmentType } from "relay-runtime";
+declare export opaque type TodoListFooter_user$fragmentType: FragmentType;
+export type TodoListFooter_user$ref = TodoListFooter_user$fragmentType;
+export type TodoListFooter_user$data = {|
   +id: string,
   +userId: string,
   +completedCount: number,
@@ -27,12 +27,12 @@ export type TodoListFooter_user = {|
     |}>,
   |},
   +totalCount: number,
-  +$refType: TodoListFooter_user$ref,
+  +$fragmentType: TodoListFooter_user$fragmentType,
 |};
-export type TodoListFooter_user$data = TodoListFooter_user;
+export type TodoListFooter_user = TodoListFooter_user$data;
 export type TodoListFooter_user$key = {
   +$data?: TodoListFooter_user$data,
-  +$fragmentRefs: TodoListFooter_user$ref,
+  +$fragmentSpreads: TodoListFooter_user$fragmentType,
   ...
 };
 */
@@ -172,4 +172,7 @@ return {
 
 (node/*: any*/).hash = "3225adf0f3b5d0a46ee4c63c8dbd9b08";
 
-module.exports = node;
+module.exports = ((node/*: any*/)/*: Fragment<
+  TodoListFooter_user$fragmentType,
+  TodoListFooter_user$data,
+>*/);

@@ -17,7 +17,12 @@ import RenameTodoMutation from '../mutations/RenameTodoMutation';
 import TodoTextInput from './TodoTextInput';
 
 import React, {useState} from 'react';
-import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
+import {
+  createFragmentContainer,
+  graphql,
+  type RelayProp,
+  type RelayFragmentContainer,
+} from 'react-relay';
 import classnames from 'classnames';
 import type {Todo_todo} from 'relay/Todo_todo.graphql';
 import type {Todo_user} from 'relay/Todo_user.graphql';
@@ -30,7 +35,7 @@ type Props = {|
   +user: Todo_user,
 |};
 
-const Todo = ({relay, todo, user}: Props) => {
+const Todo = ({relay, todo, user}: Props): React$Element<'li'> => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleCompleteChange = (e: SyntheticEvent<HTMLInputElement>) => {
@@ -87,7 +92,7 @@ const Todo = ({relay, todo, user}: Props) => {
   );
 };
 
-export default createFragmentContainer(Todo, {
+export default (createFragmentContainer(Todo, {
   todo: graphql`
     fragment Todo_todo on Todo {
       complete
@@ -103,4 +108,4 @@ export default createFragmentContainer(Todo, {
       completedCount
     }
   `,
-});
+}): RelayFragmentContainer<typeof Todo>);

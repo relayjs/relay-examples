@@ -12,7 +12,12 @@ types/
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=__generated__
 
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowFixMeProps
+suppress_type=$FlowFixMeState
+
 [strict]
 
 [version]
-^0.118.0
+^0.168.0

@@ -15,7 +15,12 @@ import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
 import Todo from './Todo';
 
 import React from 'react';
-import {createFragmentContainer, graphql, type RelayProp} from 'react-relay';
+import {
+  createFragmentContainer,
+  graphql,
+  type RelayProp,
+  type RelayFragmentContainer,
+} from 'react-relay';
 import type {TodoList_user} from 'relay/TodoList_user.graphql';
 type Todos = $NonMaybeType<$ElementType<TodoList_user, 'todos'>>;
 type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
@@ -31,7 +36,7 @@ const TodoList = ({
   relay,
   user,
   user: {todos, totalCount, completedCount},
-}: Props) => {
+}: Props): React$Element<'section'> => {
   const handleMarkAllChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const complete = e.currentTarget.checked;
 
@@ -68,7 +73,7 @@ const TodoList = ({
   );
 };
 
-export default createFragmentContainer(TodoList, {
+export default (createFragmentContainer(TodoList, {
   user: graphql`
     fragment TodoList_user on User {
       todos(
@@ -89,4 +94,4 @@ export default createFragmentContainer(TodoList, {
       ...Todo_user
     }
   `,
-});
+}): RelayFragmentContainer<typeof TodoList>);

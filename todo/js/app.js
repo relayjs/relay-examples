@@ -22,24 +22,25 @@ import {
   Network,
   RecordSource,
   Store,
-  type RequestNode,
+  type RequestParameters,
   type Variables,
+  type GraphQLResponse,
 } from 'relay-runtime';
 
 import TodoApp from './components/TodoApp';
 import type {appQueryResponse} from 'relay/appQuery.graphql';
 
 async function fetchQuery(
-  operation: RequestNode,
+  params: RequestParameters,
   variables: Variables,
-): Promise<{}> {
+): Promise<GraphQLResponse> {
   const response = await fetch('/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: operation.text,
+      query: params.text,
       variables,
     }),
   });
