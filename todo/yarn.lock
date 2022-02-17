@@ -1799,10 +1799,10 @@ babel-plugin-polyfill-regenerator@^0.2.0:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
 
-babel-plugin-relay@^13.0.0-rc.2:
-  version "13.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-13.0.0-rc.2.tgz#f4b534de51985af3c6d6b2b4682edee4adf9aec5"
-  integrity sha512-cZb+e9RouUGQoM5zfKCBlNXUzaoJRD/Uz3acnYZmj7miP2cegqNLhuql9GciJXRc6IN8A2PadTPryTPs/uJtXQ==
+babel-plugin-relay@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-13.1.1.tgz#c4922679b0ffff7720b63cbbb3760f5f507a8f63"
+  integrity sha512-689bdBD/VAh9Y0JmsLXBe5cZGIivdo/BWq/yt6OY9ChARgIsd6EIsB3UuRTTWSTRtit7PJ7ytlvcHqZfXtEZhA==
   dependencies:
     babel-plugin-macros "^2.0.0"
     cosmiconfig "^5.0.5"
@@ -5841,10 +5841,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relay-compiler@^13.0.0-rc.2:
-  version "13.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.0.0-rc.2.tgz#d82b11e3edfe715c30e9a71a97f9d62be914936f"
-  integrity sha512-6POTHZsGZ38iH/24+OLPgi6bh16ve+zfNLJz3S8m8mASBWzrUUWaa9+wpSBWTT95DOsLmnL6nCD6mGFJ97Qwgw==
+relay-compiler@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.1.1.tgz#e220c4364f478db05791d11571575c0e365fc7f6"
+  integrity sha512-Hy5HvV9xk3c/R8hZa3ilru8RdFAFQxQmc9j/EIpyhCHV6UraiFjZtD13HlQcszlyxoOqh2IvrSy39/yRmD1V/w==
 
 relay-runtime@13.0.0-rc.2, relay-runtime@^13.0.0-rc.2:
   version "13.0.0-rc.2"

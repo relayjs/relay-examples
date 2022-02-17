@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./server.js",
-    "build": "relay-compiler",
+    "build:with-config-option": "relay-compiler --config ./relay.config.json",
+    "build:with-options": "relay-compiler --schema ./data/schema.graphql --src ./js --artifactDirectory ./__generated__/relay",
     "flow-typed": "flow-typed install --flowVersion=0.168.0",
     "flow": "flow",
     "update-schema": "babel-node ./scripts/updateSchema.js",
@@ -34,7 +35,7 @@
     "@babel/runtime": "^7.14.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
-    "babel-plugin-relay": "^13.0.0-rc.2",
+    "babel-plugin-relay": "^13.1.1",
     "eslint": "^7.27.0",
     "eslint-config-fbjs": "^3.1.1",
     "eslint-config-prettier": "^8.3.0",
@@ -47,7 +48,7 @@
     "flow-bin": "^0.168.0",
     "flow-typed": "^2.6.0",
     "prettier": "^2.3.0",
-    "relay-compiler": "^13.0.0-rc.2",
+    "relay-compiler": "^13.1.1",
     "webpack": "^4.41.5",
     "webpack-dev-server": "3.10.3"
   },
@@ -56,11 +57,5 @@
     "trailingComma": "all",
     "bracketSpacing": false,
     "jsxBracketSameLine": true
-  },
-  "relay": {
-    "language": "flow",
-    "src": "./js",
-    "schema": "./data/schema.graphql",
-    "artifactDirectory": "./__generated__/relay"
   }
 }

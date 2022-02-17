@@ -1,0 +1,5 @@
+ {
+    "src": "./js",
+    "schema": "./data/schema.graphql",
+    "artifactDirectory": "./__generated__/relay"
+}
