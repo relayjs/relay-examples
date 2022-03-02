@@ -11,27 +11,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-  type Disposable,
-  type Environment,
-} from 'react-relay';
+import type {AddTodoMutation_user$key} from 'relay/AddTodoMutation_user.graphql';
 
-import {
-  ConnectionHandler,
-  type RecordProxy,
-  type RecordSourceSelectorProxy,
-} from 'relay-runtime';
-import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
-import type {AddTodoInput} from 'relay/AddTodoMutation.graphql';
+import {useCallback} from 'react';
+import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation AddTodoMutation($input: AddTodoInput!) {
+  mutation AddTodoMutation($connections: [ID!]!, $input: AddTodoInput!) {
     addTodo(input: $input) {
-      todoEdge {
-        __typename
-        cursor
+      todoEdge @appendEdge(connections: $connections) {
         node {
           complete
           id
@@ -46,73 +34,51 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(
-  store: RecordSourceSelectorProxy,
-  user: TodoApp_user,
-  newEdge: RecordProxy,
-) {
-  const userProxy = store.get(user.id);
-  if (userProxy != null) {
-    const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
-    if (conn != null) {
-      ConnectionHandler.insertEdgeAfter(conn, newEdge);
-    }
-  }
-}
-
 let tempID = 0;
 
-function commit(
-  environment: Environment,
-  text: string,
-  user: TodoApp_user,
-): Disposable {
-  const input: AddTodoInput = {
-    text,
-    userId: user.userId,
-    clientMutationId: `${tempID++}`,
-  };
-
-  return commitMutation(environment, {
-    mutation,
-    variables: {
-      input,
-    },
-    updater: (store: RecordSourceSelectorProxy) => {
-      const payload = store.getRootField('addTodo');
-      const newEdge = payload?.getLinkedRecord('todoEdge');
-      if (newEdge != null) {
-        sharedUpdater(store, user, newEdge);
+export function useAddTodoMutation(
+  userRef: AddTodoMutation_user$key,
+  todoConnectionId: string,
+): (string) => void {
+  const user = useFragment(
+    graphql`
+      fragment AddTodoMutation_user on User {
+        userId
+        id
+        totalCount
       }
+    `,
+    userRef,
+  );
+  const [commit] = useMutation(mutation);
+
+  return useCallback(
+    (text: string) => {
+      commit({
+        variables: {
+          input: {
+            text,
+            userId: user.userId,
+          },
+          connections: [todoConnectionId],
+        },
+        optimisticResponse: {
+          addTodo: {
+            todoEdge: {
+              node: {
+                id: 'client:newTodo:' + tempID++,
+                text,
+                complete: false,
+              },
+            },
+            user: {
+              id: user.id,
+              totalCount: user.totalCount + 1,
+            },
+          },
+        },
+      });
     },
-    optimisticUpdater: (store: RecordSourceSelectorProxy) => {
-      const id = 'client:newTodo:' + tempID++;
-      const node = store.create(id, 'Todo');
-      node.setValue(text, 'text');
-      node.setValue(id, 'id');
-
-      const newEdge = store.create('client:newEdge:' + tempID++, 'TodoEdge');
-      newEdge.setLinkedRecord(node, 'node');
-      sharedUpdater(store, user, newEdge);
-
-      // Get the UserProxy, and update the totalCount
-      const userProxy = store.get(user.id);
-
-      if (!userProxy) {
-        throw new Error('Failed to retrieve userProxy from store');
-      }
-
-      const totalCount = userProxy.getValue('totalCount');
-
-      if (typeof totalCount !== 'number') {
-        throw new Error(
-          `Expected userProxy.totalCount to be number, but got: ${typeof totalCount}`,
-        );
-      }
-
-      userProxy.setValue(totalCount + 1, 'totalCount');
-    },
-  });
+    [commit, user, todoConnectionId],
+  );
 }
-
-export default {commit};

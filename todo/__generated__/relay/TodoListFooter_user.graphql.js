@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<59dc121aa1b809d9fa33eb767e347439>>
+ * @generated SignedSource<<0b323f21d091053bc43e8951c394bfee>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -11,22 +11,14 @@
 
 /*::
 import type { Fragment, ReaderFragment } from 'relay-runtime';
+import type { RemoveCompletedTodosMutation_user$fragmentType } from "./RemoveCompletedTodosMutation_user.graphql";
 import type { FragmentType } from "relay-runtime";
 declare export opaque type TodoListFooter_user$fragmentType: FragmentType;
 export type TodoListFooter_user$ref = TodoListFooter_user$fragmentType;
 export type TodoListFooter_user$data = {|
-  +id: string,
-  +userId: string,
-  +completedCount: number,
-  +todos: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +complete: boolean,
-      |},
-    |}>,
-  |},
   +totalCount: number,
+  +completedCount: number,
+  +$fragmentSpreads: RemoveCompletedTodosMutation_user$fragmentType,
   +$fragmentType: TodoListFooter_user$fragmentType,
 |};
 export type TodoListFooter_user = TodoListFooter_user$data;
@@ -37,37 +29,17 @@ export type TodoListFooter_user$key = {
 };
 */
 
-var node/*: ReaderFragment*/ = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
-return {
+var node/*: ReaderFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": {
-    "connection": [
-      {
-        "count": null,
-        "cursor": null,
-        "direction": "forward",
-        "path": [
-          "todos"
-        ]
-      }
-    ]
-  },
+  "metadata": null,
   "name": "TodoListFooter_user",
   "selections": [
-    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "userId",
+      "name": "totalCount",
       "storageKey": null
     },
     {
@@ -78,99 +50,16 @@ return {
       "storageKey": null
     },
     {
-      "alias": "todos",
       "args": null,
-      "concreteType": "TodoConnection",
-      "kind": "LinkedField",
-      "name": "__TodoList_todos_connection",
-      "plural": false,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "TodoEdge",
-          "kind": "LinkedField",
-          "name": "edges",
-          "plural": true,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "concreteType": "Todo",
-              "kind": "LinkedField",
-              "name": "node",
-              "plural": false,
-              "selections": [
-                (v0/*: any*/),
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "complete",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "__typename",
-                  "storageKey": null
-                }
-              ],
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "cursor",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "PageInfo",
-          "kind": "LinkedField",
-          "name": "pageInfo",
-          "plural": false,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "endCursor",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "hasNextPage",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        }
-      ],
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "totalCount",
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "RemoveCompletedTodosMutation_user"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
-})();
 
-(node/*: any*/).hash = "3225adf0f3b5d0a46ee4c63c8dbd9b08";
+(node/*: any*/).hash = "58e3bb4be554d7ad9751be4c219857c6";
 
 module.exports = ((node/*: any*/)/*: Fragment<
   TodoListFooter_user$fragmentType,

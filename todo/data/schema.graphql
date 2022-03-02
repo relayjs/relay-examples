@@ -110,7 +110,7 @@ input MarkAllTodosInput {
 }
 
 type RemoveCompletedTodosPayload {
-  deletedTodoIds: [String!]
+  deletedTodoIds: [ID!]
   user: User!
   clientMutationId: String
 }

@@ -11,48 +11,34 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import AddTodoMutation from '../mutations/AddTodoMutation';
-import TodoList from './TodoList';
-import TodoListFooter from './TodoListFooter';
-import TodoTextInput from './TodoTextInput';
+import type {TodoAppQuery} from 'relay/TodoAppQuery.graphql';
+import type {PreloadedQuery} from 'react-relay';
 
-import React from 'react';
-import {
-  createFragmentContainer,
-  graphql,
-  type RelayProp,
-  type RelayFragmentContainer,
-} from 'react-relay';
-import type {TodoApp_user} from 'relay/TodoApp_user.graphql';
+import TodoList from './TodoList';
+
+import * as React from 'react';
+import {graphql, usePreloadedQuery} from 'react-relay';
 
 type Props = {|
-  +relay: RelayProp,
-  +user: TodoApp_user,
+  queryRef: PreloadedQuery<TodoAppQuery>,
 |};
 
-const TodoApp = ({relay, user}: Props): React$Element<'div'> => {
-  const handleTextInputSave = (text: string) => {
-    AddTodoMutation.commit(relay.environment, text, user);
-    return;
-  };
-
-  const hasTodos = user.totalCount > 0;
+export default function TodoApp({queryRef}: Props): React$Element<'div'> {
+  const {user} = usePreloadedQuery(
+    graphql`
+      query TodoAppQuery($userId: String) {
+        user(id: $userId) @required(action: THROW) {
+          ...TodoList_user
+        }
+      }
+    `,
+    queryRef,
+  );
 
   return (
     <div>
       <section className="todoapp">
-        <header className="header">
-          <h1>todos</h1>
-
-          <TodoTextInput
-            className="new-todo"
-            onSave={handleTextInputSave}
-            placeholder="What needs to be done?"
-          />
-        </header>
-
-        <TodoList user={user} />
-        {hasTodos && <TodoListFooter user={user} />}
+        <TodoList userRef={user} />
       </section>
 
       <footer className="info">
@@ -69,16 +55,4 @@ const TodoApp = ({relay, user}: Props): React$Element<'div'> => {
       </footer>
     </div>
   );
-};
-
-export default (createFragmentContainer(TodoApp, {
-  user: graphql`
-    fragment TodoApp_user on User {
-      id
-      userId
-      totalCount
-      ...TodoListFooter_user
-      ...TodoList_user
-    }
-  `,
-}): RelayFragmentContainer<typeof TodoApp>);
+}

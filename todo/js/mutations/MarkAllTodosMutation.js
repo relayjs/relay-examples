@@ -11,29 +11,11 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-  type Disposable,
-  type Environment,
-} from 'react-relay';
+import type {MarkAllTodosMutation_user$key} from 'relay/MarkAllTodosMutation_user.graphql';
+import type {MarkAllTodosMutation_todoEdge$key} from 'relay/MarkAllTodosMutation_todoEdge.graphql';
 
-import type {
-  MarkAllTodosInput,
-  MarkAllTodosMutationResponse,
-} from 'relay/MarkAllTodosMutation.graphql';
-
-type MarkAllTodos = $NonMaybeType<
-  $ElementType<MarkAllTodosMutationResponse, 'markAllTodos'>,
->;
-type ChangedTodos = $NonMaybeType<$ElementType<MarkAllTodos, 'changedTodos'>>;
-type ChangedTodo = $ElementType<ChangedTodos, number>;
-
-import type {TodoList_user} from 'relay/TodoList_user.graphql';
-type Todos = $NonMaybeType<$ElementType<TodoList_user, 'todos'>>;
-type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
-type Edge = $NonMaybeType<$ElementType<Edges, number>>;
-type Node = $NonMaybeType<$ElementType<Edge, 'node'>>;
+import {useCallback} from 'react';
+import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
   mutation MarkAllTodosMutation($input: MarkAllTodosInput!) {
@@ -50,55 +32,55 @@ const mutation = graphql`
   }
 `;
 
-function getOptimisticResponse(
-  complete: boolean,
-  todos: Todos,
-  user: TodoList_user,
-): MarkAllTodosMutationResponse {
-  // Relay returns Maybe types a lot of times in a connection that we need to cater for
-  const validNodes: $ReadOnlyArray<Node> = todos.edges
-    ? todos.edges
-        .filter(Boolean)
-        .map((edge: Edge): ?Node => edge.node)
-        .filter(Boolean)
-    : [];
+export function useMarkAllTodosMutation(
+  userRef: MarkAllTodosMutation_user$key,
+  todoEdgeRef: MarkAllTodosMutation_todoEdge$key,
+): (boolean) => void {
+  const user = useFragment(
+    graphql`
+      fragment MarkAllTodosMutation_user on User {
+        id
+        userId
+        totalCount
+      }
+    `,
+    userRef,
+  );
+  const todos = useFragment(
+    graphql`
+      fragment MarkAllTodosMutation_todoEdge on TodoEdge @relay(plural: true) {
+        node {
+          id
+        }
+      }
+    `,
+    todoEdgeRef,
+  );
+  const [commit] = useMutation(mutation);
 
-  const changedTodos: ChangedTodos = validNodes
-    .filter((node: Node): boolean => node.complete !== complete)
-    .map((node: Node): ChangedTodo => ({
-      complete: complete,
-      id: node.id,
-    }));
-
-  return {
-    markAllTodos: {
-      changedTodos,
-      user: {
-        id: user.id,
-        completedCount: complete ? user.totalCount : 0,
-      },
+  return useCallback(
+    (complete: boolean) => {
+      commit({
+        variables: {
+          input: {
+            userId: user.userId,
+            complete,
+          },
+        },
+        optimisticResponse: {
+          markAllTodos: {
+            changedTodos: todos.map(({node: {id}}) => ({
+              id,
+              complete,
+            })),
+            user: {
+              id: user.id,
+              completedCount: complete ? user.totalCount : 0,
+            },
+          },
+        },
+      });
     },
-  };
+    [commit, user, todos],
+  );
 }
-
-function commit(
-  environment: Environment,
-  complete: boolean,
-  todos: Todos,
-  user: TodoList_user,
-): Disposable {
-  const input: MarkAllTodosInput = {
-    complete,
-    userId: user.userId,
-  };
-
-  return commitMutation(environment, {
-    mutation,
-    variables: {
-      input,
-    },
-    optimisticResponse: getOptimisticResponse(complete, todos, user),
-  });
-}
-
-export default {commit};
