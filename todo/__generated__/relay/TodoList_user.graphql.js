@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<02c20d28573c6da669cd5ba694e798ff>>
+ * @generated SignedSource<<87d7f86db65f0dc2ab84d66d2179e9ef>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -20,7 +20,6 @@ import type { Todo_todo$fragmentType } from "./Todo_todo.graphql";
 import type { Todo_user$fragmentType } from "./Todo_user.graphql";
 import type { FragmentType } from "relay-runtime";
 declare export opaque type TodoList_user$fragmentType: FragmentType;
-export type TodoList_user$ref = TodoList_user$fragmentType;
 export type TodoList_user$data = {|
   +todos: ?{|
     +__id: string,
@@ -38,7 +37,6 @@ export type TodoList_user$data = {|
   +$fragmentSpreads: AddTodoMutation_user$fragmentType & MarkAllTodosMutation_user$fragmentType & Todo_user$fragmentType & TodoListFooter_user$fragmentType,
   +$fragmentType: TodoList_user$fragmentType,
 |};
-export type TodoList_user = TodoList_user$data;
 export type TodoList_user$key = {
   +$data?: TodoList_user$data,
   +$fragmentSpreads: TodoList_user$fragmentType,

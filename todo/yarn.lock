@@ -5722,16 +5722,16 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-relay@^13.0.0-rc.2:
-  version "13.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-13.0.0-rc.2.tgz#fac3b179ed0143f6f95801779323ab379c88d6a6"
-  integrity sha512-BLriP7NuqK6nUbrMVCLHUal+RHvdNYxovKQ9yB/sdxXNq82wNmIbzhzsxI4oz9fTsjuMlKribkp7KYGFrg+nuQ==
+react-relay@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-13.1.1.tgz#de8befce89c43aa034e2836ba727a63b20f45586"
+  integrity sha512-Y/NJ9P4D2wegYNJ1ti85usWFl3d2zKYy/eiOU4RCVG92IAWzVemHHT5SfZh8KzaIa/7KhBEMUSrXcyetcv7VMA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "13.0.0-rc.2"
+    relay-runtime "13.1.1"
 
 react@^17.0.2:
   version "17.0.2"
@@ -5855,15 +5855,15 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relay-compiler@^13.0.0-rc.2:
-  version "13.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.0.0-rc.2.tgz#d82b11e3edfe715c30e9a71a97f9d62be914936f"
-  integrity sha512-6POTHZsGZ38iH/24+OLPgi6bh16ve+zfNLJz3S8m8mASBWzrUUWaa9+wpSBWTT95DOsLmnL6nCD6mGFJ97Qwgw==
+relay-compiler@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.1.1.tgz#e220c4364f478db05791d11571575c0e365fc7f6"
+  integrity sha512-Hy5HvV9xk3c/R8hZa3ilru8RdFAFQxQmc9j/EIpyhCHV6UraiFjZtD13HlQcszlyxoOqh2IvrSy39/yRmD1V/w==
 
-relay-runtime@13.0.0-rc.2, relay-runtime@^13.0.0-rc.2:
-  version "13.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-13.0.0-rc.2.tgz#0003c55a82434dc6bedc392211a7495e58939eba"
-  integrity sha512-s55hBqYQqld2JEnm7XvK33CsTRcbtvDejyOHHZjDNiDYBpn0us1IlWSBZLt6yxXe8QuuSnDGPV2CxHWUvFexKg==
+relay-runtime@13.1.1, relay-runtime@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-13.1.1.tgz#144bf0c147ec4099d722f76605b5dabd2854ffe1"
+  integrity sha512-JOYxhV/512dERkB999p2DHDTx2J9cU14tX4aHLNJPIC62QDHDkLu0qteY/33q/2RWU6JaoF8ScR4L4D+F3VnGQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"

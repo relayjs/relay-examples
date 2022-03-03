@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5ca7d72262d9809e8bbd9d023b80631e>>
+ * @generated SignedSource<<0c4eb0ddd3916f3ed8bcb88af0205809>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -20,7 +20,6 @@ export type RemoveTodoMutation$variables = {|
   connections: $ReadOnlyArray<string>,
   input: RemoveTodoInput,
 |};
-export type RemoveTodoMutationVariables = RemoveTodoMutation$variables;
 export type RemoveTodoMutation$data = {|
   +removeTodo: ?{|
     +deletedTodoId: string,
@@ -30,9 +29,8 @@ export type RemoveTodoMutation$data = {|
     |},
   |},
 |};
-export type RemoveTodoMutationResponse = RemoveTodoMutation$data;
 export type RemoveTodoMutation = {|
-  variables: RemoveTodoMutationVariables,
+  variables: RemoveTodoMutation$variables,
   response: RemoveTodoMutation$data,
 |};
 */

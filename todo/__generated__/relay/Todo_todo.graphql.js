@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6b391f196be39ebd80fb2594a8cf19b0>>
+ * @generated SignedSource<<5b76efb5340b650477044e31566dbcc6>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -16,14 +16,12 @@ import type { RemoveTodoMutation_todo$fragmentType } from "./RemoveTodoMutation_
 import type { RenameTodoMutation_todo$fragmentType } from "./RenameTodoMutation_todo.graphql";
 import type { FragmentType } from "relay-runtime";
 declare export opaque type Todo_todo$fragmentType: FragmentType;
-export type Todo_todo$ref = Todo_todo$fragmentType;
 export type Todo_todo$data = {|
   +complete: boolean,
   +text: string,
   +$fragmentSpreads: ChangeTodoStatusMutation_todo$fragmentType & RenameTodoMutation_todo$fragmentType & RemoveTodoMutation_todo$fragmentType,
   +$fragmentType: Todo_todo$fragmentType,
 |};
-export type Todo_todo = Todo_todo$data;
 export type Todo_todo$key = {
   +$data?: Todo_todo$data,
   +$fragmentSpreads: Todo_todo$fragmentType,

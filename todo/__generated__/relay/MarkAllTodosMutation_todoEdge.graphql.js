@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f2ead4bc58e74c27bf1a73518b8cc744>>
+ * @generated SignedSource<<18a8b32c560813f69c420c11ef60bb14>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -13,14 +13,12 @@
 import type { Fragment, ReaderFragment } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
 declare export opaque type MarkAllTodosMutation_todoEdge$fragmentType: FragmentType;
-export type MarkAllTodosMutation_todoEdge$ref = MarkAllTodosMutation_todoEdge$fragmentType;
 export type MarkAllTodosMutation_todoEdge$data = $ReadOnlyArray<{|
   +node: ?{|
     +id: string,
   |},
   +$fragmentType: MarkAllTodosMutation_todoEdge$fragmentType,
 |}>;
-export type MarkAllTodosMutation_todoEdge = MarkAllTodosMutation_todoEdge$data;
 export type MarkAllTodosMutation_todoEdge$key = $ReadOnlyArray<{
   +$data?: MarkAllTodosMutation_todoEdge$data,
   +$fragmentSpreads: MarkAllTodosMutation_todoEdge$fragmentType,
