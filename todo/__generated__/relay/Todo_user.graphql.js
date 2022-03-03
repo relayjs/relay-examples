@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a79cac49aeb5f01a9d71a2e32db6fc31>>
+ * @generated SignedSource<<b8ace27c59b64f4a7d431ebeb7b259fc>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -11,14 +11,13 @@
 
 /*::
 import type { Fragment, ReaderFragment } from 'relay-runtime';
+import type { ChangeTodoStatusMutation_user$fragmentType } from "./ChangeTodoStatusMutation_user.graphql";
+import type { RemoveTodoMutation_user$fragmentType } from "./RemoveTodoMutation_user.graphql";
 import type { FragmentType } from "relay-runtime";
 declare export opaque type Todo_user$fragmentType: FragmentType;
 export type Todo_user$ref = Todo_user$fragmentType;
 export type Todo_user$data = {|
-  +id: string,
-  +userId: string,
-  +totalCount: number,
-  +completedCount: number,
+  +$fragmentSpreads: ChangeTodoStatusMutation_user$fragmentType & RemoveTodoMutation_user$fragmentType,
   +$fragmentType: Todo_user$fragmentType,
 |};
 export type Todo_user = Todo_user$data;
@@ -36,39 +35,21 @@ var node/*: ReaderFragment*/ = {
   "name": "Todo_user",
   "selections": [
     {
-      "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "ChangeTodoStatusMutation_user"
     },
     {
-      "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "userId",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "totalCount",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "completedCount",
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "RemoveTodoMutation_user"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node/*: any*/).hash = "7d4a99e73771e30c8a0ba7cb397430e3";
+(node/*: any*/).hash = "68b442d6ced8e051053e9f8126209b6a";
 
 module.exports = ((node/*: any*/)/*: Fragment<
   Todo_user$fragmentType,

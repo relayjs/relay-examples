@@ -11,87 +11,96 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import MarkAllTodosMutation from '../mutations/MarkAllTodosMutation';
-import Todo from './Todo';
+import type {TodoList_user$key} from 'relay/TodoList_user.graphql';
 
-import React from 'react';
-import {
-  createFragmentContainer,
-  graphql,
-  type RelayProp,
-  type RelayFragmentContainer,
-} from 'react-relay';
-import type {TodoList_user} from 'relay/TodoList_user.graphql';
-type Todos = $NonMaybeType<$ElementType<TodoList_user, 'todos'>>;
-type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
-type Edge = $NonMaybeType<$ElementType<Edges, number>>;
-type Node = $NonMaybeType<$ElementType<Edge, 'node'>>;
+import {useAddTodoMutation} from '../mutations/AddTodoMutation';
+import {useMarkAllTodosMutation} from '../mutations/MarkAllTodosMutation';
+import Todo from './Todo';
+import TodoListFooter from './TodoListFooter';
+import TodoTextInput from './TodoTextInput';
+
+import * as React from 'react';
+import {graphql, useFragment} from 'react-relay';
 
 type Props = {|
-  +relay: RelayProp,
-  +user: TodoList_user,
+  userRef: TodoList_user$key,
 |};
 
-const TodoList = ({
-  relay,
-  user,
-  user: {todos, totalCount, completedCount},
-}: Props): React$Element<'section'> => {
+export default function TodoList({userRef}: Props): React.Node {
+  const user = useFragment(
+    graphql`
+      fragment TodoList_user on User {
+        todos(
+          first: 2147483647 # max GraphQLInt
+        ) @connection(key: "TodoList_todos") {
+          __id
+          edges {
+            node {
+              id
+              ...Todo_todo
+            }
+            ...MarkAllTodosMutation_todoEdge
+          }
+          ...TodoListFooter_todoConnection
+        }
+        totalCount
+        completedCount
+        ...AddTodoMutation_user
+        ...MarkAllTodosMutation_user
+        ...Todo_user
+        ...TodoListFooter_user
+      }
+    `,
+    userRef,
+  );
+
+  const commitAddTodoMutation = useAddTodoMutation(user, user.todos.__id);
+  const handleOnSave = (text: string) => commitAddTodoMutation(text);
+
+  const commitMarkAllTodosMutation = useMarkAllTodosMutation(
+    user,
+    user.todos.edges,
+  );
   const handleMarkAllChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const complete = e.currentTarget.checked;
-
-    if (todos) {
-      MarkAllTodosMutation.commit(relay.environment, complete, todos, user);
-    }
+    commitMarkAllTodosMutation(complete);
   };
 
-  const nodes: $ReadOnlyArray<Node> =
-    todos && todos.edges
-      ? todos.edges
-          .filter(Boolean)
-          .map((edge: Edge) => edge.node)
-          .filter(Boolean)
-      : [];
-
   return (
-    <section className="main">
-      <input
-        checked={totalCount === completedCount}
-        className="toggle-all"
-        onChange={handleMarkAllChange}
-        type="checkbox"
-      />
+    <>
+      <header className="header">
+        <h1>todos</h1>
 
-      <label htmlFor="toggle-all">Mark all as complete</label>
+        <TodoTextInput
+          className="new-todo"
+          onSave={handleOnSave}
+          placeholder="What needs to be done?"
+        />
+      </header>
 
-      <ul className="todo-list">
-        {nodes.map((node: Node) => (
-          <Todo key={node.id} todo={node} user={user} />
-        ))}
-      </ul>
-    </section>
+      <section className="main">
+        <input
+          checked={user.totalCount === user.completedCount}
+          className="toggle-all"
+          onChange={handleMarkAllChange}
+          type="checkbox"
+        />
+
+        <label htmlFor="toggle-all">Mark all as complete</label>
+
+        <ul className="todo-list">
+          {user.todos.edges.map(({node}) => (
+            <Todo
+              key={node.id}
+              todoRef={node}
+              userRef={user}
+              todoConnectionId={user.todos.__id}
+            />
+          ))}
+        </ul>
+      </section>
+
+      <TodoListFooter userRef={user} todoConnectionRef={user.todos} />
+    </>
   );
-};
-
-export default (createFragmentContainer(TodoList, {
-  user: graphql`
-    fragment TodoList_user on User {
-      todos(
-        first: 2147483647 # max GraphQLInt
-      ) @connection(key: "TodoList_todos") {
-        edges {
-          node {
-            id
-            complete
-            ...Todo_todo
-          }
-        }
-      }
-      id
-      userId
-      totalCount
-      completedCount
-      ...Todo_user
-    }
-  `,
-}): RelayFragmentContainer<typeof TodoList>);
+}

@@ -18,7 +18,6 @@ import {
   GraphQLID,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLString,
   type GraphQLFieldConfig,
 } from 'graphql';
 import {GraphQLUser} from '../nodes';
@@ -41,7 +40,7 @@ const RemoveCompletedTodosMutation: GraphQLFieldConfig<$FlowFixMe, $FlowFixMe> =
     },
     outputFields: {
       deletedTodoIds: {
-        type: new GraphQLList(new GraphQLNonNull(GraphQLString)),
+        type: new GraphQLList(new GraphQLNonNull(GraphQLID)),
         resolve: ({deletedTodoIds}: Payload): $ReadOnlyArray<string> =>
           deletedTodoIds,
       },

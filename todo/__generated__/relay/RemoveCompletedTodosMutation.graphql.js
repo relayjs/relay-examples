@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3eb849fb36748e0cb39bd42c557805ab>>
+ * @generated SignedSource<<15e0b42f56f4cfede0a1732da97d3784>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -16,6 +16,7 @@ export type RemoveCompletedTodosInput = {|
   clientMutationId?: ?string,
 |};
 export type RemoveCompletedTodosMutation$variables = {|
+  connections: $ReadOnlyArray<string>,
   input: RemoveCompletedTodosInput,
 |};
 export type RemoveCompletedTodosMutationVariables = RemoveCompletedTodosMutation$variables;
@@ -23,6 +24,7 @@ export type RemoveCompletedTodosMutation$data = {|
   +removeCompletedTodos: ?{|
     +deletedTodoIds: ?$ReadOnlyArray<string>,
     +user: {|
+      +id: string,
       +completedCount: number,
       +totalCount: number,
     |},
@@ -37,6 +39,11 @@ export type RemoveCompletedTodosMutation = {|
 
 var node/*: ConcreteRequest*/ = (function(){
 var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "connections"
+  },
   {
     "defaultValue": null,
     "kind": "LocalArgument",
@@ -60,15 +67,33 @@ v2 = {
 v3 = {
   "alias": null,
   "args": null,
-  "kind": "ScalarField",
-  "name": "completedCount",
-  "storageKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "totalCount",
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "user",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "completedCount",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "totalCount",
+      "storageKey": null
+    }
+  ],
   "storageKey": null
 };
 return {
@@ -87,19 +112,7 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "kind": "LinkedField",
-            "name": "user",
-            "plural": false,
-            "selections": [
-              (v3/*: any*/),
-              (v4/*: any*/)
-            ],
-            "storageKey": null
-          }
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
@@ -125,40 +138,37 @@ return {
           {
             "alias": null,
             "args": null,
-            "concreteType": "User",
-            "kind": "LinkedField",
-            "name": "user",
-            "plural": false,
-            "selections": [
-              (v3/*: any*/),
-              (v4/*: any*/),
+            "filters": null,
+            "handle": "deleteEdge",
+            "key": "",
+            "kind": "ScalarHandle",
+            "name": "deletedTodoIds",
+            "handleArgs": [
               {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
+                "kind": "Variable",
+                "name": "connections",
+                "variableName": "connections"
               }
-            ],
-            "storageKey": null
-          }
+            ]
+          },
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "a49217db31a8be3f4107763b957d5fca",
+    "cacheID": "4d3a6acb198829c5ed5f748574934211",
     "id": null,
     "metadata": {},
     "name": "RemoveCompletedTodosMutation",
     "operationKind": "mutation",
-    "text": "mutation RemoveCompletedTodosMutation(\n  $input: RemoveCompletedTodosInput!\n) {\n  removeCompletedTodos(input: $input) {\n    deletedTodoIds\n    user {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n"
+    "text": "mutation RemoveCompletedTodosMutation(\n  $input: RemoveCompletedTodosInput!\n) {\n  removeCompletedTodos(input: $input) {\n    deletedTodoIds\n    user {\n      id\n      completedCount\n      totalCount\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node/*: any*/).hash = "9165a0685be5ff8f0b36e5449a8bbcf9";
+(node/*: any*/).hash = "b78c908fef03b8b5d3ca2bddb5d81d89";
 
 module.exports = ((node/*: any*/)/*: Mutation<
   RemoveCompletedTodosMutation$variables,

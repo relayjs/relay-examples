@@ -11,22 +11,16 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-  type Disposable,
-  type Environment,
-} from 'react-relay';
+import type {RemoveTodoMutation_todo$key} from 'relay/RemoveTodoMutation_todo.graphql';
+import type {RemoveTodoMutation_user$key} from 'relay/RemoveTodoMutation_user.graphql';
 
-import {ConnectionHandler, type RecordSourceSelectorProxy} from 'relay-runtime';
-import type {Todo_user} from 'relay/Todo_user.graphql';
-import type {Todo_todo} from 'relay/Todo_todo.graphql';
-import type {RemoveTodoInput} from 'relay/RemoveTodoMutation.graphql';
+import {useCallback} from 'react';
+import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation RemoveTodoMutation($input: RemoveTodoInput!) {
+  mutation RemoveTodoMutation($connections: [ID!]!, $input: RemoveTodoInput!) {
     removeTodo(input: $input) {
-      deletedTodoId
+      deletedTodoId @deleteEdge(connections: $connections)
       user {
         completedCount
         totalCount
@@ -35,51 +29,52 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(
-  store: RecordSourceSelectorProxy,
-  user: Todo_user,
-  deletedID: string,
-) {
-  const userProxy = store.get(user.id);
-  if (userProxy != null) {
-    const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
-    if (conn != null) {
-      ConnectionHandler.deleteNode(conn, deletedID);
-    }
-  }
-}
-
-function commit(
-  environment: Environment,
-  todo: Todo_todo,
-  user: Todo_user,
-): Disposable {
-  const input: RemoveTodoInput = {
-    id: todo.id,
-    userId: user.userId,
-  };
-
-  return commitMutation(environment, {
-    mutation,
-    variables: {
-      input,
-    },
-    updater: (store: RecordSourceSelectorProxy) => {
-      const payload = store.getRootField('removeTodo');
-      const deletedTodoId = payload?.getValue('deletedTodoId');
-
-      if (typeof deletedTodoId !== 'string') {
-        throw new Error(
-          `Expected removeTodo.deletedTodoId to be string, but got: ${typeof deletedTodoId}`,
-        );
+export function useRemoveTodoMutation(
+  userRef: RemoveTodoMutation_user$key,
+  todoRef: RemoveTodoMutation_todo$key,
+  todoConnectionId: string,
+): () => void {
+  const user = useFragment(
+    graphql`
+      fragment RemoveTodoMutation_user on User {
+        id
+        userId
+        totalCount
+        completedCount
       }
+    `,
+    userRef,
+  );
+  const todo = useFragment(
+    graphql`
+      fragment RemoveTodoMutation_todo on Todo {
+        id
+        complete
+      }
+    `,
+    todoRef,
+  );
+  const [commit] = useMutation(mutation);
 
-      sharedUpdater(store, user, deletedTodoId);
-    },
-    optimisticUpdater: (store: RecordSourceSelectorProxy) => {
-      sharedUpdater(store, user, todo.id);
-    },
-  });
+  return useCallback(() => {
+    commit({
+      variables: {
+        input: {
+          id: todo.id,
+          userId: user.userId,
+        },
+        connections: [todoConnectionId],
+      },
+      optimisticResponse: {
+        removeTodo: {
+          deletedTodoId: todo.id,
+          user: {
+            id: user.id,
+            totalCount: user.totalCount - 1,
+            completedCount: user.completedCount + (todo.complete ? -1 : 0),
+          },
+        },
+      },
+    });
+  }, [commit, user, todo, todoConnectionId]);
 }
-
-export default {commit};

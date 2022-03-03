@@ -11,7 +11,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import React, {useEffect, useRef, useState} from 'react';
+import * as React from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 type Props = {|
   +className: string,

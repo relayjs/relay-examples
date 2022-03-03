@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a38cbee048b1e80f1ee705229e3c8c70>>
+ * @generated SignedSource<<5ca7d72262d9809e8bbd9d023b80631e>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -17,6 +17,7 @@ export type RemoveTodoInput = {|
   clientMutationId?: ?string,
 |};
 export type RemoveTodoMutation$variables = {|
+  connections: $ReadOnlyArray<string>,
   input: RemoveTodoInput,
 |};
 export type RemoveTodoMutationVariables = RemoveTodoMutation$variables;
@@ -38,6 +39,11 @@ export type RemoveTodoMutation = {|
 
 var node/*: ConcreteRequest*/ = (function(){
 var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "connections"
+  },
   {
     "defaultValue": null,
     "kind": "LocalArgument",
@@ -126,6 +132,22 @@ return {
           {
             "alias": null,
             "args": null,
+            "filters": null,
+            "handle": "deleteEdge",
+            "key": "",
+            "kind": "ScalarHandle",
+            "name": "deletedTodoId",
+            "handleArgs": [
+              {
+                "kind": "Variable",
+                "name": "connections",
+                "variableName": "connections"
+              }
+            ]
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": "User",
             "kind": "LinkedField",
             "name": "user",
@@ -159,7 +181,7 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "fd5052095c290ad9d2b30d377d3da474";
+(node/*: any*/).hash = "f1e78c738dc1aa9c26df49783daee003";
 
 module.exports = ((node/*: any*/)/*: Mutation<
   RemoveTodoMutation$variables,

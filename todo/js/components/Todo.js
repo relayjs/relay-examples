@@ -11,54 +11,84 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import ChangeTodoStatusMutation from '../mutations/ChangeTodoStatusMutation';
-import RemoveTodoMutation from '../mutations/RemoveTodoMutation';
-import RenameTodoMutation from '../mutations/RenameTodoMutation';
+import type {Todo_todo$key} from 'relay/Todo_todo.graphql';
+import type {Todo_user$key} from 'relay/Todo_user.graphql';
+
+import {useChangeTodoStatusMutation} from '../mutations/ChangeTodoStatusMutation';
+import {useRenameTodoMutation} from '../mutations/RenameTodoMutation';
+import {useRemoveTodoMutation} from '../mutations/RemoveTodoMutation';
 import TodoTextInput from './TodoTextInput';
 
-import React, {useState} from 'react';
-import {
-  createFragmentContainer,
-  graphql,
-  type RelayProp,
-  type RelayFragmentContainer,
-} from 'react-relay';
+import * as React from 'react';
+import {useState} from 'react';
+import {graphql, useFragment} from 'react-relay';
 import classnames from 'classnames';
-import type {Todo_todo} from 'relay/Todo_todo.graphql';
-import type {Todo_user} from 'relay/Todo_user.graphql';
 
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
 type Props = {|
-  +relay: RelayProp,
-  +todo: Todo_todo,
-  +user: Todo_user,
+  todoConnectionId: string,
+  todoRef: Todo_todo$key,
+  userRef: Todo_user$key,
 |};
 
-const Todo = ({relay, todo, user}: Props): React$Element<'li'> => {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+export default function Todo({
+  userRef,
+  todoRef,
+  todoConnectionId,
+}: Props): React$Element<'li'> {
+  const todo = useFragment(
+    graphql`
+      fragment Todo_todo on Todo {
+        complete
+        text
+        ...ChangeTodoStatusMutation_todo
+        ...RenameTodoMutation_todo
+        ...RemoveTodoMutation_todo
+      }
+    `,
+    todoRef,
+  );
+  const user = useFragment(
+    graphql`
+      fragment Todo_user on User {
+        ...ChangeTodoStatusMutation_user
+        ...RemoveTodoMutation_user
+      }
+    `,
+    userRef,
+  );
 
+  const commitChangeTodoStatusMutation = useChangeTodoStatusMutation(
+    user,
+    todo,
+  );
   const handleCompleteChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const complete = e.currentTarget.checked;
-    ChangeTodoStatusMutation.commit(relay.environment, complete, todo, user);
+    commitChangeTodoStatusMutation(complete);
   };
 
-  const handleDestroyClick = () => removeTodo();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const handleLabelDoubleClick = () => setIsEditing(true);
   const handleTextInputCancel = () => setIsEditing(false);
-
-  const handleTextInputDelete = () => {
-    setIsEditing(false);
-    removeTodo();
-  };
-
+  const commitRenameTodoMutation = useRenameTodoMutation(todo);
   const handleTextInputSave = (text: string) => {
     setIsEditing(false);
-    RenameTodoMutation.commit(relay.environment, text, todo);
+    commitRenameTodoMutation(text);
   };
 
-  const removeTodo = () =>
-    RemoveTodoMutation.commit(relay.environment, todo, user);
+  const commitRemoveTodoMutation = useRemoveTodoMutation(
+    user,
+    todo,
+    todoConnectionId,
+  );
+  const handleRemoveTodo = () => {
+    commitRemoveTodoMutation();
+  };
+  const handleTextInputDelete = () => {
+    setIsEditing(false);
+    handleRemoveTodo();
+  };
 
   return (
     <li
@@ -75,7 +105,7 @@ const Todo = ({relay, todo, user}: Props): React$Element<'li'> => {
         />
 
         <label onDoubleClick={handleLabelDoubleClick}>{todo.text}</label>
-        <button className="destroy" onClick={handleDestroyClick} />
+        <button className="destroy" onClick={handleRemoveTodo} />
       </div>
 
       {isEditing && (
@@ -90,22 +120,4 @@ const Todo = ({relay, todo, user}: Props): React$Element<'li'> => {
       )}
     </li>
   );
-};
-
-export default (createFragmentContainer(Todo, {
-  todo: graphql`
-    fragment Todo_todo on Todo {
-      complete
-      id
-      text
-    }
-  `,
-  user: graphql`
-    fragment Todo_user on User {
-      id
-      userId
-      totalCount
-      completedCount
-    }
-  `,
-}): RelayFragmentContainer<typeof Todo>);
+}

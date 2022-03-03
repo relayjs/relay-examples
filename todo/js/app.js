@@ -16,7 +16,7 @@ import 'todomvc-common';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import {QueryRenderer, graphql} from 'react-relay';
+import {RelayEnvironmentProvider, loadQuery} from 'react-relay';
 import {
   Environment,
   Network,
@@ -27,8 +27,9 @@ import {
   type GraphQLResponse,
 } from 'relay-runtime';
 
+import {ErrorBoundary} from 'react-error-boundary';
 import TodoApp from './components/TodoApp';
-import type {appQueryResponse} from 'relay/appQuery.graphql';
+import TodoAppQuery from '../__generated__/relay/TodoAppQuery.graphql';
 
 async function fetchQuery(
   params: RequestParameters,
@@ -56,30 +57,18 @@ const modernEnvironment: Environment = new Environment({
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
+  const queryRef = loadQuery(modernEnvironment, TodoAppQuery, {
+    // Mock authenticated ID that matches database
+    userId: 'me',
+  });
   ReactDOM.render(
-    <QueryRenderer
-      environment={modernEnvironment}
-      query={graphql`
-        query appQuery($userId: String) {
-          user(id: $userId) {
-            ...TodoApp_user
-          }
-        }
-      `}
-      variables={{
-        // Mock authenticated ID that matches database
-        userId: 'me',
-      }}
-      render={({error, props}: {error: ?Error, props: ?appQueryResponse}) => {
-        if (props && props.user) {
-          return <TodoApp user={props.user} />;
-        } else if (error) {
-          return <div>{error.message}</div>;
-        }
-
-        return <div>Loading</div>;
-      }}
-    />,
+    <RelayEnvironmentProvider environment={modernEnvironment}>
+      <React.Suspense fallback={<div>Loading</div>}>
+        <ErrorBoundary fallbackRender={({error}) => <div>{error.message}</div>}>
+          <TodoApp queryRef={queryRef} />
+        </ErrorBoundary>
+      </React.Suspense>
+    </RelayEnvironmentProvider>,
     rootElement,
   );
 }

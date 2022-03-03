@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4d50ca09a8767b91ebfa0ca026adbaa2>>
+ * @generated SignedSource<<02c20d28573c6da669cd5ba694e798ff>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -11,6 +11,11 @@
 
 /*::
 import type { Fragment, ReaderFragment } from 'relay-runtime';
+import type { AddTodoMutation_user$fragmentType } from "./AddTodoMutation_user.graphql";
+import type { MarkAllTodosMutation_todoEdge$fragmentType } from "./MarkAllTodosMutation_todoEdge.graphql";
+import type { MarkAllTodosMutation_user$fragmentType } from "./MarkAllTodosMutation_user.graphql";
+import type { TodoListFooter_todoConnection$fragmentType } from "./TodoListFooter_todoConnection.graphql";
+import type { TodoListFooter_user$fragmentType } from "./TodoListFooter_user.graphql";
 import type { Todo_todo$fragmentType } from "./Todo_todo.graphql";
 import type { Todo_user$fragmentType } from "./Todo_user.graphql";
 import type { FragmentType } from "relay-runtime";
@@ -18,19 +23,19 @@ declare export opaque type TodoList_user$fragmentType: FragmentType;
 export type TodoList_user$ref = TodoList_user$fragmentType;
 export type TodoList_user$data = {|
   +todos: ?{|
+    +__id: string,
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
-        +complete: boolean,
         +$fragmentSpreads: Todo_todo$fragmentType,
       |},
+      +$fragmentSpreads: MarkAllTodosMutation_todoEdge$fragmentType,
     |}>,
+    +$fragmentSpreads: TodoListFooter_todoConnection$fragmentType,
   |},
-  +id: string,
-  +userId: string,
   +totalCount: number,
   +completedCount: number,
-  +$fragmentSpreads: Todo_user$fragmentType,
+  +$fragmentSpreads: AddTodoMutation_user$fragmentType & MarkAllTodosMutation_user$fragmentType & Todo_user$fragmentType & TodoListFooter_user$fragmentType,
   +$fragmentType: TodoList_user$fragmentType,
 |};
 export type TodoList_user = TodoList_user$data;
@@ -41,15 +46,7 @@ export type TodoList_user$key = {
 };
 */
 
-var node/*: ReaderFragment*/ = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
-return {
+var node/*: ReaderFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": {
@@ -90,12 +87,11 @@ return {
               "name": "node",
               "plural": false,
               "selections": [
-                (v0/*: any*/),
                 {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
-                  "name": "complete",
+                  "name": "id",
                   "storageKey": null
                 },
                 {
@@ -114,6 +110,11 @@ return {
               "storageKey": null
             },
             {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "MarkAllTodosMutation_todoEdge"
+            },
+            {
               "alias": null,
               "args": null,
               "kind": "ScalarField",
@@ -122,6 +123,11 @@ return {
             }
           ],
           "storageKey": null
+        },
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "TodoListFooter_todoConnection"
         },
         {
           "alias": null,
@@ -147,16 +153,20 @@ return {
             }
           ],
           "storageKey": null
+        },
+        {
+          "kind": "ClientExtension",
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "__id",
+              "storageKey": null
+            }
+          ]
         }
       ],
-      "storageKey": null
-    },
-    (v0/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "userId",
       "storageKey": null
     },
     {
@@ -176,15 +186,29 @@ return {
     {
       "args": null,
       "kind": "FragmentSpread",
+      "name": "AddTodoMutation_user"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "MarkAllTodosMutation_user"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
       "name": "Todo_user"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "TodoListFooter_user"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
-})();
 
-(node/*: any*/).hash = "4c169798c328a2b4d9b4ae5227d016bb";
+(node/*: any*/).hash = "c83e0fccfae7ee28c5b4994bd7caae65";
 
 module.exports = ((node/*: any*/)/*: Fragment<
   TodoList_user$fragmentType,

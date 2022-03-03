@@ -11,27 +11,21 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {
-  commitMutation,
-  graphql,
-  type Disposable,
-  type Environment,
-} from 'react-relay';
+import type {RemoveCompletedTodosMutation_user$key} from 'relay/RemoveCompletedTodosMutation_user.graphql';
+import type {RemoveCompletedTodosMutation_todoConnection$key} from 'relay/RemoveCompletedTodosMutation_todoConnection.graphql';
 
-import {ConnectionHandler, type RecordSourceSelectorProxy} from 'relay-runtime';
-import type {RemoveCompletedTodosInput} from 'relay/RemoveCompletedTodosMutation.graphql';
-
-import type {TodoListFooter_user} from 'relay/TodoListFooter_user.graphql';
-type Todos = $NonMaybeType<$ElementType<TodoListFooter_user, 'todos'>>;
-type Edges = $NonMaybeType<$ElementType<Todos, 'edges'>>;
-type Edge = $NonMaybeType<$ElementType<Edges, number>>;
-type Node = $NonMaybeType<$ElementType<Edge, 'node'>>;
+import {useCallback} from 'react';
+import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation RemoveCompletedTodosMutation($input: RemoveCompletedTodosInput!) {
+  mutation RemoveCompletedTodosMutation(
+    $connections: [ID!]!
+    $input: RemoveCompletedTodosInput!
+  ) {
     removeCompletedTodos(input: $input) {
-      deletedTodoIds
+      deletedTodoIds @deleteEdge(connections: $connections)
       user {
+        id
         completedCount
         totalCount
       }
@@ -39,58 +33,58 @@ const mutation = graphql`
   }
 `;
 
-function sharedUpdater(
-  store: RecordSourceSelectorProxy,
-  user: TodoListFooter_user,
-  deletedIDs: $ReadOnlyArray<string>,
-) {
-  const userProxy = store.get(user.id);
-  if (userProxy != null) {
-    const conn = ConnectionHandler.getConnection(userProxy, 'TodoList_todos');
-    if (conn != null) {
-      // Purposefully type forEach as void, to toss the result of deleteNode
-      deletedIDs.forEach((deletedID: string): void =>
-        ConnectionHandler.deleteNode(conn, deletedID),
-      );
-    }
-  }
+export function useRemoveCompletedTodosMutation(
+  userRef: RemoveCompletedTodosMutation_user$key,
+  todoConnectionRef: RemoveCompletedTodosMutation_todoConnection$key,
+): () => void {
+  const user = useFragment(
+    graphql`
+      fragment RemoveCompletedTodosMutation_user on User {
+        id
+        userId
+        totalCount
+      }
+    `,
+    userRef,
+  );
+  const todoConnection = useFragment(
+    graphql`
+      fragment RemoveCompletedTodosMutation_todoConnection on TodoConnection {
+        __id
+        edges {
+          node {
+            id
+            complete
+          }
+        }
+      }
+    `,
+    todoConnectionRef,
+  );
+  const [commit] = useMutation(mutation);
+
+  return useCallback(() => {
+    const completedTodoIds = todoConnection.edges
+      .filter((edge) => edge.node.complete)
+      .map((edge) => edge.node.id);
+
+    commit({
+      variables: {
+        input: {
+          userId: user.userId,
+        },
+        connections: [todoConnection.__id],
+      },
+      optimisticResponse: {
+        removeCompletedTodos: {
+          deletedTodoIds: completedTodoIds,
+          user: {
+            id: user.id,
+            completedCount: 0,
+            totalCount: user.totalCount - completedTodoIds.length,
+          },
+        },
+      },
+    });
+  }, [commit, user, todoConnection]);
 }
-
-function commit(
-  environment: Environment,
-  todos: Todos,
-  user: TodoListFooter_user,
-): Disposable {
-  const input: RemoveCompletedTodosInput = {
-    userId: user.userId,
-  };
-
-  return commitMutation(environment, {
-    mutation,
-    variables: {
-      input,
-    },
-    updater: (store: RecordSourceSelectorProxy) => {
-      const payload = store.getRootField('removeCompletedTodos');
-      const deletedIds = payload?.getValue('deletedTodoIds');
-
-      // $FlowFixMe `payload.getValue` returns mixed, not sure how to check refinement to $ReadOnlyArray<string>
-      sharedUpdater(store, user, deletedIds);
-    },
-    optimisticUpdater: (store: RecordSourceSelectorProxy) => {
-      // Relay returns Maybe types a lot of times in a connection that we need to cater for
-      const completedNodeIds: $ReadOnlyArray<string> = todos.edges
-        ? todos.edges
-            .filter(Boolean)
-            .map((edge: Edge): ?Node => edge.node)
-            .filter(Boolean)
-            .filter((node: Node): boolean => node.complete)
-            .map((node: Node): string => node.id)
-        : [];
-
-      sharedUpdater(store, user, completedNodeIds);
-    },
-  });
-}
-
-export default {commit};
