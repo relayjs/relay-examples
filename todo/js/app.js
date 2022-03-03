@@ -16,7 +16,11 @@ import 'todomvc-common';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import {RelayEnvironmentProvider, loadQuery} from 'react-relay';
+import {
+  EntryPointContainer,
+  RelayEnvironmentProvider,
+  loadEntryPoint,
+} from 'react-relay';
 import {
   Environment,
   Network,
@@ -28,8 +32,7 @@ import {
 } from 'relay-runtime';
 
 import {ErrorBoundary} from 'react-error-boundary';
-import TodoApp from './components/TodoApp';
-import TodoAppQuery from '../__generated__/relay/TodoAppQuery.graphql';
+import TodoAppEntryPoint from './entrypoints/TodoApp.entrypoint';
 
 async function fetchQuery(
   params: RequestParameters,
@@ -57,15 +60,19 @@ const modernEnvironment: Environment = new Environment({
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
-  const queryRef = loadQuery(modernEnvironment, TodoAppQuery, {
-    // Mock authenticated ID that matches database
-    userId: 'me',
-  });
+  const entryPointRef = loadEntryPoint(
+    {getEnvironment: () => modernEnvironment},
+    TodoAppEntryPoint,
+    {
+      // Mock authenticated ID that matches database
+      userId: 'me',
+    },
+  );
   ReactDOM.render(
     <RelayEnvironmentProvider environment={modernEnvironment}>
       <React.Suspense fallback={<div>Loading</div>}>
         <ErrorBoundary fallbackRender={({error}) => <div>{error.message}</div>}>
-          <TodoApp queryRef={queryRef} />
+          <EntryPointContainer entryPointReference={entryPointRef} props={{}} />
         </ErrorBoundary>
       </React.Suspense>
     </RelayEnvironmentProvider>,

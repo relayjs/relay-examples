@@ -12,27 +12,30 @@
  */
 
 import type {TodoAppQuery} from 'relay/TodoAppQuery.graphql';
-import type {PreloadedQuery} from 'react-relay';
+import type {
+  PreloadedQuery,
+  EntryPointProps,
+  EntryPointComponent,
+} from 'react-relay';
 
 import TodoList from './TodoList';
 
 import * as React from 'react';
 import {graphql, usePreloadedQuery} from 'react-relay';
 
-type Props = {|
-  queryRef: PreloadedQuery<TodoAppQuery>,
-|};
+type PreloadedQueries = {|todoAppQueryRef: PreloadedQuery<TodoAppQuery>|};
+type Props = EntryPointProps<PreloadedQueries>;
 
-export default function TodoApp({queryRef}: Props): React$Element<'div'> {
+export default (function TodoApp({queries}: Props): React.Node {
   const {user} = usePreloadedQuery(
     graphql`
-      query TodoAppQuery($userId: String) {
+      query TodoAppQuery($userId: String) @preloadable {
         user(id: $userId) @required(action: THROW) {
           ...TodoList_user
         }
       }
     `,
-    queryRef,
+    queries.todoAppQueryRef,
   );
 
   return (
@@ -55,4 +58,4 @@ export default function TodoApp({queryRef}: Props): React$Element<'div'> {
       </footer>
     </div>
   );
-}
+}: EntryPointComponent<PreloadedQueries>);
