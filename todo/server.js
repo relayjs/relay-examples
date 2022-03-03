@@ -14,13 +14,19 @@
 import express from 'express';
 import {graphqlHTTP} from 'express-graphql';
 import {persistedQueries} from 'express-graphql-persisted-queries';
+import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {schema} from './data/schema';
-import queryMap from './__generated__/relay/queries.json';
 
 const APP_PORT: number = 3000;
+const QUERY_MAP_FILE: string = path.resolve(
+  __dirname,
+  '__generated__',
+  'relay',
+  'queries.json',
+);
 
 // Serve the Relay app
 // Calling webpack() without a callback as 2nd property returns a Compiler object.
@@ -59,6 +65,7 @@ const app = new WebpackDevServer(compiler, {
 app.use('/', express.static(path.resolve(__dirname, 'public')));
 
 // Setup GraphQL endpoint
+const queryMap = JSON.parse(fs.readFileSync(QUERY_MAP_FILE, 'utf8'));
 app.use(
   '/graphql',
   persistedQueries({queryMap}),
