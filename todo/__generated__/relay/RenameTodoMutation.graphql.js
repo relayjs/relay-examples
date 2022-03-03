@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<796c0aaa4d9206e3819ea2efa73a97a8>>
+ * @generated SignedSource<<18d35b92bc0d65faf098537a1bbf499a>>
+ * @relayHash d970fd7dbf118794415dec7324d463e3
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -8,6 +9,8 @@
 /* eslint-disable */
 
 'use strict';
+
+// @relayRequestID b15146a9327f8059fa2dbf5499440d6e6ec9f82f
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
@@ -103,12 +106,11 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "d970fd7dbf118794415dec7324d463e3",
-    "id": null,
+    "id": "b15146a9327f8059fa2dbf5499440d6e6ec9f82f",
     "metadata": {},
     "name": "RenameTodoMutation",
     "operationKind": "mutation",
-    "text": "mutation RenameTodoMutation(\n  $input: RenameTodoInput!\n) {\n  renameTodo(input: $input) {\n    todo {\n      id\n      text\n    }\n  }\n}\n"
+    "text": null
   }
 };
 })();

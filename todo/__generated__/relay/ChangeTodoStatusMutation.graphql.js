@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<dd313b6ca4a317affe28a90b0ec249e9>>
+ * @generated SignedSource<<4ebde2488b99f9350eaffa0c142e86b9>>
+ * @relayHash d7dda774dcfa32fe0d9661e01cac9a4a
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -8,6 +9,8 @@
 /* eslint-disable */
 
 'use strict';
+
+// @relayRequestID e1af68162c8a2ce59e2fca64b298265bcebaacb3
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
@@ -128,12 +131,11 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "d7dda774dcfa32fe0d9661e01cac9a4a",
-    "id": null,
+    "id": "e1af68162c8a2ce59e2fca64b298265bcebaacb3",
     "metadata": {},
     "name": "ChangeTodoStatusMutation",
     "operationKind": "mutation",
-    "text": "mutation ChangeTodoStatusMutation(\n  $input: ChangeTodoStatusInput!\n) {\n  changeTodoStatus(input: $input) {\n    todo {\n      id\n      complete\n    }\n    user {\n      id\n      completedCount\n    }\n  }\n}\n"
+    "text": null
   }
 };
 })();

@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<7641bd401d176e280a46e007c91ab58e>>
+ * @generated SignedSource<<93b48294bc859f5b90a6ce33eab1239a>>
+ * @relayHash 8a75762b2e92a08aeb1007fc11f71298
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -8,6 +9,8 @@
 /* eslint-disable */
 
 'use strict';
+
+// @relayRequestID 74640c745674c44d7ceb18e189c40568923c91f8
 
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
@@ -237,12 +240,11 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8a75762b2e92a08aeb1007fc11f71298",
-    "id": null,
+    "id": "74640c745674c44d7ceb18e189c40568923c91f8",
     "metadata": {},
     "name": "TodoAppQuery",
     "operationKind": "query",
-    "text": "query TodoAppQuery(\n  $userId: String\n) {\n  user(id: $userId) {\n    ...TodoList_user\n    id\n  }\n}\n\nfragment AddTodoMutation_user on User {\n  userId\n  id\n  totalCount\n}\n\nfragment ChangeTodoStatusMutation_todo on Todo {\n  id\n}\n\nfragment ChangeTodoStatusMutation_user on User {\n  id\n  userId\n  completedCount\n}\n\nfragment MarkAllTodosMutation_todoEdge on TodoEdge {\n  node {\n    id\n  }\n}\n\nfragment MarkAllTodosMutation_user on User {\n  id\n  userId\n  totalCount\n}\n\nfragment RemoveCompletedTodosMutation_todoConnection on TodoConnection {\n  edges {\n    node {\n      id\n      complete\n    }\n  }\n}\n\nfragment RemoveCompletedTodosMutation_user on User {\n  id\n  userId\n  totalCount\n}\n\nfragment RemoveTodoMutation_todo on Todo {\n  id\n  complete\n}\n\nfragment RemoveTodoMutation_user on User {\n  id\n  userId\n  totalCount\n  completedCount\n}\n\nfragment RenameTodoMutation_todo on Todo {\n  id\n  text\n}\n\nfragment TodoListFooter_todoConnection on TodoConnection {\n  ...RemoveCompletedTodosMutation_todoConnection\n}\n\nfragment TodoListFooter_user on User {\n  totalCount\n  completedCount\n  ...RemoveCompletedTodosMutation_user\n}\n\nfragment TodoList_user on User {\n  todos(first: 2147483647) {\n    edges {\n      node {\n        id\n        ...Todo_todo\n        __typename\n      }\n      ...MarkAllTodosMutation_todoEdge\n      cursor\n    }\n    ...TodoListFooter_todoConnection\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  totalCount\n  completedCount\n  ...AddTodoMutation_user\n  ...MarkAllTodosMutation_user\n  ...Todo_user\n  ...TodoListFooter_user\n}\n\nfragment Todo_todo on Todo {\n  complete\n  text\n  ...ChangeTodoStatusMutation_todo\n  ...RenameTodoMutation_todo\n  ...RemoveTodoMutation_todo\n}\n\nfragment Todo_user on User {\n  ...ChangeTodoStatusMutation_user\n  ...RemoveTodoMutation_user\n}\n"
+    "text": null
   }
 };
 })();

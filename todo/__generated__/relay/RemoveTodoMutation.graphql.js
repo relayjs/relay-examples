@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<0c4eb0ddd3916f3ed8bcb88af0205809>>
+ * @generated SignedSource<<2ad0c55b0c794ad0bca56215de1a57bd>>
+ * @relayHash aba626ea9bdf465954e89e5590eb2c1a
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -8,6 +9,8 @@
 /* eslint-disable */
 
 'use strict';
+
+// @relayRequestID 26f2d1c83c87de7401777aac3818053a93bb6bb7
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
@@ -169,12 +172,11 @@ return {
     ]
   },
   "params": {
-    "cacheID": "aba626ea9bdf465954e89e5590eb2c1a",
-    "id": null,
+    "id": "26f2d1c83c87de7401777aac3818053a93bb6bb7",
     "metadata": {},
     "name": "RemoveTodoMutation",
     "operationKind": "mutation",
-    "text": "mutation RemoveTodoMutation(\n  $input: RemoveTodoInput!\n) {\n  removeTodo(input: $input) {\n    deletedTodoId\n    user {\n      completedCount\n      totalCount\n      id\n    }\n  }\n}\n"
+    "text": null
   }
 };
 })();

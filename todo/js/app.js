@@ -41,7 +41,7 @@ async function fetchQuery(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: params.text,
+      queryId: params.id,
       variables,
     }),
   });
