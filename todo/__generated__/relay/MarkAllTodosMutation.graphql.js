@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<da0fb7a97d1d0ed5545af26c512a3c21>>
+ * @generated SignedSource<<88b4f349f4ce50880482bf1822232f48>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -19,7 +19,6 @@ export type MarkAllTodosInput = {|
 export type MarkAllTodosMutation$variables = {|
   input: MarkAllTodosInput,
 |};
-export type MarkAllTodosMutationVariables = MarkAllTodosMutation$variables;
 export type MarkAllTodosMutation$data = {|
   +markAllTodos: ?{|
     +changedTodos: ?$ReadOnlyArray<{|
@@ -32,9 +31,8 @@ export type MarkAllTodosMutation$data = {|
     |},
   |},
 |};
-export type MarkAllTodosMutationResponse = MarkAllTodosMutation$data;
 export type MarkAllTodosMutation = {|
-  variables: MarkAllTodosMutationVariables,
+  variables: MarkAllTodosMutation$variables,
   response: MarkAllTodosMutation$data,
 |};
 */

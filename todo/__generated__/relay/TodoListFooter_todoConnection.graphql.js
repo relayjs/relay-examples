@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<379f0f0ea598efb01ae5443edd1a88fd>>
+ * @generated SignedSource<<d0fa1d4b2ea57f60ce4e755fd44c5b41>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -14,12 +14,10 @@ import type { Fragment, ReaderFragment } from 'relay-runtime';
 import type { RemoveCompletedTodosMutation_todoConnection$fragmentType } from "./RemoveCompletedTodosMutation_todoConnection.graphql";
 import type { FragmentType } from "relay-runtime";
 declare export opaque type TodoListFooter_todoConnection$fragmentType: FragmentType;
-export type TodoListFooter_todoConnection$ref = TodoListFooter_todoConnection$fragmentType;
 export type TodoListFooter_todoConnection$data = {|
   +$fragmentSpreads: RemoveCompletedTodosMutation_todoConnection$fragmentType,
   +$fragmentType: TodoListFooter_todoConnection$fragmentType,
 |};
-export type TodoListFooter_todoConnection = TodoListFooter_todoConnection$data;
 export type TodoListFooter_todoConnection$key = {
   +$data?: TodoListFooter_todoConnection$data,
   +$fragmentSpreads: TodoListFooter_todoConnection$fragmentType,

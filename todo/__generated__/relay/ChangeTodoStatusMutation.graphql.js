@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b6977331a0b70d2df2fc8df104a2f67d>>
+ * @generated SignedSource<<dd313b6ca4a317affe28a90b0ec249e9>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -20,7 +20,6 @@ export type ChangeTodoStatusInput = {|
 export type ChangeTodoStatusMutation$variables = {|
   input: ChangeTodoStatusInput,
 |};
-export type ChangeTodoStatusMutationVariables = ChangeTodoStatusMutation$variables;
 export type ChangeTodoStatusMutation$data = {|
   +changeTodoStatus: ?{|
     +todo: {|
@@ -33,9 +32,8 @@ export type ChangeTodoStatusMutation$data = {|
     |},
   |},
 |};
-export type ChangeTodoStatusMutationResponse = ChangeTodoStatusMutation$data;
 export type ChangeTodoStatusMutation = {|
-  variables: ChangeTodoStatusMutationVariables,
+  variables: ChangeTodoStatusMutation$variables,
   response: ChangeTodoStatusMutation$data,
 |};
 */

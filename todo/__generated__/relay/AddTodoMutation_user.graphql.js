@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d73e46ac2a67bf0b89d51296b457c0d3>>
+ * @generated SignedSource<<f82a8b98cb70ec9b90ec8fbce41be77e>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -13,14 +13,12 @@
 import type { Fragment, ReaderFragment } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
 declare export opaque type AddTodoMutation_user$fragmentType: FragmentType;
-export type AddTodoMutation_user$ref = AddTodoMutation_user$fragmentType;
 export type AddTodoMutation_user$data = {|
   +userId: string,
   +id: string,
   +totalCount: number,
   +$fragmentType: AddTodoMutation_user$fragmentType,
 |};
-export type AddTodoMutation_user = AddTodoMutation_user$data;
 export type AddTodoMutation_user$key = {
   +$data?: AddTodoMutation_user$data,
   +$fragmentSpreads: AddTodoMutation_user$fragmentType,

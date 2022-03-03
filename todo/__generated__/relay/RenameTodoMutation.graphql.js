@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a689f99da66c8ff527e3c899b507f867>>
+ * @generated SignedSource<<796c0aaa4d9206e3819ea2efa73a97a8>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -19,7 +19,6 @@ export type RenameTodoInput = {|
 export type RenameTodoMutation$variables = {|
   input: RenameTodoInput,
 |};
-export type RenameTodoMutationVariables = RenameTodoMutation$variables;
 export type RenameTodoMutation$data = {|
   +renameTodo: ?{|
     +todo: {|
@@ -28,9 +27,8 @@ export type RenameTodoMutation$data = {|
     |},
   |},
 |};
-export type RenameTodoMutationResponse = RenameTodoMutation$data;
 export type RenameTodoMutation = {|
-  variables: RenameTodoMutationVariables,
+  variables: RenameTodoMutation$variables,
   response: RenameTodoMutation$data,
 |};
 */

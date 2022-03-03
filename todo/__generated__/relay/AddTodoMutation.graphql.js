@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d2c0d3801c491f22602a3d1fff610e44>>
+ * @generated SignedSource<<d53d75ce6903a6156edd14dfe47017fc>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -20,7 +20,6 @@ export type AddTodoMutation$variables = {|
   connections: $ReadOnlyArray<string>,
   input: AddTodoInput,
 |};
-export type AddTodoMutationVariables = AddTodoMutation$variables;
 export type AddTodoMutation$data = {|
   +addTodo: ?{|
     +todoEdge: {|
@@ -36,9 +35,8 @@ export type AddTodoMutation$data = {|
     |},
   |},
 |};
-export type AddTodoMutationResponse = AddTodoMutation$data;
 export type AddTodoMutation = {|
-  variables: AddTodoMutationVariables,
+  variables: AddTodoMutation$variables,
   response: AddTodoMutation$data,
 |};
 */

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f9df718fec477473fce2ba2dce509cd8>>
+ * @generated SignedSource<<7641bd401d176e280a46e007c91ab58e>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -15,15 +15,13 @@ import type { TodoList_user$fragmentType } from "./TodoList_user.graphql";
 export type TodoAppQuery$variables = {|
   userId?: ?string,
 |};
-export type TodoAppQueryVariables = TodoAppQuery$variables;
 export type TodoAppQuery$data = {|
   +user: {|
     +$fragmentSpreads: TodoList_user$fragmentType,
   |},
 |};
-export type TodoAppQueryResponse = TodoAppQuery$data;
 export type TodoAppQuery = {|
-  variables: TodoAppQueryVariables,
+  variables: TodoAppQuery$variables,
   response: TodoAppQuery$data,
 |};
 */

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9921dda3a7da751fde17d2a7fd4dfff2>>
+ * @generated SignedSource<<7bb207c7760412c999ad6298840aa006>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -13,13 +13,11 @@
 import type { Fragment, ReaderFragment } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
 declare export opaque type RemoveTodoMutation_todo$fragmentType: FragmentType;
-export type RemoveTodoMutation_todo$ref = RemoveTodoMutation_todo$fragmentType;
 export type RemoveTodoMutation_todo$data = {|
   +id: string,
   +complete: boolean,
   +$fragmentType: RemoveTodoMutation_todo$fragmentType,
 |};
-export type RemoveTodoMutation_todo = RemoveTodoMutation_todo$data;
 export type RemoveTodoMutation_todo$key = {
   +$data?: RemoveTodoMutation_todo$data,
   +$fragmentSpreads: RemoveTodoMutation_todo$fragmentType,
