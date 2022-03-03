@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<93b48294bc859f5b90a6ce33eab1239a>>
+ * @generated SignedSource<<bf86dc70c577b4335bdedfc3f238ad37>>
  * @relayHash 8a75762b2e92a08aeb1007fc11f71298
  * @flow
  * @lightSyntaxTransform
@@ -249,7 +249,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "d5696185c72f8cf30be85baf1b3324a9";
+(node/*: any*/).hash = "021cf002a0c5c39c772369311b469cec";
+
+require('relay-runtime').PreloadableQueryRegistry.set((node.params/*: any*/).id, node);
 
 module.exports = ((node/*: any*/)/*: Query<
   TodoAppQuery$variables,
