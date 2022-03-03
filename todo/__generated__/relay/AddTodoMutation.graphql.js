@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<d53d75ce6903a6156edd14dfe47017fc>>
+ * @generated SignedSource<<65dd292af5e1fc94a3da5241fab89827>>
+ * @relayHash ac90c59b3a07237ee6f3cf60f9879f90
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -8,6 +9,8 @@
 /* eslint-disable */
 
 'use strict';
+
+// @relayRequestID 97566a98b66252cd5ca8bd9e58a20d2b33de1b47
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
@@ -186,12 +189,11 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ac90c59b3a07237ee6f3cf60f9879f90",
-    "id": null,
+    "id": "97566a98b66252cd5ca8bd9e58a20d2b33de1b47",
     "metadata": {},
     "name": "AddTodoMutation",
     "operationKind": "mutation",
-    "text": "mutation AddTodoMutation(\n  $input: AddTodoInput!\n) {\n  addTodo(input: $input) {\n    todoEdge {\n      node {\n        complete\n        id\n        text\n      }\n    }\n    user {\n      id\n      totalCount\n    }\n  }\n}\n"
+    "text": null
   }
 };
 })();

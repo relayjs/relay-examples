@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<88b4f349f4ce50880482bf1822232f48>>
+ * @generated SignedSource<<f92c906495df6564e7155ff4abbac4f2>>
+ * @relayHash db9904c31d91416f21d45fe3d153884c
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -8,6 +9,8 @@
 /* eslint-disable */
 
 'use strict';
+
+// @relayRequestID 2361862b3727f288b3e67fbfb21c3dcbba1614e3
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
@@ -127,12 +130,11 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "db9904c31d91416f21d45fe3d153884c",
-    "id": null,
+    "id": "2361862b3727f288b3e67fbfb21c3dcbba1614e3",
     "metadata": {},
     "name": "MarkAllTodosMutation",
     "operationKind": "mutation",
-    "text": "mutation MarkAllTodosMutation(\n  $input: MarkAllTodosInput!\n) {\n  markAllTodos(input: $input) {\n    changedTodos {\n      id\n      complete\n    }\n    user {\n      id\n      completedCount\n    }\n  }\n}\n"
+    "text": null
   }
 };
 })();

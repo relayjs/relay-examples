@@ -13,10 +13,12 @@
 
 import express from 'express';
 import {graphqlHTTP} from 'express-graphql';
+import {persistedQueries} from 'express-graphql-persisted-queries';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {schema} from './data/schema';
+import queryMap from './__generated__/relay/queries.json';
 
 const APP_PORT: number = 3000;
 
@@ -55,6 +57,7 @@ app.use('/', express.static(path.resolve(__dirname, 'public')));
 // Setup GraphQL endpoint
 app.use(
   '/graphql',
+  persistedQueries({queryMap}),
   graphqlHTTP({
     schema: schema,
     pretty: true,
