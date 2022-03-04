@@ -38,6 +38,13 @@ This app is meant for experimentation; we recommend cloning and running locally,
 
 Now you're ready to run the app!
 
+> We use [watchman](https://facebook.github.io/watchman/) for hot-reload purposes. You may need to install it. Use the command below:
+
+**Mac and linux**
+> `$> brew install watchman`
+
+**Windows**
+> `$> choco install watchman`
 ## Running The App
 
 You can run the app by navigating to `relay-examples/issue-tracker/` and then running the start command:
