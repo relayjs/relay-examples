@@ -27,7 +27,15 @@ This app is meant for experimentation; we recommend cloning and running locally,
         # yarn users:
         yarn
 
-4. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
+4. Install [watchman](https://facebook.github.io/watchman/docs/install.html) (file watching service):
+
+        # macOS or Linux via homebrew:
+        brew install watchman
+        
+        # Windows via Chocolatey:
+        choco install watchman
+
+5. Get your GitHub authentication token in order to let the app query GitHub's public GraphQL API:
    1. Open https://github.com/settings/tokens.
    2. Ensure that at least the `repo` scope is selected.
    3. Generate the token
@@ -38,13 +46,6 @@ This app is meant for experimentation; we recommend cloning and running locally,
 
 Now you're ready to run the app!
 
-> We use [watchman](https://facebook.github.io/watchman/) for hot-reload purposes. You may need to install it. Use the command below:
-
-**Mac and linux**
-> `$> brew install watchman`
-
-**Windows**
-> `$> choco install watchman`
 ## Running The App
 
 You can run the app by navigating to `relay-examples/issue-tracker/` and then running the start command:
