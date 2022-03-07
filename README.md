@@ -8,4 +8,4 @@ See [CONTRIBUTING.md](https://github.com/relayjs/relay-examples/blob/main/CONTRI
 
 # License
 
-See [LICENSE.md](https://github.com/relayjs/relay-examples/blob/main/LICENSE.md).
+This project is [MIT licensed](https://github.com/relayjs/relay-examples/blob/main/LICENSE).
