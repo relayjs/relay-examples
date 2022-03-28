@@ -25,7 +25,8 @@
   },
   "relay": {
     "src": "./src",
-    "schema": "./schema/schema.graphql"
+    "schema": "./schema/schema.graphql",
+    "language": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"
