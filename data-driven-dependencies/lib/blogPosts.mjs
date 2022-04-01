@@ -24,11 +24,7 @@ const blogPosts = [
   },
 ];
 
-export function getBlogPosts() {
-  return blogPosts;
-}
-
-export function createBlogPost() {
+function generateBlogPost() {
   const newPost = {
     id: getID(),
     __typename: chance.pickone(['BlogPost', 'FancyBlogPost']),
@@ -42,4 +38,22 @@ export function createBlogPost() {
 
 export function findBlogPost(id) {
   return blogPosts.find((post) => post.id == id);
+}
+
+// Fake implementation of the `allBlogPosts` connection
+export function allBlogPosts({after, _first}) {
+  const blogPostsList = after ? [generateBlogPost()] : blogPosts;
+  return {
+    edges: blogPostsList.map((blogPost) => ({
+      __typename: 'BlogPostConnectionEdge',
+      cursor: `c-${blogPost.id}`,
+      node: blogPost,
+    })),
+    pageInfo: {
+      startCursor: `c-${blogPostsList[0].id}`,
+      endCursor: `c-${blogPostsList[blogPostsList.length - 1].id}`,
+      hasNextPage: true,
+      hasPrevPage: false,
+    },
+  };
 }

@@ -13,7 +13,7 @@ import {
   GraphQLUnionType,
 } from 'graphql';
 
-import {getBlogPosts, createBlogPost, findBlogPost} from './blogPosts.mjs';
+import {allBlogPosts, findBlogPost} from './blogPosts.mjs';
 
 const DateTimeType = new GraphQLScalarType({
   name: 'DateTime',
@@ -34,6 +34,16 @@ const JSDependencyField = {
   resolve: async (_, {module}) => {
     seenDataDrivenDependencies.add(module);
     return module;
+  },
+};
+
+const seenDataDrivenDependencies = new Set();
+export const dataDrivenDependencies = {
+  reset() {
+    seenDataDrivenDependencies.clear();
+  },
+  getModules() {
+    return Array.from(seenDataDrivenDependencies);
   },
 };
 
@@ -154,24 +164,6 @@ export const schema = new GraphQLSchema({
   query: QueryType,
 });
 
-// Example resolver for all blog posts
-function allBlogPosts({after, _first}) {
-  const blogPostsList = after ? [createBlogPost()] : getBlogPosts();
-  return {
-    edges: blogPostsList.map((blogPost) => ({
-      __typename: 'BlogPostConnectionEdge',
-      cursor: `c-${blogPost.id}`,
-      node: blogPost,
-    })),
-    pageInfo: {
-      startCursor: `c-${blogPostsList[0].id}`,
-      endCursor: `c-${blogPostsList[blogPostsList.length - 1].id}`,
-      hasNextPage: true,
-      hasPrevPage: false,
-    },
-  };
-}
-
 // The rootValue provides a resolver function for each API endpoint
 export const rootValue = {
   viewer: () => {
@@ -181,15 +173,5 @@ export const rootValue = {
   },
   blogPost: ({id}) => {
     return findBlogPost(id);
-  },
-};
-
-const seenDataDrivenDependencies = new Set();
-export const dataDrivenDependencies = {
-  reset() {
-    seenDataDrivenDependencies.clear();
-  },
-  getModules() {
-    return Array.from(seenDataDrivenDependencies);
   },
 };
