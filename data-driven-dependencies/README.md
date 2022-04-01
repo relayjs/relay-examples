@@ -1,40 +1,41 @@
-# Relay Modern Example
+# Relay and Data-Driven Dependencies
 
-[Relay Modern](https://relay.dev/) is a new version of Relay designed from the ground up to be easier to use, more extensible and, most of all, able to improve performance on mobile devices. Relay Modern accomplishes this with static queries and ahead-of-time code generation.
+This is a reference implementation of the Relay integration with the Next.js framework
 
-This example relies on [Prisma + Nexus](https://github.com/prisma-labs/nextjs-graphql-api-examples) for its GraphQL backend.
+## Overview
 
-## Deploy your own
+This version contains an exploration of a few advanced features used in Relay:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+- Data-Driven Dependencies: API, designed to load the code based on the data availability:
+  - GraphQL Server `js` field
+  - Client directive `@module`
+  - Relay MatchContainer - React component responsible for dynamic loading and rendering Relay components.
+- Server Rendering with Next.js and Query Preloading.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-relay-modern&project-name=with-relay-modern&repository-name=with-relay-modern)
+Please note, that this is just an example, that demonstrates how various pieces are connected together. The actual implementation on the production-ready GraphQL server and the implementation of module loading on the client may need more attention.
 
-## How to use
+## How Data-Driven Dependencies work:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+GraphQL types that need a special render strategy on the client that is not always required for the initial loa (or may not be loaded at all), can be excluded from the initial JS bundle. Later these modules (React Component and Relay artifact for data processing) can be loaded one the server determines that a type is about to be rendered.
 
-```bash
-npx create-next-app --example with-relay-modern with-relay-modern-app
-# or
-yarn create next-app --example with-relay-modern with-relay-modern-app
-```
+### What’s needed on the GraphQL Schema
 
-Download schema introspection data from configured Relay endpoint
+- Type or Interface that have `js(module: String!, id: String): JSDependency `
+- Scalar Type `JSDependency`
 
-```bash
-npm run schema
-# or
-yarn schema
-```
+On the client (Relay)
 
-Run Relay ahead-of-time compilation (should be re-run after any edits to components that query data with Relay)
+- Environment and Store has to have `operationLoader` - and object with two methods `get` and `load` that return a JS module or React Component.
+- Network Layer able to process `extensions` filed that contains the list of required modules to render/process the data in the response.
 
-```bash
-npm run relay
-# or
-yarn relay
-```
+### Server and Client Integration
+
+- Relay compiler replaces @module calls with `js` filed selections on fragment spread types
+- On the server, `js` filed resolvers collecting the list of requested JS modules from the client, and send them in the `extensions` filed once the response is completed
+- Relay’s network layer initiates loading of requested JS modules, once Relay 3D ($normalization) artifacts are downloaded the `graphql` response for these fragments is normalized to the store
+- Relay MatchContainer renders the requested @module component with the data for the 3D fragment.
+
+### Run the example
 
 Run the project
 
@@ -43,5 +44,3 @@ npm run dev
 # or
 yarn dev
 ```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
