@@ -1,0 +1,38 @@
+{
+  "name": "with-relay-modern",
+  "version": "1.0.0",
+  "description": "Example of Next.js with Relay Modern",
+  "scripts": {
+    "next": "next",
+    "dev": "mkdir -p __generated__ && touch queryMap.json && node ./schema/printSchema.mjs && concurrently \"next\" \"relay-compiler --watch\"",
+    "build": "next build",
+    "start": "next start",
+    "relay": "relay-compiler",
+    "schema": "node ./schema/printSchema.mjs",
+    "prettier": "prettier --write '{,!(node_modules|__generated__|\\.next)/**}*.{mjs,js,json}'"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chance": "^1.1.8",
+    "graphql": "^16.3.0",
+    "next": "latest",
+    "prettier": "^2.6.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "relay-runtime": "main",
+    "react-relay": "main"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "concurrently": "^7.0.0",
+    "postcss": "^8.4.12",
+    "relay-compiler": "main",
+    "tailwindcss": "^3.0.23"
+  },
+  "prettier": {
+    "bracketSameLine": true,
+    "bracketSpacing": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}

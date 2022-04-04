@@ -1,0 +1,10 @@
+{
+  "src": "./",
+  "schema": "./schema/schema.graphql",
+  "artifactDirectory": "./__generated__",
+  "excludes": ["**/.next/**", "**/node_modules/**", "**/schema/**"],
+  "language": "javascript",
+  "persistConfig": {
+    "file": "./queryMap.json"
+  }
+}
