@@ -29,11 +29,7 @@ export default function RelayApp({
       throw new Error('useEffect unexpectedly invoked on server');
     }
 
-    Object.entries(requestProps.preloadedQueryResults ?? {}).forEach(
-      ([cacheKey, response]) => {
-        addToOperationResponseCache(cacheKey, response);
-      },
-    );
+    addPreloadedQueryResultsToCache(requestProps);
 
     // Adjusting preloaded queries to be consumable in the `usePreloadedQuery`.
     // `preloadedQuery` is the return value of the `loadQuery` function. But
@@ -87,6 +83,9 @@ RelayApp.getInitialProps = async function ({Component, ctx}) {
         }),
       ),
     );
+    if (!IS_SERVER) {
+      addPreloadedQueryResultsToCache(requestProps);
+    }
 
     // TODO: look into retain and dispose behavior on the client
     componentProps.queryRefs = Object.fromEntries(
@@ -108,3 +107,11 @@ RelayApp.getInitialProps = async function ({Component, ctx}) {
 
   return {environment, componentProps, requestProps};
 };
+
+function addPreloadedQueryResultsToCache(requestProps) {
+  Object.entries(requestProps.preloadedQueryResults ?? {}).forEach(
+    ([cacheKey, response]) => {
+      addToOperationResponseCache(cacheKey, response);
+    },
+  );
+}
