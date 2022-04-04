@@ -25,7 +25,6 @@ export default function Post(props) {
 }
 
 Post.getRelayPreloadProps = function (ctx) {
-  console.log('loading the query', ctx);
   return {
     queries: {
       query: {
