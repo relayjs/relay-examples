@@ -3,6 +3,7 @@ import {graphql, usePreloadedQuery, useLazyLoadQuery} from 'react-relay';
 import BlogPosts from '../components/BlogPosts';
 import Nav from '../components/Nav';
 import {Content} from '../components/LayoutComponents';
+import {getPreloadedQuery} from '../lib/relay/getServerSideProps';
 
 const pagesIndexQuery = graphql`
   query pagesIndexQuery @preloadable {
@@ -27,13 +28,12 @@ export default function Index(props) {
   );
 }
 
-Index.getRelayPreloadProps = function () {
+export async function getServerSideProps() {
   return {
-    queries: {
-      pagesIndexQuery: {
-        params: pagesIndexQuery.params,
-        variables: {},
+    props: {
+      preloadedQueries: {
+        pagesIndexQuery: await getPreloadedQuery(pagesIndexQuery, {}),
       },
     },
   };
-};
+}

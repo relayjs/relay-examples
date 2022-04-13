@@ -2,6 +2,7 @@ import {graphql, usePreloadedQuery, useLazyLoadQuery} from 'react-relay';
 import BlogPost from '../../components/BlogPost';
 import {Content} from '../../components/LayoutComponents';
 import Nav from '../../components/Nav';
+import {getPreloadedQuery} from '../../lib/relay/getServerSideProps';
 
 // TODO: think about relay's query naming conventions
 const query = graphql`
@@ -24,15 +25,12 @@ export default function Post(props) {
   );
 }
 
-Post.getRelayPreloadProps = function (ctx) {
+export async function getServerSideProps(ctx) {
   return {
-    queries: {
-      query: {
-        params: query.params,
-        variables: {
-          id: ctx.query.id,
-        },
+    props: {
+      preloadedQueries: {
+        query: await getPreloadedQuery(query, {id: ctx.query.id}),
       },
     },
   };
-};
+}
