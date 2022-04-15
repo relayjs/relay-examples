@@ -25,10 +25,11 @@ export function Text(props) {
   return <p className="mt-4 text-xl text-gray-500" {...props}></p>;
 }
 
-export function Button(props) {
+export function Button({size, ...props}) {
+  const sizeClasses = size === 'small' ? 'px-2' : 'py-3 px-8 font-medium';
   return (
     <button
-      className="inline-block text-center bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700"
+      className={`inline-block text-center bg-indigo-600 border border-transparent rounded-md text-white hover:bg-indigo-700 ${sizeClasses}`}
       {...props}
     />
   );
