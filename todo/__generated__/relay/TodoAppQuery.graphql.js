@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bf86dc70c577b4335bdedfc3f238ad37>>
+ * @generated SignedSource<<1eb563a36ecae92cf484e8b1db6af4df>>
  * @relayHash 8a75762b2e92a08aeb1007fc11f71298
  * @flow
  * @lightSyntaxTransform
@@ -10,7 +10,7 @@
 
 'use strict';
 
-// @relayRequestID 74640c745674c44d7ceb18e189c40568923c91f8
+// @relayRequestID 8a75762b2e92a08aeb1007fc11f71298
 
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
@@ -24,8 +24,8 @@ export type TodoAppQuery$data = {|
   |},
 |};
 export type TodoAppQuery = {|
-  variables: TodoAppQuery$variables,
   response: TodoAppQuery$data,
+  variables: TodoAppQuery$variables,
 |};
 */
 
@@ -240,7 +240,7 @@ return {
     ]
   },
   "params": {
-    "id": "74640c745674c44d7ceb18e189c40568923c91f8",
+    "id": "8a75762b2e92a08aeb1007fc11f71298",
     "metadata": {},
     "name": "TodoAppQuery",
     "operationKind": "query",

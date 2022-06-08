@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4ebde2488b99f9350eaffa0c142e86b9>>
+ * @generated SignedSource<<3fc3dd953e92ee200ac67b56158bd07a>>
  * @relayHash d7dda774dcfa32fe0d9661e01cac9a4a
  * @flow
  * @lightSyntaxTransform
@@ -10,15 +10,15 @@
 
 'use strict';
 
-// @relayRequestID e1af68162c8a2ce59e2fca64b298265bcebaacb3
+// @relayRequestID d7dda774dcfa32fe0d9661e01cac9a4a
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ChangeTodoStatusInput = {|
+  clientMutationId?: ?string,
   complete: boolean,
   id: string,
   userId: string,
-  clientMutationId?: ?string,
 |};
 export type ChangeTodoStatusMutation$variables = {|
   input: ChangeTodoStatusInput,
@@ -26,18 +26,18 @@ export type ChangeTodoStatusMutation$variables = {|
 export type ChangeTodoStatusMutation$data = {|
   +changeTodoStatus: ?{|
     +todo: {|
-      +id: string,
       +complete: boolean,
+      +id: string,
     |},
     +user: {|
-      +id: string,
       +completedCount: number,
+      +id: string,
     |},
   |},
 |};
 export type ChangeTodoStatusMutation = {|
-  variables: ChangeTodoStatusMutation$variables,
   response: ChangeTodoStatusMutation$data,
+  variables: ChangeTodoStatusMutation$variables,
 |};
 */
 
@@ -131,7 +131,7 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "id": "e1af68162c8a2ce59e2fca64b298265bcebaacb3",
+    "id": "d7dda774dcfa32fe0d9661e01cac9a4a",
     "metadata": {},
     "name": "ChangeTodoStatusMutation",
     "operationKind": "mutation",

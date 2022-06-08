@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f92c906495df6564e7155ff4abbac4f2>>
+ * @generated SignedSource<<59c7486edc7448c4e75045aaf7139dd1>>
  * @relayHash db9904c31d91416f21d45fe3d153884c
  * @flow
  * @lightSyntaxTransform
@@ -10,14 +10,14 @@
 
 'use strict';
 
-// @relayRequestID 2361862b3727f288b3e67fbfb21c3dcbba1614e3
+// @relayRequestID db9904c31d91416f21d45fe3d153884c
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type MarkAllTodosInput = {|
+  clientMutationId?: ?string,
   complete: boolean,
   userId: string,
-  clientMutationId?: ?string,
 |};
 export type MarkAllTodosMutation$variables = {|
   input: MarkAllTodosInput,
@@ -25,18 +25,18 @@ export type MarkAllTodosMutation$variables = {|
 export type MarkAllTodosMutation$data = {|
   +markAllTodos: ?{|
     +changedTodos: ?$ReadOnlyArray<{|
-      +id: string,
       +complete: boolean,
+      +id: string,
     |}>,
     +user: {|
-      +id: string,
       +completedCount: number,
+      +id: string,
     |},
   |},
 |};
 export type MarkAllTodosMutation = {|
-  variables: MarkAllTodosMutation$variables,
   response: MarkAllTodosMutation$data,
+  variables: MarkAllTodosMutation$variables,
 |};
 */
 
@@ -130,7 +130,7 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "id": "2361862b3727f288b3e67fbfb21c3dcbba1614e3",
+    "id": "db9904c31d91416f21d45fe3d153884c",
     "metadata": {},
     "name": "MarkAllTodosMutation",
     "operationKind": "mutation",

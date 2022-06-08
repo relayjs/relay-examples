@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2ad0c55b0c794ad0bca56215de1a57bd>>
+ * @generated SignedSource<<6719ad3d6d793c26c3e3d21a4dde345b>>
  * @relayHash aba626ea9bdf465954e89e5590eb2c1a
  * @flow
  * @lightSyntaxTransform
@@ -10,14 +10,14 @@
 
 'use strict';
 
-// @relayRequestID 26f2d1c83c87de7401777aac3818053a93bb6bb7
+// @relayRequestID aba626ea9bdf465954e89e5590eb2c1a
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type RemoveTodoInput = {|
+  clientMutationId?: ?string,
   id: string,
   userId: string,
-  clientMutationId?: ?string,
 |};
 export type RemoveTodoMutation$variables = {|
   connections: $ReadOnlyArray<string>,
@@ -33,8 +33,8 @@ export type RemoveTodoMutation$data = {|
   |},
 |};
 export type RemoveTodoMutation = {|
-  variables: RemoveTodoMutation$variables,
   response: RemoveTodoMutation$data,
+  variables: RemoveTodoMutation$variables,
 |};
 */
 
@@ -172,7 +172,7 @@ return {
     ]
   },
   "params": {
-    "id": "26f2d1c83c87de7401777aac3818053a93bb6bb7",
+    "id": "aba626ea9bdf465954e89e5590eb2c1a",
     "metadata": {},
     "name": "RemoveTodoMutation",
     "operationKind": "mutation",

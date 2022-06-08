@@ -12,7 +12,6 @@ const APP_PORT: number = 3000;
 const QUERY_MAP_FILE: string = path.resolve(
   __dirname,
   '__generated__',
-  'relay',
   'queries.json',
 );
 
