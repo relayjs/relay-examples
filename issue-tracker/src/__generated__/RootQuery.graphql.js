@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<530f88817c876364fcb8dc8b155f267e>>
+ * @generated SignedSource<<ffca303bd51487e7a9292cce9bf1688b>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -12,16 +12,20 @@
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
 export type RootQuery$variables = {|
-  owner: string,
   name: string,
+  owner: string,
 |};
 export type RootQuery$data = {|
   +repository: ?{|
+    +name: string,
     +owner: {|
       +login: string,
     |},
-    +name: string,
   |},
+|};
+export type RootQuery = {|
+  response: RootQuery$data,
+  variables: RootQuery$variables,
 |};
 */
 

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1b5f952ae19484e19eb7b26971a80902>>
+ * @generated SignedSource<<44e5146557bc357ed7c0744a0ebfb032>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -13,13 +13,17 @@
 import type { ConcreteRequest, Query } from 'relay-runtime';
 type Issues_repository$fragmentType = any;
 export type HomeRootIssuesQuery$variables = {|
-  owner: string,
   name: string,
+  owner: string,
 |};
 export type HomeRootIssuesQuery$data = {|
   +repository: ?{|
     +$fragmentSpreads: Issues_repository$fragmentType,
   |},
+|};
+export type HomeRootIssuesQuery = {|
+  response: HomeRootIssuesQuery$data,
+  variables: HomeRootIssuesQuery$variables,
 |};
 */
 

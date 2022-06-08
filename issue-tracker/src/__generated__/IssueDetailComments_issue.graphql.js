@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ecfba0b5c39dd55b4cc9b51805928105>>
+ * @generated SignedSource<<5cb8eef88a9b337ef2ae39ef1dd86a69>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -19,12 +19,12 @@ export type IssueDetailComments_issue$data = {|
     +edges: ?$ReadOnlyArray<?{|
       +__id: string,
       +node: ?{|
-        +id: string,
         +author: ?{|
-          +login: string,
           +avatarUrl: any,
+          +login: string,
         |},
         +body: string,
+        +id: string,
       |},
     |}>,
   |},

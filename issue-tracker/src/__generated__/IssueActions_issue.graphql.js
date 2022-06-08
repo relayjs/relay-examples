@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<84562c6930f6fd8be516461b6f46388c>>
+ * @generated SignedSource<<9e84403d946ea2fa1962a6245812b55f>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -14,8 +14,8 @@ import type { Fragment, ReaderFragment } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
 declare export opaque type IssueActions_issue$fragmentType: FragmentType;
 export type IssueActions_issue$data = {|
-  +id: string,
   +closed: boolean,
+  +id: string,
   +$fragmentType: IssueActions_issue$fragmentType,
 |};
 export type IssueActions_issue$key = {

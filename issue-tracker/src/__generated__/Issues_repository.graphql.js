@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<58e8b5700bdb62c8d11eb2d64f01de2a>>
+ * @generated SignedSource<<753282f23bc390ea70a915a27283949f>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -16,6 +16,7 @@ import type { FragmentType } from "relay-runtime";
 declare export opaque type Issues_repository$fragmentType: FragmentType;
 type IssuesPaginationQuery$variables = any;
 export type Issues_repository$data = {|
+  +id: string,
   +issues: {|
     +edges: ?$ReadOnlyArray<?{|
       +__id: string,
@@ -24,7 +25,6 @@ export type Issues_repository$data = {|
       |},
     |}>,
   |},
-  +id: string,
   +$fragmentType: Issues_repository$fragmentType,
 |};
 export type Issues_repository$key = {
