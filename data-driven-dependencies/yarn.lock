@@ -780,16 +780,16 @@ react-dom@^18.0.0:
     loose-envify "^1.1.0"
     scheduler "^0.21.0"
 
-react-relay@main:
-  version "0.0.0-main-9ff377ef"
-  resolved "https://registry.npmjs.org/react-relay/-/react-relay-0.0.0-main-9ff377ef.tgz"
-  integrity sha512-rIfK7dJZHxGcpujk0mAeDLptX2SaqTNHxsRwdXhsbnc6JibJ9eZ7CVhpfofJIUVsVl2y+x7rQI0/PYQSfs83GQ==
+react-relay@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-14.0.0.tgz#c9f9b8912bcef589782bea6a382548d55d20d522"
+  integrity sha512-zqT8ZS1lq24p1R8nW5Vi03oB1Ix8aYJxyuSl4bB8XDjSNL0kFuAdN8R5LrundUd3vuKjkV1UBfb1xuuoRroUhA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "0.0.0-main-9ff377ef"
+    relay-runtime "14.0.0"
 
 react@^18.0.0:
   version "18.0.0"
@@ -810,24 +810,15 @@ regenerator-runtime@^0.13.4:
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz"
   integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
-relay-compiler@main:
-  version "0.0.0-main-9ff377ef"
-  resolved "https://registry.npmjs.org/relay-compiler/-/relay-compiler-0.0.0-main-9ff377ef.tgz"
-  integrity sha512-xiC7PLiSRBO6O+21YgI33ZeqXZ7MihJ8ZK8BBQqGy8ruCu1M6r/Vh6Cuv+wDwZZpxzwSUYyz0cTSAYjzgevuaA==
+relay-compiler@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-14.0.0.tgz#03ab000c246c7c46a26b77584b345621155a770e"
+  integrity sha512-1h4lwvHg5efhivqpMfG6SS4cGoCJH3BsRelihwD+GNiylBnLKArSE6zyW7LfEwSpuDfJ+l6rrRfSL8IVZwOZ0g==
 
-relay-runtime@0.0.0-main-9ff377ef:
-  version "0.0.0-main-9ff377ef"
-  resolved "https://registry.npmjs.org/relay-runtime/-/relay-runtime-0.0.0-main-9ff377ef.tgz"
-  integrity sha512-TAItyDbVjrOKUIzAvY/ORwJT2uw6TNs5BPIVAwdVoJDcwT9FKrg0KfguIKYntQLmD/OD95y/A7e7zNtQjnluAw==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    fbjs "^3.0.2"
-    invariant "^2.2.4"
-
-relay-runtime@main:
-  version "0.0.0-main-44eeabc5"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-0.0.0-main-44eeabc5.tgz#97fb0e2cb7cf3de49462db4895cedafcb7cb25e5"
-  integrity sha512-3t5jlc8sD/TdR/6UGINZicjk2AOFLWU2JgYfJ9kSNvQq9GZ/iRGPYn7QFlVYBe5L2Ao5i8Tdagd/4EKMb7VK+A==
+relay-runtime@14.0.0, relay-runtime@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-14.0.0.tgz#e2fa40d73569d2ba5810c773fb85ac872b08b5d0"
+  integrity sha512-Rnf6EgCl3QY85il/gTEh6GHAR9hoRkjYWgMR2Y3Afugb8qLR0vL6m/GBYqol8W3L8B+XqZ2U04/g624DRpEqAw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"

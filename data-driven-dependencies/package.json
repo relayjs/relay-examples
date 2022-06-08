@@ -19,14 +19,14 @@
     "prettier": "^2.6.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "relay-runtime": "main",
-    "react-relay": "main"
+    "relay-runtime": "^14.0.0",
+    "react-relay": "^14.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
     "concurrently": "^7.0.0",
     "postcss": "^8.4.12",
-    "relay-compiler": "main",
+    "relay-compiler": "^14.0.0",
     "tailwindcss": "^3.0.23"
   },
   "prettier": {
