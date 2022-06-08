@@ -19,8 +19,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-error-boundary": "^3.1.4",
-    "react-relay": "^13.1.1",
-    "relay-runtime": "^13.1.1",
+    "react-relay": "^14.0.0",
+    "relay-runtime": "^14.0.0",
     "todomvc-app-css": "^2.4.1",
     "todomvc-common": "^1.0.3",
     "whatwg-fetch": "3.6.2"
@@ -49,7 +49,7 @@
     "flow-bin": "^0.168.0",
     "flow-typed": "^2.6.0",
     "prettier": "^2.3.0",
-    "relay-compiler": "^13.1.1",
+    "relay-compiler": "^14.0.0",
     "webpack": "^4.41.5",
     "webpack-dev-server": "3.10.3"
   },
@@ -65,7 +65,7 @@
     "schema": "./data/schema.graphql",
     "artifactDirectory": "./__generated__/relay",
     "persistConfig": {
-      "file": "./__generated__/relay/queries.json"
+      "file": "./__generated__/queries.json"
     }
   }
 }

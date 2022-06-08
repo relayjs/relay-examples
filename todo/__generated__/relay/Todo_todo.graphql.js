@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5b76efb5340b650477044e31566dbcc6>>
+ * @generated SignedSource<<63476f2ddc9fbf002ed55cfd5c403bc9>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -19,7 +19,7 @@ declare export opaque type Todo_todo$fragmentType: FragmentType;
 export type Todo_todo$data = {|
   +complete: boolean,
   +text: string,
-  +$fragmentSpreads: ChangeTodoStatusMutation_todo$fragmentType & RenameTodoMutation_todo$fragmentType & RemoveTodoMutation_todo$fragmentType,
+  +$fragmentSpreads: ChangeTodoStatusMutation_todo$fragmentType & RemoveTodoMutation_todo$fragmentType & RenameTodoMutation_todo$fragmentType,
   +$fragmentType: Todo_todo$fragmentType,
 |};
 export type Todo_todo$key = {

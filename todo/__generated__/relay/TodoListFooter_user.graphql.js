@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d2d9f525f3f6585a059577b3a25274f0>>
+ * @generated SignedSource<<f4843ca54524c0e85f4225f475859a68>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -15,8 +15,8 @@ import type { RemoveCompletedTodosMutation_user$fragmentType } from "./RemoveCom
 import type { FragmentType } from "relay-runtime";
 declare export opaque type TodoListFooter_user$fragmentType: FragmentType;
 export type TodoListFooter_user$data = {|
-  +totalCount: number,
   +completedCount: number,
+  +totalCount: number,
   +$fragmentSpreads: RemoveCompletedTodosMutation_user$fragmentType,
   +$fragmentType: TodoListFooter_user$fragmentType,
 |};

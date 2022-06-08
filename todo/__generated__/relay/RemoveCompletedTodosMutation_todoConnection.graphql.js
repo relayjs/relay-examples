@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bb99e3ffdb70f1b32ba44624c2c32fce>>
+ * @generated SignedSource<<92adb9550d351b1b52bacb82b7b0d831>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -17,8 +17,8 @@ export type RemoveCompletedTodosMutation_todoConnection$data = {|
   +__id: string,
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
-      +id: string,
       +complete: boolean,
+      +id: string,
     |},
   |}>,
   +$fragmentType: RemoveCompletedTodosMutation_todoConnection$fragmentType,

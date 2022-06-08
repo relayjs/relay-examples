@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<18d35b92bc0d65faf098537a1bbf499a>>
+ * @generated SignedSource<<5c619e640f44fd2a43466f63453771e5>>
  * @relayHash d970fd7dbf118794415dec7324d463e3
  * @flow
  * @lightSyntaxTransform
@@ -10,14 +10,14 @@
 
 'use strict';
 
-// @relayRequestID b15146a9327f8059fa2dbf5499440d6e6ec9f82f
+// @relayRequestID d970fd7dbf118794415dec7324d463e3
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type RenameTodoInput = {|
+  clientMutationId?: ?string,
   id: string,
   text: string,
-  clientMutationId?: ?string,
 |};
 export type RenameTodoMutation$variables = {|
   input: RenameTodoInput,
@@ -31,8 +31,8 @@ export type RenameTodoMutation$data = {|
   |},
 |};
 export type RenameTodoMutation = {|
-  variables: RenameTodoMutation$variables,
   response: RenameTodoMutation$data,
+  variables: RenameTodoMutation$variables,
 |};
 */
 
@@ -106,7 +106,7 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "id": "b15146a9327f8059fa2dbf5499440d6e6ec9f82f",
+    "id": "d970fd7dbf118794415dec7324d463e3",
     "metadata": {},
     "name": "RenameTodoMutation",
     "operationKind": "mutation",
