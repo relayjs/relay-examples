@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e1864a753e461305cf0018808b748924>>
+ * @generated SignedSource<<c8ec6403739d628287512607a8e6d45e>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -18,17 +18,21 @@ export type IssueDetailRootQuery$variables = {|
 |};
 export type IssueDetailRootQuery$data = {|
   +node: ?{|
-    +title?: string,
-    +number?: number,
     +author?: ?{|
-      +login: string,
       +avatarUrl: any,
+      +login: string,
     |},
     +body?: string,
     +closed?: boolean,
+    +number?: number,
+    +title?: string,
     +url?: any,
-    +$fragmentSpreads: IssueDetailComments_issue$fragmentType & IssueActions_issue$fragmentType,
+    +$fragmentSpreads: IssueActions_issue$fragmentType & IssueDetailComments_issue$fragmentType,
   |},
+|};
+export type IssueDetailRootQuery = {|
+  response: IssueDetailRootQuery$data,
+  variables: IssueDetailRootQuery$variables,
 |};
 */
 

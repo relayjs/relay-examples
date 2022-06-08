@@ -9,11 +9,11 @@
     "react": "0.0.0-experimental-f42431abe",
     "react-dom": "0.0.0-experimental-f42431abe",
     "react-markdown": "^4.2.2",
-    "react-relay": "^0.0.0-main-66d07991",
+    "react-relay": "^14.0.0",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-scripts": "3.2.0",
-    "relay-runtime": "^0.0.0-main-66d07991"
+    "relay-runtime": "^14.0.0"
   },
   "scripts": {
     "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
@@ -52,13 +52,13 @@
     "@babel/preset-flow": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@babel/runtime": "^7.15.4",
-    "babel-plugin-relay": "^0.0.0-main-66d07991",
+    "babel-plugin-relay": "^14.0.0",
     "concurrently": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^15.6.1",
     "prettier": "^1.18.2",
-    "relay-compiler": "^0.0.0-main-66d07991"
+    "relay-compiler": "^14.0.0"
   },
   "husky": {
     "hooks": {

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<397d56971f6c16cb648c6d4d801c1994>>
+ * @generated SignedSource<<9f5939c4cc30c45ca681cbec229b6023>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -22,6 +22,10 @@ export type IssueDetailCommentsQuery$data = {|
   +node: ?{|
     +$fragmentSpreads: IssueDetailComments_issue$fragmentType,
   |},
+|};
+export type IssueDetailCommentsQuery = {|
+  response: IssueDetailCommentsQuery$data,
+  variables: IssueDetailCommentsQuery$variables,
 |};
 */
 

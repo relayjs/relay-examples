@@ -2380,12 +2380,13 @@ babel-plugin-polyfill-regenerator@^0.2.2:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
 
-babel-plugin-relay@^0.0.0-main-66d07991:
-  version "0.0.0-main-66d07991"
-  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-0.0.0-main-66d07991.tgz#07a915b18912e57188a7bde4bbcc4d34527c875b"
-  integrity sha512-OMGFkqUSTlsHQhvHKY5Y5HmrPNmPdlVw36cAC47gzKddTkeRWqns2fEDaDmB6WDP0cMUf6DYdp/Zq0aY3kVdUQ==
+babel-plugin-relay@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-14.0.0.tgz#fb34a2f35e4b6ab5464ec82d7109b9973c5fea31"
+  integrity sha512-lOZplk+U6kBM7BsqpexpEIyQbob/XjUDdRin93WMfZEfXc2P+a6UiegZaXv5XdpG61tLUnvqjs4Td+UQxtqb8g==
   dependencies:
     babel-plugin-macros "^2.0.0"
+    cosmiconfig "^5.0.5"
     graphql "15.3.0"
 
 babel-plugin-syntax-object-rest-spread@^6.8.0:
@@ -3342,7 +3343,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-cosmiconfig@^5.0.0, cosmiconfig@^5.2.1:
+cosmiconfig@^5.0.0, cosmiconfig@^5.0.5, cosmiconfig@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.2.1.tgz#040f726809c591e77a17c0a3626ca45b4f168b1a"
   integrity sha512-H65gsXo1SKjf8zmrJ67eJk8aIRKV5ff2D4uKZIBZShbhGSpEmsQOPW/SKMKYhSTrqR7ufy6RP69rPogdaPh/kA==
@@ -3394,7 +3395,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-fetch@^3.0.4:
+cross-fetch@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
   integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
@@ -4725,18 +4726,18 @@ fbjs-css-vars@^1.0.0:
   resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
   integrity sha512-b2XGFAFdWZWg0phtAWLHCk836A1Xann+I+Dgd3Gk64MHKZO44FfoD1KxyvbSh0qZsIoXQGGlVztIY+oitJPpRQ==
 
-fbjs@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-3.0.0.tgz#0907067fb3f57a78f45d95f1eacffcacd623c165"
-  integrity sha512-dJd4PiDOFuhe7vk4F80Mba83Vr2QuK86FoxtgPmzBqEJahncp+13YCmfoa53KHCo6OnlXLG7eeMWPfB5CrpVKg==
+fbjs@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-3.0.4.tgz#e1871c6bd3083bac71ff2da868ad5067d37716c6"
+  integrity sha512-ucV0tDODnGV3JCnnkmoszb5lf4bNpzjv80K41wd4k798Etq+UYD0y0TIfalLjZoKgjive6/adkRnszwapiDgBQ==
   dependencies:
-    cross-fetch "^3.0.4"
+    cross-fetch "^3.1.5"
     fbjs-css-vars "^1.0.0"
     loose-envify "^1.0.0"
     object-assign "^4.1.0"
     promise "^7.1.1"
     setimmediate "^1.0.5"
-    ua-parser-js "^0.7.18"
+    ua-parser-js "^0.7.30"
 
 figgy-pudding@^3.5.1:
   version "3.5.2"
@@ -9309,16 +9310,16 @@ react-markdown@^4.2.2:
     unist-util-visit "^1.3.0"
     xtend "^4.0.1"
 
-react-relay@^0.0.0-main-66d07991:
-  version "0.0.0-main-66d07991"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-0.0.0-main-66d07991.tgz#125df2c1e9ebd0025b2ee316c98b62dda8f3a775"
-  integrity sha512-tAzBzlcARUpZIyILN3QPUlf1TFoBo/Ti2sE4g6iXVjdYHLvJ5kLtlrSSU8AgWeBTj/rdAGv/FfqhJCBHe80iog==
+react-relay@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-14.0.0.tgz#c9f9b8912bcef589782bea6a382548d55d20d522"
+  integrity sha512-zqT8ZS1lq24p1R8nW5Vi03oB1Ix8aYJxyuSl4bB8XDjSNL0kFuAdN8R5LrundUd3vuKjkV1UBfb1xuuoRroUhA==
   dependencies:
     "@babel/runtime" "^7.0.0"
-    fbjs "^3.0.0"
+    fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "0.0.0-main-66d07991"
+    relay-runtime "14.0.0"
 
 react-router-config@^5.1.1:
   version "5.1.1"
@@ -9607,18 +9608,18 @@ relateurl@0.2.x:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-relay-compiler@^0.0.0-main-66d07991:
-  version "0.0.0-main-66d07991"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-0.0.0-main-66d07991.tgz#f6e7e51dd5b74f562763504495ffa29f44012dd7"
-  integrity sha512-oey1LKDFeoAe6a0kJ6ipqBA3EKc7D32TJFZevZ8bAEIWwQGZBWm/EB3lRRt+k8RNyYX6Tn5Dt8FjtJBbjO2QMQ==
+relay-compiler@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-14.0.0.tgz#03ab000c246c7c46a26b77584b345621155a770e"
+  integrity sha512-1h4lwvHg5efhivqpMfG6SS4cGoCJH3BsRelihwD+GNiylBnLKArSE6zyW7LfEwSpuDfJ+l6rrRfSL8IVZwOZ0g==
 
-relay-runtime@0.0.0-main-66d07991, relay-runtime@^0.0.0-main-66d07991:
-  version "0.0.0-main-66d07991"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-0.0.0-main-66d07991.tgz#a1bcc062ada51d8fff46e16be173aafc0e2828a0"
-  integrity sha512-2UI++PaeT50Wo5CyoCcaPJK/dLYJi4Ioq8pkYgmcBURcROQPTh3ie0TmbQB6E81ghBvDChOB1cW78B2R8F+loA==
+relay-runtime@14.0.0, relay-runtime@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-14.0.0.tgz#e2fa40d73569d2ba5810c773fb85ac872b08b5d0"
+  integrity sha512-Rnf6EgCl3QY85il/gTEh6GHAR9hoRkjYWgMR2Y3Afugb8qLR0vL6m/GBYqol8W3L8B+XqZ2U04/g624DRpEqAw==
   dependencies:
     "@babel/runtime" "^7.0.0"
-    fbjs "^3.0.0"
+    fbjs "^3.0.2"
     invariant "^2.2.4"
 
 remark-parse@^5.0.0:
@@ -11019,10 +11020,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-ua-parser-js@^0.7.18:
-  version "0.7.24"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.24.tgz#8d3ecea46ed4f1f1d63ec25f17d8568105dc027c"
-  integrity sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
+ua-parser-js@^0.7.30:
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.31.tgz#649a656b191dffab4f21d5e053e27ca17cbff5c6"
+  integrity sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==
 
 uglify-js@3.4.x:
   version "3.4.10"

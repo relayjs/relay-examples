@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a5e6a2bf51471267738b0ebac9ca4a9c>>
+ * @generated SignedSource<<5c523c009dcef4ac8a792bcb6f370cb1>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -12,30 +12,34 @@
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type AddCommentInput = {|
-  subjectId: string,
   body: string,
   clientMutationId?: ?string,
+  subjectId: string,
 |};
 export type IssueActionsAddCommentMutation$variables = {|
   input: AddCommentInput,
 |};
 export type IssueActionsAddCommentMutation$data = {|
   +addComment: ?{|
-    +subject: ?{|
-      +id: string,
-    |},
     +commentEdge: ?{|
       +__id: string,
       +node: ?{|
-        +id: string,
         +author: ?{|
-          +login: string,
           +avatarUrl: any,
+          +login: string,
         |},
         +body: string,
+        +id: string,
       |},
     |},
+    +subject: ?{|
+      +id: string,
+    |},
   |},
+|};
+export type IssueActionsAddCommentMutation = {|
+  response: IssueActionsAddCommentMutation$data,
+  variables: IssueActionsAddCommentMutation$variables,
 |};
 */
 

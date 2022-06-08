@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<21e88348e96e72d7bb649b2248f27b6b>>
+ * @generated SignedSource<<41f94f17b07fc0d5503758191a569d1c>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -12,8 +12,8 @@
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ReopenIssueInput = {|
-  issueId: string,
   clientMutationId?: ?string,
+  issueId: string,
 |};
 export type IssueActionsReopenIssueMutation$variables = {|
   input: ReopenIssueInput,
@@ -24,6 +24,10 @@ export type IssueActionsReopenIssueMutation$data = {|
       +closed: boolean,
     |},
   |},
+|};
+export type IssueActionsReopenIssueMutation = {|
+  response: IssueActionsReopenIssueMutation$data,
+  variables: IssueActionsReopenIssueMutation$variables,
 |};
 */
 

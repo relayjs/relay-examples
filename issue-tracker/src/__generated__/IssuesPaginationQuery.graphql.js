@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0dd221efd4d62e913ab22b574fe412e7>>
+ * @generated SignedSource<<dec4185007fec97aad954a53a9ae3969>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -13,17 +13,21 @@
 import type { ConcreteRequest, Query } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
 type Issues_repository$fragmentType = any;
-export type IssueState = "OPEN" | "CLOSED" | "%future added value";
+export type IssueState = "CLOSED" | "OPEN" | "%future added value";
 export type IssuesPaginationQuery$variables = {|
   count?: ?number,
   cursor?: ?string,
-  states?: ?$ReadOnlyArray<IssueState>,
   id: string,
+  states?: ?$ReadOnlyArray<IssueState>,
 |};
 export type IssuesPaginationQuery$data = {|
   +node: ?{|
     +$fragmentSpreads: Issues_repository$fragmentType,
   |},
+|};
+export type IssuesPaginationQuery = {|
+  response: IssuesPaginationQuery$data,
+  variables: IssuesPaginationQuery$variables,
 |};
 */
 
