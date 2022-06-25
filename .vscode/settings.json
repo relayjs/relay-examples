@@ -1,0 +1,16 @@
+{
+  "relay.projects": [
+    {
+      "name": "Data Driven Dependencies",
+      "rootDirectory": "./data-driven-dependencies"
+    },
+    {
+      "name": "Issue Tracker",
+      "rootDirectory": "./issue-tracker"
+    },
+    {
+      "name": "Todo",
+      "rootDirectory": "./todo"
+    }
+  ]
+}
