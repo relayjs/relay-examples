@@ -19,7 +19,7 @@ const FancyBlogPostPreview = ({post}) => {
 
   return (
     <FancyListItem>
-      <Link href={`/post/${data.id}`}>{data.title}</Link>
+      <Link href={`/post/${data.id}`}>✨{data.title}✨</Link>
       <p>{data.content}</p>
     </FancyListItem>
   );

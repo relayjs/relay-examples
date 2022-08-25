@@ -37,7 +37,11 @@ function generateBlogPost() {
 }
 
 export function findBlogPost(id) {
+  const post = blogPosts.find((post) => post.id == id);
   return blogPosts.find((post) => post.id == id);
+  return post ?  ({
+    content: post
+  }) : null;
 }
 
 // Fake implementation of the `allBlogPosts` connection
@@ -47,7 +51,9 @@ export function allBlogPosts({after, _first}) {
     edges: blogPostsList.map((blogPost) => ({
       __typename: 'BlogPostConnectionEdge',
       cursor: `c-${blogPost.id}`,
-      node: blogPost,
+      node: {
+        content: blogPost
+      },
     })),
     pageInfo: {
       startCursor: `c-${blogPostsList[0].id}`,

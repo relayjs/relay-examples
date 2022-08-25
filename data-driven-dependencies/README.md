@@ -26,13 +26,13 @@ GraphQL types that need a special render strategy on the client that is not alwa
 On the client (Relay)
 
 - Environment and Store has to have `operationLoader` - and object with two methods `get` and `load` that return a JS module or React Component.
-- Network Layer able to process `extensions` filed that contains the list of required modules to render/process the data in the response.
+- Network Layer able to process `extensions` field that contains the list of required modules to render/process the data in the response.
 
 ### Server and Client Integration
 
-- Relay compiler replaces @module calls with `js` filed selections on fragment spread types
-- On the server, `js` filed resolvers collecting the list of requested JS modules from the client, and send them in the `extensions` filed once the response is completed
-- Relay’s network layer initiates loading of requested JS modules, once Relay 3D ($normalization) artifacts are downloaded the `graphql` response for these fragments is normalized to the store
+- Relay compiler replaces @module calls with `js` field selections on fragment spread types
+- On the server, `js` field resolvers collecting the list of requested JS modules from the client, and send them in the `extensions` field once the response is completed
+- Relay’s network layer initiates loading of requested JS modules, once Relay 3D ($normalization) artifacts are downloaded the `graphql` response for these fragments are normalized to the store
 - Relay MatchContainer renders the requested @module component with the data for the 3D fragment.
 
 ### Run the example
