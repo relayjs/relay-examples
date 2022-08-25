@@ -76,11 +76,24 @@ const BlogPostUnion = new GraphQLUnionType({
   types: [BlogPostType, FancyBlogPostType],
 });
 
+const Post = new GraphQLObjectType({
+  name: 'Post',
+  fields: {
+    content: {
+      type: BlogPostUnion,
+      args: {
+        supported: {type: new GraphQLList(GraphQLString)},
+      }
+    },
+
+  },
+});
+
 const BlogPostConnectionEdgeType = new GraphQLObjectType({
   name: 'BlogPostConnectionEdge',
   fields: {
     node: {
-      type: BlogPostUnion,
+      type: Post,
     },
     cursor: {
       type: GraphQLString,
@@ -152,7 +165,7 @@ const QueryType = new GraphQLObjectType({
   fields: {
     viewer: {type: ViewerType},
     blogPost: {
-      type: BlogPostUnion,
+      type: Post,
       args: {
         id: {type: new GraphQLNonNull(GraphQLID)},
       },
