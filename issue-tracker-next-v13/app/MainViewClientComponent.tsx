@@ -11,7 +11,7 @@ import { RelayEnvironmentProvider } from "react-relay";
 import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQuery";
 
 const MainViewClientComponent = (props: {
-  preloadQuery: SerializablePreloadedQuery<
+  preloadedQuery: SerializablePreloadedQuery<
     typeof MainViewQueryNode,
     MainViewQuery
   >;
@@ -19,7 +19,7 @@ const MainViewClientComponent = (props: {
   const environment = getCurrentEnvironment();
   const queryRef = useSerializablePreloadedQuery(
     environment,
-    props.preloadQuery
+    props.preloadedQuery
   );
 
   return (

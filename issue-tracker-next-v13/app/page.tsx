@@ -16,7 +16,7 @@ const Page = async () => {
 
   return (
     <div className={styles.main}>
-      <MainViewClientComponent preloadQuery={preloadedQuery} />
+      <MainViewClientComponent preloadedQuery={preloadedQuery} />
     </div>
   );
 };
