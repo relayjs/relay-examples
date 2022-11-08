@@ -8,7 +8,7 @@ export default async function IssuePage({
 }: {
   params: { id: string };
 }) {
-  const loadedQuery = await loadSerializableQuery<
+  const preloadedQuery = await loadSerializableQuery<
     typeof IssueQueryNode,
     IssueQuery
   >(IssueQueryNode.params, {
@@ -19,7 +19,7 @@ export default async function IssuePage({
 
   return (
     <div className={styles.issue}>
-      <IssueViewClientComponent loadedQuery={loadedQuery} />{" "}
+      <IssueViewClientComponent preloadedQuery={preloadedQuery} />
     </div>
   );
 }

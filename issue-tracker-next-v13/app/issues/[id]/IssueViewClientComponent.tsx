@@ -9,12 +9,12 @@ import { getCurrentEnvironment } from "src/relay/environment";
 import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQuery";
 
 const Root = (props: {
-  loadedQuery: SerializablePreloadedQuery<typeof IssueQueryNode, IssueQuery>;
+  preloadedQuery: SerializablePreloadedQuery<typeof IssueQueryNode, IssueQuery>;
 }) => {
   const environment = getCurrentEnvironment();
   const queryRef = useSerializablePreloadedQuery(
     environment,
-    props.loadedQuery
+    props.preloadedQuery
   );
 
   return (
