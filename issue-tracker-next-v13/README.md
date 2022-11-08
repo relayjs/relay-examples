@@ -19,6 +19,6 @@ graph TD;
     RCC(Root Client Component)--Preloaded Query-->RRC(Root Relay Component);
 ```
 
-## Installation Instructions
+## Installation
 
-For installation, please follow [this steps](https://github.com/relayjs/relay-examples/tree/main/issue-tracker#setup) from the `issue-tracker` example.
+For installation instructions, please follow [this steps](https://github.com/relayjs/relay-examples/tree/main/issue-tracker#setup) from the `issue-tracker` example.
