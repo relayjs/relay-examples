@@ -1,0 +1,13 @@
+.issues {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.issues > li {
+  padding-bottom: 0.3rem;
+}
+
+.issues a {
+  color: darkblue;
+}
