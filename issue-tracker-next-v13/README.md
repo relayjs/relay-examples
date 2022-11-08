@@ -5,8 +5,10 @@
 This is a simplified example of the [Issue Tracker Example](https://github.com/relayjs/relay-examples/tree/main/issue-tracker). But with few updates:
 
 - Uses the React Server Components (Next.js v13) as entry points for [fetching](https://beta.nextjs.org/docs/data-fetching/fetching) root queries.
--- `loadSerializableQuery` reference implementation of the data-fetching method that can be used in the RSC
--- `useSerializablePreloadedQuery` an example hook that can convert serialized query results into preloaded query.
+
+  - `loadSerializableQuery` reference implementation of the data-fetching method that can be used in the RSC
+  - `useSerializablePreloadedQuery` an example hook that can convert serialized query results into preloaded query.
+
 - Has TypesScript Setup.
 
 ## Workflow
