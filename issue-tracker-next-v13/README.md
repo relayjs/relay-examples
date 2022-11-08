@@ -15,8 +15,8 @@ The query fetching is happening in the `page.tsx` async server component that is
 
 ```mermaid
 graph TD;
-    Root React Server Component -- Serialized Query Results --> Root Client Component;
-    Root Client Component -- Preloaded Query --> Root Relay Component;
+    RSC(Root React Server Component)--Serialized Query Results-->RCC(Root Client Component);
+    RCC(Root Client Component)--Preloaded Query-->RRC(Root Relay Component);
 ```
 
 ## Installation Instructions
