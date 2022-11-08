@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "mkdir -p __generated__ && concurrently \"next dev\" \"relay-compiler --watch\"",
+    "dev": "mkdir -p __generated__ && concurrently \"relay-compiler --watch\" \"next dev\"",
     "build": "relay-compiler --validate && next build",
     "start": "next start",
     "lint": "next lint",
