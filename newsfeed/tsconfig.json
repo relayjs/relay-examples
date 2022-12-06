@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "noImplicitAny": true,
+    "module": "ES2020",
+    "target": "es5",
+    "jsx": "preserve",
+    "allowJs": false,
+    "moduleResolution": "node"
+  }
+}
