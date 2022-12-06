@@ -4,3 +4,48 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.app {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}
+
+.newsfeed {
+  max-width: 600px;
+}
+
+.story {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.story h2 {
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: -0.1rem;
+}
+
+.story__picture img {
+  width: 400px;
+}
+
+.poster {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+}
+
+.poster__name {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 0 0;
+}
+
+.poster img {
+  width: 60px;
+  border-radius: 60px;
+  overflow: hidden;
+  border: 1px solid #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}

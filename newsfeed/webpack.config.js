@@ -30,9 +30,15 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
   devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
+    static: [
+      {
+        directory: path.join(__dirname, "dist"),
+      },
+      {
+        directory: path.join(__dirname, "assets"),
+        publicPath: "/assets",
+      },
+    ],
     port: 3000,
   },
   devtool: "inline-source-map",
