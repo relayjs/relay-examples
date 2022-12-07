@@ -15,34 +15,44 @@ body {
   max-width: 600px;
 }
 
-.story {
+.card {
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
 
-.story h2 {
+.heading {
   font-size: 2rem;
   font-weight: 200;
   letter-spacing: -0.1rem;
+  margin: 1rem 0 0;
+  padding: 0;
 }
 
-.story__picture img {
-  width: 400px;
+.image {
+  width: 100%;
+  max-width: 400px;
 }
 
-.poster {
+.timestamp {
+  color: #999;
+  font-size: 0.8rem;
+  display: block;
+  padding: 5px 0;
+}
+
+.person {
   display: grid;
   grid-template-columns: 64px 1fr;
   gap: 10px;
 }
 
-.poster__name {
+.person__name {
   font-weight: 600;
   font-size: 1rem;
   padding: 10px 0 0;
 }
 
-.poster img {
+.person__image {
   width: 60px;
   border-radius: 60px;
   overflow: hidden;

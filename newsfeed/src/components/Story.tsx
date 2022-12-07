@@ -1,34 +1,28 @@
 import * as React from "react";
-import Poster, { type Props as PosterProps } from "./Poster";
+import Card from "./Card";
+import Heading from "./Heading";
+import PersonalByline, { type Props as PosterProps } from "./PersonalByline";
+import StorySummary from "./StorySummary";
+import Timestamp from "./Timestamp";
+import Image from "./Image";
 
 type Props = {
   story: {
     title: string;
     summary: string[];
     picture: string | null;
-    poster: PosterProps["poster"];
+    poster: PosterProps["person"];
   };
 };
 
 export default function Story({ story }: Props): React.ReactElement {
   return (
-    <article className="story">
-      <Poster poster={story.poster} />
-      <div className="story__header">
-        <h2>{story.title}</h2>
-      </div>
-      {story.picture != null ? (
-        <div className="story__picture">
-          <picture>
-            <img src={story.picture} alt={story.title} />
-          </picture>
-        </div>
-      ) : null}
-      <div className="story__summary">
-        {story.summary.map((text, i) => (
-          <p key={i}>{text}</p>
-        ))}
-      </div>
-    </article>
+    <Card>
+      <PersonalByline person={story.poster} />
+      <Heading>{story.title}</Heading>
+      <Timestamp time={new Date()} />
+      <Image image={story.picture} description={story.title} />
+      <StorySummary summary={story.summary} />
+    </Card>
   );
 }
