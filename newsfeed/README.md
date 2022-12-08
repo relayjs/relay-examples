@@ -8,7 +8,7 @@ To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine
 2. Install the dependencies by running `npm install`
-3. Start the app by running `npm start`
+3. Start the app by running `npm run dev`
 
 ## Project Structure
 
@@ -22,7 +22,7 @@ This project uses the following structure:
 - `.prettierrc.json`: the configuration file for Prettier
 - `.eslintrc.json`: the configuration file for ESLint
 
-## Prettier and Lint
+## Typescript, Prettier and Lint
 
 This project uses Prettier and ESLint to enforce a consistent code style. Prettier is a code formatter that automatically formats your code according to a set of rules. ESLint is a linting tool that identifies and reports on patterns found in your code.
 

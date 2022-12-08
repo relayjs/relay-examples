@@ -1,5 +1,5 @@
 import http from 'http';
-import graphql from 'graphql';
+import {graphql} from 'graphql';
 import {schema, rootValue} from './graphql.mjs';
 
 const PORT = 8080;
