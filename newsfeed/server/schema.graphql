@@ -1,0 +1,48 @@
+# @generated
+
+type User {
+  id: ID!
+  name: String
+  email: String
+}
+
+type Story implements Node {
+  createdAt: DateTime!
+  id: ID!
+  title: String!
+  summary: String
+  updatedAt: DateTime
+  author: User!
+}
+
+interface Node {
+  id: ID!
+}
+
+scalar DateTime
+
+type Query {
+  viewer: Viewer
+  node(id: ID!): Node
+}
+
+type Viewer {
+  newsfeed(first: Int, after: String): Connection
+}
+
+type Connection {
+  edges: [ConnectionEdge]
+  pageInfo: PageInfo
+}
+
+type ConnectionEdge {
+  node: Node
+  cursor: String
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}

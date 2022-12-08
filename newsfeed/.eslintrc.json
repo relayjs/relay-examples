@@ -8,5 +8,9 @@
   "rules": {
     "relay/generated-flow-types": "off"
   },
-  "plugins": ["relay"]
+  "plugins": ["relay"],
+  "env": {
+    "browser": true,
+    "node": true
+  }
 }
