@@ -1,13 +1,13 @@
 # GraphQL Server Example
 
-To print schema
+To print schema:
 
 ```sh
-  node ./printSchema.mjs > schema.graphql
+  yarn printSchema
 ```
 
 To start the server:
 
 ```sh
-  node ./index.mjs
+  yarn server
 ```

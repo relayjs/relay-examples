@@ -9,7 +9,9 @@
     "tsc": "tsc",
     "prettier": "prettier . --write",
     "lint": "eslint .",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "printSchema": "node ./server/printSchema.mjs > ./server/schema.graphql",
+    "server": "nodemon ./server/index.mjs"
   },
   "license": "MIT",
   "devDependencies": {
@@ -26,6 +28,7 @@
     "eslint-plugin-relay": "^1.8.3",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
+    "nodemon": "^2.0.20",
     "prettier": "^2.8.0",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",
