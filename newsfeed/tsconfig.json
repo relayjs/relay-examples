@@ -6,6 +6,7 @@
     "target": "es5",
     "jsx": "preserve",
     "allowJs": false,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "lib": ["DOM"]
   }
 }
