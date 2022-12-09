@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": ["webpack.config.js", "node_modules/", "dist/"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",

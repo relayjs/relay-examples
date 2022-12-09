@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7a582622b7283a5e2806e4378963102b>>
+ * @generated SignedSource<<2b7f2bdba9e7a4a8553641eb510fde4a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,10 +13,6 @@ export type exampleQuery$variables = {};
 export type exampleQuery$data = {
   readonly viewer: {
     readonly __typename: "Viewer";
-    readonly actor: {
-      readonly __typename: string;
-      readonly name: string | null;
-    } | null;
   } | null;
 };
 export type exampleQuery = {
@@ -25,53 +21,33 @@ export type exampleQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "__typename",
-  "storageKey": null
-},
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-};
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "Viewer",
+    "kind": "LinkedField",
+    "name": "viewer",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "__typename",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "exampleQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "Viewer",
-        "kind": "LinkedField",
-        "name": "viewer",
-        "plural": false,
-        "selections": [
-          (v0/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": null,
-            "kind": "LinkedField",
-            "name": "actor",
-            "plural": false,
-            "selections": [
-              (v0/*: any*/),
-              (v1/*: any*/)
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ],
+    "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -80,59 +56,19 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "exampleQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "Viewer",
-        "kind": "LinkedField",
-        "name": "viewer",
-        "plural": false,
-        "selections": [
-          (v0/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": null,
-            "kind": "LinkedField",
-            "name": "actor",
-            "plural": false,
-            "selections": [
-              (v0/*: any*/),
-              (v1/*: any*/),
-              {
-                "kind": "InlineFragment",
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                  }
-                ],
-                "type": "Node",
-                "abstractKey": "__isNode"
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ]
+    "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "e8609394fce52faddd237428a83d55b3",
+    "cacheID": "6220ee8f9d94598a5124b6a691acf6b3",
     "id": null,
     "metadata": {},
     "name": "exampleQuery",
     "operationKind": "query",
-    "text": "query exampleQuery {\n  viewer {\n    __typename\n    actor {\n      __typename\n      name\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query exampleQuery {\n  viewer {\n    __typename\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "160913e1a7e7da8e9cb548897d3b5d87";
+(node as any).hash = "b37fc43422b1e489bd4928ccc787b725";
 
 export default node;
