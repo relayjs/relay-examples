@@ -36,12 +36,20 @@ const ActorInterface = new GraphQLInterfaceType({
   }
 });
 
+const Image = new GraphQLObjectType({
+  name: 'Image',
+  fields: {
+    url: {type: new GraphQLNonNull(GraphQLString)},
+  },
+});
+
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: {
     id: {type: new GraphQLNonNull(GraphQLID)},
     name: {type: GraphQLString},
     email: {type: GraphQLString},
+    profilePicture: {type: Image},
   },
   interfaces: [NodeInterface, ActorInterface],
 });
@@ -54,6 +62,7 @@ const StoryType = new GraphQLObjectType({
     title: {type: new GraphQLNonNull(GraphQLString)},
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
+    attachments: {type: new GraphQLList(Image)},
     author: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
   },
   interfaces: [NodeInterface],

@@ -5,6 +5,7 @@ type User implements Node & Actor {
   id: ID!
   name: String
   email: String
+  profilePicture: Image
 }
 
 interface Node {
@@ -15,12 +16,17 @@ interface Actor {
   name: String
 }
 
+type Image {
+  url: String!
+}
+
 type Story implements Node {
   createdAt: DateTime!
   id: ID!
   title: String!
   summary: String
   updatedAt: DateTime
+  attachments: [Image]
   author: Actor!
 }
 
