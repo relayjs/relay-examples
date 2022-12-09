@@ -15,6 +15,10 @@ export function exampleFetch(): Promise<exampleQuery$data> {
       query exampleQuery {
         viewer {
           __typename
+          actor {
+            __typename
+            name
+          }
         }
       }
     `,

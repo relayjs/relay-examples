@@ -1,9 +1,18 @@
 # @generated
+# run `yarn print-schema` to re-generate this file.
 
-type User {
+type User implements Node & Actor {
   id: ID!
   name: String
   email: String
+}
+
+interface Node {
+  id: ID!
+}
+
+interface Actor {
+  name: String
 }
 
 type Story implements Node {
@@ -12,11 +21,7 @@ type Story implements Node {
   title: String!
   summary: String
   updatedAt: DateTime
-  author: User!
-}
-
-interface Node {
-  id: ID!
+  author: Actor!
 }
 
 scalar DateTime
@@ -27,6 +32,7 @@ type Query {
 }
 
 type Viewer {
+  actor: Actor
   newsfeed(first: Int, after: String): Connection
 }
 

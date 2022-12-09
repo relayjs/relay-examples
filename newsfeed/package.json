@@ -8,12 +8,12 @@
     "tsc": "tsc",
     "prettier": "prettier . --write",
     "lint": "eslint .",
-    "printSchema": "node ./server/printSchema.mjs > ./server/schema.graphql",
+    "print-schema": "node ./server/printSchema.mjs > ./server/schema.graphql",
     "relay": "relay-compiler",
     "watch-relay": "relay-compiler --watch",
     "watch-webpack": "webpack server --open",
-    "watch-api": "nodemon ./server/index.mjs",
-    "dev": "concurrently \"npm:watch-*\""
+    "watch-server": "nodemon ./server/index.mjs",
+    "dev": "concurrently npm:watch-* -c auto"
   },
   "license": "MIT",
   "devDependencies": {

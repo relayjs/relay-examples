@@ -27,6 +27,12 @@ const NodeInterface = new GraphQLInterfaceType({
   }
 });
 
+const ActorInterface = new GraphQLInterfaceType({
+  name: 'Actor',
+  fields: {
+    name: {type: GraphQLString},
+  }
+});
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -35,6 +41,7 @@ const UserType = new GraphQLObjectType({
     name: {type: GraphQLString},
     email: {type: GraphQLString},
   },
+  interfaces: [NodeInterface, ActorInterface],
 });
 
 const StoryType = new GraphQLObjectType({
@@ -45,7 +52,7 @@ const StoryType = new GraphQLObjectType({
     title: {type: new GraphQLNonNull(GraphQLString)},
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
-    author: {type: new GraphQLNonNull(UserType)},
+    author: {type: new GraphQLNonNull(ActorInterface)},
   },
   interfaces: [NodeInterface],
 });
@@ -88,6 +95,9 @@ const ConnectionType = new GraphQLObjectType({
 const ViewerType = new GraphQLObjectType({
   name: 'Viewer',
   fields: {
+    actor: {
+      type: ActorInterface,
+    },
     newsfeed: {
       args: {
         first: {
@@ -119,15 +129,3 @@ export const schema = new GraphQLSchema({
   query: QueryType,
   types: [UserType, StoryType],
 });
-
-
-export const rootValue = {
-  viewer: () => {
-    // TODO: implement
-    return null;
-  },
-  node: () => {
-    // TODO: implement
-    return null
-  },
-};
