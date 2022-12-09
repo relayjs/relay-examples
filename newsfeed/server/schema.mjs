@@ -2,6 +2,8 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
+import { storyUserResolver, newsfeedResolver } from './resolvers.mjs';
+
 import {
   GraphQLBoolean,
   GraphQLID,
@@ -52,7 +54,7 @@ const StoryType = new GraphQLObjectType({
     title: {type: new GraphQLNonNull(GraphQLString)},
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
-    author: {type: new GraphQLNonNull(ActorInterface)},
+    author: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
   },
   interfaces: [NodeInterface],
 });
@@ -108,6 +110,7 @@ const ViewerType = new GraphQLObjectType({
         },
       },
       type: ConnectionType,
+      resolve: newsfeedResolver,
     },
   },
 });

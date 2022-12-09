@@ -1,7 +1,7 @@
 import http from 'http';
 import {graphql} from 'graphql';
 import {schema} from './schema.mjs';
-import {rootValue} from './rootValue.mjs';
+import {rootValue} from './resolvers.mjs';
 
 const PORT = 8080;
 const server = http.createServer(async (req, res) => {
