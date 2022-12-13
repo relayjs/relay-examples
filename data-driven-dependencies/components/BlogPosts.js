@@ -17,8 +17,10 @@ export default function BlogPosts({viewer}) {
           edges {
             node {
               __id
-              ...BlogPostPreview_post @module(name: "BlogPostPreview")
-              ...FancyBlogPostPreview_post @module(name: "FancyBlogPostPreview")
+              content @match {
+                ...FancyBlogPostPreview_post @module(name: "FancyBlogPostPreview")
+                ...BlogPostPreview_post @module(name: "BlogPostPreview")
+              }
             }
           }
         }
@@ -34,7 +36,7 @@ export default function BlogPosts({viewer}) {
         <Suspense fallback={null}>
           <ul className="space-y-5 mb-10">
             {data?.allBlogPosts?.edges.map(({node}) => {
-              return <RelayMatchContainer key={node.__id} match={node} />;
+              return <RelayMatchContainer key={node.__id} match={node.content} />;
             })}
           </ul>
         </Suspense>

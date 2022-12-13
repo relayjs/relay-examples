@@ -1,5 +1,5 @@
 import {graphql, usePreloadedQuery, useLazyLoadQuery} from 'react-relay';
-import BlogPost from '../../components/BlogPost';
+import RelayMatchContainer from '../../components/RelayMatchContainer';
 import {Content} from '../../components/LayoutComponents';
 import Nav from '../../components/Nav';
 import {getPreloadedQuery} from '../../lib/relay/getServerSideProps';
@@ -8,7 +8,10 @@ import {getPreloadedQuery} from '../../lib/relay/getServerSideProps';
 const query = graphql`
   query IdPostPageQuery($id: ID!) @preloadable {
     blogPost(id: $id) {
-      ...BlogPost_post
+      content @match {
+        ...FancyBlogPost_post @module(name: "FancyBlogPost")
+        ...BlogPost_post @module(name: "BlogPost")
+      }
     }
   }
 `;
@@ -19,7 +22,7 @@ export default function Post(props) {
     <>
       <Nav />
       <Content>
-        {blogPost ? <BlogPost post={blogPost} /> : <p>Post not found.</p>}
+        {blogPost ? <RelayMatchContainer match={blogPost.content} /> : <p>Post not found.</p>}
       </Content>
     </>
   );
