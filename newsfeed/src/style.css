@@ -1,0 +1,61 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.app {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}
+
+.newsfeed {
+  max-width: 600px;
+}
+
+.card {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: -0.1rem;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.image {
+  width: 100%;
+  max-width: 400px;
+}
+
+.timestamp {
+  color: #999;
+  font-size: 0.8rem;
+  display: block;
+  padding: 5px 0;
+}
+
+.person {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+}
+
+.person__name {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 0 0;
+}
+
+.person__image {
+  width: 60px;
+  border-radius: 60px;
+  overflow: hidden;
+  border: 1px solid #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,17 @@
+{
+  "ignorePatterns": ["webpack.config.js", "node_modules/", "dist/"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:relay/recommended"
+  ],
+  "rules": {
+    "relay/generated-flow-types": "off"
+  },
+  "plugins": ["relay"],
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

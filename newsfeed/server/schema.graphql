@@ -1,0 +1,60 @@
+# @generated
+# run `yarn print-schema` to re-generate this file.
+
+type User implements Node & Actor {
+  id: ID!
+  name: String
+  email: String
+  profilePicture: Image
+}
+
+interface Node {
+  id: ID!
+}
+
+interface Actor {
+  name: String
+}
+
+type Image {
+  url: String!
+}
+
+type Story implements Node {
+  createdAt: DateTime!
+  id: ID!
+  title: String!
+  summary: String
+  updatedAt: DateTime
+  attachments: [Image]
+  author: Actor!
+}
+
+scalar DateTime
+
+type Query {
+  viewer: Viewer
+  node(id: ID!): Node
+}
+
+type Viewer {
+  actor: Actor
+  newsfeed(first: Int, after: String): Connection
+}
+
+type Connection {
+  edges: [ConnectionEdge]
+  pageInfo: PageInfo
+}
+
+type ConnectionEdge {
+  node: Node
+  cursor: String
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
