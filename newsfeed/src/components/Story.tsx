@@ -9,8 +9,10 @@ import Image from "./Image";
 type Props = {
   story: {
     title: string;
-    summary: string[];
-    picture: string | null;
+    summary: string;
+    thumbnail: {
+      url: string,
+    };
     poster: PosterProps["person"];
   };
 };
@@ -21,7 +23,7 @@ export default function Story({ story }: Props): React.ReactElement {
       <PersonalByline person={story.poster} />
       <Heading>{story.title}</Heading>
       <Timestamp time={new Date()} />
-      <Image image={story.picture} description={story.title} />
+      <Image image={story.thumbnail.url} description={story.title} />
       <StorySummary summary={story.summary} />
     </Card>
   );
