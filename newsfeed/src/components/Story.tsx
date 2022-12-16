@@ -23,7 +23,7 @@ export default function Story({ story }: Props): React.ReactElement {
       <PersonalByline person={story.author} />
       <Heading>{story.title}</Heading>
       <Timestamp time={new Date()} />
-      <Image image={story.thumbnail.url} description={story.title} />
+      <Image image={story.thumbnail.url} description={story.title} width={400} height={400} />
       <StorySummary summary={story.summary} />
     </Card>
   );

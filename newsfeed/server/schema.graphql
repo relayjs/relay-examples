@@ -24,6 +24,7 @@ type Image {
 type Story implements Node {
   createdAt: DateTime!
   id: ID!
+  category: Category
   title: String!
   summary: String
   updatedAt: DateTime
@@ -34,10 +35,17 @@ type Story implements Node {
 
 scalar DateTime
 
+enum Category {
+  ALL
+  EDUCATION
+  NEWS
+  COOKING
+}
+
 type Query {
   viewer: Viewer
   node(id: ID!): Node
-  topStory: Story
+  topStory(category: Category): Story
 }
 
 type Viewer {
