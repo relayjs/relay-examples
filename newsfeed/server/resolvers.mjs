@@ -5,7 +5,7 @@ const nodes = [
     id: '1',
     name: 'Chris P. Bacon',
     profilePicture: {
-      url: "/assets/chris.png",
+      url: "/assets/chris.p.bacon.png",
     },
   },
   {
@@ -18,11 +18,19 @@ const nodes = [
     attachments: [{
       url: "/assets/chicken.png",
     }],
+    thumbnail: {
+      url: "/assets/chicken.png",
+    }
   }
 ];
 
 export function nodeResolver({id}) {
   return nodes.find(node => node.id === id);
+}
+
+export function topStoryResolver() {
+  return nodes.filter(node => node.__typename === 'Story')[0];
+
 }
 
 export function storyUserResolver(story) {
@@ -51,4 +59,7 @@ export const rootValue = {
   node: (args) => {
     return nodeResolver(args)
   },
+  // top_story: () => {
+  //   return nodes.filter(node => node.__typename === 'Story')[0];
+  // }
 };

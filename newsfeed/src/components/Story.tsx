@@ -9,19 +9,21 @@ import Image from "./Image";
 type Props = {
   story: {
     title: string;
-    summary: string[];
-    picture: string | null;
-    poster: PosterProps["person"];
+    summary: string;
+    thumbnail: {
+      url: string,
+    };
+    author: PosterProps["person"];
   };
 };
 
 export default function Story({ story }: Props): React.ReactElement {
   return (
     <Card>
-      <PersonalByline person={story.poster} />
+      <PersonalByline person={story.author} />
       <Heading>{story.title}</Heading>
       <Timestamp time={new Date()} />
-      <Image image={story.picture} description={story.title} />
+      <Image image={story.thumbnail.url} description={story.title} />
       <StorySummary summary={story.summary} />
     </Card>
   );

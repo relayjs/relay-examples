@@ -1,9 +1,9 @@
 # GraphQL Server Example
 
-To print schema:
+To regenerate the schema:
 
 ```sh
-  yarn printSchema
+  yarn print-schema
 ```
 
 To start the server:
