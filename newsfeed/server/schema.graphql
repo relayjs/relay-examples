@@ -14,6 +14,7 @@ interface Node {
 
 interface Actor {
   name: String
+  profilePicture: Image
 }
 
 type Image {
@@ -28,6 +29,7 @@ type Story implements Node {
   updatedAt: DateTime
   attachments: [Image]
   author: Actor!
+  thumbnail: Image
 }
 
 scalar DateTime
@@ -35,6 +37,7 @@ scalar DateTime
 type Query {
   viewer: Viewer
   node(id: ID!): Node
+  topStory: Story
 }
 
 type Viewer {

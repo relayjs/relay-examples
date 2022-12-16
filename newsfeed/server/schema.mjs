@@ -2,7 +2,7 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
-import { storyUserResolver, newsfeedResolver } from './resolvers.mjs';
+import { storyUserResolver, newsfeedResolver, topStoryResolver } from './resolvers.mjs';
 
 import {
   GraphQLBoolean,
@@ -29,18 +29,21 @@ const NodeInterface = new GraphQLInterfaceType({
   }
 });
 
-const ActorInterface = new GraphQLInterfaceType({
-  name: 'Actor',
-  fields: {
-    name: {type: GraphQLString},
-  }
-});
 
 const Image = new GraphQLObjectType({
   name: 'Image',
   fields: {
     url: {type: new GraphQLNonNull(GraphQLString)},
   },
+});
+
+
+const ActorInterface = new GraphQLInterfaceType({
+  name: 'Actor',
+  fields: {
+    name: {type: GraphQLString},
+    profilePicture: {type: Image},
+  }
 });
 
 const UserType = new GraphQLObjectType({
@@ -64,6 +67,7 @@ const StoryType = new GraphQLObjectType({
     updatedAt: {type: DateTimeType},
     attachments: {type: new GraphQLList(Image)},
     author: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
+    thumbnail: {type: Image},
   },
   interfaces: [NodeInterface],
 });
@@ -133,6 +137,10 @@ const QueryType = new GraphQLObjectType({
       args: {
         id: {type: new GraphQLNonNull(GraphQLID)},
       },
+    },
+    topStory: {
+      type: StoryType,
+      resolve: topStoryResolver,
     },
   },
 });
