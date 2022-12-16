@@ -6,6 +6,7 @@ import { storyUserResolver, newsfeedResolver, topStoryResolver } from './resolve
 
 import {
   GraphQLBoolean,
+  GraphQLEnumType,
   GraphQLID,
   GraphQLInt,
   GraphQLList,
@@ -26,6 +27,16 @@ const NodeInterface = new GraphQLInterfaceType({
   name: 'Node',
   fields: {
     id: {type: new GraphQLNonNull(GraphQLID)},
+  }
+});
+
+const CategoryType = new GraphQLEnumType({
+  name: 'Category',
+  values: {
+    ALL: { value: "ALL" },
+    EDUCATION: { value: "EDUCATION" },
+    NEWS: { value: "NEWS" },
+    COOKING: { value: "COOKING" },
   }
 });
 
@@ -62,6 +73,7 @@ const StoryType = new GraphQLObjectType({
   fields: {
     createdAt: {type: new GraphQLNonNull(DateTimeType)},
     id: {type: new GraphQLNonNull(GraphQLID)},
+    category: {type: CategoryType},
     title: {type: new GraphQLNonNull(GraphQLString)},
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
@@ -141,6 +153,9 @@ const QueryType = new GraphQLObjectType({
     topStory: {
       type: StoryType,
       resolve: topStoryResolver,
+      args: {
+        category: {type: CategoryType}
+      }
     },
   },
 });

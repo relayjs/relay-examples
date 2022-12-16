@@ -11,8 +11,24 @@ const nodes = [
   {
     __typename: 'Story',
     id: '2',
+    category: 'ALL',
+    title: 'Local Yak Named Yak of the Year',
+    summary: "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
+    authorID: '1',
+    createdAt: '2020-01-01T00:00:00.000Z',
+    attachments: [{
+      url: "/assets/yak.png",
+    }],
+    thumbnail: {
+      url: "/assets/yak.png",
+    }
+  },
+  {
+    __typename: 'Story',
+    id: '3',
+    category: 'EDUCATION',
     title: 'Why did the chicken cross the road? To get to the other side!',
-    summary: "But let's be real, we all know the real reason the chicken crossed the road: to take a break from its busy day and enjoy the scenery on the other side. Sorry, other animals, but the chicken's gotta do what the chicken's gotta do..\n\nOk, ok, let's get even more real. The chicken didn't actually cross the road. It was just a clever disguise to avoid being cooked for dinner. Smart chicken, indeed.\n\nBut really, at the end of the day, does it even matter why the chicken crossed the road? All that matters is that it made for a hilarious dad joke that we can all enjoy. So here's to you, chicken. Keep on doing your thing.",
+    summary: "It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
     authorID: '1',
     createdAt: '2020-01-01T00:00:00.000Z',
     attachments: [{
@@ -21,16 +37,49 @@ const nodes = [
     thumbnail: {
       url: "/assets/chicken.png",
     }
-  }
+  },
+  {
+    __typename: 'Story',
+    id: '4',
+    category: 'NEWS',
+    title: 'New Hedgehog Species Discovered',
+    summary: "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
+    authorID: '1',
+    createdAt: '2020-01-01T00:00:00.000Z',
+    attachments: [{
+      url: "/assets/hedgehog.png",
+    }],
+    thumbnail: {
+      url: "/assets/hedgehog.png",
+    }
+  },
+  {
+    __typename: 'Story',
+    id: '5',
+    category: 'COOKING',
+    title: 'Onion Soup Recipe',
+    summary: "I am so excited to share with you my all-time favorite recipe for French onion soup. I can't even begin to tell you how many times I've made this dish for my family and friends, and it never fails to impress.\n\n As a self-proclaimed wine mom, I always love finding new and creative ways to incorporate my favorite vintages into my cooking. And let me tell you, the dry white wine in this recipe really takes the flavor of the onions to the next level. Trust me, it's a game changer.\n \n But don't just take my word for it – give this recipe a try for yourself and see how it becomes a new staple in your household. Not only is it delicious, but it's also the perfect comfort food for those cold winter nights.\n \n So grab your wine glasses and let's get cooking!",
+    authorID: '1',
+    createdAt: '2020-01-01T00:00:00.000Z',
+    attachments: [{
+      url: "/assets/recipe.png",
+    }],
+    thumbnail: {
+      url: "/assets/recipe.png",
+    }
+  },
 ];
 
 export function nodeResolver({id}) {
   return nodes.find(node => node.id === id);
 }
 
-export function topStoryResolver() {
-  return nodes.filter(node => node.__typename === 'Story')[0];
-
+export function topStoryResolver(_, {category}) {
+  if(typeof category === 'string' && category !== 'ALL') {
+    return nodes.filter(node => node.__typename === 'Story' && node.category === category)[0];
+  } else {
+    return nodes.filter(node => node.__typename === 'Story')[0];
+  }
 }
 
 export function storyUserResolver(story) {
@@ -59,7 +108,4 @@ export const rootValue = {
   node: (args) => {
     return nodeResolver(args)
   },
-  // top_story: () => {
-  //   return nodes.filter(node => node.__typename === 'Story')[0];
-  // }
 };
