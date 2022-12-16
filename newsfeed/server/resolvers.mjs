@@ -28,7 +28,7 @@ const nodes = [
     id: '3',
     category: 'EDUCATION',
     title: 'Why did the chicken cross the road? To get to the other side!',
-    summary: "It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
+    summary: "Chickens are curious animals and will often explore their surroundings, including crossing roads if the opportunity arises. It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
     authorID: '1',
     createdAt: '2020-01-01T00:00:00.000Z',
     attachments: [{
