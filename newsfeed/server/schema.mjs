@@ -18,10 +18,12 @@ import {
   GraphQLInterfaceType
 } from 'graphql';
 
-const DateTimeType = new GraphQLScalarType({
-  name: 'DateTime',
-  serialize: (value) => value,
-});
+// const DateTimeType = new GraphQLScalarType({
+//   name: 'DateTime',
+//   serialize: (value) => value,
+// });
+// FIXME temporary until can figure out customScalarTypes config
+const DateTimeType = GraphQLString;
 
 const NodeInterface = new GraphQLInterfaceType({
   name: 'Node',

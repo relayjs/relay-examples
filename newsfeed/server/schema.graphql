@@ -22,18 +22,16 @@ type Image {
 }
 
 type Story implements Node {
-  createdAt: DateTime!
+  createdAt: String!
   id: ID!
   category: Category
   title: String!
   summary: String
-  updatedAt: DateTime
+  updatedAt: String
   attachments: [Image]
   author: Actor!
   thumbnail: Image
 }
-
-scalar DateTime
 
 enum Category {
   ALL

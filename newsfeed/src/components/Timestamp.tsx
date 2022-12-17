@@ -3,7 +3,7 @@ import * as React from "react";
 export default function Timestamp({
   time,
 }: {
-  time: Date;
+  time: string;
 }): React.ReactElement {
-  return <span className="timestamp">{time.toDateString()}</span>;
+  return <span className="timestamp">{new Date(time).toDateString()}</span>;
 }
