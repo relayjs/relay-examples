@@ -9,7 +9,6 @@ type Props = {
   story: {
     title: string;
     summary: string;
-    createdAt: string;
     thumbnail: {
       url: string,
     };
