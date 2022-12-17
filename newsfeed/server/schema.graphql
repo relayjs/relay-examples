@@ -29,7 +29,7 @@ type Story implements Node {
   summary: String
   updatedAt: String
   attachments: [Image]
-  author: Actor!
+  poster: Actor!
   thumbnail: Image
 }
 

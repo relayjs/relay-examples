@@ -80,7 +80,7 @@ const StoryType = new GraphQLObjectType({
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
     attachments: {type: new GraphQLList(Image)},
-    author: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
+    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
     thumbnail: {type: Image},
   },
   interfaces: [NodeInterface],

@@ -9,17 +9,18 @@ type Props = {
   story: {
     title: string;
     summary: string;
+    createdAt: string;
     thumbnail: {
       url: string,
     };
-    author: PosterProps["person"];
+    poster: PosterProps["person"];
   };
 };
 
 export default function Story({ story }: Props): React.ReactElement {
   return (
     <Card>
-      <PersonalByline person={story.author} />
+      <PersonalByline person={story.poster} />
       <Heading>{story.title}</Heading>
       <Image image={story.thumbnail.url} description={story.title} width={400} height={400} />
       <StorySummary summary={story.summary} />
