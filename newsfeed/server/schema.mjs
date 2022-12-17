@@ -18,10 +18,12 @@ import {
   GraphQLInterfaceType
 } from 'graphql';
 
-const DateTimeType = new GraphQLScalarType({
-  name: 'DateTime',
-  serialize: (value) => value,
-});
+// const DateTimeType = new GraphQLScalarType({
+//   name: 'DateTime',
+//   serialize: (value) => value,
+// });
+// FIXME temporary until can figure out customScalarTypes config
+const DateTimeType = GraphQLString;
 
 const NodeInterface = new GraphQLInterfaceType({
   name: 'Node',
@@ -78,7 +80,7 @@ const StoryType = new GraphQLObjectType({
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
     attachments: {type: new GraphQLList(Image)},
-    author: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
+    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
     thumbnail: {type: Image},
   },
   interfaces: [NodeInterface],
