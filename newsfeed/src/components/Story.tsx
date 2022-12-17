@@ -22,7 +22,7 @@ export default function Story({ story }: Props): React.ReactElement {
     <Card>
       <PersonalByline person={story.poster} />
       <Heading>{story.title}</Heading>
-      <Image image={story.thumbnail.url} description={story.title} width={400} height={400} />
+      <Image image={story.thumbnail} width={400} height={400} />
       <StorySummary summary={story.summary} />
     </Card>
   );

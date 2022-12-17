@@ -1,18 +1,22 @@
 import * as React from "react";
 
-export default function Image({
-  image,
-  description,
-  width,
-  height,
-}: {
-  image: string | null;
-  description: string;
+type Props = {
+  image: {
+    url: string;
+  };
   width?: number;
   height?: number;
-}): React.ReactElement {
+  className?: string;
+};
+
+export default function Image({
+  image,
+  width,
+  height,
+  className,
+}: Props): React.ReactElement {
   if (image == null) {
     return null;
   }
-  return <img key={image} src={image} alt={description} width={width} height={height} />;
+  return <img key={image.url} src={image.url}  width={width} height={height} className={className} />;
 }
