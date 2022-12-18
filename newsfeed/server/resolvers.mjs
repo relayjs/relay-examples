@@ -1,12 +1,16 @@
 // Fake Database
 const nodes = [
   {
-    __typename: 'User',
+    __typename: 'Person',
     id: '1',
     name: 'Chris P. Bacon',
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    location: {
+      id: '10',
+      name: 'Poultropolis',
+    }
   },
   {
     __typename: 'Story',
@@ -14,7 +18,7 @@ const nodes = [
     category: 'ALL',
     title: 'Local Yak Named Yak of the Year',
     summary: "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
-    authorID: '1',
+    authorID: '7',
     createdAt: '2020-01-01T00:00:00.000Z',
     attachments: [{
       url: "/assets/yak.png",
@@ -44,7 +48,7 @@ const nodes = [
     category: 'NEWS',
     title: 'New Hedgehog Species Discovered',
     summary: "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
-    authorID: '1',
+    authorID: '6',
     createdAt: '2020-01-01T00:00:00.000Z',
     attachments: [{
       url: "/assets/hedgehog.png",
@@ -68,6 +72,24 @@ const nodes = [
       url: "/assets/recipe.png",
     }
   },
+  {
+    __typename: 'Organization',
+    id: '6',
+    name: 'Gazelle Gazette',
+    profilePicture: {
+      url: "/assets/chris.p.bacon.png",
+    },
+    organizationKind: 'JOURNALISTIC',
+  },
+  {
+    __typename: 'Organization',
+    id: '7',
+    name: 'Baller Bos Board',
+    profilePicture: {
+      url: "/assets/chris.p.bacon.png",
+    },
+    organizationKind: 'NONPROFIT',
+  },
 ];
 
 export function nodeResolver({id}) {
@@ -82,7 +104,7 @@ export function topStoryResolver(_, {category}) {
   }
 }
 
-export function storyUserResolver(story) {
+export function storyPosterResolver(story) {
   return nodeResolver({id: story.authorID})
 }
 

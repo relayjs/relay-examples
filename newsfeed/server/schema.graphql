@@ -1,11 +1,12 @@
 # @generated
 # run `yarn print-schema` to re-generate this file.
 
-type User implements Node & Actor {
+type Person implements Node & Actor {
   id: ID!
   name: String
   email: String
   profilePicture: Image
+  location: Location
 }
 
 interface Node {
@@ -19,6 +20,25 @@ interface Actor {
 
 type Image {
   url: String!
+}
+
+type Location {
+  id: ID!
+  name: String!
+}
+
+type Organization implements Node & Actor {
+  id: ID!
+  name: String
+  profilePicture: Image
+  organizationKind: OrganizationKind
+}
+
+enum OrganizationKind {
+  COMMERCIAL
+  NONPROFIT
+  GOVERNMENT
+  JOURNALISTIC
 }
 
 type Story implements Node {
