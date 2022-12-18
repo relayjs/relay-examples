@@ -2,7 +2,7 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
-import { storyUserResolver, newsfeedResolver, topStoryResolver } from './resolvers.mjs';
+import { storyPosterResolver, newsfeedResolver, topStoryResolver } from './resolvers.mjs';
 
 import {
   GraphQLBoolean,
@@ -42,33 +42,63 @@ const CategoryType = new GraphQLEnumType({
   }
 });
 
+const OrganizationKindType = new GraphQLEnumType({
+  name: 'OrganizationKind',
+  values: {
+    COMMERCIAL: { value: "COMMERCIAL" },
+    NONPROFIT: { value: "NONPROFIT" },
+    GOVERNMENT: { value: "GOVERNMENT" },
+    JOURNALISTIC: { value: "JOURNALISTIC" },
+  }
+});
 
-const Image = new GraphQLObjectType({
+
+const ImageType = new GraphQLObjectType({
   name: 'Image',
   fields: {
     url: {type: new GraphQLNonNull(GraphQLString)},
   },
 });
 
+const LocationType = new GraphQLObjectType({
+  name: 'Location',
+  fields: {
+    id: {type: new GraphQLNonNull(GraphQLID)},
+    name: {type: new GraphQLNonNull(GraphQLString)},
+  },
+});
 
 const ActorInterface = new GraphQLInterfaceType({
   name: 'Actor',
   fields: {
     name: {type: GraphQLString},
-    profilePicture: {type: Image},
+    profilePicture: {type: ImageType},
   }
 });
 
-const UserType = new GraphQLObjectType({
-  name: 'User',
+const PersonType = new GraphQLObjectType({
+  name: 'Person',
   fields: {
     id: {type: new GraphQLNonNull(GraphQLID)},
     name: {type: GraphQLString},
     email: {type: GraphQLString},
-    profilePicture: {type: Image},
+    profilePicture: {type: ImageType},
+    location: {type: LocationType},
   },
   interfaces: [NodeInterface, ActorInterface],
 });
+
+const OrganizationType = new GraphQLObjectType({
+  name: 'Organization',
+  fields: {
+    id: {type: new GraphQLNonNull(GraphQLID)},
+    name: {type: GraphQLString},
+    profilePicture: {type: ImageType},
+    organizationKind: {type: OrganizationKindType},
+  },
+  interfaces: [NodeInterface, ActorInterface],
+});
+
 
 const StoryType = new GraphQLObjectType({
   name: 'Story',
@@ -79,9 +109,9 @@ const StoryType = new GraphQLObjectType({
     title: {type: new GraphQLNonNull(GraphQLString)},
     summary: {type: GraphQLString},
     updatedAt: {type: DateTimeType},
-    attachments: {type: new GraphQLList(Image)},
-    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyUserResolver},
-    thumbnail: {type: Image},
+    attachments: {type: new GraphQLList(ImageType)},
+    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyPosterResolver},
+    thumbnail: {type: ImageType},
   },
   interfaces: [NodeInterface],
 });
@@ -164,5 +194,5 @@ const QueryType = new GraphQLObjectType({
 
 export const schema = new GraphQLSchema({
   query: QueryType,
-  types: [UserType, StoryType],
+  types: [PersonType, OrganizationType, StoryType],
 });
