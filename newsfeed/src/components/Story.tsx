@@ -1,7 +1,7 @@
 import * as React from "react";
 import Card from "./Card";
 import Heading from "./Heading";
-import PersonalByline, { type Props as PosterProps } from "./PersonalByline";
+import PosterByline, { type Props as PosterBylineProps } from "./PosterByline";
 import StorySummary from "./StorySummary";
 import Image from "./Image";
 
@@ -12,14 +12,14 @@ type Props = {
     thumbnail: {
       url: string,
     };
-    poster: PosterProps["person"];
+    poster: PosterBylineProps["poster"];
   };
 };
 
 export default function Story({ story }: Props): React.ReactElement {
   return (
     <Card>
-      <PersonalByline person={story.poster} />
+      <PosterByline poster={story.poster} />
       <Heading>{story.title}</Heading>
       <Image image={story.thumbnail} width={400} height={400} />
       <StorySummary summary={story.summary} />
