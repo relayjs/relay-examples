@@ -90,6 +90,42 @@ const nodes = [
     },
     organizationKind: 'NONPROFIT',
   },
+  {
+    __typename: 'Person',
+    id: '8',
+    name: 'Suzie Queue',
+    profilePicture: {
+      url: "/assets/chris.p.bacon.png",
+    },
+    location: {
+      id: '11',
+      name: 'Venice',
+    }
+  },
+  {
+    __typename: 'Person',
+    id: '9',
+    name: 'Artie G.',
+    profilePicture: {
+      url: "/assets/chris.p.bacon.png",
+    },
+    location: {
+      id: '12',
+      name: 'New York',
+    }
+  },
+  {
+    __typename: 'Person',
+    id: '13',
+    name: 'Alexei Fyodorovich Karamazov',
+    profilePicture: {
+      url: "/assets/chris.p.bacon.png",
+    },
+    location: {
+      id: '14',
+      name: 'Among Us',
+    }
+  },
 ];
 
 export function nodeResolver({id}) {
@@ -119,6 +155,10 @@ export function newsfeedResolver() {
       hasPreviousPage: false,
     }
   }
+}
+
+export function contactsResolver() {
+  return nodes.filter(node => node.__typename === 'Person');
 }
 
 export const rootValue = {

@@ -14,6 +14,7 @@ interface Node {
 }
 
 interface Actor {
+  id: ID!
   name: String
   profilePicture: Image
 }
@@ -68,6 +69,7 @@ type Query {
 
 type Viewer {
   actor: Actor
+  contacts(search: String): [Actor]
   newsfeed(first: Int, after: String): Connection
 }
 
