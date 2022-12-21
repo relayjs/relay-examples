@@ -9,10 +9,15 @@ body {
   display: grid;
   gap: 10px;
   padding: 10px;
+  grid-template-columns: 3fr 2fr;
 }
 
 .newsfeed {
   max-width: 600px;
+}
+
+.sidebar {
+  background-color: #eee;
 }
 
 .card {
