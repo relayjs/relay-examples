@@ -157,8 +157,15 @@ export function newsfeedResolver() {
   }
 }
 
-export function contactsResolver() {
-  return nodes.filter(node => node.__typename === 'Person');
+export function contactsResolver(_, {search}) {
+  const persons = nodes.filter(node => node.__typename === 'Person');
+  if (search == null || search == '') {
+    return persons;
+  } else {
+    return persons.filter(person =>
+      person.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    );
+  }
 }
 
 export const rootValue = {
