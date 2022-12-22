@@ -2,7 +2,7 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
-import { contactsResolver, storyPosterResolver, newsfeedResolver, topStoryResolver } from './resolvers.mjs';
+import { contactsResolver, storyPosterResolver, newsfeedResolver, topStoryResolver, storyCommentsResolver } from './resolvers.mjs';
 
 import {
   GraphQLBoolean,
@@ -100,21 +100,12 @@ const OrganizationType = new GraphQLObjectType({
   interfaces: [NodeInterface, ActorInterface],
 });
 
-
-const StoryType = new GraphQLObjectType({
-  name: 'Story',
+const CommentType = new GraphQLObjectType({
+  name: 'Comment',
   fields: {
-    createdAt: {type: new GraphQLNonNull(DateTimeType)},
     id: {type: new GraphQLNonNull(GraphQLID)},
-    category: {type: CategoryType},
-    title: {type: new GraphQLNonNull(GraphQLString)},
-    summary: {type: GraphQLString},
-    updatedAt: {type: DateTimeType},
-    attachments: {type: new GraphQLList(ImageType)},
-    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyPosterResolver},
-    thumbnail: {type: ImageType},
+    text: {type: GraphQLString},
   },
-  interfaces: [NodeInterface],
 });
 
 const ConnectionEdgeType = new GraphQLObjectType({
@@ -129,11 +120,24 @@ const ConnectionEdgeType = new GraphQLObjectType({
   },
 });
 
+const CommentsConnectionEdgeType = new GraphQLObjectType({
+  name: 'CommentsConnectionEdge',
+  fields: {
+    node: {
+      type: CommentType,
+    },
+    cursor: {
+      type: GraphQLString,
+    },
+  },
+});
+
 const PageInfoType = new GraphQLObjectType({
   name: 'PageInfo',
   fields: {
     startCursor: {type: GraphQLString},
     endCursor: {type: GraphQLString},
+    lastCursor: {type: GraphQLString},
     hasNextPage: {type: GraphQLBoolean},
     hasPreviousPage: {type: GraphQLBoolean},
   },
@@ -149,6 +153,46 @@ const ConnectionType = new GraphQLObjectType({
       type: PageInfoType,
     },
   },
+});
+
+const CommentsConnectionType = new GraphQLObjectType({
+  name: 'CommentsConnection',
+  fields: {
+    edges: {
+      type: new GraphQLList(CommentsConnectionEdgeType),
+    },
+    pageInfo: {
+      type: PageInfoType,
+    },
+  },
+});
+
+const StoryType = new GraphQLObjectType({
+  name: 'Story',
+  fields: {
+    createdAt: {type: new GraphQLNonNull(DateTimeType)},
+    id: {type: new GraphQLNonNull(GraphQLID)},
+    category: {type: CategoryType},
+    title: {type: new GraphQLNonNull(GraphQLString)},
+    summary: {type: GraphQLString},
+    updatedAt: {type: DateTimeType},
+    attachments: {type: new GraphQLList(ImageType)},
+    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyPosterResolver},
+    thumbnail: {type: ImageType},
+    comments: {
+      args: {
+        first: {
+          type: GraphQLInt,
+        },
+        after: {
+          type: GraphQLString,
+        },
+      },
+      type: CommentsConnectionType,
+      resolve: storyCommentsResolver,
+    },
+  },
+  interfaces: [NodeInterface],
 });
 
 const ViewerType = new GraphQLObjectType({

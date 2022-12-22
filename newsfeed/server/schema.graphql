@@ -52,6 +52,7 @@ type Story implements Node {
   attachments: [Image]
   poster: Actor!
   thumbnail: Image
+  comments(first: Int, after: String): CommentsConnection
 }
 
 enum Category {
@@ -59,6 +60,29 @@ enum Category {
   EDUCATION
   NEWS
   COOKING
+}
+
+type CommentsConnection {
+  edges: [CommentsConnectionEdge]
+  pageInfo: PageInfo
+}
+
+type CommentsConnectionEdge {
+  node: Comment
+  cursor: String
+}
+
+type Comment {
+  id: ID!
+  text: String
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  lastCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
 }
 
 type Query {
@@ -81,11 +105,4 @@ type Connection {
 type ConnectionEdge {
   node: Node
   cursor: String
-}
-
-type PageInfo {
-  startCursor: String
-  endCursor: String
-  hasNextPage: Boolean
-  hasPreviousPage: Boolean
 }

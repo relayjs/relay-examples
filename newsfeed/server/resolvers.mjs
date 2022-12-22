@@ -25,7 +25,25 @@ const nodes = [
     }],
     thumbnail: {
       url: "/assets/yak.png",
-    }
+    },
+    comments: [
+      {
+        id: "comment1",
+        text: "So proud of our local yak",
+      },
+      {
+        id: "comment2",
+        text: "I've been waiting my whole life for this moment",
+      },
+      {
+        id: "comment3",
+        text: "What's a yak???",
+      },
+      {
+        id: "comment4",
+        text: "We used to keep yaks in the old country",
+      },
+    ],
   },
   {
     __typename: 'Story',
@@ -40,7 +58,8 @@ const nodes = [
     }],
     thumbnail: {
       url: "/assets/chicken.png",
-    }
+    },
+    comments: [],
   },
   {
     __typename: 'Story',
@@ -55,7 +74,8 @@ const nodes = [
     }],
     thumbnail: {
       url: "/assets/hedgehog.png",
-    }
+    },
+    comments: [],
   },
   {
     __typename: 'Story',
@@ -70,7 +90,8 @@ const nodes = [
     }],
     thumbnail: {
       url: "/assets/recipe.png",
-    }
+    },
+    comments: [],
   },
   {
     __typename: 'Organization',
@@ -166,6 +187,23 @@ export function contactsResolver(_, {search}) {
       person.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     );
   }
+}
+
+export function storyCommentsResolver(story, {first: firstStr, after: afterStr}) {
+  const first = parseInt(firstStr, 10) || Infinity;
+  const after = parseInt(afterStr, 10) || 0;
+  const comments = story.comments;
+  const next = first + after;
+  console.log(first, after, next, comments.slice(next, first));
+  return {
+    pageInfo: {
+      hasNextPage: comments.length >= next,
+      lastCursor: '' + next,
+    },
+    edges: comments.slice(next, first + next).map(comment => ({
+      node: comment,
+    })),
+  };
 }
 
 export const rootValue = {
