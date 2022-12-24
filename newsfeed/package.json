@@ -11,7 +11,7 @@
     "print-schema": "node ./server/printSchema.mjs > ./server/schema.graphql",
     "relay": "relay-compiler",
     "watch-relay": "relay-compiler --watch",
-    "watch-webpack": "webpack server --open",
+    "watch-webpack": "webpack server",
     "watch-server": "nodemon ./server/index.mjs",
     "dev": "concurrently npm:watch-* -c auto"
   },
@@ -43,7 +43,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "graphql": "^16.6.0",
+    "graphql": "^17.0.0-alpha.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-relay": "^14.1.0",

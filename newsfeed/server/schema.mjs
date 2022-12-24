@@ -15,7 +15,10 @@ import {
   GraphQLScalarType,
   GraphQLSchema,
   GraphQLString,
-  GraphQLInterfaceType
+  GraphQLInterfaceType,
+  GraphQLDeferDirective,
+  GraphQLStreamDirective,
+  specifiedDirectives,
 } from 'graphql';
 
 // const DateTimeType = new GraphQLScalarType({
@@ -227,4 +230,9 @@ const QueryType = new GraphQLObjectType({
 export const schema = new GraphQLSchema({
   query: QueryType,
   types: [PersonType, OrganizationType, StoryType],
+  directives: [
+    ...specifiedDirectives,
+    GraphQLDeferDirective,
+    GraphQLStreamDirective,
+  ]
 });
