@@ -26,6 +26,8 @@ const nodes = [
     thumbnail: {
       url: "/assets/yak.png",
     },
+    likeCount: 5,
+    doesViewerLike: false,
     comments: [
       {
         id: "comment1",
@@ -45,7 +47,7 @@ const nodes = [
       },
       {
         id: "comment5",
-        text: "What's a yak???",
+        text: "It's a yak attack, this award is whack",
       },
       {
         id: "comment6",
@@ -75,6 +77,8 @@ const nodes = [
     thumbnail: {
       url: "/assets/chicken.png",
     },
+    likeCount: 2,
+    doesViewerLike: false,
     comments: [],
   },
   {
@@ -91,6 +95,8 @@ const nodes = [
     thumbnail: {
       url: "/assets/hedgehog.png",
     },
+    likeCount: 160,
+    doesViewerLike: false,
     comments: [],
   },
   {
@@ -107,6 +113,8 @@ const nodes = [
     thumbnail: {
       url: "/assets/recipe.png",
     },
+    likeCount: 12,
+    doesViewerLike: false,
     comments: [],
   },
   {
@@ -222,6 +230,17 @@ export function storyCommentsResolver(story, {first, after: afterStr}) {
     edges: comments.slice(after, next).map(comment => ({
       node: comment,
     })),
+  };
+}
+
+export function resolveLikeStoryMutation(_, {id, doesLike}) {
+  const story = nodes.find(node => node.id === id);
+  if (!story) {
+    return; // TODO should report an error
+  }
+  story.doesViewerLike = doesLike;
+  return {
+    story
   };
 }
 

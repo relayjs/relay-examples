@@ -2,7 +2,7 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
-import { contactsResolver, storyPosterResolver, newsfeedStoriesResolver, topStoryResolver, storyCommentsResolver } from './resolvers.mjs';
+import { contactsResolver, storyPosterResolver, newsfeedStoriesResolver, topStoryResolver, storyCommentsResolver, resolveLikeStoryMutation } from './resolvers.mjs';
 
 import {
   GraphQLBoolean,
@@ -162,6 +162,8 @@ const StoryType = new GraphQLObjectType({
     attachments: {type: new GraphQLList(ImageType)},
     poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyPosterResolver},
     thumbnail: {type: ImageType},
+    likeCount: {type: GraphQLInt},
+    doesViewerLike: {type: GraphQLBoolean},
     comments: {
       args: {
         first: {
@@ -227,8 +229,30 @@ const QueryType = new GraphQLObjectType({
   },
 });
 
+const StoryMutationResponseType = new GraphQLObjectType({
+  name: 'StoryMutationResponse',
+  fields: {
+    story: {type: StoryType},
+  }
+})
+
+const MutationType = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    likeStory: {
+      type: StoryMutationResponseType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        doesLike: {type: new GraphQLNonNull(GraphQLBoolean)},
+      },
+      resolve: resolveLikeStoryMutation,
+    },
+  }
+});
+
 export const schema = new GraphQLSchema({
   query: QueryType,
+  mutation: MutationType,
   types: [PersonType, OrganizationType, StoryType],
   directives: [
     ...specifiedDirectives,

@@ -77,6 +77,8 @@ type Story implements Node {
   attachments: [Image]
   poster: Actor!
   thumbnail: Image
+  likeCount: Int
+  doesViewerLike: Boolean
   comments(first: Int, after: String): CommentsConnection
 }
 
@@ -130,4 +132,12 @@ type StoriesConnection {
 type StoriesConnectionEdge {
   node: Story
   cursor: String
+}
+
+type Mutation {
+  likeStory(id: ID!, doesLike: Boolean!): StoryMutationResponse
+}
+
+type StoryMutationResponse {
+  story: Story
 }
