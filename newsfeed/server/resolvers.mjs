@@ -238,9 +238,10 @@ export function resolveLikeStoryMutation(_, {id, doesLike}) {
   if (!story) {
     return; // TODO should report an error
   }
+  story.likeCount += doesLike - story.doesViewerLike;
   story.doesViewerLike = doesLike;
   return {
-    story
+    story,
   };
 }
 

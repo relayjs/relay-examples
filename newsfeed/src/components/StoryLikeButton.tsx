@@ -39,12 +39,14 @@ function LikeCount({count}: {count: number}) {
 function LikeButton({
   doesViewerLike,
   onClick,
+  disabled,
 }: {
   doesViewerLike: boolean;
   onClick: () => void;
+  disabled?: boolean;
 }) {
   return (
-    <button className="likeButton__button" onClick={onClick}>
+    <button className="likeButton__button" onClick={onClick} disabled={disabled}>
       <span className={doesViewerLike ?
         'likeButton__thumb__viewerLikes' : 'likeButton__thumb__viewerDoesNotLike'
       }>
