@@ -181,16 +181,20 @@ export function storyPosterResolver(story) {
   return nodeResolver({id: story.authorID})
 }
 
-export function newsfeedResolver() {
-  const edges = nodes.filter(node => node.__typename === 'Story');
+export function newsfeedStoriesResolver(_, {first, after: afterStr, category}) {
+  const count = first ?? Infinity;
+  const after = parseInt(afterStr, 10) || 0;
+  const next = count + after;
+  const edges = nodes.filter(node =>
+    node.__typename === 'Story' &&
+    (typeof category !== 'string' || category === 'ALL' || category === node.category)
+  );
   return {
-    edges: edges.map(node => ({node, cursor: node.id})),
     pageInfo: {
-      startCursor: edges[0]?.node?.id,
-      endCursor: edges[edges.length - 1]?.node?.id,
-      hasNextPage: false,
-      hasPreviousPage: false,
-    }
+      hasNextPage: edges.length >= next,
+      endCursor: '' + next,
+    },
+    edges: edges.slice(after, next).map(node => ({node, cursor: node.id})),
   }
 }
 

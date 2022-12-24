@@ -2,7 +2,7 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
-import { contactsResolver, storyPosterResolver, newsfeedResolver, topStoryResolver, storyCommentsResolver } from './resolvers.mjs';
+import { contactsResolver, storyPosterResolver, newsfeedStoriesResolver, topStoryResolver, storyCommentsResolver } from './resolvers.mjs';
 
 import {
   GraphQLBoolean,
@@ -108,30 +108,6 @@ const CommentType = new GraphQLObjectType({
   },
 });
 
-const ConnectionEdgeType = new GraphQLObjectType({
-  name: 'ConnectionEdge',
-  fields: {
-    node: {
-      type: NodeInterface,
-    },
-    cursor: {
-      type: GraphQLString,
-    },
-  },
-});
-
-const CommentsConnectionEdgeType = new GraphQLObjectType({
-  name: 'CommentsConnectionEdge',
-  fields: {
-    node: {
-      type: CommentType,
-    },
-    cursor: {
-      type: GraphQLString,
-    },
-  },
-});
-
 const PageInfoType = new GraphQLObjectType({
   name: 'PageInfo',
   fields: {
@@ -143,29 +119,33 @@ const PageInfoType = new GraphQLObjectType({
   },
 });
 
-const ConnectionType = new GraphQLObjectType({
-  name: 'Connection',
-  fields: {
-    edges: {
-      type: new GraphQLList(ConnectionEdgeType),
+function createConnectionType(name, nodeType) {
+  const edgeType = new GraphQLObjectType({
+    name: name + 'ConnectionEdge',
+    fields: {
+      node: {
+        type: nodeType,
+      },
+      cursor: {
+        type: GraphQLString,
+      },
     },
-    pageInfo: {
-      type: PageInfoType,
-    },
-  },
-});
+  });
 
-const CommentsConnectionType = new GraphQLObjectType({
-  name: 'CommentsConnection',
-  fields: {
-    edges: {
-      type: new GraphQLList(CommentsConnectionEdgeType),
+  return new GraphQLObjectType({
+    name: name + 'Connection',
+    fields: {
+      edges: {
+        type: new GraphQLList(edgeType),
+      },
+      pageInfo: {
+        type: PageInfoType,
+      },
     },
-    pageInfo: {
-      type: PageInfoType,
-    },
-  },
-});
+  });
+}
+
+const CommentsConnectionType = createConnectionType('Comments', CommentType);
 
 const StoryType = new GraphQLObjectType({
   name: 'Story',
@@ -195,6 +175,8 @@ const StoryType = new GraphQLObjectType({
   interfaces: [NodeInterface],
 });
 
+const StoriesConnectionType = createConnectionType('Stories', StoryType);
+
 const ViewerType = new GraphQLObjectType({
   name: 'Viewer',
   fields: {
@@ -210,17 +192,14 @@ const ViewerType = new GraphQLObjectType({
       type: new GraphQLList(ActorInterface),
       resolve: contactsResolver,
     },
-    newsfeed: {
+    newsfeedStories: {
       args: {
-        first: {
-          type: GraphQLInt,
-        },
-        after: {
-          type: GraphQLString,
-        },
+        first: { type: GraphQLInt, },
+        after: { type: GraphQLString, },
+        category: {type: CategoryType}
       },
-      type: ConnectionType,
-      resolve: newsfeedResolver,
+      type: StoriesConnectionType,
+      resolve: newsfeedStoriesResolver,
     },
   },
 });

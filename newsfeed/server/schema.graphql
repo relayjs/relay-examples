@@ -94,15 +94,15 @@ type Query {
 type Viewer {
   actor: Actor
   contacts(search: String): [Actor]
-  newsfeed(first: Int, after: String): Connection
+  newsfeedStories(first: Int, after: String, category: Category): StoriesConnection
 }
 
-type Connection {
-  edges: [ConnectionEdge]
+type StoriesConnection {
+  edges: [StoriesConnectionEdge]
   pageInfo: PageInfo
 }
 
-type ConnectionEdge {
-  node: Node
+type StoriesConnectionEdge {
+  node: Story
   cursor: String
 }
