@@ -74,6 +74,32 @@ body {
   display: inline-block;
 }
 
+.comment {
+  background-color: #eee;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+.comments__loadMore {
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  color: blue;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  font-size: 1.2rem;
+}
+
+.comments__loadMore:hover {
+  text-decoration: underline;
+}
+
+.comments__loadMore:active {
+  color: #66d;
+}
+
 /* Spinner */
 
 .loading-spinner {

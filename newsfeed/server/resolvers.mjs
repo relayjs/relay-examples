@@ -189,18 +189,17 @@ export function contactsResolver(_, {search}) {
   }
 }
 
-export function storyCommentsResolver(story, {first: firstStr, after: afterStr}) {
-  const first = parseInt(firstStr, 10) || Infinity;
+export function storyCommentsResolver(story, {first, after: afterStr}) {
+  const count = first ?? Infinity;
   const after = parseInt(afterStr, 10) || 0;
+  const next = count + after;
   const comments = story.comments;
-  const next = first + after;
-  console.log(first, after, next, comments.slice(next, first));
   return {
     pageInfo: {
       hasNextPage: comments.length >= next,
       lastCursor: '' + next,
     },
-    edges: comments.slice(next, first + next).map(comment => ({
+    edges: comments.slice(after, next).map(comment => ({
       node: comment,
     })),
   };
