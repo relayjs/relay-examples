@@ -43,6 +43,22 @@ const nodes = [
         id: "comment4",
         text: "We used to keep yaks in the old country",
       },
+      {
+        id: "comment5",
+        text: "What's a yak???",
+      },
+      {
+        id: "comment6",
+        text: "There are better yaks in every pasture of this country",
+      },
+      {
+        id: "comment7",
+        text: "Yak yak yak yak yak yak yak yak",
+      },
+      {
+        id: "comment8",
+        text: "He's a good yak, he saved my child from drowning",
+      },
     ],
   },
   {
@@ -197,7 +213,7 @@ export function storyCommentsResolver(story, {first, after: afterStr}) {
   return {
     pageInfo: {
       hasNextPage: comments.length >= next,
-      lastCursor: '' + next,
+      endCursor: '' + next,
     },
     edges: comments.slice(after, next).map(comment => ({
       node: comment,
