@@ -100,13 +100,30 @@ body {
   color: #66d;
 }
 
+.likeButton__count {
+  display: inline-block;
+  font-size: 1.2rem;
+  padding-right: 12px;
+}
+
 .likeButton__button {
-  font-size: 1.6rem;
-  padding: 12px;
+  font-size: 1.4rem;
+  padding: 8px;
+  border: none;
+  color: #555;
+  background-color: white;
+}
+
+.likeButton__button:disabled {
+  opacity: 0.5;
 }
 
 .likeButton__thumb__viewerDoesNotLike {
-  opacity: 0.5;
+  opacity: 0.6;
+}
+
+.likeButton__label__viewerLikes {
+  color: blue;
 }
 
 /* Spinner */

@@ -33,7 +33,7 @@ export default function StoryLikeButton({ story }: Props): React.ReactElement {
 }
 
 function LikeCount({count}: {count: number}) {
-  return <div className="likeButton__count">{count}</div>;
+  return <div className="likeButton__count">{count} likes</div>;
 }
 
 function LikeButton({
@@ -52,7 +52,11 @@ function LikeButton({
       }>
         👍
       </span>{' '}
-      Like
+      <span className={doesViewerLike ?
+        'likeButton__label__viewerLikes' : 'likeButton__label__viewerDoesNotLike'
+      }>
+        Like
+      </span>
     </button>
   );
 }
