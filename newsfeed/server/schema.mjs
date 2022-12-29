@@ -2,7 +2,15 @@
  * Basic GraphQL schema for the Newsfeed app.
  */
 
-import { contactsResolver, storyPosterResolver, newsfeedStoriesResolver, topStoryResolver, storyCommentsResolver, resolveLikeStoryMutation } from './resolvers.mjs';
+import {
+  contactsResolver,
+  storyPosterResolver,
+  newsfeedStoriesResolver,
+  topStoryResolver,
+  storyCommentsResolver,
+  resolveLikeStoryMutation,
+  resolvePostStoryCommentMutation,
+} from './resolvers.mjs';
 
 import {
   GraphQLBoolean,
@@ -135,7 +143,7 @@ function createConnectionType(name, nodeType) {
     },
   });
 
-  return new GraphQLObjectType({
+  const connectionType = new GraphQLObjectType({
     name: name + 'Connection',
     fields: {
       edges: {
@@ -146,9 +154,11 @@ function createConnectionType(name, nodeType) {
       },
     },
   });
+
+  return [connectionType, edgeType];
 }
 
-const CommentsConnectionType = createConnectionType('Comments', CommentType);
+const [CommentsConnectionType, CommentsConnectionEdgeType] = createConnectionType('Comments', CommentType);
 
 const StoryType = new GraphQLObjectType({
   name: 'Story',
@@ -180,7 +190,7 @@ const StoryType = new GraphQLObjectType({
   interfaces: [NodeInterface],
 });
 
-const StoriesConnectionType = createConnectionType('Stories', StoryType);
+const [StoriesConnectionType, StoriesConnectionEdgeType] = createConnectionType('Stories', StoryType);
 
 const ViewerType = new GraphQLObjectType({
   name: 'Viewer',
@@ -236,6 +246,14 @@ const StoryMutationResponseType = new GraphQLObjectType({
   }
 })
 
+const StoryCommentMutationResponseType = new GraphQLObjectType({
+  name: 'StoryCommentMutationResponse',
+  fields: {
+    story: {type: StoryType},
+    commentEdge: {type: CommentsConnectionEdgeType},
+  },
+})
+
 const MutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
@@ -246,6 +264,14 @@ const MutationType = new GraphQLObjectType({
         doesLike: {type: new GraphQLNonNull(GraphQLBoolean)},
       },
       resolve: resolveLikeStoryMutation,
+    },
+    postStoryComment: {
+      type: StoryCommentMutationResponseType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        text: {type: new GraphQLNonNull(GraphQLString)},
+      },
+      resolve: resolvePostStoryCommentMutation,
     },
   }
 });

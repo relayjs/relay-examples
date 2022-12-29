@@ -136,8 +136,14 @@ type StoriesConnectionEdge {
 
 type Mutation {
   likeStory(id: ID!, doesLike: Boolean!): StoryMutationResponse
+  postStoryComment(id: ID!, text: String!): StoryCommentMutationResponse
 }
 
 type StoryMutationResponse {
   story: Story
+}
+
+type StoryCommentMutationResponse {
+  story: Story
+  commentEdge: CommentsConnectionEdge
 }

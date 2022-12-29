@@ -245,6 +245,25 @@ export function resolveLikeStoryMutation(_, {id, doesLike}) {
   };
 }
 
+let nextCommentID = 0;
+export function resolvePostStoryCommentMutation(_, {id, text}) {
+  const story = nodes.find(node => node.id === id);
+  if (!story) {
+    return; // TODO should report an error
+  }
+  const newComment = {
+    id: `posted-comment-${nextCommentID++}`,
+    text,
+  };
+  story.comments.unshift(newComment);
+  return {
+    story,
+    commentEdge: {
+      node: newComment,
+    },
+  };
+}
+
 export const rootValue = {
   viewer: () => {
     return {
