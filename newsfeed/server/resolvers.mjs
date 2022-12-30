@@ -5,7 +5,7 @@ const nodes = [
     id: '1',
     name: 'Chris P. Bacon',
     profilePicture: {
-      url: "/assets/chris.p.bacon.png",
+      url: "/assets/pig.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     location: {
@@ -80,7 +80,16 @@ const nodes = [
     },
     likeCount: 2,
     doesViewerLike: false,
-    comments: [],
+    comments: [
+      {
+        id: "comment9",
+        text: "I never knew!",
+      },
+      {
+        id: "comment10",
+        text: "This is a very deep joke.",
+      },
+    ],
   },
   {
     __typename: 'Story',
@@ -98,7 +107,12 @@ const nodes = [
     },
     likeCount: 160,
     doesViewerLike: false,
-    comments: [],
+    comments: [
+      {
+        id: "comment11",
+        text: "Aren't hedges dark though???",
+      }
+    ],
   },
   {
     __typename: 'Story',
@@ -106,7 +120,7 @@ const nodes = [
     category: 'COOKING',
     title: 'Onion Soup Recipe',
     summary: "I am so excited to share with you my all-time favorite recipe for French onion soup. I can't even begin to tell you how many times I've made this dish for my family and friends, and it never fails to impress.\n\n As a self-proclaimed wine mom, I always love finding new and creative ways to incorporate my favorite vintages into my cooking. And let me tell you, the dry white wine in this recipe really takes the flavor of the onions to the next level. Trust me, it's a game changer.\n \n But don't just take my word for it – give this recipe a try for yourself and see how it becomes a new staple in your household. Not only is it delicious, but it's also the perfect comfort food for those cold winter nights.\n \n So grab your wine glasses and let's get cooking!",
-    authorID: '1',
+    authorID: '8',
     createdAt: '2020-01-01T00:00:00.000Z',
     attachments: [{
       url: "/assets/recipe.png",
@@ -116,7 +130,12 @@ const nodes = [
     },
     likeCount: 12,
     doesViewerLike: false,
-    comments: [],
+    comments: [
+      {
+        id: "comment12",
+        text: "I tried it with passionfruit instead of onions, it's a great substitution!"
+      }
+    ],
   },
   {
     __typename: 'Story',
@@ -124,7 +143,7 @@ const nodes = [
     category: 'ALL',
     title: 'What is my cat trying to tell me?',
     summary: "I just had the most surreal conversation with my cat. I was talking to her about my day and she just stared at me with this really intense look in her eyes and meowed. I have no idea what she was trying to say, but I have a feeling she was trying to impart some deep wisdom on me. Or maybe she just wanted more treats. Either way, it was a very interesting conversation. #catconvo #felinewisdom",
-    authorID: '1',
+    authorID: '9',
     createdAt: '2020-01-01T00:00:00.000Z',
     attachments: [{
       url: "/assets/cat.png",
@@ -141,7 +160,7 @@ const nodes = [
     id: '6',
     name: 'Gazelle Gazette',
     profilePicture: {
-      url: "/assets/chris.p.bacon.png",
+      url: "/assets/gazelle.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     organizationKind: 'JOURNALISTIC',
@@ -151,7 +170,7 @@ const nodes = [
     id: '7',
     name: 'Baller Bovine Board',
     profilePicture: {
-      url: "/assets/chris.p.bacon.png",
+      url: "/assets/bovine.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     organizationKind: 'NONPROFIT',
@@ -161,7 +180,7 @@ const nodes = [
     id: '8',
     name: 'Suzie Queue',
     profilePicture: {
-      url: "/assets/chris.p.bacon.png",
+      url: "/assets/blogger.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     location: {
@@ -172,9 +191,9 @@ const nodes = [
   {
     __typename: 'Person',
     id: '9',
-    name: 'Artie G.',
+    name: 'Katrina Starer',
     profilePicture: {
-      url: "/assets/chris.p.bacon.png",
+      url: "/assets/cat_avatar.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     location: {
@@ -187,7 +206,7 @@ const nodes = [
     id: '13',
     name: 'Alexei Fyodorovich Karamazov',
     profilePicture: {
-      url: "/assets/chris.p.bacon.png",
+      url: "/assets/alexei.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     location: {
