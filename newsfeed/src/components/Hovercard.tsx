@@ -22,7 +22,7 @@ export default function Hovercard({ children, targetRef, onBeginHover }: Props) 
           y: event.clientY,
         });
       } else {
-        // setHoverState(null);
+        setHoverState(null);
       }
     })
   });
