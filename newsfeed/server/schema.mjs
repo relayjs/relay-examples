@@ -85,6 +85,7 @@ const ActorInterface = new GraphQLInterfaceType({
     id: {type: new GraphQLNonNull(GraphQLID)},
     name: {type: GraphQLString},
     profilePicture: {type: ImageType},
+    joined: {type: DateTimeType},
   }
 });
 
@@ -95,6 +96,7 @@ const PersonType = new GraphQLObjectType({
     name: {type: GraphQLString},
     email: {type: GraphQLString},
     profilePicture: {type: ImageType},
+    joined: {type: DateTimeType},
     location: {type: LocationType},
   },
   interfaces: [NodeInterface, ActorInterface],
@@ -106,6 +108,7 @@ const OrganizationType = new GraphQLObjectType({
     id: {type: new GraphQLNonNull(GraphQLID)},
     name: {type: GraphQLString},
     profilePicture: {type: ImageType},
+    joined: {type: DateTimeType},
     organizationKind: {type: OrganizationKindType},
   },
   interfaces: [NodeInterface, ActorInterface],

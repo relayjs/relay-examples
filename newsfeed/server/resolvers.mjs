@@ -7,6 +7,7 @@ const nodes = [
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    joined: '2020-01-01T00:00:00.000Z',
     location: {
       id: '10',
       name: 'Poultropolis',
@@ -124,15 +125,17 @@ const nodes = [
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    joined: '2020-01-01T00:00:00.000Z',
     organizationKind: 'JOURNALISTIC',
   },
   {
     __typename: 'Organization',
     id: '7',
-    name: 'Baller Bos Board',
+    name: 'Baller Bovine Board',
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    joined: '2020-01-01T00:00:00.000Z',
     organizationKind: 'NONPROFIT',
   },
   {
@@ -142,6 +145,7 @@ const nodes = [
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    joined: '2020-01-01T00:00:00.000Z',
     location: {
       id: '11',
       name: 'Venice',
@@ -154,6 +158,7 @@ const nodes = [
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    joined: '2020-01-01T00:00:00.000Z',
     location: {
       id: '12',
       name: 'New York',
@@ -166,6 +171,7 @@ const nodes = [
     profilePicture: {
       url: "/assets/chris.p.bacon.png",
     },
+    joined: '2020-01-01T00:00:00.000Z',
     location: {
       id: '14',
       name: 'Among Us',
