@@ -1,0 +1,38 @@
+import * as React from "react";
+import {graphql} from 'relay-runtime';
+import {useFragment} from 'react-relay';
+import type {StoryCommentsSectionFragment$key} from './__generated__/StoryCommentsSectionFragment.graphql';
+import StoryCommentRow from './StoryCommentRow';
+
+const {useState, useTransition} = React;
+
+export type Props = {
+  story: StoryCommentsSectionFragment$key;
+};
+
+const StoryCommentsSectionFragment = graphql`
+  fragment StoryCommentsSectionFragment on Story {
+    comments(first: 1) {
+      pageInfo {
+        startCursor
+      }
+      edges {
+        node {
+          id
+          ...StoryCommentRowFragment
+        }
+      }
+    }
+  }
+`;
+
+export default function StoryCommentsSection({ story }: Props) {
+  const data = useFragment(StoryCommentsSectionFragment, story);
+  return (
+    <div>
+      {data.comments.edges.map(edge =>
+        <StoryCommentRow key={edge.node.id} comment={edge.node} />
+      )}
+    </div>
+  );
+}

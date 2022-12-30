@@ -1,7 +1,52 @@
 import http from 'http';
-import {graphql} from 'graphql';
+import {execute, validate, validateSchema, parse} from 'graphql';
 import {schema} from './schema.mjs';
 import {rootValue} from './resolvers.mjs';
+
+// This is graphqlImpl from graphql/graphql.mjs but with
+// execute in place of execute.
+// See https://github.com/graphql/graphql-js/blob/a358757e7b66189f6711ef3229340e6bf4d3c93f/website/docs/tutorials/defer-stream.md
+function graphql(args) {
+  const {
+    schema,
+    source,
+    rootValue,
+    contextValue,
+    variableValues,
+    operationName,
+    fieldResolver,
+    typeResolver,
+  } = args;
+  // Validate Schema
+  const schemaValidationErrors = validateSchema(schema);
+  if (schemaValidationErrors.length > 0) {
+    return { errors: schemaValidationErrors };
+  }
+  // Parse
+  let document;
+  try {
+    document = parse(source);
+  } catch (syntaxError) {
+    return { errors: [syntaxError] };
+  }
+  // Validate
+  const validationErrors = validate(schema, document);
+  if (validationErrors.length > 0) {
+    return { errors: validationErrors };
+  }
+  // Execute
+  return execute({
+    schema,
+    document,
+    rootValue,
+    contextValue,
+    variableValues,
+    operationName,
+    fieldResolver,
+    typeResolver,
+  });
+}
+
 
 const PORT = 8080;
 const server = http.createServer(async (req, res) => {

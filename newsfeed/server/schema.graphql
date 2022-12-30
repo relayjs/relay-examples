@@ -1,11 +1,37 @@
 # @generated
 # run `yarn print-schema` to re-generate this file.
 
+"""
+Directs the executor to defer this fragment when the `if` argument is true or undefined.
+"""
+directive @defer(
+  """Deferred when true or undefined."""
+  if: Boolean! = true
+
+  """Unique name"""
+  label: String
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+Directs the executor to stream plural fields when the `if` argument is true or undefined.
+"""
+directive @stream(
+  """Stream when true or undefined."""
+  if: Boolean! = true
+
+  """Unique name"""
+  label: String
+
+  """Number of items to return immediately"""
+  initialCount: Int = 0
+) on FIELD
+
 type Person implements Node & Actor {
   id: ID!
   name: String
   email: String
   profilePicture: Image
+  joined: String
   location: Location
 }
 
@@ -14,12 +40,14 @@ interface Node {
 }
 
 interface Actor {
+  id: ID!
   name: String
   profilePicture: Image
+  joined: String
 }
 
 type Image {
-  url: String!
+  url(height: Int, width: Int): String!
 }
 
 type Location {
@@ -31,6 +59,7 @@ type Organization implements Node & Actor {
   id: ID!
   name: String
   profilePicture: Image
+  joined: String
   organizationKind: OrganizationKind
 }
 
@@ -51,6 +80,9 @@ type Story implements Node {
   attachments: [Image]
   poster: Actor!
   thumbnail: Image
+  likeCount: Int
+  doesViewerLike: Boolean
+  comments(first: Int, after: String): CommentsConnection
 }
 
 enum Category {
@@ -58,6 +90,29 @@ enum Category {
   EDUCATION
   NEWS
   COOKING
+}
+
+type CommentsConnection {
+  edges: [CommentsConnectionEdge]
+  pageInfo: PageInfo
+}
+
+type CommentsConnectionEdge {
+  node: Comment
+  cursor: String
+}
+
+type Comment {
+  id: ID!
+  text: String
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  lastCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
 }
 
 type Query {
@@ -68,22 +123,30 @@ type Query {
 
 type Viewer {
   actor: Actor
-  newsfeed(first: Int, after: String): Connection
+  contacts(search: String): [Actor]
+  newsfeedStories(first: Int, after: String, category: Category): StoriesConnection
 }
 
-type Connection {
-  edges: [ConnectionEdge]
+type StoriesConnection {
+  edges: [StoriesConnectionEdge]
   pageInfo: PageInfo
 }
 
-type ConnectionEdge {
-  node: Node
+type StoriesConnectionEdge {
+  node: Story
   cursor: String
 }
 
-type PageInfo {
-  startCursor: String
-  endCursor: String
-  hasNextPage: Boolean
-  hasPreviousPage: Boolean
+type Mutation {
+  likeStory(id: ID!, doesLike: Boolean!): StoryMutationResponse
+  postStoryComment(id: ID!, text: String!): StoryCommentMutationResponse
+}
+
+type StoryMutationResponse {
+  story: Story
+}
+
+type StoryCommentMutationResponse {
+  story: Story
+  commentEdge: CommentsConnectionEdge
 }
