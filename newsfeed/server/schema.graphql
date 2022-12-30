@@ -47,7 +47,7 @@ interface Actor {
 }
 
 type Image {
-  url: String!
+  url(height: Int, width: Int): String!
 }
 
 type Location {

@@ -119,6 +119,24 @@ const nodes = [
     comments: [],
   },
   {
+    __typename: 'Story',
+    id: 'story6',
+    category: 'ALL',
+    title: 'What is my cat trying to tell me?',
+    summary: "I just had the most surreal conversation with my cat. I was talking to her about my day and she just stared at me with this really intense look in her eyes and meowed. I have no idea what she was trying to say, but I have a feeling she was trying to impart some deep wisdom on me. Or maybe she just wanted more treats. Either way, it was a very interesting conversation. #catconvo #felinewisdom",
+    authorID: '1',
+    createdAt: '2020-01-01T00:00:00.000Z',
+    attachments: [{
+      url: "/assets/cat.png",
+    }],
+    thumbnail: {
+      url: "/assets/cat.png",
+    },
+    likeCount: 12,
+    doesViewerLike: false,
+    comments: [],
+  },
+  {
     __typename: 'Organization',
     id: '6',
     name: 'Gazelle Gazette',
@@ -268,6 +286,14 @@ export function resolvePostStoryCommentMutation(_, {id, text}) {
       node: newComment,
     },
   };
+}
+
+export function resolveImageURL(
+  {url},
+  {width, height},
+) {
+  const params = [['width', width], ['height', height]].filter(([k,v]) => v != null);
+  return url + (params.length ? '?' + params.map(([k,v] )=> `${k}=${v}`).join('&') : '');
 }
 
 export const rootValue = {

@@ -10,6 +10,7 @@ import {
   storyCommentsResolver,
   resolveLikeStoryMutation,
   resolvePostStoryCommentMutation,
+  resolveImageURL,
 } from './resolvers.mjs';
 
 import {
@@ -67,7 +68,14 @@ const OrganizationKindType = new GraphQLEnumType({
 const ImageType = new GraphQLObjectType({
   name: 'Image',
   fields: {
-    url: {type: new GraphQLNonNull(GraphQLString)},
+    url: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: resolveImageURL,
+      args: {
+        height: {type: GraphQLInt},
+        width: {type: GraphQLInt},
+      }
+    },
   },
 });
 
