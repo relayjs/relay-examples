@@ -3,14 +3,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #eee;
 }
 
 .app {
   display: grid;
   gap: 10px;
-  padding: 10px;
   grid-template-columns: 3fr 2fr;
-  background-color: #eee;
 }
 
 .newsfeed {
@@ -19,6 +18,7 @@ body {
 
 .sidebar {
   background-color: #ddd;
+  min-height: 100vh;
 }
 
 .card {

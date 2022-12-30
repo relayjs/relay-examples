@@ -19,7 +19,7 @@ const StoryCommentsSectionFragment = graphql`
       edges {
         node {
           id
-          ...StoryCommentRowFragment
+          ...CommentFragment
         }
       }
     }

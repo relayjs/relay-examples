@@ -13,9 +13,7 @@ export type Props = {
 export default function PosterByline({ poster }: Props): React.ReactElement {
   return (
     <div className="byline">
-      <picture>
-        <Image image={poster.profilePicture} width={60} height={60} />
-      </picture>
+      <Image image={poster.profilePicture} width={60} height={60} className="byline__image" />
       <div className="byline__name">{poster.name}</div>
     </div>
   );

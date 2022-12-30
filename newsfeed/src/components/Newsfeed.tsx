@@ -9,7 +9,7 @@ export default function Newsfeed() {
     poster: {
       name: "Chris P. Bacon",
       profilePicture: {
-        url: "/assets/chris.p.bacon.png",
+        url: "/assets/pig.png",
       },
     },
     thumbnail: {
