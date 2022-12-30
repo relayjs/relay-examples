@@ -10,6 +10,7 @@ body {
   gap: 10px;
   padding: 10px;
   grid-template-columns: 3fr 2fr;
+  background-color: #eee;
 }
 
 .newsfeed {
@@ -17,12 +18,16 @@ body {
 }
 
 .sidebar {
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 .card {
-  padding: 10px;
+  padding: 12px;
+  margin: 12px;
+  background-color: white;
+  border-radius: 6px;
   border-bottom: 1px solid #eee;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .hovercard {
@@ -53,10 +58,9 @@ body {
 }
 
 .byline {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  grid-template-rows: 22px 38px;
-  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .byline__name {
@@ -65,27 +69,16 @@ body {
   display: inline-block;
   font-weight: 600;
   font-size: 1rem;
-  padding: 10px 0 0;
+  padding: 0 0 6px 12px;
 }
 
 .byline__image {
-  grid-column: 1;
-  grid-row: 1 /2;
   width: 60px;
   border-radius: 60px;
   overflow: hidden;
   border: 1px solid #fff;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
-
-.byline__detail {
-  color: #999;
-  font-size: .8rem;
-  grid-column: 2;
-  grid-row: 2;
-  display: inline-block;
-}
-
 
 .posterHovercard {
   width: 400px;
