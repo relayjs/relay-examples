@@ -1,5 +1,7 @@
 /**
  * Basic GraphQL schema for the Newsfeed app.
+ * You must run `yarn print-schema` in `server/` and then restart `npm run dev`
+ * after modifying this file. This regenerates the GraphQL schema.
  */
 
 import {
@@ -76,6 +78,7 @@ const ImageType = new GraphQLObjectType({
         width: {type: GraphQLInt},
       }
     },
+    altText: { type: GraphQLString, },
   },
 });
 

@@ -26,6 +26,7 @@ const nodes = [
     }],
     thumbnail: {
       url: "/assets/yak.png",
+      altText: 'Portrait of Max the Yak by a local artist'
     },
     likeCount: 5,
     doesViewerLike: false,
@@ -171,6 +172,7 @@ const nodes = [
     name: 'Baller Bovine Board',
     profilePicture: {
       url: "/assets/bovine.png",
+      altText: "Blue-ribboned insignia of the Baller Bovine Board",
     },
     joined: '2020-01-01T00:00:00.000Z',
     organizationKind: 'NONPROFIT',
