@@ -13,19 +13,27 @@ export type Props = {
 
 export default function Hovercard({ children, targetRef, onBeginHover }: Props) {
   const [hoverState, setHoverState] = useState(null);
+
   useEffect(() => {
-    document.addEventListener('mouseover', event => {
-      if (event.target === targetRef.current) {
-        onBeginHover?.();
-        setHoverState({
-          x: event.clientX,
-          y: event.clientY,
-        });
-      } else {
-        setHoverState(null);
-      }
-    })
+    const target = targetRef.current;
+    const enterCallback = (event: MouseEvent) => {
+      onBeginHover?.();
+      setHoverState({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    }
+    const leaveCallback = () => {
+      setHoverState(null);
+    }
+    target.addEventListener('mouseenter', enterCallback);
+    target.addEventListener('mouseleave', leaveCallback);
+    return () => {
+      target.removeEventListener('mouseenter', enterCallback);
+      target.removeEventListener('mouseleave', leaveCallback);
+    }
   });
+
   if (!hoverState) {
     return null;
   }
