@@ -203,6 +203,47 @@ const nodes = [
       name: 'Venice',
     }
   },
+
+  {
+    __typename: 'Person',
+    id: '15',
+    name: 'Jennifer Letuchyberg',
+    profilePicture: {
+      url: "/assets/j.png",
+    },
+    joined: '2020-01-01T00:00:00.000Z',
+    location: {
+      id: '16',
+      name: 'Zig Zag',
+    },
+  },
+  {
+    __typename: 'Person',
+    id: '13',
+    name: 'Alexei Seligsteinwitz',
+    profilePicture: {
+      url: "/assets/alexei.png",
+    },
+    joined: '2020-01-01T00:00:00.000Z',
+    location: {
+      id: '14',
+      name: 'Mystery',
+    }
+  },
+
+  {
+    __typename: 'Person',
+    id: '19',
+    name: 'Catalina Chaiman',
+    profilePicture: {
+      url: "/assets/c.png",
+    },
+    joined: '2020-01-01T00:00:00.000Z',
+    location: {
+      id: '20',
+      name: 'Weed',
+    }
+  },
   {
     __typename: 'Person',
     id: '9',
@@ -218,15 +259,28 @@ const nodes = [
   },
   {
     __typename: 'Person',
-    id: '13',
-    name: 'Alexei Fyodorovich Karamazov',
+    id: '17',
+    name: 'Paige Talaberg',
     profilePicture: {
-      url: "/assets/alexei.png",
+      url: "/assets/p.png",
     },
     joined: '2020-01-01T00:00:00.000Z',
     location: {
-      id: '14',
-      name: 'Among Us',
+      id: '18',
+      name: 'Boring',
+    }
+  },
+  {
+    __typename: 'Person',
+    id: '21',
+    name: 'Huy Li',
+    profilePicture: {
+      url: "/assets/h.png",
+    },
+    joined: '2020-01-01T00:00:00.000Z',
+    location: {
+      id: '22',
+      name: 'Cave Junction',
     }
   },
 ];
