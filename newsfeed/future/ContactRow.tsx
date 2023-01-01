@@ -21,9 +21,9 @@ const ContactRowFragment = graphql`
 export default function ContactRow({ contact }: Props): React.ReactElement {
   const data = useFragment(ContactRowFragment, contact);
   return (
-    <div className="byline">
-      <Image image={data.profilePicture} width={60} height={60} className="byline__image" />
-      <div className="byline__name">{data.name}</div>
+    <div className="contactRow">
+      <Image image={data.profilePicture} width={60} height={60} className="contactRow__image" />
+      <div className="contactRow__name">{data.name}</div>
     </div>
   );
 }
