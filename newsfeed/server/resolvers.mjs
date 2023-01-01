@@ -269,7 +269,8 @@ export function newsfeedStoriesResolver(_, {first, after: afterStr, category}) {
 }
 
 export function contactsResolver(_, {search}) {
-  const persons = nodes.filter(node => node.__typename === 'Person');
+  const persons = nodes.filter(node =>
+    node.__typename === 'Person' && node.id !== 'the-viewer');
   if (search == null || search == '') {
     return persons;
   } else {

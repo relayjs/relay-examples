@@ -20,10 +20,12 @@ export default function ViewerProfile({viewer}: {
 }) {
   const data = useFragment(ViewerProfileFragment, viewer);
   return (
-    <div className="viewerProfile">
-      <img src={data.actor.profilePicture.url} height="60" width="60"/>
-      <div className="viewerProfile__name">{data.actor.name}</div>
-      <div className="viewerProfile__menu">⋯</div>
-    </div>
+    <Card dim={true}>
+      <div className="viewerProfile">
+        <img src={data.actor.profilePicture.url} height="60" width="60"/>
+        <div className="viewerProfile__name">{data.actor.name}</div>
+        <div className="viewerProfile__menu">⋯</div>
+      </div>
+    </Card>
   );
 }
