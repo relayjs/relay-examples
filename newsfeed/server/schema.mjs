@@ -9,6 +9,7 @@ import {
   storyPosterResolver,
   newsfeedStoriesResolver,
   topStoryResolver,
+  topStoriesResolver,
   storyCommentsResolver,
   resolveLikeStoryMutation,
   resolvePostStoryCommentMutation,
@@ -249,6 +250,10 @@ const QueryType = new GraphQLObjectType({
       args: {
         category: {type: CategoryType}
       }
+    },
+    topStories: {
+      type: new GraphQLList(StoryType),
+      resolve: topStoriesResolver,
     },
   },
 });

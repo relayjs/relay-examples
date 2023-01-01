@@ -120,6 +120,7 @@ type Query {
   viewer: Viewer
   node(id: ID!): Node
   topStory(category: Category): Story
+  topStories: [Story]
 }
 
 type Viewer {

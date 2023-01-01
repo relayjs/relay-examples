@@ -3,11 +3,12 @@ import { graphql } from 'relay-runtime';
 import { useLazyLoadQuery } from "react-relay";
 import LoadingSpinner from './LoadingSpinner';
 import type {SidebarQuery as SidebarQueryType} from './__generated__/SidebarQuery.graphql';
+import ViewerProfile from './ViewerProfile';
 
 const SidebarQuery = graphql`
   query SidebarQuery {
     viewer {
-      __typename
+      ...ViewerProfileFragment
     }
   }
 `;
@@ -26,6 +27,7 @@ function SidebarContents() {
   const data = useLazyLoadQuery<SidebarQueryType>(SidebarQuery, {});
   return (
     <>
+      <ViewerProfile viewer={data.viewer} />
     </>
   );
 }

@@ -2,6 +2,19 @@
 const nodes = [
   {
     __typename: 'Person',
+    id: 'the-viewer',
+    name: 'A. D. Veloper',
+    profilePicture: {
+      url: "/assets/a.png",
+    },
+    joined: '2023-01-01T00:00:00.000Z',
+    location: {
+      id: 'viewer-location',
+      name: 'Wheresoever You Are',
+    }
+  },
+  {
+    __typename: 'Person',
     id: '1',
     name: 'Chris P. Bacon',
     profilePicture: {
@@ -230,6 +243,10 @@ export function topStoryResolver(_, {category}) {
   }
 }
 
+export function topStoriesResolver() {
+  return nodes.filter(node => node.__typename === 'Story').slice(0, 3);
+}
+
 export function storyPosterResolver(story) {
   return nodeResolver({id: story.authorID})
 }
@@ -320,7 +337,7 @@ export function resolveImageURL(
 export const rootValue = {
   viewer: () => {
     return {
-      actor: nodes.find(node => node.id === '1'),
+      actor: nodes.find(node => node.id === 'the-viewer'),
     };
   },
   node: (args) => {
