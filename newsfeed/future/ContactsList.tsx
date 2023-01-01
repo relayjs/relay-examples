@@ -12,6 +12,7 @@ export type Props = {
 const ContactsListFragment = graphql`
   fragment ContactsListFragment on Viewer {
     contacts {
+      id
       ...ContactRowFragment
     }
   }
@@ -20,8 +21,11 @@ const ContactsListFragment = graphql`
 export default function ContactsList({ viewer }: Props) {
   const data = useFragment(ContactsListFragment, viewer);
   return (
-    <Card>
-      {data.contacts.map(contact => <ContactRow contact={contact} />)}
+    <Card dim={true}>
+      <h3>Contacts</h3>
+      {data.contacts.map(contact =>
+        <ContactRow key={contact.id} contact={contact} />
+      )}
     </Card>
   );
 }
