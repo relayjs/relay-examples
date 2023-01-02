@@ -47,6 +47,11 @@ function graphql(args) {
   });
 }
 
+function sleep(s) {
+  return new Promise(r => {
+    setTimeout(r, s);
+  });
+}
 
 const PORT = 8080;
 const server = http.createServer(async (req, res) => {
@@ -70,6 +75,9 @@ const server = http.createServer(async (req, res) => {
   if (response?.errors != null) {
     console.error('GraphQL Server Errors', response.errors);
   }
+
+  // Wait 1 second to make loading states perceptible:
+  await sleep(1000);
 
   res.end(JSON.stringify(response));
 });
