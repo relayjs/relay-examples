@@ -21,8 +21,8 @@ body {
   top: 0;
   right: 0;
   display: flex;
-  justify-content: flex-end;;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: column-reverse;
   background-color: #ddd;
   height: 100vh;
   width: 300px;
@@ -245,13 +245,25 @@ body {
 }
 
 .searchInput {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.searchInput .small-spinner {
+  position: absolute;
+  top: calc(50% - 8px);
+  right: 6px;
+}
+
+.searchInput input {
   width: 100%;
   padding: 12px;
-  margin-bottom: 12px;
   border-radius: 12px;
   font-size: 1.2rem;
   border: 1px solid #ccc;
 }
+
+
 
 .contactRow {
   margin: 6px 0;
@@ -275,6 +287,12 @@ body {
 }
 
 /* Spinner */
+
+.loading-spinner-wrapper {
+  position: absolute;
+  top: 50vh;
+  left: calc(50% - 40px);
+}
 
 .loading-spinner {
   display: inline-block;
