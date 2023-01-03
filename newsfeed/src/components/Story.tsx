@@ -10,7 +10,7 @@ type Props = {
     title: string;
     summary: string;
     thumbnail: {
-      url: string,
+      url: string;
     };
     poster: PosterBylineProps["poster"];
   };

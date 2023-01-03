@@ -5,7 +5,7 @@ export default function Card({
   dim,
 }: {
   children: React.ReactNode;
-  dim?: boolean,
+  dim?: boolean;
 }): React.ReactElement {
-  return <div className={'card' + (dim ? ' dim' : '')}>{children}</div>;
+  return <div className={"card" + (dim ? " dim" : "")}>{children}</div>;
 }

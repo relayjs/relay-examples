@@ -3,7 +3,12 @@ import SmallSpinner from "./SmallSpinner";
 
 // In a real app this would be imported from NewsfeedQuery.graphql; it is only defined
 // separately here to make the step-by-step examples work when partially completed.
-type Category = "ALL" | "COOKING" | "EDUCATION" | "NEWS" | "%future added value";
+type Category =
+  | "ALL"
+  | "COOKING"
+  | "EDUCATION"
+  | "NEWS"
+  | "%future added value";
 
 export default function CategorySelector({
   value,
@@ -12,7 +17,7 @@ export default function CategorySelector({
 }: {
   value: Category;
   onChange: (newValue: Category) => void;
-  isPending?: boolean,
+  isPending?: boolean;
 }): React.ReactElement {
   return (
     <div>
@@ -28,9 +33,9 @@ export default function CategorySelector({
 }
 
 function coerce(s: string): Category {
-  if (s==='ALL') return s;
-  if (s==='COOKING') return s;
-  if (s==='EDUCATION') return s;
-  if (s==='NEWS') return s;
-  return 'ALL';
+  if (s === "ALL") return s;
+  if (s === "COOKING") return s;
+  if (s === "EDUCATION") return s;
+  if (s === "NEWS") return s;
+  return "ALL";
 }

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { graphql } from 'relay-runtime';
+import { graphql } from "relay-runtime";
 import { useLazyLoadQuery } from "react-relay";
-import LoadingSpinner from './LoadingSpinner';
-import type {SidebarQuery as SidebarQueryType} from './__generated__/SidebarQuery.graphql';
-import ViewerProfile from './ViewerProfile';
+import LoadingSpinner from "./LoadingSpinner";
+import type { SidebarQuery as SidebarQueryType } from "./__generated__/SidebarQuery.graphql";
+import ViewerProfile from "./ViewerProfile";
 
 const SidebarQuery = graphql`
   query SidebarQuery {

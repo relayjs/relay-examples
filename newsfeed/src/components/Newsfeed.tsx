@@ -4,8 +4,7 @@ import Story from "./Story";
 export default function Newsfeed() {
   const story = {
     title: "Placeholder Story",
-    summary:
-      "Placeholder data, to be replaced with data fetched via GraphQL",
+    summary: "Placeholder data, to be replaced with data fetched via GraphQL",
     poster: {
       name: "Placeholder Person",
       profilePicture: {

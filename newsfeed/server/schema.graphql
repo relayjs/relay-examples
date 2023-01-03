@@ -5,10 +5,14 @@
 Directs the executor to defer this fragment when the `if` argument is true or undefined.
 """
 directive @defer(
-  """Deferred when true or undefined."""
+  """
+  Deferred when true or undefined.
+  """
   if: Boolean! = true
 
-  """Unique name"""
+  """
+  Unique name
+  """
   label: String
 ) on FRAGMENT_SPREAD | INLINE_FRAGMENT
 
@@ -16,13 +20,19 @@ directive @defer(
 Directs the executor to stream plural fields when the `if` argument is true or undefined.
 """
 directive @stream(
-  """Stream when true or undefined."""
+  """
+  Stream when true or undefined.
+  """
   if: Boolean! = true
 
-  """Unique name"""
+  """
+  Unique name
+  """
   label: String
 
-  """Number of items to return immediately"""
+  """
+  Number of items to return immediately
+  """
   initialCount: Int = 0
 ) on FIELD
 
@@ -126,7 +136,11 @@ type Query {
 type Viewer {
   actor: Actor
   contacts(search: String): [Actor]
-  newsfeedStories(first: Int, after: String, category: Category): StoriesConnection
+  newsfeedStories(
+    first: Int
+    after: String
+    category: Category
+  ): StoriesConnection
 }
 
 type StoriesConnection {

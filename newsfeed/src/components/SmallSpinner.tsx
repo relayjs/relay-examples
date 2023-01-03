@@ -1,7 +1,5 @@
 import * as React from "react";
 
 export default function SmallSpinner({}): React.ReactElement {
-  return (
-    <div className="small-spinner"></div>
-  );
+  return <div className="small-spinner"></div>;
 }

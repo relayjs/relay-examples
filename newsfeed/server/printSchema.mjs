@@ -1,5 +1,8 @@
-import {printSchema} from 'graphql';
+import { printSchema } from "graphql";
 
-import {schema} from './schema.mjs';
+import { schema } from "./schema.mjs";
 
-console.log("# @generated\n# run `yarn print-schema` to re-generate this file.\n\n" + printSchema(schema));
+console.log(
+  "# @generated\n# run `yarn print-schema` to re-generate this file.\n\n" +
+    printSchema(schema)
+);
