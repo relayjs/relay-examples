@@ -4,11 +4,13 @@ import { useLazyLoadQuery } from "react-relay";
 import LoadingSpinner from "./LoadingSpinner";
 import type { SidebarQuery as SidebarQueryType } from "./__generated__/SidebarQuery.graphql";
 import ViewerProfile from "./ViewerProfile";
+import ContactsList from "./ContactsList";
 
 const SidebarQuery = graphql`
   query SidebarQuery {
     viewer {
       ...ViewerProfileFragment
+      ...ContactsListFragment
     }
   }
 `;
@@ -28,6 +30,7 @@ function SidebarContents() {
   return (
     <>
       <ViewerProfile viewer={data.viewer} />
+      <ContactsList viewer={data.viewer} />
     </>
   );
 }
