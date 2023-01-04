@@ -1,5 +1,7 @@
 /**
  * Basic GraphQL schema for the Newsfeed app.
+ * You must run `yarn print-schema` in `server/` and then restart `npm run dev`
+ * after modifying this file. This regenerates the GraphQL schema.
  */
 
 import {
@@ -7,11 +9,12 @@ import {
   storyPosterResolver,
   newsfeedStoriesResolver,
   topStoryResolver,
+  topStoriesResolver,
   storyCommentsResolver,
   resolveLikeStoryMutation,
   resolvePostStoryCommentMutation,
   resolveImageURL,
-} from './resolvers.mjs';
+} from "./resolvers.mjs";
 
 import {
   GraphQLBoolean,
@@ -28,7 +31,7 @@ import {
   GraphQLDeferDirective,
   GraphQLStreamDirective,
   specifiedDirectives,
-} from 'graphql';
+} from "graphql";
 
 // const DateTimeType = new GraphQLScalarType({
 //   name: 'DateTime',
@@ -38,112 +41,112 @@ import {
 const DateTimeType = GraphQLString;
 
 const NodeInterface = new GraphQLInterfaceType({
-  name: 'Node',
+  name: "Node",
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLID)},
-  }
+    id: { type: new GraphQLNonNull(GraphQLID) },
+  },
 });
 
 const CategoryType = new GraphQLEnumType({
-  name: 'Category',
+  name: "Category",
   values: {
     ALL: { value: "ALL" },
     EDUCATION: { value: "EDUCATION" },
     NEWS: { value: "NEWS" },
     COOKING: { value: "COOKING" },
-  }
+  },
 });
 
 const OrganizationKindType = new GraphQLEnumType({
-  name: 'OrganizationKind',
+  name: "OrganizationKind",
   values: {
     COMMERCIAL: { value: "COMMERCIAL" },
     NONPROFIT: { value: "NONPROFIT" },
     GOVERNMENT: { value: "GOVERNMENT" },
     JOURNALISTIC: { value: "JOURNALISTIC" },
-  }
+  },
 });
 
-
 const ImageType = new GraphQLObjectType({
-  name: 'Image',
+  name: "Image",
   fields: {
     url: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: resolveImageURL,
       args: {
-        height: {type: GraphQLInt},
-        width: {type: GraphQLInt},
-      }
+        height: { type: GraphQLInt },
+        width: { type: GraphQLInt },
+      },
     },
+    altText: { type: GraphQLString },
   },
 });
 
 const LocationType = new GraphQLObjectType({
-  name: 'Location',
+  name: "Location",
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLID)},
-    name: {type: new GraphQLNonNull(GraphQLString)},
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    name: { type: new GraphQLNonNull(GraphQLString) },
   },
 });
 
 const ActorInterface = new GraphQLInterfaceType({
-  name: 'Actor',
+  name: "Actor",
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLID)},
-    name: {type: GraphQLString},
-    profilePicture: {type: ImageType},
-    joined: {type: DateTimeType},
-  }
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    name: { type: GraphQLString },
+    profilePicture: { type: ImageType },
+    joined: { type: DateTimeType },
+  },
 });
 
 const PersonType = new GraphQLObjectType({
-  name: 'Person',
+  name: "Person",
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLID)},
-    name: {type: GraphQLString},
-    email: {type: GraphQLString},
-    profilePicture: {type: ImageType},
-    joined: {type: DateTimeType},
-    location: {type: LocationType},
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    profilePicture: { type: ImageType },
+    joined: { type: DateTimeType },
+    location: { type: LocationType },
   },
   interfaces: [NodeInterface, ActorInterface],
 });
 
 const OrganizationType = new GraphQLObjectType({
-  name: 'Organization',
+  name: "Organization",
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLID)},
-    name: {type: GraphQLString},
-    profilePicture: {type: ImageType},
-    joined: {type: DateTimeType},
-    organizationKind: {type: OrganizationKindType},
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    name: { type: GraphQLString },
+    profilePicture: { type: ImageType },
+    joined: { type: DateTimeType },
+    organizationKind: { type: OrganizationKindType },
   },
   interfaces: [NodeInterface, ActorInterface],
 });
 
 const CommentType = new GraphQLObjectType({
-  name: 'Comment',
+  name: "Comment",
   fields: {
-    id: {type: new GraphQLNonNull(GraphQLID)},
-    text: {type: GraphQLString},
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    text: { type: GraphQLString },
   },
 });
 
 const PageInfoType = new GraphQLObjectType({
-  name: 'PageInfo',
+  name: "PageInfo",
   fields: {
-    startCursor: {type: GraphQLString},
-    endCursor: {type: GraphQLString},
-    lastCursor: {type: GraphQLString},
-    hasNextPage: {type: GraphQLBoolean},
-    hasPreviousPage: {type: GraphQLBoolean},
+    startCursor: { type: GraphQLString },
+    endCursor: { type: GraphQLString },
+    lastCursor: { type: GraphQLString },
+    hasNextPage: { type: GraphQLBoolean },
+    hasPreviousPage: { type: GraphQLBoolean },
   },
 });
 
 function createConnectionType(name, nodeType) {
   const edgeType = new GraphQLObjectType({
-    name: name + 'ConnectionEdge',
+    name: name + "ConnectionEdge",
     fields: {
       node: {
         type: nodeType,
@@ -155,7 +158,7 @@ function createConnectionType(name, nodeType) {
   });
 
   const connectionType = new GraphQLObjectType({
-    name: name + 'Connection',
+    name: name + "Connection",
     fields: {
       edges: {
         type: new GraphQLList(edgeType),
@@ -169,22 +172,26 @@ function createConnectionType(name, nodeType) {
   return [connectionType, edgeType];
 }
 
-const [CommentsConnectionType, CommentsConnectionEdgeType] = createConnectionType('Comments', CommentType);
+const [CommentsConnectionType, CommentsConnectionEdgeType] =
+  createConnectionType("Comments", CommentType);
 
 const StoryType = new GraphQLObjectType({
-  name: 'Story',
+  name: "Story",
   fields: {
-    createdAt: {type: new GraphQLNonNull(DateTimeType)},
-    id: {type: new GraphQLNonNull(GraphQLID)},
-    category: {type: CategoryType},
-    title: {type: new GraphQLNonNull(GraphQLString)},
-    summary: {type: GraphQLString},
-    updatedAt: {type: DateTimeType},
-    attachments: {type: new GraphQLList(ImageType)},
-    poster: {type: new GraphQLNonNull(ActorInterface), resolve: storyPosterResolver},
-    thumbnail: {type: ImageType},
-    likeCount: {type: GraphQLInt},
-    doesViewerLike: {type: GraphQLBoolean},
+    createdAt: { type: new GraphQLNonNull(DateTimeType) },
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    category: { type: CategoryType },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    summary: { type: GraphQLString },
+    updatedAt: { type: DateTimeType },
+    attachments: { type: new GraphQLList(ImageType) },
+    poster: {
+      type: new GraphQLNonNull(ActorInterface),
+      resolve: storyPosterResolver,
+    },
+    thumbnail: { type: ImageType },
+    likeCount: { type: GraphQLInt },
+    doesViewerLike: { type: GraphQLBoolean },
     comments: {
       args: {
         first: {
@@ -201,10 +208,13 @@ const StoryType = new GraphQLObjectType({
   interfaces: [NodeInterface],
 });
 
-const [StoriesConnectionType, StoriesConnectionEdgeType] = createConnectionType('Stories', StoryType);
+const [StoriesConnectionType, StoriesConnectionEdgeType] = createConnectionType(
+  "Stories",
+  StoryType
+);
 
 const ViewerType = new GraphQLObjectType({
-  name: 'Viewer',
+  name: "Viewer",
   fields: {
     actor: {
       type: ActorInterface,
@@ -213,16 +223,16 @@ const ViewerType = new GraphQLObjectType({
       args: {
         search: {
           type: GraphQLString,
-        }
+        },
       },
       type: new GraphQLList(ActorInterface),
       resolve: contactsResolver,
     },
     newsfeedStories: {
       args: {
-        first: { type: GraphQLInt, },
-        after: { type: GraphQLString, },
-        category: {type: CategoryType}
+        first: { type: GraphQLInt },
+        after: { type: GraphQLString },
+        category: { type: CategoryType },
       },
       type: StoriesConnectionType,
       resolve: newsfeedStoriesResolver,
@@ -231,60 +241,64 @@ const ViewerType = new GraphQLObjectType({
 });
 
 const QueryType = new GraphQLObjectType({
-  name: 'Query',
+  name: "Query",
   fields: {
-    viewer: {type: ViewerType},
+    viewer: { type: ViewerType },
     node: {
       type: NodeInterface,
       args: {
-        id: {type: new GraphQLNonNull(GraphQLID)},
+        id: { type: new GraphQLNonNull(GraphQLID) },
       },
     },
     topStory: {
       type: StoryType,
       resolve: topStoryResolver,
       args: {
-        category: {type: CategoryType}
-      }
+        category: { type: CategoryType },
+      },
+    },
+    topStories: {
+      type: new GraphQLList(StoryType),
+      resolve: topStoriesResolver,
     },
   },
 });
 
 const StoryMutationResponseType = new GraphQLObjectType({
-  name: 'StoryMutationResponse',
+  name: "StoryMutationResponse",
   fields: {
-    story: {type: StoryType},
-  }
-})
+    story: { type: StoryType },
+  },
+});
 
 const StoryCommentMutationResponseType = new GraphQLObjectType({
-  name: 'StoryCommentMutationResponse',
+  name: "StoryCommentMutationResponse",
   fields: {
-    story: {type: StoryType},
-    commentEdge: {type: CommentsConnectionEdgeType},
+    story: { type: StoryType },
+    commentEdge: { type: CommentsConnectionEdgeType },
   },
-})
+});
 
 const MutationType = new GraphQLObjectType({
-  name: 'Mutation',
+  name: "Mutation",
   fields: {
     likeStory: {
       type: StoryMutationResponseType,
       args: {
-        id: {type: new GraphQLNonNull(GraphQLID)},
-        doesLike: {type: new GraphQLNonNull(GraphQLBoolean)},
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        doesLike: { type: new GraphQLNonNull(GraphQLBoolean) },
       },
       resolve: resolveLikeStoryMutation,
     },
     postStoryComment: {
       type: StoryCommentMutationResponseType,
       args: {
-        id: {type: new GraphQLNonNull(GraphQLID)},
-        text: {type: new GraphQLNonNull(GraphQLString)},
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        text: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: resolvePostStoryCommentMutation,
     },
-  }
+  },
 });
 
 export const schema = new GraphQLSchema({
@@ -295,5 +309,5 @@ export const schema = new GraphQLSchema({
     ...specifiedDirectives,
     GraphQLDeferDirective,
     GraphQLStreamDirective,
-  ]
+  ],
 });

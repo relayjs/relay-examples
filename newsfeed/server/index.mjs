@@ -1,7 +1,7 @@
-import http from 'http';
-import {execute, validate, validateSchema, parse} from 'graphql';
-import {schema} from './schema.mjs';
-import {rootValue} from './resolvers.mjs';
+import http from "http";
+import { execute, validate, validateSchema, parse } from "graphql";
+import { schema } from "./schema.mjs";
+import { rootValue } from "./resolvers.mjs";
 
 // This is graphqlImpl from graphql/graphql.mjs but with
 // execute in place of execute.
@@ -47,14 +47,19 @@ function graphql(args) {
   });
 }
 
+function sleep(s) {
+  return new Promise((r) => {
+    setTimeout(r, s);
+  });
+}
 
 const PORT = 8080;
 const server = http.createServer(async (req, res) => {
-  console.log('request received: ' + req.url);
-  res.writeHead(200, {'Content-Type': 'application/json'});
+  console.log("request received: " + req.url);
+  res.writeHead(200, { "Content-Type": "application/json" });
 
-  let response = {data: null};
-  if (req.method === 'POST') {
+  let response = { data: null };
+  if (req.method === "POST") {
     const buffers = [];
     for await (const chunk of req) {
       buffers.push(chunk);
@@ -68,13 +73,16 @@ const server = http.createServer(async (req, res) => {
     });
   }
   if (response?.errors != null) {
-    console.error('GraphQL Server Errors', response.errors);
+    console.error("GraphQL Server Errors", response.errors);
   }
+
+  // Wait 1 second to make loading states perceptible:
+  await sleep(1000);
 
   res.end(JSON.stringify(response));
 });
 
-console.log('Starting server...');
-server.listen(PORT).addListener('listening', () => {
-  console.log('Server listening on port ' + PORT + '.');
+console.log("Starting server...");
+server.listen(PORT).addListener("listening", () => {
+  console.log("Server listening on port " + PORT + ".");
 });

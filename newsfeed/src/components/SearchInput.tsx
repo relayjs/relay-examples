@@ -1,13 +1,22 @@
 import * as React from "react";
 
-const {useState} = React;
+import SmallSpinner from "./SmallSpinner";
 
 export type Props = {
-  value: string,
-  onChange: (newValue: string) => void,
+  value: string;
+  onChange: (newValue: string) => void;
+  isPending?: boolean;
 };
 
-
-export default function SearchInput({ value, onChange }: Props) {
-  return <input value={value} onChange={(e) => onChange(e.target.value)} />;
+export default function SearchInput({ value, onChange, isPending }: Props) {
+  return (
+    <div className="searchInput">
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search..."
+      />
+      {isPending && <SmallSpinner />}
+    </div>
+  );
 }

@@ -5,5 +5,8 @@ export default function Timestamp({
 }: {
   time: string;
 }): React.ReactElement {
+  if (time == null) {
+    return null;
+  }
   return <span className="timestamp">{new Date(time).toDateString()}</span>;
 }

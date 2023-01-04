@@ -1,7 +1,7 @@
 import * as React from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-const {useEffect, useRef, useLayoutEffect} = React;
+const { useEffect, useRef, useLayoutEffect } = React;
 
 export default function InfiniteScrollTrigger({
   onEndReached,
@@ -21,7 +21,7 @@ export default function InfiniteScrollTrigger({
   const observer = useRef(null);
   if (observer.current === null) {
     observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting ) {
+      if (entries[0].isIntersecting) {
         onIntersect();
       }
     }, {});
@@ -33,7 +33,7 @@ export default function InfiniteScrollTrigger({
     observer.current.observe(target);
     return () => {
       observer.current.unobserve(target);
-    }
+    };
   }, [targetRef]);
 
   return (

@@ -18,5 +18,13 @@ export default function Image({
   if (image == null) {
     return null;
   }
-  return <img key={image.url} src={image.url}  width={width} height={height} className={className} />;
+  return (
+    <img
+      key={image.url}
+      src={image.url}
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
 }
