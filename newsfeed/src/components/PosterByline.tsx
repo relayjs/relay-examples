@@ -1,12 +1,12 @@
 import * as React from "react";
-import Image from './Image';
+import Image from "./ImageComponent";
 
 export type Props = {
   poster: {
     name: string;
     profilePicture: {
-      url: string
-    }
+      url: string;
+    };
   };
 };
 

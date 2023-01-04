@@ -2076,10 +2076,10 @@ graphql@15.3.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.8.0.tgz#33410e96b012fa3bdb1091cc99a94769db212b38"
   integrity sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==
 
-graphql@^16.6.0:
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
-  integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
+graphql@^17.0.0-alpha.2:
+  version "17.0.0-alpha.2.canary.pr.3791.264f22163eb937ff87a420be9f7d45965f2cbf07"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-17.0.0-alpha.2.canary.pr.3791.264f22163eb937ff87a420be9f7d45965f2cbf07.tgz#3835b1183f4a7a735d629df575a29cba3829f1ea"
+  integrity sha512-foJTYdXFHaZNx0M5eks57HBGSNwtfxQWcR7REVG3IB9Q0Ah3pumvN4Jk8GciWARv4/ySP/hKpGMqMFy1TKlqqg==
 
 handle-thing@^2.0.0:
   version "2.0.1"

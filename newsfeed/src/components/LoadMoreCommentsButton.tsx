@@ -9,12 +9,13 @@ export default function Comment({
   onClick,
   disabled,
 }: Props): React.ReactElement {
-  return  (
+  return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className="comments__loadMore">
-        Load more comments
+      className="comments__loadMore"
+    >
+      Load more comments
     </button>
   );
 }

@@ -3,14 +3,14 @@ import Card from "./Card";
 import Heading from "./Heading";
 import PosterByline, { type Props as PosterBylineProps } from "./PosterByline";
 import StorySummary from "./StorySummary";
-import Image from "./Image";
+import Image from "./ImageComponent";
 
 type Props = {
   story: {
     title: string;
     summary: string;
     thumbnail: {
-      url: string,
+      url: string;
     };
     poster: PosterBylineProps["poster"];
   };

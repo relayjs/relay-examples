@@ -1,10 +1,10 @@
 import * as React from "react";
-import {graphql} from 'relay-runtime';
-import {useFragment} from 'react-relay';
+import { graphql } from "relay-runtime";
+import { useFragment } from "react-relay";
 
-import type {StoryCommentsComposerFragment$key} from './__generated__/StoryCommentsComposerFragment.graphql';
+import type { StoryCommentsComposerFragment$key } from "./__generated__/StoryCommentsComposerFragment.graphql";
 
-const {useState} = React;
+const { useState } = React;
 
 export type Props = {
   story: StoryCommentsComposerFragment$key;
@@ -16,11 +16,11 @@ const StoryCommentsComposerFragment = graphql`
   }
 `;
 
-export default function StoryCommentsComposer({story}: Props) {
+export default function StoryCommentsComposer({ story }: Props) {
   const data = useFragment(StoryCommentsComposerFragment, story);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   function onPost() {
-   // TODO post the comment here
+    // TODO post the comment here
   }
   return (
     <div className="commentsComposer">
@@ -30,7 +30,11 @@ export default function StoryCommentsComposer({story}: Props) {
   );
 }
 
-function TextComposer({text, onChange, onReturn}: {
+function TextComposer({
+  text,
+  onChange,
+  onReturn,
+}: {
   text: string;
   onChange: (newValue: string) => void;
   onReturn: () => void;
@@ -39,15 +43,15 @@ function TextComposer({text, onChange, onReturn}: {
     <input
       value={text}
       onChange={(e) => onChange(e.target.value)}
-      onKeyDown={e => {
-        if (e.key === 'Enter' && !e.shiftKey) {
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
           onReturn();
         }
       }}
-      />
+    />
   );
 }
 
-function PostButton({onClick}: {onClick: () => void}) {
-  return <button onClick={onClick}>Post</button>
+function PostButton({ onClick }: { onClick: () => void }) {
+  return <button onClick={onClick}>Post</button>;
 }

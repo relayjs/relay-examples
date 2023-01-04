@@ -38,7 +38,7 @@ body {
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: -1px 12px 47px 1px rgba(0,0,0,0.5);
+  box-shadow: -1px 12px 47px 1px rgba(0, 0, 0, 0.5);
   z-index: 100;
 }
 
