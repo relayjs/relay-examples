@@ -139,6 +139,44 @@ const nodes = [
   },
   {
     __typename: "Story",
+    id: "99",
+    category: "NEWS",
+    title: "Study: The egg came first, but only after the chicken",
+    summary: 'In a shocking new study, scientists have finally determined the age-old question of whether the chicken or the egg came first. And it turns out, the answer is both!\n      According to the research, the egg actually came first — but only after the chicken had already laid it.\n      \n      "We were amazed by the results," said lead researcher Dr. Janet Hennessy. "It seems that the chicken somehow managed to lay an egg before it even existed. It\'s a real chicken-and-egg paradox."\n      \n      The study, which involved observing hundreds of chickens on a farm, found that the birds would lay eggs and then, a short time later, a fully-formed chicken would emerge from the shell.\n      \n      "We always thought that the egg came first and the chicken was born from it," said Hennessy. "But it turns out, the chicken was there all along, just waiting to hatch."\n      \n      The findings have caused quite a stir in the scientific community, with many experts calling for further research to be done on the mysterious life cycle of the chicken.\n      \n      "It\'s a groundbreaking discovery that will change the way we think about the chicken and the egg," said Hennessy. "Who knows what other secrets these amazing creatures may be hiding?"',
+    authorID: "30",
+    createdAt: "2020-01-01T00:00:00.000Z",
+    attachments: [
+      {
+        url: "/assets/puzzled_egg.png",
+      },
+    ],
+    thumbnail: {
+      url: "/assets/puzzled_egg.png",
+    },
+    likeCount: 17,
+    doesViewerLike: false,
+    comments: [
+      {
+        id: "comment13",
+        text: "Wait...",
+      },
+    ],
+  },
+  {
+    __typename: "Person",
+    id: "30",
+    name: "Brock Boc",
+    profilePicture: {
+      url: "/assets/chicken_lover.png",
+    },
+    joined: "2017-04-02T00:00:00.000Z",
+    location: {
+      id: "31",
+      name: "Paradoxopolus",
+    },
+  },
+  {
+    __typename: "Story",
     id: "5",
     category: "COOKING",
     title: "Onion Soup Recipe",
