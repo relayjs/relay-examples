@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
-import StoryCommentRow from "./StoryCommentRow";
+import Comment from "./Comment";
 
 const { useState, useTransition } = React;
 
@@ -31,7 +31,7 @@ export default function StoryCommentsSection({ story }: Props) {
   return (
     <div>
       {data.comments.edges.map((edge) => (
-        <StoryCommentRow key={edge.node.id} comment={edge.node} />
+        <Comment key={edge.node.id} comment={edge.node} />
       ))}
     </div>
   );
