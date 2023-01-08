@@ -21,7 +21,7 @@ export default function Issue(props: { queryRef: PreloadedQuery<IssueQuery> }) {
   );
 
   return (
-    <Suspense fallback="Loading...">
+    <Suspense fallback="Loading (client side)...">
       <h1>{data.repository?.issue?.title}</h1>
       <p>{data.repository?.issue?.bodyText}</p>
       <p>Author: {data.repository?.issue?.author?.login}</p>

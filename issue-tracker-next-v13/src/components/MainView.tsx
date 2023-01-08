@@ -22,7 +22,7 @@ export default function MainView(props: {
   );
 
   return (
-    <Suspense fallback="Loading...">
+    <Suspense fallback="Loading (client side)...">
       <h1>
         {data.repository?.owner.login}/{data.repository?.name}
       </h1>
