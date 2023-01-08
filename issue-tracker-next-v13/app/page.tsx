@@ -1,5 +1,4 @@
 import loadSerializableQuery from "src/relay/loadSerializableQuery";
-import styles from "styles/MainView.module.css";
 import MainViewQueryNode, {
   MainViewQuery,
 } from "__generated__/MainViewQuery.graphql";
@@ -14,11 +13,7 @@ const Page = async () => {
     name: "relay",
   });
 
-  return (
-    <div className={styles.main}>
-      <MainViewClientComponent preloadedQuery={preloadedQuery} />
-    </div>
-  );
+  return <MainViewClientComponent preloadedQuery={preloadedQuery} />;
 };
 
 export default Page;

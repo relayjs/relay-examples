@@ -4,6 +4,8 @@ import { RelayEnvironmentProvider } from "react-relay";
 import { getCurrentEnvironment } from "src/relay/environment";
 import "styles/globals.css";
 
+import styles from "styles/layout.module.css";
+
 export default function RootLayout({
   children,
 }: {
@@ -17,7 +19,7 @@ export default function RootLayout({
         <title>Github Issues: Relay</title>
       </head>
       <RelayEnvironmentProvider environment={environment}>
-        <body>{children}</body>
+        <body className={styles.layout}>{children}</body>
       </RelayEnvironmentProvider>
     </html>
   );
