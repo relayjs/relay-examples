@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { graphql, PreloadedQuery, usePreloadedQuery } from "react-relay";
 import { MainViewQuery } from "__generated__/MainViewQuery.graphql";
 import Issues from "./Issues";
@@ -21,11 +22,11 @@ export default function MainView(props: {
   );
 
   return (
-    <div>
+    <Suspense fallback="Loading...">
       <h1>
         {data.repository?.owner.login}/{data.repository?.name}
       </h1>
       <Issues repository={data.repository} />
-    </div>
+    </Suspense>
   );
 }

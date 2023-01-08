@@ -1,7 +1,6 @@
 "use client";
 
 import MainView from "src/components/MainView";
-import { Suspense } from "react";
 import { useRelayEnvironment } from "react-relay";
 import { SerializablePreloadedQuery } from "src/relay/loadSerializableQuery";
 import MainViewQueryNode, {
@@ -21,11 +20,7 @@ const MainViewClientComponent = (props: {
     props.preloadedQuery
   );
 
-  return (
-    <Suspense fallback="Loading...">
-      <MainView queryRef={queryRef} />
-    </Suspense>
-  );
+  return <MainView queryRef={queryRef} />;
 };
 
 export default MainViewClientComponent;
