@@ -1,3 +1,7 @@
+"use client";
+
+import { RelayEnvironmentProvider } from "react-relay";
+import { getCurrentEnvironment } from "src/relay/environment";
 import "styles/globals.css";
 
 export default function RootLayout({
@@ -5,12 +9,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const environment = getCurrentEnvironment();
+
   return (
     <html>
       <head>
         <title>Github Issues: Relay</title>
       </head>
-      <body>{children}</body>
+      <RelayEnvironmentProvider environment={environment}>
+        <body>{children}</body>
+      </RelayEnvironmentProvider>
     </html>
   );
 }
