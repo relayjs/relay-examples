@@ -1,33 +1,22 @@
 "use client";
 
-import MainView from "src/components/MainView";
-import { Suspense } from "react";
-import { SerializablePreloadedQuery } from "src/relay/loadSerializableQuery";
-import MainViewQueryNode, {
-  MainViewQuery,
-} from "__generated__/MainViewQuery.graphql";
-import { getCurrentEnvironment } from "src/relay/environment";
-import { RelayEnvironmentProvider } from "react-relay";
-import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQuery";
+import { environment } from "src/relay/environment";
+import { IssuesFragment$key } from "__generated__/IssuesFragment.graphql";
+import RelayClientComponent from "src/relay/RelayClientComponent";
+import { FetchQueryInfo } from "src/relay/fetchQuery";
+import Issues from "src/components/Issues";
 
 const MainViewClientComponent = (props: {
-  preloadedQuery: SerializablePreloadedQuery<
-    typeof MainViewQueryNode,
-    MainViewQuery
-  >;
+  issues: IssuesFragment$key | null;
+  fetchQueryInfo: FetchQueryInfo;
 }) => {
-  const environment = getCurrentEnvironment();
-  const queryRef = useSerializablePreloadedQuery(
-    environment,
-    props.preloadedQuery
-  );
-
   return (
-    <RelayEnvironmentProvider environment={environment}>
-      <Suspense fallback="Loading...">
-        <MainView queryRef={queryRef} />
-      </Suspense>
-    </RelayEnvironmentProvider>
+    <RelayClientComponent
+      environment={environment}
+      fetchQueryInfo={props.fetchQueryInfo}
+    >
+      <Issues issues={props.issues} />
+    </RelayClientComponent>
   );
 };
 

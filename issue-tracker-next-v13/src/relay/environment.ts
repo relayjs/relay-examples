@@ -6,7 +6,7 @@ import {
   RequestParameters,
   QueryResponseCache,
   Variables,
-  GraphQLResponse,
+  GraphQLSingularResponse,
   CacheConfig,
 } from "relay-runtime";
 
@@ -17,7 +17,7 @@ const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 export async function networkFetch(
   request: RequestParameters,
   variables: Variables
-): Promise<GraphQLResponse> {
+): Promise<GraphQLSingularResponse> {
   const token = process.env.NEXT_PUBLIC_REACT_APP_GITHUB_AUTH_TOKEN;
   if (token == null || token === "") {
     throw new Error(
@@ -95,11 +95,3 @@ function createEnvironment() {
 }
 
 export const environment = createEnvironment();
-
-export function getCurrentEnvironment() {
-  if (IS_SERVER) {
-    return createEnvironment();
-  }
-
-  return environment;
-}
