@@ -1,10 +1,10 @@
 import styles from "styles/Issue.module.css";
 import { pageIssueQuery } from "__generated__/pageIssueQuery.graphql";
 import fetchQuery from "src/relay/fetchQuery";
-import { environment } from "src/relay/environment";
 import { graphql } from "relay-runtime";
-import IssueComponent from "./IssueComponent";
+import IssueComponent from "src/components/IssueComponent";
 import { Suspense } from "react";
+import RelayEnvironment from "src/relay/RelayEnvironment";
 
 export default async function IssuePage({
   params,
@@ -12,7 +12,7 @@ export default async function IssuePage({
   params: { id: string };
 }) {
   const response = fetchQuery<pageIssueQuery>(
-    environment,
+    RelayEnvironment,
     graphql`
       query pageIssueQuery(
         $owner: String!
@@ -35,10 +35,7 @@ export default async function IssuePage({
   return (
     <Suspense fallback={"Loading issue..."}>
       <div className={styles.issue}>
-        <IssueComponent
-          // This may allow us to send multiple GraphQL queries in one request
-          fragmentKey={(await response).data.repository?.issue ?? null}
-        />
+        <IssueComponent issue={(await response).repository?.issue ?? null} />
       </div>
     </Suspense>
   );
