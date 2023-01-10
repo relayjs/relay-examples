@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from "react";
 import { graphql, usePaginationFragment } from "react-relay";
 import { IssuesFragment$key } from "__generated__/IssuesFragment.graphql";
