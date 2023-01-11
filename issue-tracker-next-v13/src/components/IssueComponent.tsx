@@ -1,15 +1,12 @@
 import { graphql } from "relay-runtime";
-import readFragmentData from "src/relay/readFragmentData";
+import useFragment from "src/relay/useFragment";
 import { IssueComponentFragment$key } from "__generated__/IssueComponentFragment.graphql";
 
 const IssueComponent = (props: {
   issue: IssueComponentFragment$key | null;
 }) => {
-  if (props.issue == null) {
-    return null;
-  }
   // On the server we can directly read the
-  const data = readFragmentData<IssueComponentFragment$key>(
+  const data = useFragment<IssueComponentFragment$key>(
     graphql`
       fragment IssueComponentFragment on Issue {
         title
