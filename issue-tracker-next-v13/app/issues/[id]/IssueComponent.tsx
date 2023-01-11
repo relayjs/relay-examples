@@ -1,17 +1,17 @@
 import { graphql } from "relay-runtime";
 import readFragmentData from "src/relay/readFragmentData";
-import RelayEnvironment from "src/relay/RelayEnvironment";
 import { IssueComponentFragment$key } from "__generated__/IssueComponentFragment.graphql";
+import { environment } from "src/relay/environment";
 
 const IssueComponent = (props: {
-  issue: IssueComponentFragment$key | null;
+  fragmentKey: IssueComponentFragment$key | null;
 }) => {
-  if (props.issue == null) {
+  if (props.fragmentKey == null) {
     return null;
   }
-  // On the server we can directly read the
+
   const data = readFragmentData<IssueComponentFragment$key>(
-    RelayEnvironment,
+    environment,
     graphql`
       fragment IssueComponentFragment on Issue {
         title
@@ -21,7 +21,7 @@ const IssueComponent = (props: {
         }
       }
     `,
-    props.issue
+    props.fragmentKey
   );
 
   return (

@@ -13,18 +13,19 @@ import {
 import { networkFetch } from "./environment";
 import isServer from "./isServer";
 
-const fetchRecords: FetchRecord[] = [];
+let fetchID = 10000;
 
-export type FetchRecord = {
+export type FetchQueryInfo = {
   operationDescriptor: OperationDescriptor;
   response: GraphQLSingularResponse;
-} & { __opaque: typeof FetchRecordOpaque };
+  fetchID: number;
+} & { __opaque: typeof FetchQueryInfoOpaque };
 
-declare const FetchRecordOpaque: unique symbol;
+declare const FetchQueryInfoOpaque: unique symbol;
 
 export type FetchQueryResult<TQuery extends OperationType> = {
   data: TQuery["response"];
-  fetchRecord: FetchRecord;
+  fetchQueryInfo: FetchQueryInfo;
 };
 
 // Server-only version on fetchQuery to avoid the client fetches.
@@ -32,7 +33,7 @@ export default async function fetchQuery<TQuery extends OperationType>(
   environment: IEnvironment,
   query: GraphQLTaggedNode,
   variables: TQuery["variables"]
-): Promise<TQuery["response"]> {
+): Promise<FetchQueryResult<TQuery>> {
   if (!isServer()) {
     throw new Error("fetchQuery should only be called on the server.");
   }
@@ -46,21 +47,21 @@ export default async function fetchQuery<TQuery extends OperationType>(
   if (data != null) {
     environment.commitPayload(operationDescriptor, data);
   }
-  fetchRecords.push(createFetchRecord(operationDescriptor, response));
 
-  return environment.lookup(operationDescriptor.fragment).data;
+  return {
+    data: environment.lookup(operationDescriptor.fragment).data,
+    fetchQueryInfo: createFetchQueryInfo(operationDescriptor, response),
+  };
 }
 
-function createFetchRecord(
+function createFetchQueryInfo(
   operationDescriptor: OperationDescriptor,
   response: GraphQLSingularResponse
-): FetchRecord {
+): FetchQueryInfo {
+  fetchID++;
   return {
     operationDescriptor,
     response,
-  } as FetchRecord;
-}
-
-export function getFetchRecords(): readonly FetchRecord[] {
-  return fetchRecords;
+    fetchID,
+  } as FetchQueryInfo;
 }
