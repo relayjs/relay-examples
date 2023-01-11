@@ -4,7 +4,7 @@ import fetchQuery from "src/relay/fetchQuery";
 import { graphql } from "relay-runtime";
 import IssueComponent from "src/components/IssueComponent";
 import { Suspense } from "react";
-import RelayServerEnvironment from "src/relay/RelayServerEnvironment";
+import RelayEnvironment from "src/relay/RelayEnvironment";
 
 export default async function IssuePage({
   params,
@@ -12,7 +12,7 @@ export default async function IssuePage({
   params: { id: string };
 }) {
   const response = fetchQuery<pageIssueQuery>(
-    RelayServerEnvironment,
+    RelayEnvironment,
     graphql`
       query pageIssueQuery(
         $owner: String!
@@ -33,7 +33,7 @@ export default async function IssuePage({
     }
   );
   return (
-    <Suspense fallback={"Loading..."}>
+    <Suspense fallback={"Loading issue..."}>
       <div className={styles.issue}>
         <IssueComponent issue={(await response).repository?.issue ?? null} />
       </div>

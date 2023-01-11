@@ -1,4 +1,5 @@
-import "server-only";
+// Call into raw network fetch to get serializable GraphQL query response
+// This response will be sent to the client to "warm" the QueryResponseCache
 
 import {
   createOperationDescriptor,
@@ -10,6 +11,7 @@ import {
   OperationType,
 } from "relay-runtime";
 import { networkFetch } from "./environment";
+import isServer from "./isServer";
 
 const fetchRecords: FetchRecord[] = [];
 
@@ -31,6 +33,10 @@ export default async function fetchQuery<TQuery extends OperationType>(
   query: GraphQLTaggedNode,
   variables: TQuery["variables"]
 ): Promise<TQuery["response"]> {
+  if (!isServer()) {
+    throw new Error("fetchQuery should only be called on the server.");
+  }
+
   const request = getRequest(query);
   const response = await networkFetch(request.params, variables);
 

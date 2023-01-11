@@ -4,9 +4,9 @@ import fetchQuery from "src/relay/fetchQuery";
 import styles from "styles/MainView.module.css";
 import { pageMainViewQuery } from "__generated__/pageMainViewQuery.graphql";
 
-import RelayRoot from "src/relay/RelayRoot";
+import RelayServerRoot from "src/relay/RelayServerRoot";
 
-import RelayServerEnvironment from "src/relay/RelayServerEnvironment";
+import RelayEnvironment from "src/relay/RelayEnvironment";
 import Issues from "src/components/Issues";
 
 // This is a server only component. FetchQuery is never executed on the client
@@ -14,7 +14,7 @@ import Issues from "src/components/Issues";
 // so we can process them on the client (add client components can also
 const Page = async () => {
   const data = await fetchQuery<pageMainViewQuery>(
-    RelayServerEnvironment,
+    RelayEnvironment,
     graphql`
       query pageMainViewQuery($owner: String!, $name: String!) {
         repository(owner: $owner, name: $name) {
@@ -33,14 +33,14 @@ const Page = async () => {
   );
 
   return (
-    <Suspense fallback="Loading...">
+    <Suspense fallback="loading...">
       <div className={styles.main}>
         <h1>
           {data.repository?.owner.login}/{data.repository?.name}
         </h1>
-        <RelayRoot>
+        <RelayServerRoot>
           <Issues issues={data.repository ?? null} />
-        </RelayRoot>
+        </RelayServerRoot>
       </div>
     </Suspense>
   );
