@@ -23,7 +23,7 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@types/react-relay": "14.1.2",
-    "@types/relay-runtime": "^14.1.6",
+    "@types/relay-runtime": "^14.1.3",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "concurrently": "^7.5.0",

@@ -1,20 +1,15 @@
 "use client";
 
-import MainView from "src/components/MainView";
-import { Suspense } from "react";
-import { SerializablePreloadedQuery } from "src/relay/loadSerializableQuery";
-import MainViewQueryNode, {
-  MainViewQuery,
-} from "__generated__/MainViewQuery.graphql";
-import { getCurrentEnvironment } from "src/relay/environment";
 import { RelayEnvironmentProvider } from "react-relay";
+import Issue from "src/components/Issue";
+import { Suspense } from "react";
+import IssueQueryNode, { IssueQuery } from "__generated__/IssueQuery.graphql";
+import { SerializablePreloadedQuery } from "src/relay/loadSerializableQuery";
+import { getCurrentEnvironment } from "src/relay/environment";
 import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQuery";
 
-const MainViewClientComponent = (props: {
-  preloadedQuery: SerializablePreloadedQuery<
-    typeof MainViewQueryNode,
-    MainViewQuery
-  >;
+const Root = (props: {
+  preloadedQuery: SerializablePreloadedQuery<typeof IssueQueryNode, IssueQuery>;
 }) => {
   const environment = getCurrentEnvironment();
   const queryRef = useSerializablePreloadedQuery(
@@ -25,10 +20,10 @@ const MainViewClientComponent = (props: {
   return (
     <RelayEnvironmentProvider environment={environment}>
       <Suspense fallback="Loading...">
-        <MainView queryRef={queryRef} />
+        <Issue queryRef={queryRef} />
       </Suspense>
     </RelayEnvironmentProvider>
   );
 };
 
-export default MainViewClientComponent;
+export default Root;
