@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-relay": "main",
     "relay-runtime": "main",
+    "server-only": "^0.0.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
