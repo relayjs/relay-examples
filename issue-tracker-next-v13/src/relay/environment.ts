@@ -86,12 +86,10 @@ function createNetwork() {
   return network;
 }
 
-function createEnvironment() {
+export function createEnvironment() {
   return new Environment({
     network: createNetwork(),
     store: new Store(RecordSource.create()),
     isServer: isServer(),
   });
 }
-
-export const environment = createEnvironment();

@@ -3,7 +3,8 @@ import { pageIssueQuery } from "__generated__/pageIssueQuery.graphql";
 import fetchQuery from "src/relay/fetchQuery";
 import { graphql } from "relay-runtime";
 import IssueComponent from "src/components/IssueComponent";
-import { environment } from "src/relay/environment";
+import { Suspense } from "react";
+import RelayServerEnvironment from "src/relay/RelayServerEnvironment";
 
 export default async function IssuePage({
   params,
@@ -11,7 +12,7 @@ export default async function IssuePage({
   params: { id: string };
 }) {
   const response = fetchQuery<pageIssueQuery>(
-    environment,
+    RelayServerEnvironment,
     graphql`
       query pageIssueQuery(
         $owner: String!
@@ -32,8 +33,10 @@ export default async function IssuePage({
     }
   );
   return (
-    <div className={styles.issue}>
-      <IssueComponent issue={(await response).repository?.issue ?? null} />
-    </div>
+    <Suspense fallback={"Loading..."}>
+      <div className={styles.issue}>
+        <IssueComponent issue={(await response).repository?.issue ?? null} />
+      </div>
+    </Suspense>
   );
 }
