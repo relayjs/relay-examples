@@ -1,10 +1,19 @@
 import "server-only";
 
 import { KeyTypeData, KeyType } from "react-relay/relay-hooks/helpers";
-import { getSelector, getFragment, GraphQLTaggedNode } from "relay-runtime";
-import { environment } from "./environment";
+import {
+  getSelector,
+  getFragment,
+  GraphQLTaggedNode,
+  IEnvironment,
+} from "relay-runtime";
 
-export default function readFragmentData<TKey extends KeyType>(
+// A custom hook to read the data of a fragment from the store.
+// This is a simplified version of the useFragment hook from react-relay.
+// This is intended to be used in only React Server Components.
+// It does not support plural fragments.
+export default function useFragment<TKey extends KeyType>(
+  environment: IEnvironment,
   fragmentInput: GraphQLTaggedNode,
   fragmentRef: TKey | null | undefined
 ): KeyTypeData<TKey> {
