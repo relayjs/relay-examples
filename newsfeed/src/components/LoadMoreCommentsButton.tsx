@@ -5,7 +5,7 @@ type Props = {
   disabled?: boolean;
 };
 
-export default function Comment({
+export default function LoadMoreCommentsButton({
   onClick,
   disabled,
 }: Props): React.ReactElement {
