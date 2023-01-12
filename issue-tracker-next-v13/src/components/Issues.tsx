@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from "react";
 import { graphql, usePaginationFragment } from "react-relay";
 import { IssuesFragment$key } from "__generated__/IssuesFragment.graphql";
@@ -5,9 +7,7 @@ import Link from "next/link";
 import { IssuesPaginationQuery } from "__generated__/IssuesPaginationQuery.graphql";
 import styles from "styles/Issues.module.css";
 
-export default function Issues(props: {
-  repository: IssuesFragment$key | null;
-}) {
+export default function Issues(props: { issues: IssuesFragment$key | null }) {
   const { data, loadNext, isLoadingNext } = usePaginationFragment<
     IssuesPaginationQuery,
     IssuesFragment$key
@@ -38,7 +38,7 @@ export default function Issues(props: {
         }
       }
     `,
-    props.repository
+    props.issues
   );
 
   // Callback to paginate the issues list

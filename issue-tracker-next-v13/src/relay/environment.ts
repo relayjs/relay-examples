@@ -6,18 +6,18 @@ import {
   RequestParameters,
   QueryResponseCache,
   Variables,
-  GraphQLResponse,
+  GraphQLSingularResponse,
   CacheConfig,
 } from "relay-runtime";
+import isServer from "./isServer";
 
 const HTTP_ENDPOINT = "https://api.github.com/graphql";
-const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 
 export async function networkFetch(
   request: RequestParameters,
   variables: Variables
-): Promise<GraphQLResponse> {
+): Promise<GraphQLSingularResponse> {
   const token = process.env.NEXT_PUBLIC_REACT_APP_GITHUB_AUTH_TOKEN;
   if (token == null || token === "") {
     throw new Error(
@@ -56,7 +56,7 @@ export async function networkFetch(
   return json;
 }
 
-export const responseCache: QueryResponseCache | null = IS_SERVER
+export const responseCache: QueryResponseCache | null = isServer()
   ? null
   : new QueryResponseCache({
       size: 100,
@@ -90,16 +90,8 @@ function createEnvironment() {
   return new Environment({
     network: createNetwork(),
     store: new Store(RecordSource.create()),
-    isServer: IS_SERVER,
+    isServer: isServer(),
   });
 }
 
 export const environment = createEnvironment();
-
-export function getCurrentEnvironment() {
-  if (IS_SERVER) {
-    return createEnvironment();
-  }
-
-  return environment;
-}
