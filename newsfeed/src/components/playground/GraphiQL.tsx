@@ -1,4 +1,3 @@
-import "regenerator-runtime/runtime.js";
 import * as React from "react";
 import { GraphiQL as GraphQLPlayground, GraphiQLProviderProps } from "graphiql";
 import "graphiql/graphiql.css";
