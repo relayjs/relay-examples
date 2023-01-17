@@ -8,7 +8,7 @@ import styles from "styles/Issues.module.css";
 export default function Issues(props: {
   repository: IssuesFragment$key | null;
 }) {
-  const { data, loadNext, isLoadingNext } = usePaginationFragment<
+  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
     IssuesPaginationQuery,
     IssuesFragment$key
   >(
@@ -66,6 +66,15 @@ export default function Issues(props: {
       <li>
         <button onClick={loadMore} disabled={isLoadingNext}>
           {isLoadingNext ? "Loading..." : "Load More"}
+        </button>
+        <button
+          onClick={() =>
+            refetch({
+              count: 20,
+            })
+          }
+        >
+          Refetch with 20 items
         </button>
       </li>
     </ul>

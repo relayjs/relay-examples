@@ -1,7 +1,6 @@
 import loadSerializableQuery from "src/relay/loadSerializableQuery";
 import IssueQueryNode, { IssueQuery } from "__generated__/IssueQuery.graphql";
 import IssueViewClientComponent from "./IssueViewClientComponent";
-import styles from "styles/Issue.module.css";
 
 export default async function IssuePage({
   params,
@@ -17,11 +16,7 @@ export default async function IssuePage({
     issueNumber: parseInt(params.id, 10),
   });
 
-  return (
-    <div className={styles.issue}>
-      <IssueViewClientComponent preloadedQuery={preloadedQuery} />
-    </div>
-  );
+  return <IssueViewClientComponent preloadedQuery={preloadedQuery} />;
 }
 
 export const revalidate = 0;
