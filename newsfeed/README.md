@@ -10,6 +10,8 @@ To get started with this project, follow these steps:
 2. Install the dependencies by running `npm install`
 3. Start the app by running `npm run dev`
 
+The application will now be running at [`localhost:3000`](http://localhost:3000). This application also has [GraphiQL](https://github.com/graphql/graphiql) setup so that you can run test queries against the schema. Navigate to [`localhost:3000/playground`](http://localhost:3000) to try it out.
+
 ## Project Structure
 
 This project uses the following structure:

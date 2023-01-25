@@ -43,6 +43,7 @@ module.exports = {
       "/api": "http://localhost:8080",
     },
     port: 3000,
+    historyApiFallback: true,
   },
   devtool: "inline-source-map",
 };
