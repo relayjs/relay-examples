@@ -49,5 +49,10 @@
     "react-dom": "^18.2.0",
     "react-relay": "^14.1.0",
     "relay-runtime": "^14.1.0"
+  },
+  "overrides": {
+    "graphiql": {
+      "graphql": "^17.0.0-alpha.2"
+    }
   }
 }
