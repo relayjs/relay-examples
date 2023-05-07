@@ -11,7 +11,6 @@ import {
 } from "relay-runtime";
 
 const HTTP_ENDPOINT = "https://api.github.com/graphql";
-const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 
 export async function networkFetch(
@@ -56,14 +55,7 @@ export async function networkFetch(
   return json;
 }
 
-export const responseCache: QueryResponseCache | null = IS_SERVER
-  ? null
-  : new QueryResponseCache({
-      size: 100,
-      ttl: CACHE_TTL,
-    });
-
-function createNetwork() {
+function createNetwork(responseCache: QueryResponseCache) {
   async function fetchResponse(
     params: RequestParameters,
     variables: Variables,
@@ -86,20 +78,34 @@ function createNetwork() {
   return network;
 }
 
-function createEnvironment() {
-  return new Environment({
-    network: createNetwork(),
-    store: new Store(RecordSource.create()),
-    isServer: IS_SERVER,
+function createQueryCache() {
+  return new QueryResponseCache({
+    size: 100,
+    ttl: CACHE_TTL,
   });
 }
 
-export const environment = createEnvironment();
+export function createEnvironment() {
+  const cache = createQueryCache();
+  const network = createNetwork(cache);
+  const store = new Store(RecordSource.create());
 
-export function getCurrentEnvironment() {
-  if (IS_SERVER) {
-    return createEnvironment();
-  }
+  const environment = new Environment({
+    network,
+    store,
+    isServer: typeof window === "undefined",
+  });
+
+  responseCacheByEnvironment.set(environment, cache);
 
   return environment;
+}
+
+const responseCacheByEnvironment = new WeakMap<
+  Environment,
+  QueryResponseCache
+>();
+
+export function getCacheByEnvironment(environment: Environment) {
+  return responseCacheByEnvironment.get(environment);
 }

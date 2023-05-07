@@ -1,7 +1,7 @@
 "use client";
 
 import { RelayEnvironmentProvider } from "react-relay";
-import { getCurrentEnvironment } from "src/relay/environment";
+import { createEnvironment } from "src/relay/environment";
 import "styles/globals.css";
 
 import styles from "styles/layout.module.css";
@@ -11,7 +11,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const environment = getCurrentEnvironment();
+  const environment = createEnvironment();
 
   return (
     <html>
