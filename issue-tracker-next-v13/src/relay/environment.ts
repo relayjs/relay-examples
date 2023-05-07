@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   Environment,
   Network,
@@ -99,6 +100,20 @@ export function createEnvironment() {
   responseCacheByEnvironment.set(environment, cache);
 
   return environment;
+}
+
+let relayEnvironment: Environment | null = null;
+function initEnvironment() {
+  const environment = relayEnvironment ?? createEnvironment();
+  // For SSR always return new environment;
+  if (typeof window === "undefined") return environment;
+  if (!relayEnvironment) relayEnvironment = environment;
+  return relayEnvironment;
+}
+
+export function useEnvironment() {
+  const env = useMemo(() => initEnvironment(), [relayEnvironment]);
+  return env;
 }
 
 const responseCacheByEnvironment = new WeakMap<
