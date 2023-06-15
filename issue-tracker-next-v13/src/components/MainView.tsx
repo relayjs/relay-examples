@@ -6,23 +6,24 @@ import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQue
 import { MainViewQuery } from "__generated__/MainViewQuery.graphql";
 import Issues from "./Issues";
 
-export const query = graphql`
-  query MainViewQuery($owner: String!, $name: String!) {
-    repository(owner: $owner, name: $name) {
-      owner {
-        login
-      }
-      name
-      ...IssuesFragment
-    }
-  }
-`;
-
 export default function MainView(props: {
   preloadedQuery: SerializablePreloadedQuery<MainViewQuery>;
 }) {
   const queryRef = useSerializablePreloadedQuery(props.preloadedQuery);
-  const data = usePreloadedQuery(query, queryRef);
+  const data = usePreloadedQuery(
+    graphql`
+      query MainViewQuery($owner: String!, $name: String!) {
+        repository(owner: $owner, name: $name) {
+          owner {
+            login
+          }
+          name
+          ...IssuesFragment
+        }
+      }
+    `,
+    queryRef
+  );
 
   return (
     <div>
