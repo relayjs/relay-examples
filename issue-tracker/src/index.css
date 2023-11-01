@@ -132,3 +132,19 @@ code {
   border-color: #282c34;
   margin-right: 10px;
 }
+
+.back-issue-button {
+  padding: 4px 10px;
+  background-color: #282c34;
+  border-color: #fff;
+  color: #fff;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.back-issue {
+  margin-top: 20px;
+  margin-left: 48px;
+  padding-top: 10px;
+  border-top: 1px solid #282c34;
+}
