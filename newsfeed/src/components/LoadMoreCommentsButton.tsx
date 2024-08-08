@@ -1,5 +1,3 @@
-import * as React from "react";
-
 type Props = {
   onClick: () => void;
   disabled?: boolean;
@@ -8,7 +6,7 @@ type Props = {
 export default function LoadMoreCommentsButton({
   onClick,
   disabled,
-}: Props): React.ReactElement {
+}: Props) {
   return (
     <button
       onClick={onClick}

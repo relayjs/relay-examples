@@ -1,9 +1,9 @@
-import * as React from "react";
+import { ReactNode } from "react";
 
 export default function Heading({
   children,
 }: {
-  children: React.ReactNode;
-}): React.ReactElement {
+  children: ReactNode;
+}) {
   return <h2 className="heading">{children}</h2>;
 }

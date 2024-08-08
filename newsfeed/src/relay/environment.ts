@@ -1,11 +1,11 @@
+import type { FetchFunction, IEnvironment } from "relay-runtime";
 import {
-  Store,
-  RecordSource,
   Environment,
   Network,
   Observable,
+  RecordSource,
+  Store,
 } from "relay-runtime";
-import type { FetchFunction, IEnvironment } from "relay-runtime";
 
 const fetchFn: FetchFunction = (params, variables) => {
   const response = fetch("/api", {

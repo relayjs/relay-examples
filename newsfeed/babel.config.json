@@ -1,4 +1,14 @@
 {
-  "presets": ["@babel/preset-react", "@babel/preset-typescript"],
-  "plugins": ["relay"]
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "relay"
+  ]
 }

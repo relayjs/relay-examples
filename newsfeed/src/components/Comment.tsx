@@ -1,9 +1,7 @@
-import * as React from "react";
+import { useFragment } from "react-relay";
+import { graphql } from "relay-runtime";
 
 import type { CommentFragment$key } from "./__generated__/CommentFragment.graphql";
-
-import { graphql } from "relay-runtime";
-import { useFragment } from "react-relay";
 
 const CommentFragment = graphql`
   fragment CommentFragment on Comment {
@@ -15,7 +13,7 @@ type Props = {
   comment: CommentFragment$key;
 };
 
-export default function Comment({ comment }: Props): React.ReactElement {
+export default function Comment({ comment }: Props) {
   const data = useFragment(CommentFragment, comment);
   return <div className="comment">{data.text}</div>;
 }

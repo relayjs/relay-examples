@@ -1,9 +1,8 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import "./style.css";
+import { createRoot } from "react-dom/client";
 
 import App from "./components/App";
 import GraphiQL from "./components/playground/GraphiQL";
+import "./style.css";
 
 function Routes() {
   if (window.location.pathname === "/playground") {
@@ -12,5 +11,5 @@ function Routes() {
   return <App />;
 }
 
-const root = ReactDOM.createRoot(document.getElementById("app"));
+const root = createRoot(document.getElementById("app"));
 root.render(<Routes />);

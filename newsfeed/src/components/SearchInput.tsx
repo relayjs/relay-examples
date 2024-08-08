@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import SmallSpinner from "./SmallSpinner";
 
 export type Props = {

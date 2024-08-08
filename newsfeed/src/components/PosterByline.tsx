@@ -1,4 +1,3 @@
-import * as React from "react";
 import Image from "./Image";
 
 export type Props = {
@@ -10,7 +9,7 @@ export type Props = {
   };
 };
 
-export default function PosterByline({ poster }: Props): React.ReactElement {
+export default function PosterByline({ poster }: Props) {
   if (poster == null) {
     return null;
   }

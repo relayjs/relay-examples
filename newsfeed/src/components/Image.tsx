@@ -1,5 +1,3 @@
-import * as React from "react";
-
 type Props = {
   image: {
     url: string;
@@ -14,7 +12,7 @@ export default function Image({
   width,
   height,
   className,
-}: Props): React.ReactElement {
+}: Props) {
   if (image == null) {
     return null;
   }

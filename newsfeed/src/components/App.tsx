@@ -1,16 +1,17 @@
-import * as React from "react";
-import RelayEnvironment from "../relay/RelayEnvironment";
-import Newsfeed from "./Newsfeed";
-import LoadingSpinner from "./LoadingSpinner";
+import { Suspense } from "react";
 
-export default function App(): React.ReactElement {
+import RelayEnvironment from "../relay/RelayEnvironment";
+import LoadingSpinner from "./LoadingSpinner";
+import Newsfeed from "./Newsfeed";
+
+export default function App() {
   return (
     <RelayEnvironment>
-      <React.Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}>
         <div className="app">
           <Newsfeed />
         </div>
-      </React.Suspense>
+      </Suspense>
     </RelayEnvironment>
   );
 }

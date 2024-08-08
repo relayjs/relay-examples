@@ -1,4 +1,3 @@
-import * as React from "react";
 import Story from "./Story";
 
 export default function Newsfeed() {

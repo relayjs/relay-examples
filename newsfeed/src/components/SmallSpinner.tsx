@@ -1,5 +1,3 @@
-import * as React from "react";
-
-export default function SmallSpinner({}): React.ReactElement {
+export default function SmallSpinner({ }) {
   return <div className="small-spinner"></div>;
 }

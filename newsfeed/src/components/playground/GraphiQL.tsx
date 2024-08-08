@@ -1,6 +1,6 @@
-import * as React from "react";
 import { GraphiQL as GraphQLPlayground, GraphiQLProviderProps } from "graphiql";
 import "graphiql/graphiql.css";
+import { useState } from "react";
 
 const defaultQuery = `
 query MyQuery {
@@ -30,7 +30,7 @@ const fetcher: GraphiQLProviderProps["fetcher"] = async (
 };
 
 export default function GraphiQL() {
-  const [query, setQuery] = React.useState("");
+  const [query, setQuery] = useState("");
 
   return (
     <GraphQLPlayground

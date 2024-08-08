@@ -1,10 +1,8 @@
-import * as React from "react";
-import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
+import { graphql } from "relay-runtime";
+
 import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
 import Comment from "./Comment";
-
-const { useState, useTransition } = React;
 
 export type Props = {
   story: StoryCommentsSectionFragment$key;

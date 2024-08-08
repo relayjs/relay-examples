@@ -1,8 +1,7 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import LoadingSpinner from "./LoadingSpinner";
+import { Suspense, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
-const { useEffect, useState } = React;
+import LoadingSpinner from "./LoadingSpinner";
 
 export type Props = {
   children: React.ReactElement;
@@ -40,7 +39,7 @@ export default function Hovercard({
   if (!hoverState) {
     return null;
   }
-  return ReactDOM.createPortal(
+  return createPortal(
     <div
       className="hovercard"
       style={{
@@ -48,7 +47,7 @@ export default function Hovercard({
         left: hoverState.x + "px",
       }}
     >
-      <React.Suspense fallback={<LoadingSpinner />}>{children}</React.Suspense>
+      <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
     </div>,
     document.body
   );
