@@ -1,9 +1,8 @@
-import * as React from "react";
 import Card from "./Card";
 import Heading from "./Heading";
+import Image from "./Image";
 import PosterByline, { type Props as PosterBylineProps } from "./PosterByline";
 import StorySummary from "./StorySummary";
-import Image from "./Image";
 
 type Props = {
   story: {
@@ -16,7 +15,7 @@ type Props = {
   };
 };
 
-export default function Story({ story }: Props): React.ReactElement {
+export default function Story({ story }: Props) {
   return (
     <Card>
       <PosterByline poster={story.poster} />

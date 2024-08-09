@@ -1,4 +1,3 @@
-import * as React from "react";
 import SmallSpinner from "./SmallSpinner";
 
 // In a real app this would be imported from NewsfeedQuery.graphql; it is only defined
@@ -18,7 +17,7 @@ export default function CategorySelector({
   value: Category;
   onChange: (newValue: Category) => void;
   isPending?: boolean;
-}): React.ReactElement {
+}) {
   return (
     <div>
       <select value={value} onChange={(e) => onChange(coerce(e.target.value))}>

@@ -1,8 +1,3 @@
-import * as React from "react";
-
-import { graphql } from "relay-runtime";
-import { useFragment } from "react-relay";
-
 // In a real app this would be imported from PosterBylineFragment.graphql; it is only defined
 // separately here to make the step-by-step examples work when partially completed.
 type OrganizationKind =
@@ -16,9 +11,7 @@ type Props = {
   kind: OrganizationKind;
 };
 
-export default function OrganizationKind({
-  kind,
-}: Props): React.ReactElement {
+export default function OrganizationKind({ kind }: Props) {
   return <div className="byline__detail">{label(kind)}</div>;
 }
 

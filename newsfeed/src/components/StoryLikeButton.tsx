@@ -1,6 +1,5 @@
-import * as React from "react";
-import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
+import { graphql } from "relay-runtime";
 
 import type { StoryLikeButtonFragment$key } from "./__generated__/StoryLikeButtonFragment.graphql";
 
@@ -16,7 +15,7 @@ const StoryLikeButtonFragment = graphql`
   }
 `;
 
-export default function StoryLikeButton({ story }: Props): React.ReactElement {
+export default function StoryLikeButton({ story }: Props) {
   const data = useFragment<StoryLikeButtonFragment$key>(
     StoryLikeButtonFragment,
     story
