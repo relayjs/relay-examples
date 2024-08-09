@@ -11,9 +11,7 @@ type Props = {
   kind: OrganizationKind;
 };
 
-export default function OrganizationKind({
-  kind,
-}: Props) {
+export default function OrganizationKind({ kind }: Props) {
   return <div className="byline__detail">{label(kind)}</div>;
 }
 

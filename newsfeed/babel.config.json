@@ -8,7 +8,5 @@
     ],
     "@babel/preset-typescript"
   ],
-  "plugins": [
-    "relay"
-  ]
+  "plugins": ["relay"]
 }

@@ -7,12 +7,7 @@ type Props = {
   className?: string;
 };
 
-export default function Image({
-  image,
-  width,
-  height,
-  className,
-}: Props) {
+export default function Image({ image, width, height, className }: Props) {
   if (image == null) {
     return null;
   }

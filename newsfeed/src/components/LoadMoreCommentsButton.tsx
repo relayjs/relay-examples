@@ -3,10 +3,7 @@ type Props = {
   disabled?: boolean;
 };
 
-export default function LoadMoreCommentsButton({
-  onClick,
-  disabled,
-}: Props) {
+export default function LoadMoreCommentsButton({ onClick, disabled }: Props) {
   return (
     <button
       onClick={onClick}

@@ -13,9 +13,7 @@ type Props = {
   location: PosterBylineLocationFragment$key;
 };
 
-export default function PosterBylineLocation({
-  location,
-}: Props) {
+export default function PosterBylineLocation({ location }: Props) {
   const data = useFragment(PosterBylineLocationFragment, location);
   return <div className="byline__detail">{data.name}</div>;
 }
