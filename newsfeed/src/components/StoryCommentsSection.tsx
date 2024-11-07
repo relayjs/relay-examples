@@ -3,8 +3,7 @@ import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
 import Comment from "./Comment";
-
-const { useState, useTransition } = React;
+import LoadMoreCommentsButton from "./LoadMoreCommentsButton";
 
 export type Props = {
   story: StoryCommentsSectionFragment$key;
@@ -12,15 +11,14 @@ export type Props = {
 
 const StoryCommentsSectionFragment = graphql`
   fragment StoryCommentsSectionFragment on Story {
-    comments(first: 1) {
-      pageInfo {
-        startCursor
-      }
+    comments(first: 3) {
       edges {
         node {
-          id
           ...CommentFragment
         }
+      }
+      pageInfo {
+        hasNextPage
       }
     }
   }
@@ -28,11 +26,15 @@ const StoryCommentsSectionFragment = graphql`
 
 export default function StoryCommentsSection({ story }: Props) {
   const data = useFragment(StoryCommentsSectionFragment, story);
+  const onLoadMore = () => {/* TODO */};
   return (
-    <div>
-      {data.comments.edges.map((edge) => (
-        <Comment key={edge.node.id} comment={edge.node} />
-      ))}
-    </div>
+    <>
+      {data.comments.edges.map(commentEdge =>
+        <Comment comment={commentEdge.node} />
+      )}
+      {data.comments.pageInfo.hasNextPage && (
+        <LoadMoreCommentsButton onClick={onLoadMore} />
+      )}
+    </>
   );
 }
