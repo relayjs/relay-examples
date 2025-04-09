@@ -6,7 +6,13 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function App(): React.ReactElement {
   return (
     <RelayEnvironment>
-      <React.Suspense fallback={<LoadingSpinner />}>
+      <React.Suspense
+        fallback={
+          <div className="app-loading-spinner">
+            <LoadingSpinner />
+          </div>
+        }
+      >
         <div className="app">
           <Newsfeed />
         </div>
