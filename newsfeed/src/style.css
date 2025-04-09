@@ -284,12 +284,17 @@ body {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Spinner */
-
-.loading-spinner-wrapper {
+.app-loading-spinner {
   position: absolute;
   top: 50vh;
   left: calc(50% - 40px);
+}
+
+/* Spinner */
+
+.loading-spinner-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .loading-spinner {
