@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9084679bca54b3fb32d232a9ecf484ad>>
+ * @generated SignedSource<<90e45a4f0961bbf83f009aafa324925c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,7 +19,7 @@ export type StoryCommentsSectionFragment$data = {
       } | null;
     } | null> | null;
     readonly pageInfo: {
-      readonly startCursor: string | null;
+      readonly hasNextPage: boolean | null;
     } | null;
   } | null;
   readonly " $fragmentType": "StoryCommentsSectionFragment";
@@ -41,7 +41,7 @@ const node: ReaderFragment = {
         {
           "kind": "Literal",
           "name": "first",
-          "value": 1
+          "value": 3
         }
       ],
       "concreteType": "CommentsConnection",
@@ -49,24 +49,6 @@ const node: ReaderFragment = {
       "name": "comments",
       "plural": false,
       "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "PageInfo",
-          "kind": "LinkedField",
-          "name": "pageInfo",
-          "plural": false,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "startCursor",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        },
         {
           "alias": null,
           "args": null,
@@ -100,15 +82,33 @@ const node: ReaderFragment = {
             }
           ],
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
         }
       ],
-      "storageKey": "comments(first:1)"
+      "storageKey": "comments(first:3)"
     }
   ],
   "type": "Story",
   "abstractKey": null
 };
 
-(node as any).hash = "38376c4754335036300071e38e1aa708";
+(node as any).hash = "623aea3d09348623d170898c472f9531";
 
 export default node;
