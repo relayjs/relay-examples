@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5b7022008a86a725e75005c5d71e564f>>
+ * @generated SignedSource<<26ed491e27ed717630b698d204ad9417>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,12 +8,12 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type StoryLikeButtonFragment$data = {
-  readonly doesViewerLike: boolean | null;
+  readonly doesViewerLike: boolean | null | undefined;
   readonly id: string;
-  readonly likeCount: number | null;
+  readonly likeCount: number | null | undefined;
   readonly " $fragmentType": "StoryLikeButtonFragment";
 };
 export type StoryLikeButtonFragment$key = {

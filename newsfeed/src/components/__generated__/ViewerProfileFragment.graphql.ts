@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8889ba1a2f5eae47db38f1b3c59bba4d>>
+ * @generated SignedSource<<2dbe435ed71baeb05d44b78f766a36ee>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,15 +8,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ViewerProfileFragment$data = {
   readonly actor: {
-    readonly name: string | null;
+    readonly name: string | null | undefined;
     readonly profilePicture: {
       readonly url: string;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
   readonly " $fragmentType": "ViewerProfileFragment";
 };
 export type ViewerProfileFragment$key = {

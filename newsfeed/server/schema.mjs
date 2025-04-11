@@ -307,7 +307,5 @@ export const schema = new GraphQLSchema({
   types: [PersonType, OrganizationType, StoryType],
   directives: [
     ...specifiedDirectives,
-    GraphQLDeferDirective,
-    GraphQLStreamDirective,
   ],
 });
