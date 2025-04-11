@@ -19,18 +19,25 @@ export default (function TodoApp({queries}: Props): React.Node {
       query TodoAppQuery($userId: String) @preloadable {
         user(id: $userId) @required(action: THROW) {
           ...Todo_user
-          todos(first: 10) @connection(key: "TodoList_todos") {
-            __id
-            edges {
-              node {
-                id
-              }
-            }
-          }
+          # If this is uncommented the client edge queries are not made
+          # as it is assumed we have the data in the store
+
+          # todos(first: 10) @connection(key: "TodoList_todos") {
+          #   __id
+          #   edges {
+          #     node {
+          #       id
+          #     }
+          #   }
+          # }
         }
         localPlayerQueue {
           list {
             todo @waterfall {
+              # Similarly if this is uncommented it makes the edge query
+              # as it is within the waterfall directive
+
+              # text
               ...Todo_todo
             }
           }

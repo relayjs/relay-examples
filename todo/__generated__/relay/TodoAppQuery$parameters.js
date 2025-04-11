@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<6f9153145e8a075f20faf8e7bdc4ca70>>
- * @relayHash 8414dcd4ff3b9e8a93b8f25346295d80
+ * @generated SignedSource<<2b03f2b72af448b973ea651d739161ee>>
+ * @relayHash c0ca9b2b2cdfb4860dff59bf167d619e
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -10,7 +10,7 @@
 
 'use strict';
 
-// @relayRequestID 8414dcd4ff3b9e8a93b8f25346295d80
+// @relayRequestID c0ca9b2b2cdfb4860dff59bf167d619e
 
 /*::
 import type { PreloadableConcreteRequest } from 'relay-runtime';
@@ -20,20 +20,8 @@ import type { TodoAppQuery } from './TodoAppQuery.graphql';
 var node/*: PreloadableConcreteRequest<TodoAppQuery>*/ = {
   "kind": "PreloadableConcreteRequest",
   "params": {
-    "id": "8414dcd4ff3b9e8a93b8f25346295d80",
-    "metadata": {
-      "connection": [
-        {
-          "count": null,
-          "cursor": null,
-          "direction": "forward",
-          "path": [
-            "user",
-            "todos"
-          ]
-        }
-      ]
-    },
+    "id": "c0ca9b2b2cdfb4860dff59bf167d619e",
+    "metadata": {},
     "name": "TodoAppQuery",
     "operationKind": "query",
     "text": null
