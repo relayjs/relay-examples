@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9252b9e6eafc46cbce51cf5a34f1747f>>
+ * @generated SignedSource<<1250ecf45f719be66e6e53a4c7849045>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,10 +8,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type CommentFragment$data = {
-  readonly text: string | null;
+  readonly text: string | null | undefined;
   readonly " $fragmentType": "CommentFragment";
 };
 export type CommentFragment$key = {

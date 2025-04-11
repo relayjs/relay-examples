@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fbae73332fbd1cb294202f91b91b7ad9>>
+ * @generated SignedSource<<543f1fe965d51c714f083ea53a55cfb4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type StoryCommentsComposerFragment$data = {
   readonly id: string;

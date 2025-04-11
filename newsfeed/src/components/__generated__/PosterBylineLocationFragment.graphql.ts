@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0bbef55dbad911e9382bb50fa68e0953>>
+ * @generated SignedSource<<6f5bad5a0167500af12e06b13edb3006>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type PosterBylineLocationFragment$data = {
   readonly name: string;
