@@ -28,15 +28,14 @@ export default function Todo({
   const todo = useFragment(
     graphql`
       fragment Todo_todo on Todo {
-        complete
+        id
         text
-        ...ChangeTodoStatusMutation_todo
-        ...RenameTodoMutation_todo
-        ...RemoveTodoMutation_todo
+        complete
       }
     `,
     todoRef,
   );
+
   const user = useFragment(
     graphql`
       fragment Todo_user on User {
@@ -47,65 +46,18 @@ export default function Todo({
     userRef,
   );
 
-  const commitChangeTodoStatusMutation = useChangeTodoStatusMutation(
-    user,
-    todo,
-  );
-  const handleCompleteChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    const complete = e.currentTarget.checked;
-    commitChangeTodoStatusMutation(complete);
-  };
-
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const handleLabelDoubleClick = () => setIsEditing(true);
-  const handleTextInputCancel = () => setIsEditing(false);
-  const commitRenameTodoMutation = useRenameTodoMutation(todo);
-  const handleTextInputSave = (text: string) => {
-    setIsEditing(false);
-    commitRenameTodoMutation(text);
-  };
-
-  const commitRemoveTodoMutation = useRemoveTodoMutation(
-    user,
-    todo,
-    todoConnectionId,
-  );
-  const handleRemoveTodo = () => {
-    commitRemoveTodoMutation();
-  };
-  const handleTextInputDelete = () => {
-    setIsEditing(false);
-    handleRemoveTodo();
-  };
-
   return (
     <li
       className={classnames({
         completed: todo.complete,
-        editing: isEditing,
+        editing: false,
       })}>
       <div className="view">
-        <input
-          checked={todo.complete}
-          className="toggle"
-          onChange={handleCompleteChange}
-          type="checkbox"
-        />
+        <input checked={todo.complete} className="toggle" type="checkbox" />
 
-        <label onDoubleClick={handleLabelDoubleClick}>{todo.text}</label>
-        <button className="destroy" onClick={handleRemoveTodo} />
+        <label>{todo.text}</label>
+        <button className="destroy" />
       </div>
-
-      {isEditing && (
-        <TodoTextInput
-          className="edit"
-          commitOnBlur={true}
-          initialValue={todo.text}
-          onCancel={handleTextInputCancel}
-          onDelete={handleTextInputDelete}
-          onSave={handleTextInputSave}
-        />
-      )}
     </li>
   );
 }
