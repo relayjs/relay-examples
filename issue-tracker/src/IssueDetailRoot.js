@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import SuspenseImage from './SuspenseImage';
 import IssueDetailComments from './IssueDetailComments';
 import IssueActions from './IssueActions';
+import Link from './routing/Link';
 
 /**
  * The root component for the issue detail route.
@@ -68,6 +69,13 @@ export default function IssueDetailRoot(props) {
       </div>
       <IssueDetailComments issue={issue} />
       <IssueActions issue={issue} />
+      <div className="back-issue">
+        <Link to="/">
+          <button className="back-issue-button" type="button">
+            Back
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
