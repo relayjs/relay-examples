@@ -1,9 +1,7 @@
 // @flow strict-local
 
 /* 
-    This has been added to demonstrate the issues with client resolvers and server edges
     ClientTodoList contains a list of todo items that point to Todo Server edges
-
 */
 
 /**
