@@ -16,7 +16,7 @@ export default function useMutation(mutation) {
       }
       const request = commitMutation(environment, {
         ...config,
-        onCompleted: (response) => {
+        onCompleted: response => {
           if (!mountedRef.current) {
             return;
           }

@@ -50,7 +50,7 @@
     "flow-typed": "^2.6.0",
     "prettier": "^2.3.0",
     "relay-compiler": "^14.0.0",
-    "webpack": "^4.41.5",
+    "webpack": "^4.47.0",
     "webpack-dev-server": "3.10.3"
   },
   "prettier": {
