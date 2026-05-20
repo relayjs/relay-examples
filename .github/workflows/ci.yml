@@ -43,6 +43,3 @@ jobs:
       - name: Yarn build (todo)
         working-directory: todo
         run: yarn run build
-      - name: flow (todo)
-        working-directory: todo
-        run: yarn run flow

@@ -1,9 +1,8 @@
 /**
- * @generated SignedSource<<5c619e640f44fd2a43466f63453771e5>>
+ * @generated SignedSource<<22cb4a785b593cbbfb683b3ce0a03594>>
  * @relayHash d970fd7dbf118794415dec7324d463e3
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -90,20 +89,20 @@ v1 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "RenameTodoMutation",
-    "selections": (v1/*: any*/),
+    "selections": (v1/*:: as any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "RenameTodoMutation",
-    "selections": (v1/*: any*/)
+    "selections": (v1/*:: as any*/)
   },
   "params": {
     "id": "d970fd7dbf118794415dec7324d463e3",
@@ -115,9 +114,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "de4aa1639055c2e6a78ee22cce29870a";
+(node/*:: as any*/).hash = "de4aa1639055c2e6a78ee22cce29870a";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   RenameTodoMutation$variables,
   RenameTodoMutation$data,
 >*/);

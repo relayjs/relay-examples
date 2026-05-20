@@ -1,9 +1,8 @@
 /**
- * @generated SignedSource<<a37df35b0cf4ed65d912d12c9bcf4d61>>
+ * @generated SignedSource<<52d616996d744da436ba4466a89434b3>>
  * @relayHash 4d3a6acb198829c5ed5f748574934211
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -19,12 +18,12 @@ export type RemoveCompletedTodosInput = {|
   userId: string,
 |};
 export type RemoveCompletedTodosMutation$variables = {|
-  connections: $ReadOnlyArray<string>,
+  connections: ReadonlyArray<string>,
   input: RemoveCompletedTodosInput,
 |};
 export type RemoveCompletedTodosMutation$data = {|
   +removeCompletedTodos: ?{|
-    +deletedTodoIds: ?$ReadOnlyArray<string>,
+    +deletedTodoIds: ?ReadonlyArray<string>,
     +user: {|
       +completedCount: number,
       +id: string,
@@ -99,21 +98,21 @@ v3 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "RemoveCompletedTodosMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "RemoveCompletedTodosPayload",
         "kind": "LinkedField",
         "name": "removeCompletedTodos",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/)
+          (v2/*:: as any*/),
+          (v3/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -123,19 +122,19 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "RemoveCompletedTodosMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "RemoveCompletedTodosPayload",
         "kind": "LinkedField",
         "name": "removeCompletedTodos",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
+          (v2/*:: as any*/),
           {
             "alias": null,
             "args": null,
@@ -152,7 +151,7 @@ return {
               }
             ]
           },
-          (v3/*: any*/)
+          (v3/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -168,9 +167,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "b78c908fef03b8b5d3ca2bddb5d81d89";
+(node/*:: as any*/).hash = "b78c908fef03b8b5d3ca2bddb5d81d89";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   RemoveCompletedTodosMutation$variables,
   RemoveCompletedTodosMutation$data,
 >*/);

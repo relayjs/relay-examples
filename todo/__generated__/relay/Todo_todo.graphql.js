@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<63476f2ddc9fbf002ed55cfd5c403bc9>>
+ * @generated SignedSource<<79a443eda4d71adc79bfcbad71a431df>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -69,9 +68,9 @@ var node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 
-(node/*: any*/).hash = "714929cac8f847585bb10b80faa2dbf2";
+(node/*:: as any*/).hash = "714929cac8f847585bb10b80faa2dbf2";
 
-module.exports = ((node/*: any*/)/*: Fragment<
+export default ((node/*:: as any*/)/*:: as Fragment<
   Todo_todo$fragmentType,
   Todo_todo$data,
 >*/);

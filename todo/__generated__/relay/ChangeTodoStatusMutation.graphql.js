@@ -1,9 +1,8 @@
 /**
- * @generated SignedSource<<3fc3dd953e92ee200ac67b56158bd07a>>
+ * @generated SignedSource<<d8802b60bb02c96ceebd02e7f7dbac39>>
  * @relayHash d7dda774dcfa32fe0d9661e01cac9a4a
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -79,7 +78,7 @@ v2 = [
         "name": "todo",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
+          (v1/*:: as any*/),
           {
             "alias": null,
             "args": null,
@@ -98,7 +97,7 @@ v2 = [
         "name": "user",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
+          (v1/*:: as any*/),
           {
             "alias": null,
             "args": null,
@@ -115,20 +114,20 @@ v2 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "ChangeTodoStatusMutation",
-    "selections": (v2/*: any*/),
+    "selections": (v2/*:: as any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "ChangeTodoStatusMutation",
-    "selections": (v2/*: any*/)
+    "selections": (v2/*:: as any*/)
   },
   "params": {
     "id": "d7dda774dcfa32fe0d9661e01cac9a4a",
@@ -140,9 +139,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "e232227a4f30f0e16f4e1e1a2e0cea75";
+(node/*:: as any*/).hash = "e232227a4f30f0e16f4e1e1a2e0cea75";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   ChangeTodoStatusMutation$variables,
   ChangeTodoStatusMutation$data,
 >*/);
