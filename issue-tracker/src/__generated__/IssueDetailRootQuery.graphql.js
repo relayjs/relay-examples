@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<c8ec6403739d628287512607a8e6d45e>>
+ * @generated SignedSource<<dd778e1e527fe0eb2200b4c013965d90>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -11,13 +10,19 @@
 
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
-type IssueActions_issue$fragmentType = any;
-type IssueDetailComments_issue$fragmentType = any;
+import type { IssueActions_issue$fragmentType } from "./IssueActions_issue.graphql";
+import type { IssueDetailComments_issue$fragmentType } from "./IssueDetailComments_issue.graphql";
 export type IssueDetailRootQuery$variables = {|
   id: string,
 |};
 export type IssueDetailRootQuery$data = {|
   +node: ?{|
+    +IssueActions_issue?: ?{|
+      +$fragmentSpreads: IssueActions_issue$fragmentType,
+    |},
+    +IssueDetailComments_issue?: ?{|
+      +$fragmentSpreads: IssueDetailComments_issue$fragmentType,
+    |},
     +author?: ?{|
       +avatarUrl: any,
       +login: string,
@@ -27,7 +32,6 @@ export type IssueDetailRootQuery$data = {|
     +number?: number,
     +title?: string,
     +url?: any,
-    +$fragmentSpreads: IssueActions_issue$fragmentType & IssueDetailComments_issue$fragmentType,
   |},
 |};
 export type IssueDetailRootQuery = {|
@@ -122,13 +126,13 @@ v11 = {
   "name": "author",
   "plural": false,
   "selections": [
-    (v9/*: any*/),
-    (v4/*: any*/),
-    (v5/*: any*/),
+    (v9/*:: as any*/),
+    (v4/*:: as any*/),
+    (v5/*:: as any*/),
     {
       "kind": "InlineFragment",
       "selections": [
-        (v10/*: any*/)
+        (v10/*:: as any*/)
       ],
       "type": "Node",
       "abstractKey": "__isNode"
@@ -145,14 +149,14 @@ v12 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "IssueDetailRootQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
@@ -161,8 +165,8 @@ return {
           {
             "kind": "InlineFragment",
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
+              (v2/*:: as any*/),
+              (v3/*:: as any*/),
               {
                 "alias": null,
                 "args": null,
@@ -171,22 +175,44 @@ return {
                 "name": "author",
                 "plural": false,
                 "selections": [
-                  (v4/*: any*/),
-                  (v5/*: any*/)
+                  (v4/*:: as any*/),
+                  (v5/*:: as any*/)
                 ],
                 "storageKey": null
               },
-              (v6/*: any*/),
-              (v7/*: any*/),
-              (v8/*: any*/),
+              (v6/*:: as any*/),
+              (v7/*:: as any*/),
+              (v8/*:: as any*/),
               {
-                "args": null,
-                "kind": "FragmentSpread",
+                "fragment": {
+                  "kind": "InlineFragment",
+                  "selections": [
+                    {
+                      "args": null,
+                      "kind": "FragmentSpread",
+                      "name": "IssueDetailComments_issue"
+                    }
+                  ],
+                  "type": "Issue",
+                  "abstractKey": null
+                },
+                "kind": "AliasedInlineFragmentSpread",
                 "name": "IssueDetailComments_issue"
               },
               {
-                "args": null,
-                "kind": "FragmentSpread",
+                "fragment": {
+                  "kind": "InlineFragment",
+                  "selections": [
+                    {
+                      "args": null,
+                      "kind": "FragmentSpread",
+                      "name": "IssueActions_issue"
+                    }
+                  ],
+                  "type": "Issue",
+                  "abstractKey": null
+                },
+                "kind": "AliasedInlineFragmentSpread",
                 "name": "IssueActions_issue"
               }
             ],
@@ -202,32 +228,32 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "IssueDetailRootQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
         "plural": false,
         "selections": [
-          (v9/*: any*/),
-          (v10/*: any*/),
+          (v9/*:: as any*/),
+          (v10/*:: as any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
-              (v11/*: any*/),
-              (v6/*: any*/),
-              (v7/*: any*/),
-              (v8/*: any*/),
+              (v2/*:: as any*/),
+              (v3/*:: as any*/),
+              (v11/*:: as any*/),
+              (v6/*:: as any*/),
+              (v7/*:: as any*/),
+              (v8/*:: as any*/),
               {
                 "alias": null,
-                "args": (v12/*: any*/),
+                "args": (v12/*:: as any*/),
                 "concreteType": "IssueCommentConnection",
                 "kind": "LinkedField",
                 "name": "comments",
@@ -249,10 +275,10 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v10/*: any*/),
-                          (v11/*: any*/),
-                          (v6/*: any*/),
-                          (v9/*: any*/)
+                          (v10/*:: as any*/),
+                          (v11/*:: as any*/),
+                          (v6/*:: as any*/),
+                          (v9/*:: as any*/)
                         ],
                         "storageKey": null
                       },
@@ -308,7 +334,7 @@ return {
               },
               {
                 "alias": null,
-                "args": (v12/*: any*/),
+                "args": (v12/*:: as any*/),
                 "filters": null,
                 "handle": "connection",
                 "key": "IssueDetailComments_comments",
@@ -335,9 +361,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "42e7a1bc529086397c84040c8f84c752";
+(node/*:: as any*/).hash = "0f444943cee32f7cc6b39eedeeec926e";
 
-module.exports = ((node/*: any*/)/*: Query<
+export default ((node/*:: as any*/)/*:: as Query<
   IssueDetailRootQuery$variables,
   IssueDetailRootQuery$data,
 >*/);

@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<89c0b657d79847ddc80199034fe814cd>>
+ * @generated SignedSource<<dc1d96c4589535acb03bd0d14469ae33>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -55,14 +54,14 @@ v2 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "IssueActionsCloseIssueMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "CloseIssuePayload",
         "kind": "LinkedField",
         "name": "closeIssue",
@@ -76,7 +75,7 @@ return {
             "name": "issue",
             "plural": false,
             "selections": [
-              (v2/*: any*/)
+              (v2/*:: as any*/)
             ],
             "storageKey": null
           }
@@ -89,13 +88,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "IssueActionsCloseIssueMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "CloseIssuePayload",
         "kind": "LinkedField",
         "name": "closeIssue",
@@ -109,7 +108,7 @@ return {
             "name": "issue",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
+              (v2/*:: as any*/),
               {
                 "alias": null,
                 "args": null,
@@ -136,9 +135,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "51e445c25b3f4b3c48c3d6ca6c5f2f5a";
+(node/*:: as any*/).hash = "51e445c25b3f4b3c48c3d6ca6c5f2f5a";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   IssueActionsCloseIssueMutation$variables,
   IssueActionsCloseIssueMutation$data,
 >*/);

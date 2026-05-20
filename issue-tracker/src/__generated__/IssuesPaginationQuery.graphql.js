@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<dec4185007fec97aad954a53a9ae3969>>
+ * @generated SignedSource<<f38eced9e7e2fa93bf0b4a8aadac3667>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -12,13 +11,13 @@
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
-type Issues_repository$fragmentType = any;
+import type { Issues_repository$fragmentType } from "./Issues_repository.graphql";
 export type IssueState = "CLOSED" | "OPEN" | "%future added value";
 export type IssuesPaginationQuery$variables = {|
   count?: ?number,
   cursor?: ?string,
   id: string,
-  states?: ?$ReadOnlyArray<IssueState>,
+  states?: ?ReadonlyArray<IssueState>,
 |};
 export type IssuesPaginationQuery$data = {|
   +node: ?{|
@@ -89,15 +88,15 @@ v8 = [
     "name": "first",
     "variableName": "count"
   },
-  (v5/*: any*/)
+  (v5/*:: as any*/)
 ];
 return {
   "fragment": {
     "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/),
-      (v2/*: any*/),
-      (v3/*: any*/)
+      (v0/*:: as any*/),
+      (v1/*:: as any*/),
+      (v2/*:: as any*/),
+      (v3/*:: as any*/)
     ],
     "kind": "Fragment",
     "metadata": null,
@@ -105,7 +104,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v4/*: any*/),
+        "args": (v4/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
@@ -123,7 +122,7 @@ return {
                 "name": "cursor",
                 "variableName": "cursor"
               },
-              (v5/*: any*/)
+              (v5/*:: as any*/)
             ],
             "kind": "FragmentSpread",
             "name": "Issues_repository"
@@ -138,30 +137,30 @@ return {
   "kind": "Request",
   "operation": {
     "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/),
-      (v3/*: any*/),
-      (v2/*: any*/)
+      (v0/*:: as any*/),
+      (v1/*:: as any*/),
+      (v3/*:: as any*/),
+      (v2/*:: as any*/)
     ],
     "kind": "Operation",
     "name": "IssuesPaginationQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v4/*: any*/),
+        "args": (v4/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
         "plural": false,
         "selections": [
-          (v6/*: any*/),
-          (v7/*: any*/),
+          (v6/*:: as any*/),
+          (v7/*:: as any*/),
           {
             "kind": "InlineFragment",
             "selections": [
               {
                 "alias": null,
-                "args": (v8/*: any*/),
+                "args": (v8/*:: as any*/),
                 "concreteType": "IssueConnection",
                 "kind": "LinkedField",
                 "name": "issues",
@@ -183,7 +182,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v7/*: any*/),
+                          (v7/*:: as any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -191,7 +190,7 @@ return {
                             "name": "title",
                             "storageKey": null
                           },
-                          (v6/*: any*/)
+                          (v6/*:: as any*/)
                         ],
                         "storageKey": null
                       },
@@ -247,7 +246,7 @@ return {
               },
               {
                 "alias": null,
-                "args": (v8/*: any*/),
+                "args": (v8/*:: as any*/),
                 "filters": [
                   "states"
                 ],
@@ -276,9 +275,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "5247d00636acb2216057e2b051be4a3c";
+(node/*:: as any*/).hash = "5247d00636acb2216057e2b051be4a3c";
 
-module.exports = ((node/*: any*/)/*: Query<
+export default ((node/*:: as any*/)/*:: as Query<
   IssuesPaginationQuery$variables,
   IssuesPaginationQuery$data,
 >*/);

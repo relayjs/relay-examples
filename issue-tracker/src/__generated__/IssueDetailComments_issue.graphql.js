@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<5cb8eef88a9b337ef2ae39ef1dd86a69>>
+ * @generated SignedSource<<105a925851bcae11191a8275b4d5f2b6>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -16,7 +15,7 @@ declare export opaque type IssueDetailComments_issue$fragmentType: FragmentType;
 type IssueDetailCommentsQuery$variables = any;
 export type IssueDetailComments_issue$data = {|
   +comments: {|
-    +edges: ?$ReadOnlyArray<?{|
+    +edges: ?ReadonlyArray<?{|
       +__id: string,
       +node: ?{|
         +author: ?{|
@@ -37,6 +36,8 @@ export type IssueDetailComments_issue$key = {
   ...
 };
 */
+
+import IssueDetailCommentsQuery_graphql from './IssueDetailCommentsQuery.graphql';
 
 var node/*: ReaderFragment*/ = (function(){
 var v0 = [
@@ -69,7 +70,7 @@ return {
         "count": "count",
         "cursor": "cursor",
         "direction": "forward",
-        "path": (v0/*: any*/)
+        "path": (v0/*:: as any*/)
       }
     ],
     "refetch": {
@@ -79,13 +80,16 @@ return {
           "cursor": "cursor"
         },
         "backward": null,
-        "path": (v0/*: any*/)
+        "path": (v0/*:: as any*/)
       },
       "fragmentPathInResult": [
         "node"
       ],
-      "operation": require('./IssueDetailCommentsQuery.graphql'),
-      "identifierField": "id"
+      "operation": IssueDetailCommentsQuery_graphql,
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
     }
   },
   "name": "IssueDetailComments_issue",
@@ -114,7 +118,7 @@ return {
               "name": "node",
               "plural": false,
               "selections": [
-                (v1/*: any*/),
+                (v1/*:: as any*/),
                 {
                   "alias": null,
                   "args": null,
@@ -207,16 +211,16 @@ return {
       ],
       "storageKey": null
     },
-    (v1/*: any*/)
+    (v1/*:: as any*/)
   ],
   "type": "Issue",
   "abstractKey": null
 };
 })();
 
-(node/*: any*/).hash = "674952f209c2653f27a5fad5539df511";
+(node/*:: as any*/).hash = "674952f209c2653f27a5fad5539df511";
 
-module.exports = ((node/*: any*/)/*: RefetchableFragment<
+export default ((node/*:: as any*/)/*:: as RefetchableFragment<
   IssueDetailComments_issue$fragmentType,
   IssueDetailComments_issue$data,
   IssueDetailCommentsQuery$variables,

@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<753282f23bc390ea70a915a27283949f>>
+ * @generated SignedSource<<c6767504ec079c25491db4f91dbd3cfe>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -11,14 +10,14 @@
 
 /*::
 import type { ReaderFragment, RefetchableFragment } from 'relay-runtime';
-type IssuesListItem_issue$fragmentType = any;
+import type { IssuesListItem_issue$fragmentType } from "./IssuesListItem_issue.graphql";
 import type { FragmentType } from "relay-runtime";
 declare export opaque type Issues_repository$fragmentType: FragmentType;
 type IssuesPaginationQuery$variables = any;
 export type Issues_repository$data = {|
   +id: string,
   +issues: {|
-    +edges: ?$ReadOnlyArray<?{|
+    +edges: ?ReadonlyArray<?{|
       +__id: string,
       +node: ?{|
         +$fragmentSpreads: IssuesListItem_issue$fragmentType,
@@ -33,6 +32,8 @@ export type Issues_repository$key = {
   ...
 };
 */
+
+import IssuesPaginationQuery_graphql from './IssuesPaginationQuery.graphql';
 
 var node/*: ReaderFragment*/ = (function(){
 var v0 = [
@@ -63,7 +64,7 @@ return {
         "count": "count",
         "cursor": "cursor",
         "direction": "forward",
-        "path": (v0/*: any*/)
+        "path": (v0/*:: as any*/)
       }
     ],
     "refetch": {
@@ -73,13 +74,16 @@ return {
           "cursor": "cursor"
         },
         "backward": null,
-        "path": (v0/*: any*/)
+        "path": (v0/*:: as any*/)
       },
       "fragmentPathInResult": [
         "node"
       ],
-      "operation": require('./IssuesPaginationQuery.graphql'),
-      "identifierField": "id"
+      "operation": IssuesPaginationQuery_graphql,
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
     }
   },
   "name": "Issues_repository",
@@ -192,9 +196,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "5247d00636acb2216057e2b051be4a3c";
+(node/*:: as any*/).hash = "5247d00636acb2216057e2b051be4a3c";
 
-module.exports = ((node/*: any*/)/*: RefetchableFragment<
+export default ((node/*:: as any*/)/*:: as RefetchableFragment<
   Issues_repository$fragmentType,
   Issues_repository$data,
   IssuesPaginationQuery$variables,

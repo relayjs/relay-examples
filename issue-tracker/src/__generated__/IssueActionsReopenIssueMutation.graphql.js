@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<41f94f17b07fc0d5503758191a569d1c>>
+ * @generated SignedSource<<c0c99b0ebc9d9168959db231a2a94c7e>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -55,14 +54,14 @@ v2 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "IssueActionsReopenIssueMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "ReopenIssuePayload",
         "kind": "LinkedField",
         "name": "reopenIssue",
@@ -76,7 +75,7 @@ return {
             "name": "issue",
             "plural": false,
             "selections": [
-              (v2/*: any*/)
+              (v2/*:: as any*/)
             ],
             "storageKey": null
           }
@@ -89,13 +88,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "IssueActionsReopenIssueMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "ReopenIssuePayload",
         "kind": "LinkedField",
         "name": "reopenIssue",
@@ -109,7 +108,7 @@ return {
             "name": "issue",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
+              (v2/*:: as any*/),
               {
                 "alias": null,
                 "args": null,
@@ -136,9 +135,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "6dbb9d9a672b1703eb0983667e9638db";
+(node/*:: as any*/).hash = "6dbb9d9a672b1703eb0983667e9638db";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   IssueActionsReopenIssueMutation$variables,
   IssueActionsReopenIssueMutation$data,
 >*/);

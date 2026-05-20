@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<44e5146557bc357ed7c0744a0ebfb032>>
+ * @generated SignedSource<<5746caa056f866a64631f5ca1186aaf8>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -11,7 +10,7 @@
 
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
-type Issues_repository$fragmentType = any;
+import type { Issues_repository$fragmentType } from "./Issues_repository.graphql";
 export type HomeRootIssuesQuery$variables = {|
   name: string,
   owner: string,
@@ -72,8 +71,8 @@ v4 = {
 return {
   "fragment": {
     "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/)
+      (v0/*:: as any*/),
+      (v1/*:: as any*/)
     ],
     "kind": "Fragment",
     "metadata": null,
@@ -81,7 +80,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v2/*:: as any*/),
         "concreteType": "Repository",
         "kind": "LinkedField",
         "name": "repository",
@@ -102,15 +101,15 @@ return {
   "kind": "Request",
   "operation": {
     "argumentDefinitions": [
-      (v1/*: any*/),
-      (v0/*: any*/)
+      (v1/*:: as any*/),
+      (v0/*:: as any*/)
     ],
     "kind": "Operation",
     "name": "HomeRootIssuesQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v2/*:: as any*/),
         "concreteType": "Repository",
         "kind": "LinkedField",
         "name": "repository",
@@ -118,7 +117,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v3/*: any*/),
+            "args": (v3/*:: as any*/),
             "concreteType": "IssueConnection",
             "kind": "LinkedField",
             "name": "issues",
@@ -140,7 +139,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v4/*: any*/),
+                      (v4/*:: as any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -210,7 +209,7 @@ return {
           },
           {
             "alias": null,
-            "args": (v3/*: any*/),
+            "args": (v3/*:: as any*/),
             "filters": [
               "states"
             ],
@@ -219,7 +218,7 @@ return {
             "kind": "LinkedHandle",
             "name": "issues"
           },
-          (v4/*: any*/)
+          (v4/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -236,9 +235,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "123ee85bfef2bb303a99a7320127372f";
+(node/*:: as any*/).hash = "123ee85bfef2bb303a99a7320127372f";
 
-module.exports = ((node/*: any*/)/*: Query<
+export default ((node/*:: as any*/)/*:: as Query<
   HomeRootIssuesQuery$variables,
   HomeRootIssuesQuery$data,
 >*/);

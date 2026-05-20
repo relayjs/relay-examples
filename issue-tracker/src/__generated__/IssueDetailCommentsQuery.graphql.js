@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<9f5939c4cc30c45ca681cbec229b6023>>
+ * @generated SignedSource<<a974aeba02941c932328485599795388>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -12,7 +11,7 @@
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
-type IssueDetailComments_issue$fragmentType = any;
+import type { IssueDetailComments_issue$fragmentType } from "./IssueDetailComments_issue.graphql";
 export type IssueDetailCommentsQuery$variables = {|
   count?: ?number,
   cursor?: ?string,
@@ -82,14 +81,14 @@ v4 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "IssueDetailCommentsQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
@@ -120,26 +119,26 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "IssueDetailCommentsQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
+          (v2/*:: as any*/),
+          (v3/*:: as any*/),
           {
             "kind": "InlineFragment",
             "selections": [
               {
                 "alias": null,
-                "args": (v4/*: any*/),
+                "args": (v4/*:: as any*/),
                 "concreteType": "IssueCommentConnection",
                 "kind": "LinkedField",
                 "name": "comments",
@@ -161,7 +160,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
+                          (v3/*:: as any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -170,7 +169,7 @@ return {
                             "name": "author",
                             "plural": false,
                             "selections": [
-                              (v2/*: any*/),
+                              (v2/*:: as any*/),
                               {
                                 "alias": null,
                                 "args": null,
@@ -188,7 +187,7 @@ return {
                               {
                                 "kind": "InlineFragment",
                                 "selections": [
-                                  (v3/*: any*/)
+                                  (v3/*:: as any*/)
                                 ],
                                 "type": "Node",
                                 "abstractKey": "__isNode"
@@ -203,7 +202,7 @@ return {
                             "name": "body",
                             "storageKey": null
                           },
-                          (v2/*: any*/)
+                          (v2/*:: as any*/)
                         ],
                         "storageKey": null
                       },
@@ -259,7 +258,7 @@ return {
               },
               {
                 "alias": null,
-                "args": (v4/*: any*/),
+                "args": (v4/*:: as any*/),
                 "filters": null,
                 "handle": "connection",
                 "key": "IssueDetailComments_comments",
@@ -286,9 +285,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "674952f209c2653f27a5fad5539df511";
+(node/*:: as any*/).hash = "674952f209c2653f27a5fad5539df511";
 
-module.exports = ((node/*: any*/)/*: Query<
+export default ((node/*:: as any*/)/*:: as Query<
   IssueDetailCommentsQuery$variables,
   IssueDetailCommentsQuery$data,
 >*/);

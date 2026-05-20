@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<ffca303bd51487e7a9292cce9bf1688b>>
+ * @generated SignedSource<<0e02f3e7d770d997086354730bad8575>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -76,8 +75,8 @@ v5 = {
 return {
   "fragment": {
     "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/)
+      (v0/*:: as any*/),
+      (v1/*:: as any*/)
     ],
     "kind": "Fragment",
     "metadata": null,
@@ -85,7 +84,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v2/*:: as any*/),
         "concreteType": "Repository",
         "kind": "LinkedField",
         "name": "repository",
@@ -99,11 +98,11 @@ return {
             "name": "owner",
             "plural": false,
             "selections": [
-              (v3/*: any*/)
+              (v3/*:: as any*/)
             ],
             "storageKey": null
           },
-          (v4/*: any*/)
+          (v4/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -114,15 +113,15 @@ return {
   "kind": "Request",
   "operation": {
     "argumentDefinitions": [
-      (v1/*: any*/),
-      (v0/*: any*/)
+      (v1/*:: as any*/),
+      (v0/*:: as any*/)
     ],
     "kind": "Operation",
     "name": "RootQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v2/*:: as any*/),
         "concreteType": "Repository",
         "kind": "LinkedField",
         "name": "repository",
@@ -143,13 +142,13 @@ return {
                 "name": "__typename",
                 "storageKey": null
               },
-              (v3/*: any*/),
-              (v5/*: any*/)
+              (v3/*:: as any*/),
+              (v5/*:: as any*/)
             ],
             "storageKey": null
           },
-          (v4/*: any*/),
-          (v5/*: any*/)
+          (v4/*:: as any*/),
+          (v5/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -166,9 +165,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "86d44615100f8e82c5a3ff63daa08bd5";
+(node/*:: as any*/).hash = "86d44615100f8e82c5a3ff63daa08bd5";
 
-module.exports = ((node/*: any*/)/*: Query<
+export default ((node/*:: as any*/)/*:: as Query<
   RootQuery$variables,
   RootQuery$data,
 >*/);
