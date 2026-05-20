@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<92adb9550d351b1b52bacb82b7b0d831>>
+ * @generated SignedSource<<896fb4dd9d17d25db7ca95c690d719ab>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -15,7 +14,7 @@ import type { FragmentType } from "relay-runtime";
 declare export opaque type RemoveCompletedTodosMutation_todoConnection$fragmentType: FragmentType;
 export type RemoveCompletedTodosMutation_todoConnection$data = {|
   +__id: string,
-  +edges: ?$ReadOnlyArray<?{|
+  +edges: ?ReadonlyArray<?{|
     +node: ?{|
       +complete: boolean,
       +id: string,
@@ -89,9 +88,9 @@ var node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 
-(node/*: any*/).hash = "5a2052408b9a995f2635949998ec0eba";
+(node/*:: as any*/).hash = "5a2052408b9a995f2635949998ec0eba";
 
-module.exports = ((node/*: any*/)/*: Fragment<
+export default ((node/*:: as any*/)/*:: as Fragment<
   RemoveCompletedTodosMutation_todoConnection$fragmentType,
   RemoveCompletedTodosMutation_todoConnection$data,
 >*/);

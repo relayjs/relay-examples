@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<034129d86bd6ad50f15aed1303def6a4>>
+ * @generated SignedSource<<a2e44bd1d56644e4d1e885d323609e92>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -24,7 +23,7 @@ export type TodoList_user$data = {|
   +completedCount: number,
   +todos: ?{|
     +__id: string,
-    +edges: ?$ReadOnlyArray<?{|
+    +edges: ?ReadonlyArray<?{|
       +node: ?{|
         +id: string,
         +$fragmentSpreads: Todo_todo$fragmentType,
@@ -206,9 +205,9 @@ var node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 
-(node/*: any*/).hash = "c83e0fccfae7ee28c5b4994bd7caae65";
+(node/*:: as any*/).hash = "c83e0fccfae7ee28c5b4994bd7caae65";
 
-module.exports = ((node/*: any*/)/*: Fragment<
+export default ((node/*:: as any*/)/*:: as Fragment<
   TodoList_user$fragmentType,
   TodoList_user$data,
 >*/);

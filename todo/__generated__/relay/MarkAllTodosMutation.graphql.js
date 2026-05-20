@@ -1,9 +1,8 @@
 /**
- * @generated SignedSource<<59c7486edc7448c4e75045aaf7139dd1>>
+ * @generated SignedSource<<46a8aff551a4ee634a0f9e8483751f3a>>
  * @relayHash db9904c31d91416f21d45fe3d153884c
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -24,7 +23,7 @@ export type MarkAllTodosMutation$variables = {|
 |};
 export type MarkAllTodosMutation$data = {|
   +markAllTodos: ?{|
-    +changedTodos: ?$ReadOnlyArray<{|
+    +changedTodos: ?ReadonlyArray<{|
       +complete: boolean,
       +id: string,
     |}>,
@@ -78,7 +77,7 @@ v2 = [
         "name": "changedTodos",
         "plural": true,
         "selections": [
-          (v1/*: any*/),
+          (v1/*:: as any*/),
           {
             "alias": null,
             "args": null,
@@ -97,7 +96,7 @@ v2 = [
         "name": "user",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
+          (v1/*:: as any*/),
           {
             "alias": null,
             "args": null,
@@ -114,20 +113,20 @@ v2 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "MarkAllTodosMutation",
-    "selections": (v2/*: any*/),
+    "selections": (v2/*:: as any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "MarkAllTodosMutation",
-    "selections": (v2/*: any*/)
+    "selections": (v2/*:: as any*/)
   },
   "params": {
     "id": "db9904c31d91416f21d45fe3d153884c",
@@ -139,9 +138,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "779c582c4ba0ee3c5be19942628dfaf3";
+(node/*:: as any*/).hash = "779c582c4ba0ee3c5be19942628dfaf3";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   MarkAllTodosMutation$variables,
   MarkAllTodosMutation$data,
 >*/);

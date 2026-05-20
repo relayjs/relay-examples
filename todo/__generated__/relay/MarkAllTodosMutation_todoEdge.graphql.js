@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<18a8b32c560813f69c420c11ef60bb14>>
+ * @generated SignedSource<<7143e161cf520e76a9c470ee30e4bf48>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -13,13 +12,13 @@
 import type { Fragment, ReaderFragment } from 'relay-runtime';
 import type { FragmentType } from "relay-runtime";
 declare export opaque type MarkAllTodosMutation_todoEdge$fragmentType: FragmentType;
-export type MarkAllTodosMutation_todoEdge$data = $ReadOnlyArray<{|
+export type MarkAllTodosMutation_todoEdge$data = ReadonlyArray<{|
   +node: ?{|
     +id: string,
   |},
   +$fragmentType: MarkAllTodosMutation_todoEdge$fragmentType,
 |}>;
-export type MarkAllTodosMutation_todoEdge$key = $ReadOnlyArray<{
+export type MarkAllTodosMutation_todoEdge$key = ReadonlyArray<{
   +$data?: MarkAllTodosMutation_todoEdge$data,
   +$fragmentSpreads: MarkAllTodosMutation_todoEdge$fragmentType,
   ...
@@ -57,9 +56,9 @@ var node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 
-(node/*: any*/).hash = "49419294a7d2cb7d3a5079eba46e7c54";
+(node/*:: as any*/).hash = "49419294a7d2cb7d3a5079eba46e7c54";
 
-module.exports = ((node/*: any*/)/*: Fragment<
+export default ((node/*:: as any*/)/*:: as Fragment<
   MarkAllTodosMutation_todoEdge$fragmentType,
   MarkAllTodosMutation_todoEdge$data,
 >*/);

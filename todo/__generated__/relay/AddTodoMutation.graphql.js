@@ -1,9 +1,8 @@
 /**
- * @generated SignedSource<<5c79c20b3cccc50deaeb29131ca183e4>>
+ * @generated SignedSource<<65ce274b2f2c45fedf697f2693381bac>>
  * @relayHash ac90c59b3a07237ee6f3cf60f9879f90
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -20,7 +19,7 @@ export type AddTodoInput = {|
   userId: string,
 |};
 export type AddTodoMutation$variables = {|
-  connections: $ReadOnlyArray<string>,
+  connections: ReadonlyArray<string>,
   input: AddTodoInput,
 |};
 export type AddTodoMutation$data = {|
@@ -94,7 +93,7 @@ v3 = {
           "name": "complete",
           "storageKey": null
         },
-        (v2/*: any*/),
+        (v2/*:: as any*/),
         {
           "alias": null,
           "args": null,
@@ -116,7 +115,7 @@ v4 = {
   "name": "user",
   "plural": false,
   "selections": [
-    (v2/*: any*/),
+    (v2/*:: as any*/),
     {
       "alias": null,
       "args": null,
@@ -129,21 +128,21 @@ v4 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "AddTodoMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "AddTodoPayload",
         "kind": "LinkedField",
         "name": "addTodo",
         "plural": false,
         "selections": [
-          (v3/*: any*/),
-          (v4/*: any*/)
+          (v3/*:: as any*/),
+          (v4/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -153,19 +152,19 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "AddTodoMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "AddTodoPayload",
         "kind": "LinkedField",
         "name": "addTodo",
         "plural": false,
         "selections": [
-          (v3/*: any*/),
+          (v3/*:: as any*/),
           {
             "alias": null,
             "args": null,
@@ -182,7 +181,7 @@ return {
               }
             ]
           },
-          (v4/*: any*/)
+          (v4/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -198,9 +197,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "4ae75ce7e6724d608803b8cdd76c087f";
+(node/*:: as any*/).hash = "4ae75ce7e6724d608803b8cdd76c087f";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   AddTodoMutation$variables,
   AddTodoMutation$data,
 >*/);

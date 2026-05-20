@@ -1,9 +1,8 @@
 /**
- * @generated SignedSource<<1eb563a36ecae92cf484e8b1db6af4df>>
+ * @generated SignedSource<<9c1f0f637a9b8cd820358df28dc8092f>>
  * @relayHash 8a75762b2e92a08aeb1007fc11f71298
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -60,7 +59,7 @@ v3 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "TodoAppQuery",
@@ -69,7 +68,7 @@ return {
         "kind": "RequiredField",
         "field": {
           "alias": null,
-          "args": (v1/*: any*/),
+          "args": (v1/*:: as any*/),
           "concreteType": "User",
           "kind": "LinkedField",
           "name": "user",
@@ -83,8 +82,7 @@ return {
           ],
           "storageKey": null
         },
-        "action": "THROW",
-        "path": "user"
+        "action": "THROW"
       }
     ],
     "type": "Query",
@@ -92,13 +90,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "TodoAppQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "User",
         "kind": "LinkedField",
         "name": "user",
@@ -106,7 +104,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v2/*: any*/),
+            "args": (v2/*:: as any*/),
             "concreteType": "TodoConnection",
             "kind": "LinkedField",
             "name": "todos",
@@ -128,7 +126,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v3/*: any*/),
+                      (v3/*:: as any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -205,7 +203,7 @@ return {
           },
           {
             "alias": null,
-            "args": (v2/*: any*/),
+            "args": (v2/*:: as any*/),
             "filters": null,
             "handle": "connection",
             "key": "TodoList_todos",
@@ -233,7 +231,7 @@ return {
             "name": "userId",
             "storageKey": null
           },
-          (v3/*: any*/)
+          (v3/*:: as any*/)
         ],
         "storageKey": null
       }
@@ -249,11 +247,12 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "021cf002a0c5c39c772369311b469cec";
+(node/*:: as any*/).hash = "021cf002a0c5c39c772369311b469cec";
 
-require('relay-runtime').PreloadableQueryRegistry.set((node.params/*: any*/).id, node);
+import { PreloadableQueryRegistry } from 'relay-runtime';
+PreloadableQueryRegistry.set((node.params/*:: as any*/).id, node);
 
-module.exports = ((node/*: any*/)/*: Query<
+export default ((node/*:: as any*/)/*:: as Query<
   TodoAppQuery$variables,
   TodoAppQuery$data,
 >*/);
