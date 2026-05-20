@@ -1,22 +1,21 @@
 /**
- * @generated SignedSource<<8889ba1a2f5eae47db38f1b3c59bba4d>>
+ * @generated SignedSource<<36cb80d8d4b43def976e44eb4699a9e8>>
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ViewerProfileFragment$data = {
   readonly actor: {
-    readonly name: string | null;
+    readonly name: string | null | undefined;
     readonly profilePicture: {
       readonly url: string;
-    } | null;
-  } | null;
+    } | null | undefined;
+  } | null | undefined;
   readonly " $fragmentType": "ViewerProfileFragment";
 };
 export type ViewerProfileFragment$key = {

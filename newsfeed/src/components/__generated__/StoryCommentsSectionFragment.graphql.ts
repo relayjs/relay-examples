@@ -1,14 +1,13 @@
 /**
- * @generated SignedSource<<90e45a4f0961bbf83f009aafa324925c>>
+ * @generated SignedSource<<5954b0e3f9c74a253ea9e467885fc198>>
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type StoryCommentsSectionFragment$data = {
   readonly comments: {
@@ -16,12 +15,12 @@ export type StoryCommentsSectionFragment$data = {
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"CommentFragment">;
-      } | null;
-    } | null> | null;
+      } | null | undefined;
+    } | null | undefined> | null | undefined;
     readonly pageInfo: {
-      readonly hasNextPage: boolean | null;
-    } | null;
-  } | null;
+      readonly hasNextPage: boolean | null | undefined;
+    } | null | undefined;
+  } | null | undefined;
   readonly " $fragmentType": "StoryCommentsSectionFragment";
 };
 export type StoryCommentsSectionFragment$key = {

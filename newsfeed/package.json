@@ -36,7 +36,7 @@
     "mini-css-extract-plugin": "^2.7.2",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.0",
-    "relay-compiler": "^19.0.0",
+    "relay-compiler": "^21.0.0",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
@@ -47,8 +47,8 @@
     "graphql": "^17.0.0-alpha.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-relay": "^19.0.0",
-    "relay-runtime": "^19.0.0"
+    "react-relay": "^21.0.0",
+    "relay-runtime": "^21.0.0"
   },
   "overrides": {
     "graphiql": {
