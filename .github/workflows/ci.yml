@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [18.x, 20.x, 22.x]
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install watchman
         run: |
           mkdir watchman
           cd watchman
-          curl -L -O 'https://github.com/facebook/watchman/releases/download/v2021.05.24.00/watchman-v2021.05.24.00-linux.zip'
-          unzip watchman-v2021.05.24.00-linux.zip
-          cd watchman-v2021.05.24.00-linux
+          curl -L -O 'https://github.com/facebook/watchman/releases/download/v2026.05.11.00/watchman-v2026.05.11.00-linux.zip'
+          unzip watchman-v2026.05.11.00-linux.zip
+          cd watchman-v2026.05.11.00-linux
           sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
           sudo cp bin/* /usr/local/bin
           sudo cp lib/* /usr/local/lib
