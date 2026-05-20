@@ -38,10 +38,7 @@ function generateBlogPost() {
 
 export function findBlogPost(id) {
   const post = blogPosts.find((post) => post.id == id);
-  return blogPosts.find((post) => post.id == id);
-  return post ?  ({
-    content: post
-  }) : null;
+  return post ? {content: post} : null;
 }
 
 // Fake implementation of the `allBlogPosts` connection

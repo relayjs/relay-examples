@@ -74,6 +74,9 @@ const FancyBlogPostType = new GraphQLObjectType({
 const BlogPostUnion = new GraphQLUnionType({
   name: 'BlogPostUnion',
   types: [BlogPostType, FancyBlogPostType],
+  resolveType(obj) {
+    return obj.__typename === 'FancyBlogPost' ? 'FancyBlogPost' : 'BlogPost';
+  },
 });
 
 const Post = new GraphQLObjectType({
