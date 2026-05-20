@@ -4,6 +4,7 @@
   "artifactDirectory": "./__generated__",
   "excludes": ["**/.next/**", "**/node_modules/**", "**/schema/**"],
   "language": "javascript",
+  "eagerEsModules": false,
   "persistConfig": {
     "file": "./queryMap.json"
   }
