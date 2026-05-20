@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<5c523c009dcef4ac8a792bcb6f370cb1>>
+ * @generated SignedSource<<c6324cfc052517896637123d19dcda6a>>
  * @flow
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* eslint-disable */
@@ -66,7 +65,7 @@ v2 = {
   "storageKey": null
 },
 v3 = [
-  (v2/*: any*/)
+  (v2/*:: as any*/)
 ],
 v4 = {
   "alias": null,
@@ -110,14 +109,14 @@ v8 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "IssueActionsAddCommentMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "AddCommentPayload",
         "kind": "LinkedField",
         "name": "addComment",
@@ -130,7 +129,7 @@ return {
             "kind": "LinkedField",
             "name": "subject",
             "plural": false,
-            "selections": (v3/*: any*/),
+            "selections": (v3/*:: as any*/),
             "storageKey": null
           },
           {
@@ -149,7 +148,7 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
+                  (v2/*:: as any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -158,16 +157,16 @@ return {
                     "name": "author",
                     "plural": false,
                     "selections": [
-                      (v4/*: any*/),
-                      (v5/*: any*/)
+                      (v4/*:: as any*/),
+                      (v5/*:: as any*/)
                     ],
                     "storageKey": null
                   },
-                  (v6/*: any*/)
+                  (v6/*:: as any*/)
                 ],
                 "storageKey": null
               },
-              (v7/*: any*/)
+              (v7/*:: as any*/)
             ],
             "storageKey": null
           }
@@ -180,13 +179,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "IssueActionsAddCommentMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": "AddCommentPayload",
         "kind": "LinkedField",
         "name": "addComment",
@@ -200,8 +199,8 @@ return {
             "name": "subject",
             "plural": false,
             "selections": [
-              (v8/*: any*/),
-              (v2/*: any*/)
+              (v8/*:: as any*/),
+              (v2/*:: as any*/)
             ],
             "storageKey": null
           },
@@ -221,7 +220,7 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
+                  (v2/*:: as any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -230,23 +229,23 @@ return {
                     "name": "author",
                     "plural": false,
                     "selections": [
-                      (v8/*: any*/),
-                      (v4/*: any*/),
-                      (v5/*: any*/),
+                      (v8/*:: as any*/),
+                      (v4/*:: as any*/),
+                      (v5/*:: as any*/),
                       {
                         "kind": "InlineFragment",
-                        "selections": (v3/*: any*/),
+                        "selections": (v3/*:: as any*/),
                         "type": "Node",
                         "abstractKey": "__isNode"
                       }
                     ],
                     "storageKey": null
                   },
-                  (v6/*: any*/)
+                  (v6/*:: as any*/)
                 ],
                 "storageKey": null
               },
-              (v7/*: any*/)
+              (v7/*:: as any*/)
             ],
             "storageKey": null
           }
@@ -266,9 +265,9 @@ return {
 };
 })();
 
-(node/*: any*/).hash = "f777dc7f1873d5cdab111f485ef8f404";
+(node/*:: as any*/).hash = "f777dc7f1873d5cdab111f485ef8f404";
 
-module.exports = ((node/*: any*/)/*: Mutation<
+export default ((node/*:: as any*/)/*:: as Mutation<
   IssueActionsAddCommentMutation$variables,
   IssueActionsAddCommentMutation$data,
 >*/);

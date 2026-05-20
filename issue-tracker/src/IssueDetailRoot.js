@@ -28,8 +28,8 @@ export default function IssueDetailRoot(props) {
             body
             closed
             url
-            ...IssueDetailComments_issue
-            ...IssueActions_issue
+            ...IssueDetailComments_issue @alias
+            ...IssueActions_issue @alias
           }
         }
       }
@@ -66,8 +66,12 @@ export default function IssueDetailRoot(props) {
           />
         </div>
       </div>
-      <IssueDetailComments issue={issue} />
-      <IssueActions issue={issue} />
+      {issue.IssueDetailComments_issue != null && (
+        <IssueDetailComments issue={issue.IssueDetailComments_issue} />
+      )}
+      {issue.IssueActions_issue != null && (
+        <IssueActions issue={issue.IssueActions_issue} />
+      )}
     </div>
   );
 }

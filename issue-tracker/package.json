@@ -9,14 +9,14 @@
     "react": "0.0.0-experimental-f42431abe",
     "react-dom": "0.0.0-experimental-f42431abe",
     "react-markdown": "^4.2.2",
-    "react-relay": "^14.0.0",
+    "react-relay": "^21.0.0",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-scripts": "3.2.0",
-    "relay-runtime": "^14.0.0"
+    "relay-runtime": "^21.0.0"
   },
   "scripts": {
-    "start": "yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"react-scripts start\" \"yarn run relay --watch\"",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider yarn run relay; concurrently --kill-others --names \"react-scripts,relay\" \"NODE_OPTIONS=--openssl-legacy-provider react-scripts start\" \"yarn run relay --watch\"",
     "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -58,7 +58,7 @@
     "get-graphql-schema": "^2.1.2",
     "graphql": "^15.6.1",
     "prettier": "^1.18.2",
-    "relay-compiler": "^14.0.0"
+    "relay-compiler": "^21.0.0"
   },
   "husky": {
     "hooks": {

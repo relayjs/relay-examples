@@ -1,4 +1,13 @@
-import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import {
+  Environment,
+  Network,
+  RecordSource,
+  Store,
+  RelayFeatureFlags,
+} from 'relay-runtime';
+
+// Activity compatibility requries a newer version of React.
+RelayFeatureFlags.ENABLE_ACTIVITY_COMPATIBILITY = false;
 
 /**
  * Relay requires developers to configure a "fetch" function that tells Relay how to load
