@@ -14,8 +14,8 @@
     "next": "^13.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-relay": "main",
-    "relay-runtime": "main",
+    "react-relay": "^21.0.0",
+    "relay-runtime": "^21.0.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -31,7 +31,7 @@
     "eslint-config-next": "^13.1.2",
     "eslint-plugin-relay": "^1.8.3",
     "prettier": "^2.8.3",
-    "relay-compiler": "main",
+    "relay-compiler": "^21.0.0",
     "typescript": "^4.9.4"
   },
   "browser": {
