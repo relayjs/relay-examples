@@ -34,12 +34,6 @@ jobs:
       - name: yarn install (todo)
         working-directory: todo
         run: yarn install --frozen-lockfile
-      - name: lint (todo)
+      - name: CI (todo)
         working-directory: todo
-        run: yarn run lint
-      - name: Update schema (todo)
-        working-directory: todo
-        run: yarn run update-schema
-      - name: Yarn build (todo)
-        working-directory: todo
-        run: yarn run build
+        run: yarn run ci
