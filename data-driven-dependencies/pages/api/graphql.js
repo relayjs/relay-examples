@@ -27,12 +27,21 @@ export default async function handler(req, res) {
     }
     const requestParams = JSON.parse(Buffer.concat(buffers).toString());
     dataDrivenDependencies.reset();
+    let source;
+    if (requestParams.id != null) {
+      if (typeof requestParams.id !== 'string' || !queryMap.hasOwnProperty(requestParams.id)) {
+        res.end(JSON.stringify({errors: [{message: 'Invalid query ID'}]}));
+        return;
+      }
+      source = queryMap[requestParams.id];
+    } else {
+      res.end(JSON.stringify({errors: [{message: 'Query ID is required'}]}));
+      return;
+    }
     response = await graphql({
       schema,
       rootValue,
-      source: requestParams.id
-        ? queryMap[requestParams.id]
-        : requestParams.query,
+      source,
       variableValues: requestParams.variables,
     });
   }
