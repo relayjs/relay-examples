@@ -1,0 +1,15 @@
+{
+  "grats": {
+    "importModuleSpecifierEnding": ".ts"
+  },
+  "compilerOptions": {
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  }
+}
