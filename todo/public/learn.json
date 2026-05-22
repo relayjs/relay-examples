@@ -2,10 +2,10 @@
   "relay": {
     "name": "Relay",
     "description": "A JavaScript framework for building data-driven React applications",
-    "homepage": "facebook.github.io/relay/",
+    "homepage": "relay.dev",
     "examples": [
       {
-        "name": "Relay + express-graphql Example",
+        "name": "Relay + Grats + GraphQL Yoga Example",
         "url": "",
         "source_url": "https://github.com/relayjs/relay-examples/tree/main/todo",
         "type": "backend"
@@ -17,24 +17,11 @@
         "links": [
           {
             "name": "Documentation",
-            "url": "https://facebook.github.io/relay/docs/quick-start-guide.html"
-          },
-          {
-            "name": "GraphQL in Relay",
-            "url": "https://facebook.github.io/relay/docs/en/graphql-in-relay.html"
+            "url": "https://relay.dev/docs/"
           },
           {
             "name": "Relay on GitHub",
             "url": "https://github.com/facebook/relay"
-          }
-        ]
-      },
-      {
-        "heading": "Community",
-        "links": [
-          {
-            "name": "Relay on StackOverflow",
-            "url": "https://stackoverflow.com/questions/tagged/relayjs"
           }
         ]
       }

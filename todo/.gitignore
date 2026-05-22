@@ -1,2 +1,4 @@
+node_modules/
+dist/
 .DS_Store
-.eslintcache
+vite.config.js

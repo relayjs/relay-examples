@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,12 +34,6 @@ jobs:
       - name: yarn install (todo)
         working-directory: todo
         run: yarn install --frozen-lockfile
-      - name: lint (todo)
+      - name: CI (todo)
         working-directory: todo
-        run: yarn run lint
-      - name: Update schema (todo)
-        working-directory: todo
-        run: yarn run update-schema
-      - name: Yarn build (todo)
-        working-directory: todo
-        run: yarn run build
+        run: yarn run ci

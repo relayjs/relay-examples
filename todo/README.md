@@ -1,36 +1,44 @@
 # Relay TodoMVC
 
+## Prerequisites
+
+- Node.js 22+ (for TypeScript execution)
+- Yarn
+
 ## Installation
 
 ```
+nvm use
 yarn
 ```
 
 ## Running
 
-Set up generated files:
+Generate the schema and Relay artifacts:
 
 ```
-yarn update-schema
-yarn build
+yarn grats
+yarn relay
 ```
 
-Start a local server:
+Start the GraphQL server and Vite dev server:
 
 ```
-yarn start
+yarn dev
 ```
 
-## Developing
+The app will be available at http://localhost:5173.
 
-Any changes you make to files in the `js/` directory will cause the server to
-automatically rebuild the app and refresh your browser.
+## Architecture
 
-If at any time you make changes to `data/schema.js`, stop the server,
-regenerate `data/schema.graphql`, and restart the server:
+- **Schema**: Defined using [Grats](https://grats.capt.dev) annotations in `data/` — TypeScript types are the source of truth
+- **Server**: [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) running on port 3000
+- **Client**: React + [Relay](https://relay.dev) + Vite
+
+## CI
 
 ```
-yarn update-schema
-yarn build
-yarn start
+yarn ci
 ```
+
+Runs Grats, Relay compiler, TypeScript, and Vite build — verifying that all generated files are up to date.
