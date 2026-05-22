@@ -1,5 +1,4 @@
-import * as React from "react";
-import Story from "./Story";
+import Story from "./Story.tsx";
 
 export default function Newsfeed() {
   const story = {

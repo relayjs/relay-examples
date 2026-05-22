@@ -37,3 +37,9 @@ jobs:
       - name: CI (todo)
         working-directory: todo
         run: yarn run ci
+      - name: yarn install (newsfeed)
+        working-directory: newsfeed
+        run: yarn install
+      - name: CI (newsfeed)
+        working-directory: newsfeed
+        run: yarn run ci

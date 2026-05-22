@@ -1,7 +1,5 @@
-import * as React from "react";
-import LoadingSpinner from "./LoadingSpinner";
-
-const { useEffect, useRef, useLayoutEffect } = React;
+import { useEffect, useRef, useLayoutEffect, useCallback } from "react";
+import LoadingSpinner from "./LoadingSpinner.tsx";
 
 export default function InfiniteScrollTrigger({
   onEndReached,
@@ -11,14 +9,14 @@ export default function InfiniteScrollTrigger({
   onEndReached: () => void;
   isLoadingNext: boolean;
   hasNext: boolean;
-}): React.ReactElement {
+}) {
   const onIntersect = useDynamicCallback_UNSAFE(() => {
     if (hasNext && !isLoadingNext) {
       onEndReached();
     }
   });
 
-  const observer = useRef(null);
+  const observer = useRef<IntersectionObserver | null>(null);
   if (observer.current === null) {
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
@@ -27,12 +25,13 @@ export default function InfiniteScrollTrigger({
     }, {});
   }
 
-  const targetRef = useRef(null);
+  const targetRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const target = targetRef.current;
-    observer.current.observe(target);
+    if (!target) return;
+    observer.current!.observe(target);
     return () => {
-      observer.current.unobserve(target);
+      observer.current!.unobserve(target);
     };
   }, [targetRef]);
 
@@ -53,5 +52,5 @@ function useDynamicCallback_UNSAFE(callback: () => void) {
   useLayoutEffect(() => {
     ref.current = callback;
   }, [callback]);
-  return React.useCallback(() => ref.current(), []);
+  return useCallback(() => ref.current(), []);
 }

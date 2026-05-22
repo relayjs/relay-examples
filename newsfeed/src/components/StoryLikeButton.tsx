@@ -1,8 +1,7 @@
-import * as React from "react";
 import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 
-import type { StoryLikeButtonFragment$key } from "./__generated__/StoryLikeButtonFragment.graphql";
+import type { StoryLikeButtonFragment$key } from "../__generated__/StoryLikeButtonFragment.graphql.ts";
 
 type Props = {
   story: StoryLikeButtonFragment$key;
@@ -16,10 +15,10 @@ const StoryLikeButtonFragment = graphql`
   }
 `;
 
-export default function StoryLikeButton({ story }: Props): React.ReactElement {
+export default function StoryLikeButton({ story }: Props) {
   const data = useFragment<StoryLikeButtonFragment$key>(
     StoryLikeButtonFragment,
-    story
+    story,
   );
   const onLikeButtonClicked = () => {
     // To be filled in
@@ -35,7 +34,7 @@ export default function StoryLikeButton({ story }: Props): React.ReactElement {
   );
 }
 
-function LikeCount({ count }: { count: number }) {
+function LikeCount({ count }: { count: number | null | undefined }) {
   return <div className="likeButton__count">{count} likes</div>;
 }
 
@@ -44,7 +43,7 @@ function LikeButton({
   onClick,
   disabled,
 }: {
-  doesViewerLike: boolean;
+  doesViewerLike: boolean | null | undefined;
   onClick: () => void;
   disabled?: boolean;
 }) {

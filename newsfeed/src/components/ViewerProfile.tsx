@@ -1,8 +1,7 @@
-import * as React from "react";
 import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
-import type { ViewerProfileFragment$key } from "./__generated__/ViewerProfileFragment.graphql";
-import Card from "./Card";
+import type { ViewerProfileFragment$key } from "../__generated__/ViewerProfileFragment.graphql.ts";
+import Card from "./Card.tsx";
 
 const ViewerProfileFragment = graphql`
   fragment ViewerProfileFragment on Viewer {
@@ -24,8 +23,12 @@ export default function ViewerProfile({
   return (
     <Card dim={true}>
       <div className="viewerProfile">
-        <img src={data.actor.profilePicture.url} height="60" width="60" />
-        <div className="viewerProfile__name">{data.actor.name}</div>
+        <img
+          src={data.actor?.profilePicture?.url}
+          height="60"
+          width="60"
+        />
+        <div className="viewerProfile__name">{data.actor?.name}</div>
         <div className="viewerProfile__menu">⋯</div>
       </div>
     </Card>

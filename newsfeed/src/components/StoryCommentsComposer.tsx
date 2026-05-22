@@ -1,10 +1,8 @@
-import * as React from "react";
+import { useState } from "react";
 import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 
-import type { StoryCommentsComposerFragment$key } from "./__generated__/StoryCommentsComposerFragment.graphql";
-
-const { useState } = React;
+import type { StoryCommentsComposerFragment$key } from "../__generated__/StoryCommentsComposerFragment.graphql.ts";
 
 export type Props = {
   story: StoryCommentsComposerFragment$key;
@@ -18,6 +16,7 @@ const StoryCommentsComposerFragment = graphql`
 
 export default function StoryCommentsComposer({ story }: Props) {
   const data = useFragment(StoryCommentsComposerFragment, story);
+  void data;
   const [text, setText] = useState("");
   function onPost() {
     // TODO post the comment here

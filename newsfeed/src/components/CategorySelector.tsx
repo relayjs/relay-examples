@@ -1,8 +1,5 @@
-import * as React from "react";
-import SmallSpinner from "./SmallSpinner";
+import SmallSpinner from "./SmallSpinner.tsx";
 
-// In a real app this would be imported from NewsfeedQuery.graphql; it is only defined
-// separately here to make the step-by-step examples work when partially completed.
 type Category =
   | "ALL"
   | "COOKING"
@@ -18,7 +15,7 @@ export default function CategorySelector({
   value: Category;
   onChange: (newValue: Category) => void;
   isPending?: boolean;
-}): React.ReactElement {
+}) {
   return (
     <div>
       <select value={value} onChange={(e) => onChange(coerce(e.target.value))}>

@@ -1,14 +1,9 @@
-import * as React from "react";
-
 type Props = {
   onClick: () => void;
   disabled?: boolean;
 };
 
-export default function LoadMoreCommentsButton({
-  onClick,
-  disabled,
-}: Props): React.ReactElement {
+export default function LoadMoreCommentsButton({ onClick, disabled }: Props) {
   return (
     <button
       onClick={onClick}

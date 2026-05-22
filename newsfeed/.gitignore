@@ -1,1 +1,4 @@
-dist
+node_modules/
+dist/
+.DS_Store
+vite.config.js

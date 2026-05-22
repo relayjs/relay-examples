@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5954b0e3f9c74a253ea9e467885fc198>>
+ * @generated SignedSource<<aae0a12207715761d383e74b9330d8af>>
  * @lightSyntaxTransform
  */
 
@@ -43,7 +43,7 @@ const node: ReaderFragment = {
           "value": 3
         }
       ],
-      "concreteType": "CommentsConnection",
+      "concreteType": "CommentConnection",
       "kind": "LinkedField",
       "name": "comments",
       "plural": false,
@@ -51,7 +51,7 @@ const node: ReaderFragment = {
         {
           "alias": null,
           "args": null,
-          "concreteType": "CommentsConnectionEdge",
+          "concreteType": "CommentEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,

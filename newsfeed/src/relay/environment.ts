@@ -8,7 +8,7 @@ import {
 import type { FetchFunction, IEnvironment } from "relay-runtime";
 
 const fetchFn: FetchFunction = (params, variables) => {
-  const response = fetch("/api", {
+  const response = fetch("/graphql", {
     method: "POST",
     headers: [["Content-Type", "application/json"]],
     body: JSON.stringify({

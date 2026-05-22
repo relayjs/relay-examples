@@ -1,9 +1,8 @@
-import * as React from "react";
 import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
-import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
-import Comment from "./Comment";
-import LoadMoreCommentsButton from "./LoadMoreCommentsButton";
+import type { StoryCommentsSectionFragment$key } from "../__generated__/StoryCommentsSectionFragment.graphql.ts";
+import Comment from "./Comment.tsx";
+import LoadMoreCommentsButton from "./LoadMoreCommentsButton.tsx";
 
 export type Props = {
   story: StoryCommentsSectionFragment$key;
@@ -32,10 +31,12 @@ export default function StoryCommentsSection({ story }: Props) {
   };
   return (
     <div>
-      {data.comments.edges.map((edge) => (
-        <Comment key={edge.node.id} comment={edge.node} />
-      ))}
-      {data.comments.pageInfo.hasNextPage && (
+      {data.comments?.edges?.map((edge) =>
+        edge?.node ? (
+          <Comment key={edge.node.id} comment={edge.node} />
+        ) : null,
+      )}
+      {data.comments?.pageInfo?.hasNextPage && (
         <LoadMoreCommentsButton onClick={onLoadMore} />
       )}
     </div>

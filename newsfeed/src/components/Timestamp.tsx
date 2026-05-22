@@ -1,10 +1,4 @@
-import * as React from "react";
-
-export default function Timestamp({
-  time,
-}: {
-  time: string;
-}): React.ReactElement {
+export default function Timestamp({ time }: { time: string }) {
   if (time == null) {
     return null;
   }

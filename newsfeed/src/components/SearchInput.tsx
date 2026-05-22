@@ -1,6 +1,4 @@
-import * as React from "react";
-
-import SmallSpinner from "./SmallSpinner";
+import SmallSpinner from "./SmallSpinner.tsx";
 
 export type Props = {
   value: string;

@@ -1,12 +1,10 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import LoadingSpinner from "./LoadingSpinner";
-
-const { useEffect, useState } = React;
+import { Suspense, useEffect, useState, type ReactElement } from "react";
+import { createPortal } from "react-dom";
+import LoadingSpinner from "./LoadingSpinner.tsx";
 
 export type Props = {
-  children: React.ReactElement;
-  targetRef: { current: HTMLElement };
+  children: ReactElement;
+  targetRef: { current: HTMLElement | null };
   onBeginHover?: () => void;
 };
 
@@ -15,10 +13,14 @@ export default function Hovercard({
   targetRef,
   onBeginHover,
 }: Props) {
-  const [hoverState, setHoverState] = useState(null);
+  const [hoverState, setHoverState] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
 
   useEffect(() => {
     const target = targetRef.current;
+    if (!target) return;
     const enterCallback = (event: MouseEvent) => {
       onBeginHover?.();
       setHoverState({
@@ -40,7 +42,7 @@ export default function Hovercard({
   if (!hoverState) {
     return null;
   }
-  return ReactDOM.createPortal(
+  return createPortal(
     <div
       className="hovercard"
       style={{
@@ -48,8 +50,8 @@ export default function Hovercard({
         left: hoverState.x + "px",
       }}
     >
-      <React.Suspense fallback={<LoadingSpinner />}>{children}</React.Suspense>
+      <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
     </div>,
-    document.body
+    document.body,
   );
 }
