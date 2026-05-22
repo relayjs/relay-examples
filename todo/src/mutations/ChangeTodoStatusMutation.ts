@@ -25,7 +25,7 @@ export function useChangeTodoStatusMutation(
 ): (complete: boolean) => void {
   const user = useFragment(
     graphql`
-      fragment ChangeTodoStatusMutation_user on User {
+      fragment ChangeTodoStatusMutation_user on User @throwOnFieldError {
         id
         userId
         completedCount
@@ -35,7 +35,7 @@ export function useChangeTodoStatusMutation(
   );
   const todo = useFragment(
     graphql`
-      fragment ChangeTodoStatusMutation_todo on Todo {
+      fragment ChangeTodoStatusMutation_todo on Todo @throwOnFieldError {
         id
       }
     `,

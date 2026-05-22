@@ -25,7 +25,7 @@ export function useMarkAllTodosMutation(
 ): (complete: boolean) => void {
   const user = useFragment(
     graphql`
-      fragment MarkAllTodosMutation_user on User {
+      fragment MarkAllTodosMutation_user on User @throwOnFieldError {
         id
         userId
         totalCount
@@ -35,7 +35,7 @@ export function useMarkAllTodosMutation(
   );
   const todos = useFragment(
     graphql`
-      fragment MarkAllTodosMutation_todoEdge on TodoEdge @relay(plural: true) {
+      fragment MarkAllTodosMutation_todoEdge on TodoEdge @relay(plural: true) @throwOnFieldError {
         node {
           id
         }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<92a268a0f5d03477ea9d291989c9fa25>>
+ * @generated SignedSource<<315e1c088aefb3e583e9f564745710a2>>
  * @lightSyntaxTransform
  */
 
@@ -21,7 +21,9 @@ export type RenameTodoMutation_todo$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "throwOnFieldError": true
+  },
   "name": "RenameTodoMutation_todo",
   "selections": [
     {
@@ -36,6 +38,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "80ecc77ff05c5ce6d8de27f639e01ff7";
+(node as any).hash = "5e334aca8244285c8d901b3e5955aad6";
 
 export default node;

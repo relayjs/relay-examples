@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2114cca74a7b9b51538244d8ee3597da>>
+ * @generated SignedSource<<a60f60b7bb97c87b03ec9f802d599efc>>
  * @lightSyntaxTransform
  */
 
@@ -20,10 +20,10 @@ export type RemoveCompletedTodosMutation$data = {
   readonly removeCompletedTodos: {
     readonly deletedTodoIds: ReadonlyArray<string> | null | undefined;
     readonly user: {
-      readonly completedCount: number;
+      readonly completedCount: number | null | undefined;
       readonly id: string;
-      readonly totalCount: number;
-    };
+      readonly totalCount: number | null | undefined;
+    } | null | undefined;
   } | null | undefined;
 };
 export type RemoveCompletedTodosMutation = {

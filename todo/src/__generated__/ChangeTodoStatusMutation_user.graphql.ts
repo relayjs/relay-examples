@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a59ffd133b9a63323e4161430d318ae9>>
+ * @generated SignedSource<<e527a3cbb6958c64ac5c14b12c0063e7>>
  * @lightSyntaxTransform
  */
 
@@ -23,7 +23,9 @@ export type ChangeTodoStatusMutation_user$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "throwOnFieldError": true
+  },
   "name": "ChangeTodoStatusMutation_user",
   "selections": [
     {
@@ -52,6 +54,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "1f20b0dc2be77984a9d2b89f4091bf2e";
+(node as any).hash = "d6dbeab18efa4676e85aa87f047f4c4a";
 
 export default node;

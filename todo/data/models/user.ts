@@ -23,23 +23,17 @@ export class User implements GraphQLNode {
     return this.model.id;
   }
 
-  /**
-   * @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   userId(): string {
     return USER_ID;
   }
 
-  /**
-   * @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   totalCount(): Int {
     return getTodos().length;
   }
 
-  /**
-   * @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   completedCount(): Int {
     return getTodos('completed').length;
   }

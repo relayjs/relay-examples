@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8e37410805e153f7ced72b71e3389c4a>>
+ * @generated SignedSource<<0895a20ce95409162783f1e0e99ab346>>
  * @lightSyntaxTransform
  */
 
@@ -21,7 +21,9 @@ export type TodoListFooter_todoConnection$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "throwOnFieldError": true
+  },
   "name": "TodoListFooter_todoConnection",
   "selections": [
     {
@@ -34,6 +36,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "2585c71f1d6b3fbd361dbef35fad316b";
+(node as any).hash = "b710d2f515db2376d2e7338c019e6f40";
 
 export default node;

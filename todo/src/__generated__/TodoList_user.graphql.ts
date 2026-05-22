@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<425a6e8dce663d9f057141cf7f1b998b>>
+ * @generated SignedSource<<e756e7f8cfed76c41b6fee2ea63e703d>>
  * @lightSyntaxTransform
  */
 
@@ -21,7 +21,7 @@ export type TodoList_user$data = {
       readonly " $fragmentSpreads": FragmentRefs<"MarkAllTodosMutation_todoEdge">;
     } | null | undefined> | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"TodoListFooter_todoConnection">;
-  } | null | undefined;
+  };
   readonly totalCount: number;
   readonly " $fragmentSpreads": FragmentRefs<"AddTodoMutation_user" | "MarkAllTodosMutation_user" | "TodoListFooter_user" | "Todo_user">;
   readonly " $fragmentType": "TodoList_user";
@@ -44,7 +44,8 @@ const node: ReaderFragment = {
           "todos"
         ]
       }
-    ]
+    ],
+    "throwOnFieldError": true
   },
   "name": "TodoList_user",
   "selections": [
@@ -193,6 +194,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "c83e0fccfae7ee28c5b4994bd7caae65";
+(node as any).hash = "d9fd8c39de542568056fe79ef01f02c0";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<19568cb8c11f8e2784e2d79d72424605>>
+ * @generated SignedSource<<c8f6bda7d5b4e469ce5fd4d0b09b7c5c>>
  * @lightSyntaxTransform
  */
 
@@ -20,13 +20,13 @@ export type ChangeTodoStatusMutation$variables = {
 export type ChangeTodoStatusMutation$data = {
   readonly changeTodoStatus: {
     readonly todo: {
-      readonly complete: boolean;
+      readonly complete: boolean | null | undefined;
       readonly id: string;
-    };
+    } | null | undefined;
     readonly user: {
-      readonly completedCount: number;
+      readonly completedCount: number | null | undefined;
       readonly id: string;
-    };
+    } | null | undefined;
   } | null | undefined;
 };
 export type ChangeTodoStatusMutation = {
