@@ -8,7 +8,7 @@ const mutation = graphql`
   mutation RemoveCompletedTodosMutation(
     $connections: [ID!]!
     $input: RemoveCompletedTodosInput!
-  ) {
+  ) @catch {
     removeCompletedTodos(input: $input) {
       deletedTodoIds @deleteEdge(connections: $connections)
       user {
@@ -26,7 +26,7 @@ export function useRemoveCompletedTodosMutation(
 ): () => void {
   const user = useFragment(
     graphql`
-      fragment RemoveCompletedTodosMutation_user on User {
+      fragment RemoveCompletedTodosMutation_user on User @throwOnFieldError {
         id
         userId
         totalCount
@@ -36,7 +36,7 @@ export function useRemoveCompletedTodosMutation(
   );
   const todoConnection = useFragment(
     graphql`
-      fragment RemoveCompletedTodosMutation_todoConnection on TodoConnection {
+      fragment RemoveCompletedTodosMutation_todoConnection on TodoConnection @throwOnFieldError {
         __id
         edges {
           node {

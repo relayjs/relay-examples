@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f9d9e09c4c737c046e1d545b3549b415>>
+ * @generated SignedSource<<8d85371be826e8a78f2a9ea2414b80ef>>
  * @lightSyntaxTransform
  */
 
@@ -23,7 +23,9 @@ export type Todo_todo$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "throwOnFieldError": true
+  },
   "name": "Todo_todo",
   "selections": [
     {
@@ -60,6 +62,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "714929cac8f847585bb10b80faa2dbf2";
+(node as any).hash = "1d37ab489759f235d294dc2aae608e97";
 
 export default node;

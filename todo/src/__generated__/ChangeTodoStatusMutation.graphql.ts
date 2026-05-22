@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<19568cb8c11f8e2784e2d79d72424605>>
+ * @generated SignedSource<<b6f108423807d38606a280eb4fffd356>>
  * @lightSyntaxTransform
  */
 
@@ -8,6 +8,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { Result } from "relay-runtime";
 export type ChangeTodoStatusInput = {
   clientMutationId?: string | null | undefined;
   complete: boolean;
@@ -17,7 +18,7 @@ export type ChangeTodoStatusInput = {
 export type ChangeTodoStatusMutation$variables = {
   input: ChangeTodoStatusInput;
 };
-export type ChangeTodoStatusMutation$data = {
+export type ChangeTodoStatusMutation$data = Result<{
   readonly changeTodoStatus: {
     readonly todo: {
       readonly complete: boolean;
@@ -27,8 +28,8 @@ export type ChangeTodoStatusMutation$data = {
       readonly completedCount: number;
       readonly id: string;
     };
-  } | null | undefined;
-};
+  };
+}, unknown>;
 export type ChangeTodoStatusMutation = {
   response: ChangeTodoStatusMutation$data;
   variables: ChangeTodoStatusMutation$variables;
@@ -110,7 +111,9 @@ return {
   "fragment": {
     "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
-    "metadata": null,
+    "metadata": {
+      "catchTo": "RESULT"
+    },
     "name": "ChangeTodoStatusMutation",
     "selections": (v2/*:: as any*/),
     "type": "Mutation",
@@ -134,6 +137,6 @@ return {
 };
 })();
 
-(node as any).hash = "e232227a4f30f0e16f4e1e1a2e0cea75";
+(node as any).hash = "8959c609e2cfebb8ed2f96d41f47df24";
 
 export default node;

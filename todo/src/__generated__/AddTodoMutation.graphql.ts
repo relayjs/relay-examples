@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3a97fd7807aef6393de8128116cfcd93>>
+ * @generated SignedSource<<36a082a99772ba9a5d9f05a387695c02>>
  * @lightSyntaxTransform
  */
 
@@ -8,6 +8,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { Result } from "relay-runtime";
 export type AddTodoInput = {
   clientMutationId?: string | null | undefined;
   text: string;
@@ -17,7 +18,7 @@ export type AddTodoMutation$variables = {
   connections: ReadonlyArray<string>;
   input: AddTodoInput;
 };
-export type AddTodoMutation$data = {
+export type AddTodoMutation$data = Result<{
   readonly addTodo: {
     readonly todoEdge: {
       readonly node: {
@@ -30,8 +31,8 @@ export type AddTodoMutation$data = {
       readonly id: string;
       readonly totalCount: number;
     };
-  } | null | undefined;
-};
+  };
+}, unknown>;
 export type AddTodoMutation = {
   response: AddTodoMutation$data;
   variables: AddTodoMutation$variables;
@@ -124,7 +125,9 @@ return {
   "fragment": {
     "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
-    "metadata": null,
+    "metadata": {
+      "catchTo": "RESULT"
+    },
     "name": "AddTodoMutation",
     "selections": [
       {
@@ -192,6 +195,6 @@ return {
 };
 })();
 
-(node as any).hash = "4ae75ce7e6724d608803b8cdd76c087f";
+(node as any).hash = "c03dcc4dd0c8a1963aa8560834e89019";
 
 export default node;

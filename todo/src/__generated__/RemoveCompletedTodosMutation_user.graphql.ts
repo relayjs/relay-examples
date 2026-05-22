@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<31a8c8591b590def83afa58a0e60a805>>
+ * @generated SignedSource<<2edb8ebd02fe9ac244b11426a92e8d0d>>
  * @lightSyntaxTransform
  */
 
@@ -23,7 +23,9 @@ export type RemoveCompletedTodosMutation_user$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "throwOnFieldError": true
+  },
   "name": "RemoveCompletedTodosMutation_user",
   "selections": [
     {
@@ -52,6 +54,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "7794ab5773d5e5e628ab453eec590be2";
+(node as any).hash = "cc0c9aa55793ded75ff4ca2e4013ef41";
 
 export default node;

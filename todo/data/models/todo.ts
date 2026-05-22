@@ -68,11 +68,9 @@ type RenameTodoInput = {
 
 /** @gqlType */
 type AddTodoPayload = {
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   todoEdge: Edge<Todo>;
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   user: User;
   /** @gqlField */
   clientMutationId: string | null;
@@ -80,11 +78,9 @@ type AddTodoPayload = {
 
 /** @gqlType */
 type ChangeTodoStatusPayload = {
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   todo: Todo;
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   user: User;
   /** @gqlField */
   clientMutationId: string | null;
@@ -94,8 +90,7 @@ type ChangeTodoStatusPayload = {
 type MarkAllTodosPayload = {
   /** @gqlField */
   changedTodos: Array<Todo> | null;
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   user: User;
   /** @gqlField */
   clientMutationId: string | null;
@@ -105,8 +100,7 @@ type MarkAllTodosPayload = {
 type RemoveCompletedTodosPayload = {
   /** @gqlField */
   deletedTodoIds: Array<ID> | null;
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   user: User;
   /** @gqlField */
   clientMutationId: string | null;
@@ -114,11 +108,9 @@ type RemoveCompletedTodosPayload = {
 
 /** @gqlType */
 type RemoveTodoPayload = {
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   deletedTodoId: ID;
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   user: User;
   /** @gqlField */
   clientMutationId: string | null;
@@ -126,8 +118,7 @@ type RemoveTodoPayload = {
 
 /** @gqlType */
 type RenameTodoPayload = {
-  /** @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   todo: Todo;
   /** @gqlField */
   clientMutationId: string | null;
@@ -148,16 +139,12 @@ export class Todo implements GraphQLNode {
     return this.model.id;
   }
 
-  /**
-   * @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   text(): string {
     return this.model.text;
   }
 
-  /**
-   * @gqlField
-   * @killsParentOnException */
+  /** @gqlField */
   complete(): boolean {
     return this.model.complete;
   }

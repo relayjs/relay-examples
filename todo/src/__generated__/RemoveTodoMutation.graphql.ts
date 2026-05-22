@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1cd7ecdfef1f7150a473e939cfa4f4e0>>
+ * @generated SignedSource<<3b3bd98ae7624178ce9522da7e387334>>
  * @lightSyntaxTransform
  */
 
@@ -8,6 +8,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { Result } from "relay-runtime";
 export type RemoveTodoInput = {
   clientMutationId?: string | null | undefined;
   id: string;
@@ -17,15 +18,15 @@ export type RemoveTodoMutation$variables = {
   connections: ReadonlyArray<string>;
   input: RemoveTodoInput;
 };
-export type RemoveTodoMutation$data = {
+export type RemoveTodoMutation$data = Result<{
   readonly removeTodo: {
     readonly deletedTodoId: string;
     readonly user: {
       readonly completedCount: number;
       readonly totalCount: number;
     };
-  } | null | undefined;
-};
+  };
+}, unknown>;
 export type RemoveTodoMutation = {
   response: RemoveTodoMutation$data;
   variables: RemoveTodoMutation$variables;
@@ -76,7 +77,9 @@ return {
   "fragment": {
     "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
-    "metadata": null,
+    "metadata": {
+      "catchTo": "RESULT"
+    },
     "name": "RemoveTodoMutation",
     "selections": [
       {
@@ -175,6 +178,6 @@ return {
 };
 })();
 
-(node as any).hash = "f1e78c738dc1aa9c26df49783daee003";
+(node as any).hash = "b4418cbc63cc0a5c78a46a64f0d25eb4";
 
 export default node;

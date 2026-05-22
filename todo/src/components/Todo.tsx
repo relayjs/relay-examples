@@ -19,7 +19,7 @@ type Props = {
 export default function Todo({userRef, todoRef, todoConnectionId}: Props) {
   const todo = useFragment(
     graphql`
-      fragment Todo_todo on Todo {
+      fragment Todo_todo on Todo @throwOnFieldError {
         complete
         text
         ...ChangeTodoStatusMutation_todo
@@ -31,7 +31,7 @@ export default function Todo({userRef, todoRef, todoConnectionId}: Props) {
   );
   const user = useFragment(
     graphql`
-      fragment Todo_user on User {
+      fragment Todo_user on User @throwOnFieldError {
         ...ChangeTodoStatusMutation_user
         ...RemoveTodoMutation_user
       }

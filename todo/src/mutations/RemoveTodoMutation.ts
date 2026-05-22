@@ -5,7 +5,7 @@ import {useCallback} from 'react';
 import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation RemoveTodoMutation($connections: [ID!]!, $input: RemoveTodoInput!) {
+  mutation RemoveTodoMutation($connections: [ID!]!, $input: RemoveTodoInput!) @catch {
     removeTodo(input: $input) {
       deletedTodoId @deleteEdge(connections: $connections)
       user {
@@ -23,7 +23,7 @@ export function useRemoveTodoMutation(
 ): () => void {
   const user = useFragment(
     graphql`
-      fragment RemoveTodoMutation_user on User {
+      fragment RemoveTodoMutation_user on User @throwOnFieldError {
         id
         userId
         totalCount
@@ -34,7 +34,7 @@ export function useRemoveTodoMutation(
   );
   const todo = useFragment(
     graphql`
-      fragment RemoveTodoMutation_todo on Todo {
+      fragment RemoveTodoMutation_todo on Todo @throwOnFieldError {
         id
         complete
       }

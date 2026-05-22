@@ -4,7 +4,7 @@ import {useCallback} from 'react';
 import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation RenameTodoMutation($input: RenameTodoInput!) {
+  mutation RenameTodoMutation($input: RenameTodoInput!) @catch {
     renameTodo(input: $input) {
       todo {
         id
@@ -19,7 +19,7 @@ export function useRenameTodoMutation(
 ): (text: string) => void {
   const todo = useFragment(
     graphql`
-      fragment RenameTodoMutation_todo on Todo {
+      fragment RenameTodoMutation_todo on Todo @throwOnFieldError {
         id
       }
     `,

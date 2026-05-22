@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<612cf7d66919543e0397d39aeeb54bf0>>
+ * @generated SignedSource<<29018ec1a4cd30b997f3a41846f329db>>
  * @lightSyntaxTransform
  */
 
@@ -23,7 +23,9 @@ export type MarkAllTodosMutation_user$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "throwOnFieldError": true
+  },
   "name": "MarkAllTodosMutation_user",
   "selections": [
     {
@@ -52,6 +54,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "1c83b63e685c83d6fa657d808ae754eb";
+(node as any).hash = "0a1185e6e1d42f4f68598deda435af9d";
 
 export default node;

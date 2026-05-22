@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6e023f62771a3a4b88725b6eb7873d0c>>
+ * @generated SignedSource<<03eb16f91b1f59430b7da021443a8850>>
  * @lightSyntaxTransform
  */
 
@@ -8,6 +8,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { Result } from "relay-runtime";
 export type MarkAllTodosInput = {
   clientMutationId?: string | null | undefined;
   complete: boolean;
@@ -16,7 +17,7 @@ export type MarkAllTodosInput = {
 export type MarkAllTodosMutation$variables = {
   input: MarkAllTodosInput;
 };
-export type MarkAllTodosMutation$data = {
+export type MarkAllTodosMutation$data = Result<{
   readonly markAllTodos: {
     readonly changedTodos: ReadonlyArray<{
       readonly complete: boolean;
@@ -26,8 +27,8 @@ export type MarkAllTodosMutation$data = {
       readonly completedCount: number;
       readonly id: string;
     };
-  } | null | undefined;
-};
+  };
+}, unknown>;
 export type MarkAllTodosMutation = {
   response: MarkAllTodosMutation$data;
   variables: MarkAllTodosMutation$variables;
@@ -109,7 +110,9 @@ return {
   "fragment": {
     "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
-    "metadata": null,
+    "metadata": {
+      "catchTo": "RESULT"
+    },
     "name": "MarkAllTodosMutation",
     "selections": (v2/*:: as any*/),
     "type": "Mutation",
@@ -133,6 +136,6 @@ return {
 };
 })();
 
-(node as any).hash = "779c582c4ba0ee3c5be19942628dfaf3";
+(node as any).hash = "9841f7a09b68589d10a1a76160fc68fb";
 
 export default node;

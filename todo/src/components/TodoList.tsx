@@ -6,6 +6,7 @@ import Todo from './Todo.tsx';
 import TodoListFooter from './TodoListFooter.tsx';
 import TodoTextInput from './TodoTextInput.tsx';
 
+import {ErrorBoundary} from 'react-error-boundary';
 import {graphql, useFragment} from 'react-relay';
 
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
 export default function TodoList({userRef}: Props) {
   const user = useFragment(
     graphql`
-      fragment TodoList_user on User {
+      fragment TodoList_user on User @throwOnFieldError {
         todos(
           first: 2147483647 # max GraphQLInt
         ) @connection(key: "TodoList_todos") {
@@ -80,12 +81,21 @@ export default function TodoList({userRef}: Props) {
           {todos.edges!.map((edge) => {
             const node = edge!.node!;
             return (
-              <Todo
+              <ErrorBoundary
                 key={node.id}
-                todoRef={node}
-                userRef={user}
-                todoConnectionId={todos.__id}
-              />
+                fallbackRender={({error}) => (
+                  <li className="completed">
+                    <div className="view">
+                      <label>Error: {error.message}</label>
+                    </div>
+                  </li>
+                )}>
+                <Todo
+                  todoRef={node}
+                  userRef={user}
+                  todoConnectionId={todos.__id}
+                />
+              </ErrorBoundary>
             );
           })}
         </ul>

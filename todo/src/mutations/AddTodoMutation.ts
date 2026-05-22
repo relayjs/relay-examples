@@ -4,7 +4,7 @@ import {useCallback} from 'react';
 import {graphql, useFragment, useMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation AddTodoMutation($connections: [ID!]!, $input: AddTodoInput!) {
+  mutation AddTodoMutation($connections: [ID!]!, $input: AddTodoInput!) @catch {
     addTodo(input: $input) {
       todoEdge @appendEdge(connections: $connections) {
         node {
@@ -29,7 +29,7 @@ export function useAddTodoMutation(
 ): (text: string) => void {
   const user = useFragment(
     graphql`
-      fragment AddTodoMutation_user on User {
+      fragment AddTodoMutation_user on User @throwOnFieldError {
         userId
         id
         totalCount
