@@ -1,5 +1,7 @@
 {
   "grats": {
+    "nullableByDefault": true,
+    "strictSemanticNullability": true,
     "importModuleSpecifierEnding": ".ts"
   },
   "compilerOptions": {

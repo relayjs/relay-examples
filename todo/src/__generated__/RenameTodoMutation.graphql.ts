@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<19dbcb076f07630aa92a3d739abda245>>
+ * @generated SignedSource<<9c3a08ee841162f19cd9ff8622472790>>
  * @lightSyntaxTransform
  */
 
@@ -20,8 +20,8 @@ export type RenameTodoMutation$data = {
   readonly renameTodo: {
     readonly todo: {
       readonly id: string;
-      readonly text: string;
-    };
+      readonly text: string | null | undefined;
+    } | null | undefined;
   } | null | undefined;
 };
 export type RenameTodoMutation = {

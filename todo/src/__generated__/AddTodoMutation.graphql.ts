@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3a97fd7807aef6393de8128116cfcd93>>
+ * @generated SignedSource<<906c8733773ad1c26c3a17efbeec269a>>
  * @lightSyntaxTransform
  */
 
@@ -21,15 +21,15 @@ export type AddTodoMutation$data = {
   readonly addTodo: {
     readonly todoEdge: {
       readonly node: {
-        readonly complete: boolean;
+        readonly complete: boolean | null | undefined;
         readonly id: string;
-        readonly text: string;
+        readonly text: string | null | undefined;
       } | null | undefined;
-    };
+    } | null | undefined;
     readonly user: {
       readonly id: string;
-      readonly totalCount: number;
-    };
+      readonly totalCount: number | null | undefined;
+    } | null | undefined;
   } | null | undefined;
 };
 export type AddTodoMutation = {

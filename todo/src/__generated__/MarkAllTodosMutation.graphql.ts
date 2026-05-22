@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6e023f62771a3a4b88725b6eb7873d0c>>
+ * @generated SignedSource<<3cbfb25486751e73f1dee040d7cfa582>>
  * @lightSyntaxTransform
  */
 
@@ -19,13 +19,13 @@ export type MarkAllTodosMutation$variables = {
 export type MarkAllTodosMutation$data = {
   readonly markAllTodos: {
     readonly changedTodos: ReadonlyArray<{
-      readonly complete: boolean;
+      readonly complete: boolean | null | undefined;
       readonly id: string;
     }> | null | undefined;
     readonly user: {
-      readonly completedCount: number;
+      readonly completedCount: number | null | undefined;
       readonly id: string;
-    };
+    } | null | undefined;
   } | null | undefined;
 };
 export type MarkAllTodosMutation = {

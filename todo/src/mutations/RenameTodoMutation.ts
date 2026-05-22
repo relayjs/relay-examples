@@ -19,7 +19,7 @@ export function useRenameTodoMutation(
 ): (text: string) => void {
   const todo = useFragment(
     graphql`
-      fragment RenameTodoMutation_todo on Todo {
+      fragment RenameTodoMutation_todo on Todo @throwOnFieldError {
         id
       }
     `,

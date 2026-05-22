@@ -29,7 +29,7 @@ export function useAddTodoMutation(
 ): (text: string) => void {
   const user = useFragment(
     graphql`
-      fragment AddTodoMutation_user on User {
+      fragment AddTodoMutation_user on User @throwOnFieldError {
         userId
         id
         totalCount

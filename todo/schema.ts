@@ -3,10 +3,16 @@
  * Do not manually edit. Regenerate by running `npx grats`.
  */
 
-import { GraphQLSchema, GraphQLObjectType, GraphQLInterfaceType, GraphQLNonNull, GraphQLID, GraphQLInt, GraphQLList, GraphQLString, GraphQLBoolean, GraphQLInputObjectType } from "graphql";
+import { GraphQLSchema, GraphQLDirective, DirectiveLocation, GraphQLList, GraphQLInt, specifiedDirectives, GraphQLObjectType, GraphQLInterfaceType, GraphQLNonNull, GraphQLID, defaultFieldResolver, GraphQLString, GraphQLBoolean, GraphQLInputObjectType } from "graphql";
 import { node as queryNodeResolver, id as userIdResolver, id as todoIdResolver } from "./data/graphql/node.ts";
 import { User as queryUserResolver } from "./data/models/user.ts";
 import { Todo as mutationAddTodoResolver, Todo as mutationChangeTodoStatusResolver, Todo as mutationMarkAllTodosResolver, Todo as mutationRemoveCompletedTodosResolver, Todo as mutationRemoveTodoResolver, Todo as mutationRenameTodoResolver } from "./data/models/todo.ts";
+async function assertNonNull<T>(value: T | Promise<T>): Promise<T> {
+    const awaited = await value;
+    if (awaited == null)
+        throw new Error("Cannot return null for semantically non-nullable field.");
+    return awaited;
+}
 export function getSchema(): GraphQLSchema {
     const NodeType: GraphQLInterfaceType = new GraphQLInterfaceType({
         description: "An object with an ID",
@@ -27,7 +33,10 @@ export function getSchema(): GraphQLSchema {
             return {
                 complete: {
                     name: "complete",
-                    type: new GraphQLNonNull(GraphQLBoolean)
+                    type: GraphQLBoolean,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 },
                 id: {
                     description: "The id of the object.",
@@ -39,7 +48,10 @@ export function getSchema(): GraphQLSchema {
                 },
                 text: {
                     name: "text",
-                    type: new GraphQLNonNull(GraphQLString)
+                    type: GraphQLString,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         },
@@ -117,7 +129,10 @@ export function getSchema(): GraphQLSchema {
             return {
                 completedCount: {
                     name: "completedCount",
-                    type: new GraphQLNonNull(GraphQLInt)
+                    type: GraphQLInt,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 },
                 id: {
                     description: "The id of the object.",
@@ -149,16 +164,22 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(source, args) {
-                        return source.todos(args.status, args.after, args.first, args.before, args.last);
+                        return assertNonNull(source.todos(args.status, args.after, args.first, args.before, args.last));
                     }
                 },
                 totalCount: {
                     name: "totalCount",
-                    type: new GraphQLNonNull(GraphQLInt)
+                    type: GraphQLInt,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 },
                 userId: {
                     name: "userId",
-                    type: new GraphQLNonNull(GraphQLString)
+                    type: GraphQLString,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         },
@@ -209,11 +230,17 @@ export function getSchema(): GraphQLSchema {
                 },
                 todoEdge: {
                     name: "todoEdge",
-                    type: new GraphQLNonNull(TodoEdgeType)
+                    type: TodoEdgeType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 },
                 user: {
                     name: "user",
-                    type: new GraphQLNonNull(UserType)
+                    type: UserType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         }
@@ -247,11 +274,17 @@ export function getSchema(): GraphQLSchema {
                 },
                 todo: {
                     name: "todo",
-                    type: new GraphQLNonNull(TodoType)
+                    type: TodoType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 },
                 user: {
                     name: "user",
-                    type: new GraphQLNonNull(UserType)
+                    type: UserType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         }
@@ -293,7 +326,10 @@ export function getSchema(): GraphQLSchema {
                 },
                 user: {
                     name: "user",
-                    type: new GraphQLNonNull(UserType)
+                    type: UserType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         }
@@ -331,7 +367,10 @@ export function getSchema(): GraphQLSchema {
                 },
                 user: {
                     name: "user",
-                    type: new GraphQLNonNull(UserType)
+                    type: UserType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         }
@@ -361,11 +400,17 @@ export function getSchema(): GraphQLSchema {
                 },
                 deletedTodoId: {
                     name: "deletedTodoId",
-                    type: new GraphQLNonNull(GraphQLID)
+                    type: GraphQLID,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 },
                 user: {
                     name: "user",
-                    type: new GraphQLNonNull(UserType)
+                    type: UserType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         }
@@ -399,7 +444,10 @@ export function getSchema(): GraphQLSchema {
                 },
                 todo: {
                     name: "todo",
-                    type: new GraphQLNonNull(TodoType)
+                    type: TodoType,
+                    resolve(source, args, context, info) {
+                        return assertNonNull(defaultFieldResolver(source, args, context, info));
+                    }
                 }
             };
         }
@@ -436,7 +484,7 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(_source, args) {
-                        return mutationAddTodoResolver.addTodo(args.input);
+                        return assertNonNull(mutationAddTodoResolver.addTodo(args.input));
                     }
                 },
                 changeTodoStatus: {
@@ -448,7 +496,7 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(_source, args) {
-                        return mutationChangeTodoStatusResolver.changeTodoStatus(args.input);
+                        return assertNonNull(mutationChangeTodoStatusResolver.changeTodoStatus(args.input));
                     }
                 },
                 markAllTodos: {
@@ -460,7 +508,7 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(_source, args) {
-                        return mutationMarkAllTodosResolver.markAllTodos(args.input);
+                        return assertNonNull(mutationMarkAllTodosResolver.markAllTodos(args.input));
                     }
                 },
                 removeCompletedTodos: {
@@ -472,7 +520,7 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(_source, args) {
-                        return mutationRemoveCompletedTodosResolver.removeCompletedTodos(args.input);
+                        return assertNonNull(mutationRemoveCompletedTodosResolver.removeCompletedTodos(args.input));
                     }
                 },
                 removeTodo: {
@@ -484,7 +532,7 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(_source, args) {
-                        return mutationRemoveTodoResolver.removeTodo(args.input);
+                        return assertNonNull(mutationRemoveTodoResolver.removeTodo(args.input));
                     }
                 },
                 renameTodo: {
@@ -496,13 +544,24 @@ export function getSchema(): GraphQLSchema {
                         }
                     },
                     resolve(_source, args) {
-                        return mutationRenameTodoResolver.renameTodo(args.input);
+                        return assertNonNull(mutationRenameTodoResolver.renameTodo(args.input));
                     }
                 }
             };
         }
     });
     return new GraphQLSchema({
+        directives: [...specifiedDirectives, new GraphQLDirective({
+                name: "semanticNonNull",
+                locations: [DirectiveLocation.FIELD_DEFINITION],
+                description: "Indicates that a position is semantically non null: it is only null if there is a matching error in the `errors` array.\nIn all other cases, the position is non-null.\n\nTools doing code generation may use this information to generate the position as non-null if field errors are handled out of band:\n\n```graphql\ntype User {\n    # email is semantically non-null and can be generated as non-null by error-handling clients.\n    email: String @semanticNonNull\n}\n```\n\nThe `levels` argument indicates what levels are semantically non null in case of lists:\n\n```graphql\ntype User {\n    # friends is semantically non null\n    friends: [User] @semanticNonNull # same as @semanticNonNull(levels: [0])\n\n    # every friends[k] is semantically non null\n    friends: [User] @semanticNonNull(levels: [1])\n\n    # friends as well as every friends[k] is semantically non null\n    friends: [User] @semanticNonNull(levels: [0, 1])\n}\n```\n\n`levels` are zero indexed.\nPassing a negative level or a level greater than the list dimension is an error.",
+                args: {
+                    levels: {
+                        type: new GraphQLList(GraphQLInt),
+                        defaultValue: [0]
+                    }
+                }
+            })],
         query: QueryType,
         mutation: MutationType,
         types: [NodeType, AddTodoInputType, ChangeTodoStatusInputType, MarkAllTodosInputType, RemoveCompletedTodosInputType, RemoveTodoInputType, RenameTodoInputType, AddTodoPayloadType, ChangeTodoStatusPayloadType, MarkAllTodosPayloadType, MutationType, PageInfoType, QueryType, RemoveCompletedTodosPayloadType, RemoveTodoPayloadType, RenameTodoPayloadType, TodoType, TodoConnectionType, TodoEdgeType, UserType]

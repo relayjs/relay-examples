@@ -13,7 +13,7 @@ type Props = {
 export default function TodoListFooter({userRef, todoConnectionRef}: Props) {
   const user = useFragment(
     graphql`
-      fragment TodoListFooter_user on User {
+      fragment TodoListFooter_user on User @throwOnFieldError {
         totalCount
         completedCount
         ...RemoveCompletedTodosMutation_user
@@ -23,7 +23,7 @@ export default function TodoListFooter({userRef, todoConnectionRef}: Props) {
   );
   const todoConnection = useFragment(
     graphql`
-      fragment TodoListFooter_todoConnection on TodoConnection {
+      fragment TodoListFooter_todoConnection on TodoConnection @throwOnFieldError {
         ...RemoveCompletedTodosMutation_todoConnection
       }
     `,

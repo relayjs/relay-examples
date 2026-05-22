@@ -12,7 +12,7 @@ type Props = {
 export default function TodoApp({queryRef}: Props) {
   const {user} = usePreloadedQuery<TodoAppQuery>(
     graphql`
-      query TodoAppQuery($userId: String) {
+      query TodoAppQuery($userId: String) @throwOnFieldError {
         user(id: $userId) @required(action: THROW) {
           ...TodoList_user
         }

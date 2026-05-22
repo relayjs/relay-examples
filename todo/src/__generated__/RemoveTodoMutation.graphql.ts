@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1cd7ecdfef1f7150a473e939cfa4f4e0>>
+ * @generated SignedSource<<9f79c775ebd63b2a8ba5ef52dee0b644>>
  * @lightSyntaxTransform
  */
 
@@ -19,11 +19,11 @@ export type RemoveTodoMutation$variables = {
 };
 export type RemoveTodoMutation$data = {
   readonly removeTodo: {
-    readonly deletedTodoId: string;
+    readonly deletedTodoId: string | null | undefined;
     readonly user: {
-      readonly completedCount: number;
-      readonly totalCount: number;
-    };
+      readonly completedCount: number | null | undefined;
+      readonly totalCount: number | null | undefined;
+    } | null | undefined;
   } | null | undefined;
 };
 export type RemoveTodoMutation = {

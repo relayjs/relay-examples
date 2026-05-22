@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ff6e896bc4c864b9dfe59c3e16e85876>>
+ * @generated SignedSource<<57d4aaa6837efbe36fb776d0bd52cabd>>
  * @lightSyntaxTransform
  */
 
@@ -24,7 +24,8 @@ const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": {
-    "plural": true
+    "plural": true,
+    "throwOnFieldError": true
   },
   "name": "MarkAllTodosMutation_todoEdge",
   "selections": [
@@ -51,6 +52,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "49419294a7d2cb7d3a5079eba46e7c54";
+(node as any).hash = "80eb0cf669bb29bb0b8e23019eb60de7";
 
 export default node;
