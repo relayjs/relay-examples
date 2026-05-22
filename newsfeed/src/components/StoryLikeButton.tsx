@@ -16,7 +16,7 @@ const StoryLikeButtonFragment = graphql`
 `;
 
 export default function StoryLikeButton({ story }: Props) {
-  const data = useFragment<StoryLikeButtonFragment$key>(
+  const data = useFragment(
     StoryLikeButtonFragment,
     story,
   );

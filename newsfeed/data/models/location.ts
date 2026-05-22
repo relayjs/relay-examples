@@ -3,23 +3,23 @@ import type { LocationRow } from "../database.ts";
 
 /** @gqlType */
 export class Location {
-  private model: LocationRow;
+  private row: LocationRow;
 
-  constructor(model: LocationRow) {
-    this.model = model;
+  constructor(row: LocationRow) {
+    this.row = row;
   }
 
   /**
    * @gqlField
    * @killsParentOnException */
   id(): ID {
-    return this.model.id;
+    return this.row.id;
   }
 
   /**
    * @gqlField
    * @killsParentOnException */
   name(): string {
-    return this.model.name;
+    return this.row.name;
   }
 }

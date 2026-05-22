@@ -3,21 +3,21 @@ import type { CommentRow } from "../database.ts";
 
 /** @gqlType */
 export class Comment {
-  private model: CommentRow;
+  private row: CommentRow;
 
-  constructor(model: CommentRow) {
-    this.model = model;
+  constructor(row: CommentRow) {
+    this.row = row;
   }
 
   /**
    * @gqlField
    * @killsParentOnException */
   id(): ID {
-    return this.model.id;
+    return this.row.id;
   }
 
   /** @gqlField */
   text(): string | null {
-    return this.model.text;
+    return this.row.text;
   }
 }

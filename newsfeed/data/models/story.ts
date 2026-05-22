@@ -16,35 +16,35 @@ export type Category = "ALL" | "EDUCATION" | "NEWS" | "COOKING";
 export class Story implements GqlNode {
   __typename = "Story" as const;
   _id: string;
-  private model: StoryRow;
+  private row: StoryRow;
 
-  constructor(model: StoryRow) {
-    this.model = model;
-    this._id = model.id;
+  constructor(row: StoryRow) {
+    this.row = row;
+    this._id = row.id;
   }
 
   /**
    * @gqlField
    * @killsParentOnException */
   createdAt(): string {
-    return this.model.createdAt;
+    return this.row.createdAt;
   }
 
   /** @gqlField */
   category(): Category | null {
-    return this.model.category as Category;
+    return this.row.category as Category;
   }
 
   /**
    * @gqlField
    * @killsParentOnException */
   title(): string {
-    return this.model.title;
+    return this.row.title;
   }
 
   /** @gqlField */
   summary(): string | null {
-    return this.model.summary;
+    return this.row.summary;
   }
 
   /** @gqlField */
@@ -54,14 +54,14 @@ export class Story implements GqlNode {
 
   /** @gqlField */
   attachments(): Array<Image> | null {
-    return this.model.attachments.map((a) => new Image(a.url, a.altText));
+    return this.row.attachments.map((a) => new Image(a.url, a.altText));
   }
 
   /**
    * @gqlField
    * @killsParentOnException */
   poster(): Actor {
-    const row = findNode(this.model.authorID);
+    const row = findNode(this.row.authorID);
     if (!row || row.__typename === "Story") {
       throw new Error("Poster not found");
     }
@@ -71,18 +71,18 @@ export class Story implements GqlNode {
 
   /** @gqlField */
   thumbnail(): Image | null {
-    const t = this.model.thumbnail;
+    const t = this.row.thumbnail;
     return t ? new Image(t.url, t.altText) : null;
   }
 
   /** @gqlField */
   likeCount(): Int | null {
-    return this.model.likeCount;
+    return this.row.likeCount;
   }
 
   /** @gqlField */
   doesViewerLike(): boolean | null {
-    return this.model.doesViewerLike;
+    return this.row.doesViewerLike;
   }
 
   /** @gqlField */
@@ -90,7 +90,7 @@ export class Story implements GqlNode {
     const count = first ?? Infinity;
     const afterIdx = parseInt(after ?? "", 10) || 0;
     const next = count + afterIdx;
-    const allComments = this.model.comments;
+    const allComments = this.row.comments;
     return {
       pageInfo: {
         hasNextPage: allComments.length >= next,

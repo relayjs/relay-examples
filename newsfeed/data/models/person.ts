@@ -10,14 +10,14 @@ export class Person implements Actor, GqlNode {
   _name: string;
   _profilePicture: ImageRow;
   _joined: string;
-  private model: PersonRow;
+  private row: PersonRow;
 
-  constructor(model: PersonRow) {
-    this.model = model;
-    this._id = model.id;
-    this._name = model.name;
-    this._profilePicture = model.profilePicture;
-    this._joined = model.joined;
+  constructor(row: PersonRow) {
+    this.row = row;
+    this._id = row.id;
+    this._name = row.name;
+    this._profilePicture = row.profilePicture;
+    this._joined = row.joined;
   }
 
   /** @gqlField */
@@ -27,6 +27,6 @@ export class Person implements Actor, GqlNode {
 
   /** @gqlField */
   location(): Location | null {
-    return this.model.location ? new Location(this.model.location) : null;
+    return this.row.location ? new Location(this.row.location) : null;
   }
 }

@@ -129,24 +129,24 @@ type RenameTodoPayload = {
 /** @gqlType */
 export class Todo implements GraphQLNode {
   __typename = 'Todo' as const;
-  private model: TodoRow;
+  private row: TodoRow;
 
-  constructor(model: TodoRow) {
-    this.model = model;
+  constructor(row: TodoRow) {
+    this.row = row;
   }
 
   localID(): string {
-    return this.model.id;
+    return this.row.id;
   }
 
   /** @gqlField */
   text(): string {
-    return this.model.text;
+    return this.row.text;
   }
 
   /** @gqlField */
   complete(): boolean {
-    return this.model.complete;
+    return this.row.complete;
   }
 
   /**

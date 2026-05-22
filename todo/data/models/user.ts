@@ -13,14 +13,14 @@ import {Todo} from './todo.ts';
 /** @gqlType */
 export class User implements GraphQLNode {
   __typename = 'User' as const;
-  private model: UserRow;
+  private row: UserRow;
 
-  constructor(model: UserRow) {
-    this.model = model;
+  constructor(row: UserRow) {
+    this.row = row;
   }
 
   localID(): string {
-    return this.model.id;
+    return this.row.id;
   }
 
   /** @gqlField */

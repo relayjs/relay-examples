@@ -12,18 +12,18 @@ export class Organization implements Actor, GqlNode {
   _name: string;
   _profilePicture: ImageRow;
   _joined: string;
-  private model: OrganizationRow;
+  private row: OrganizationRow;
 
-  constructor(model: OrganizationRow) {
-    this.model = model;
-    this._id = model.id;
-    this._name = model.name;
-    this._profilePicture = model.profilePicture;
-    this._joined = model.joined;
+  constructor(row: OrganizationRow) {
+    this.row = row;
+    this._id = row.id;
+    this._name = row.name;
+    this._profilePicture = row.profilePicture;
+    this._joined = row.joined;
   }
 
   /** @gqlField */
   organizationKind(): OrganizationKind | null {
-    return this.model.organizationKind as OrganizationKind;
+    return this.row.organizationKind as OrganizationKind;
   }
 }
