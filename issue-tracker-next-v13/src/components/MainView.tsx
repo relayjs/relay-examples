@@ -1,11 +1,15 @@
-import { Suspense } from "react";
-import { graphql, PreloadedQuery, usePreloadedQuery } from "react-relay";
+"use client";
+
+import { graphql, usePreloadedQuery } from "react-relay";
+import { SerializablePreloadedQuery } from "src/relay/loadSerializableQuery";
+import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQuery";
 import { MainViewQuery } from "__generated__/MainViewQuery.graphql";
 import Issues from "./Issues";
 
 export default function MainView(props: {
-  queryRef: PreloadedQuery<MainViewQuery>;
+  preloadedQuery: SerializablePreloadedQuery<MainViewQuery>;
 }) {
+  const queryRef = useSerializablePreloadedQuery(props.preloadedQuery);
   const data = usePreloadedQuery(
     graphql`
       query MainViewQuery($owner: String!, $name: String!) {
@@ -18,15 +22,15 @@ export default function MainView(props: {
         }
       }
     `,
-    props.queryRef
+    queryRef
   );
 
   return (
-    <Suspense fallback="Loading (client side)...">
+    <div>
       <h1>
         {data.repository?.owner.login}/{data.repository?.name}
       </h1>
       <Issues repository={data.repository} />
-    </Suspense>
+    </div>
   );
 }

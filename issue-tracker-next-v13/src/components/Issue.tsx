@@ -1,8 +1,13 @@
-import { Suspense } from "react";
-import { graphql, PreloadedQuery, usePreloadedQuery } from "react-relay";
+"use client";
+import { graphql, usePreloadedQuery } from "react-relay";
+import { SerializablePreloadedQuery } from "src/relay/loadSerializableQuery";
+import useSerializablePreloadedQuery from "src/relay/useSerializablePreloadedQuery";
 import { IssueQuery } from "__generated__/IssueQuery.graphql";
 
-export default function Issue(props: { queryRef: PreloadedQuery<IssueQuery> }) {
+export default function Issue(props: {
+  preloadedQuery: SerializablePreloadedQuery<IssueQuery>;
+}) {
+  const queryRef = useSerializablePreloadedQuery(props.preloadedQuery);
   const data = usePreloadedQuery(
     graphql`
       query IssueQuery($owner: String!, $name: String!, $issueNumber: Int!) {
@@ -17,14 +22,14 @@ export default function Issue(props: { queryRef: PreloadedQuery<IssueQuery> }) {
         }
       }
     `,
-    props.queryRef
+    queryRef
   );
 
   return (
-    <Suspense fallback="Loading (client side)...">
+    <div>
       <h1>{data.repository?.issue?.title}</h1>
       <p>{data.repository?.issue?.bodyText}</p>
       <p>Author: {data.repository?.issue?.author?.login}</p>
-    </Suspense>
+    </div>
   );
 }
