@@ -34,6 +34,4 @@ yarn-error.log*
 .vercel
 
 # relay
-__generated__/
 schema/schema.graphql
-queryMap.json
