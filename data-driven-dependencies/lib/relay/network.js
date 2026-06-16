@@ -44,7 +44,7 @@ export async function networkFetch(id, variables) {
   const response = await fetch(
     // TODO: figure out how not to use hardcoded hostname and port
     // TODO: consider bypassing api fetch and directly invoking graphql on server
-    process.env.GRAPHQL_ENDPOINT ?? 'http://localhost:3000/api/graphql',
+    `http://localhost:${process.env.PORT ?? 3000}/api/graphql`,
     {
       method: 'POST',
       headers: {
