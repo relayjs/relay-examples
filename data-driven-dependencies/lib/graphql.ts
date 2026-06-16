@@ -13,7 +13,7 @@ import {
   GraphQLUnionType,
 } from 'graphql';
 
-import {allBlogPosts, findBlogPost} from './blogPosts.mjs';
+import {allBlogPosts, findBlogPost} from './blogPosts';
 
 const DateTimeType = new GraphQLScalarType({
   name: 'DateTime',
@@ -31,13 +31,13 @@ const JSDependencyField = {
     id: {type: GraphQLString},
   },
   type: new GraphQLNonNull(JSDependencyType),
-  resolve: async (_, {module}) => {
+  resolve: async (_: unknown, {module}: {module: string}) => {
     seenDataDrivenDependencies.add(module);
     return module;
   },
 };
 
-const seenDataDrivenDependencies = new Set();
+const seenDataDrivenDependencies = new Set<string>();
 export const dataDrivenDependencies = {
   reset() {
     seenDataDrivenDependencies.clear();
@@ -187,7 +187,7 @@ export const rootValue = {
       allBlogPosts,
     };
   },
-  blogPost: ({id}) => {
+  blogPost: ({id}: {id: string}) => {
     return findBlogPost(id);
   },
 };

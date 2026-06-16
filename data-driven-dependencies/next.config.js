@@ -5,6 +5,7 @@ module.exports = {
     relay: {
       src: relay.src,
       artifactDirectory: relay.artifactDirectory,
+      language: relay.language,
     },
   },
 };

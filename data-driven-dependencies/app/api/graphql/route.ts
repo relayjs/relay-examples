@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import {graphql} from 'graphql';
-import {schema, rootValue, dataDrivenDependencies} from '../../../lib/graphql.mjs';
+import {schema, rootValue, dataDrivenDependencies} from '../../../lib/graphql';
 
 const QUERY_MAP_FILE = path.resolve(process.cwd(), './queryMap.json');
 const queryMap = JSON.parse(fs.readFileSync(QUERY_MAP_FILE, 'utf8'));
 
-export async function POST(request) {
+export async function POST(request: Request) {
   const requestParams = await request.json();
   dataDrivenDependencies.reset();
   const response = await graphql({
