@@ -35,13 +35,12 @@ export function Button({size, ...props}) {
   );
 }
 
-export function Link(props) {
-  const {children, ...rest} = props;
+export function Link({children, ...rest}) {
   return (
-    <NextLink {...rest}>
-      <a className="text-base font-semibold text-gray-900 underline cursor-pointer text-blue-600 hover:text-blue-800 visited:text-purple-600">
-        {children}
-      </a>
+    <NextLink
+      className="text-base font-semibold text-gray-900 underline cursor-pointer text-blue-600 hover:text-blue-800 visited:text-purple-600"
+      {...rest}>
+      {children}
     </NextLink>
   );
 }

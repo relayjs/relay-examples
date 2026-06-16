@@ -15,19 +15,19 @@
   "dependencies": {
     "chance": "^1.1.8",
     "graphql": "^16.3.0",
-    "next": "latest",
-    "prettier": "^2.6.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "next": "^16.0.0",
+    "prettier": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-relay": "^21.0.0",
     "relay-runtime": "^21.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.4",
-    "concurrently": "^7.0.0",
-    "postcss": "^8.4.12",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.0",
+    "postcss": "^8.5.0",
     "relay-compiler": "^21.0.0",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.4.0"
   },
   "prettier": {
     "bracketSameLine": true,
