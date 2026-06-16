@@ -11,8 +11,8 @@ export function createEnvironment() {
   // Operation loader is reponsible for loading JS modules/components
   // for data-processing and rendering
   const operationLoader = {
-    get: (name) => moduleLoader(name).get(),
-    load: (name) => moduleLoader(name).load(),
+    get: (name: string) => moduleLoader(name).get(),
+    load: (name: string) => moduleLoader(name).load(),
   };
 
   const network = createNetwork();
@@ -28,7 +28,7 @@ export function createEnvironment() {
     },
   });
 
-  environment.getNetwork().responseCache = network.responseCache;
+  (environment.getNetwork() as any).responseCache = (network as any).responseCache;
 
   return environment;
 }

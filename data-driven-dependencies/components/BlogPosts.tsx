@@ -2,8 +2,9 @@ import {Suspense} from 'react';
 import {usePaginationFragment, graphql} from 'react-relay';
 import {Title, Button} from './LayoutComponents';
 import RelayMatchContainer from './RelayMatchContainer';
+import type {BlogPosts_viewer$key} from '../__generated__/BlogPosts_viewer.graphql';
 
-export default function BlogPosts({viewer}) {
+export default function BlogPosts({viewer}: {viewer: BlogPosts_viewer$key}) {
   const {data, loadNext, hasNext, isLoadingNext} = usePaginationFragment(
     graphql`
       fragment BlogPosts_viewer on Viewer
@@ -51,7 +52,7 @@ export default function BlogPosts({viewer}) {
   );
 }
 
-function LoadMore({onClick, disabled}) {
+function LoadMore({onClick, disabled}: {onClick: () => void; disabled: boolean}) {
   return (
     <Button onClick={onClick} disabled={disabled}>
       Load More

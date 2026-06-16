@@ -1,3 +1,4 @@
+// @ts-expect-error — chance has no types
 import Chance from 'chance';
 
 const chance = new Chance();
@@ -36,14 +37,16 @@ function generateBlogPost() {
   return newPost;
 }
 
-export function findBlogPost(id) {
+export function findBlogPost(id: string | number) {
   const post = blogPosts.find((post) => post.id == id);
   return post ? {content: post} : null;
 }
 
 // Fake implementation of the `allBlogPosts` connection
-export function allBlogPosts({after, _first}) {
-  const blogPostsList = after ? [generateBlogPost()] : blogPosts;
+export function allBlogPosts({after, first}: {after?: string; first?: number}) {
+  const blogPostsList = after
+    ? [generateBlogPost()]
+    : blogPosts.slice(0, first ?? blogPosts.length);
   return {
     edges: blogPostsList.map((blogPost) => ({
       __typename: 'BlogPostConnectionEdge',

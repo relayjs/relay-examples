@@ -4,17 +4,19 @@ import moduleLoader from '../lib/moduleLoader';
 import ErrorBoundary from './ErrorBoundary';
 import {Button} from './LayoutComponents';
 
-export default function RelayMatchContainer({match}) {
+export default function RelayMatchContainer({match}: {match: unknown}) {
   return (
     <ErrorBoundary
       shouldCatchError={(error) => error instanceof ModuleLoaderError}
       renderError={(error, resetError) => (
         <div className="bg-red-200 rounded-md px-2 py-1 inline-block">
-          Failed to load {error.moduleLoaderName}{' '}
+          Failed to load {(error as ModuleLoaderError).moduleLoaderName}{' '}
           <Button
             size="small"
             onClick={() => {
-              moduleLoader(error.moduleLoaderName).resetError();
+              moduleLoader(
+                (error as ModuleLoaderError).moduleLoaderName,
+              ).resetError();
               resetError();
             }}>
             Reload
@@ -23,7 +25,7 @@ export default function RelayMatchContainer({match}) {
       )}>
       <MatchContainer
         match={match}
-        loader={(name) => {
+        loader={(name: string) => {
           const loader = moduleLoader(name);
           const error = loader.getError();
           if (error) {
@@ -41,9 +43,12 @@ export default function RelayMatchContainer({match}) {
 }
 
 class ModuleLoaderError extends Error {
-  constructor(moduleLoaderName, error) {
+  moduleLoaderName: string;
+  override cause: Error;
+
+  constructor(moduleLoaderName: string, error: Error) {
     super('ModuleLoaderError: ' + error.message);
     this.moduleLoaderName = moduleLoaderName;
-    this.error = error;
+    this.cause = error;
   }
 }

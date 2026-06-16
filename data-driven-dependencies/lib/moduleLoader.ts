@@ -1,9 +1,22 @@
-const loaders = new Map();
-const loadedModules = new Map();
-const failedModules = new Map();
-const pendingLoaders = new Map();
+type PendingLoader = {
+  kind: 'pending';
+  resolve: (value: unknown) => void;
+  reject: (error: unknown) => void;
+};
 
-export default function moduleLoader(name) {
+type RegisteredLoader = {
+  kind: 'registered';
+  loaderFn: () => Promise<{default: unknown}>;
+};
+
+type Loader = PendingLoader | RegisteredLoader;
+
+const loaders = new Map<string, Loader>();
+const loadedModules = new Map<string, {default: unknown}>();
+const failedModules = new Map<string, Error>();
+const pendingLoaders = new Map<string, Promise<unknown>>();
+
+export default function moduleLoader(name: string) {
   return {
     getError() {
       return failedModules.get(name);
@@ -45,7 +58,10 @@ export default function moduleLoader(name) {
   };
 }
 
-export function registerLoader(name, loaderFn) {
+export function registerLoader(
+  name: string,
+  loaderFn: () => Promise<{default: unknown}>,
+) {
   const loader = loaders.get(name);
   if (loader == null) {
     loaders.set(name, {
